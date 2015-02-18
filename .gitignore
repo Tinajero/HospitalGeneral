@@ -30,7 +30,7 @@
 /target
 
 #eclipse algo
-/RemoteSystemsTempFiles
+#/RemoteSystemsTempFiles
 # eclipse
 *.pydevproject
 .project
