@@ -24,7 +24,7 @@
 
 # older plugin install locations
 /plugins
-/web-app/plugins
+#/web-app/plugins
 
 # "temporary" build files
 /target
@@ -51,4 +51,4 @@ local.properties
 .buildpath
 
 # la carpeta que siempre se crea en cada projecto 
-/Servers
+#/Servers
