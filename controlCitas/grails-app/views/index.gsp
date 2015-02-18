@@ -116,7 +116,9 @@
 						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
 					</g:each>
 				</ul>
+				<a href="view/otrologin"> asd </a>
 			</div>
+			
 		</div>
 	</body>
 </html>
