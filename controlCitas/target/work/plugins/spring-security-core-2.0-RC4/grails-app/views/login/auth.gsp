@@ -172,6 +172,7 @@ body {
         <h3 class="form-signin-heading">Ingresar</h3>
         <label for="inputEmail" class="sr-only"><g:message code="springSecurity.login.username.label"/>:</label>
         <input type="text"  id="inputEmail" class="form-control" placeholder='${message(code: "springSecurity.login.username.label")}'  name='j_username' id='username' required autofocus>
+        <br/>
         <label for="inputPassword" class="sr-only"><g:message code="springSecurity.login.password.label"/>:</label>
         <input type="password" id="inputPassword" class="form-control" placeholder='${message(code: "springSecurity.login.password.label")}' name='j_password' id='password' required>
 <%--        <div class="checkbox">--%>
