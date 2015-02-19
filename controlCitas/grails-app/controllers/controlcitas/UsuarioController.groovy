@@ -7,11 +7,12 @@ import grails.transaction.Transactional
 
 
 @Transactional(readOnly = true)
+@Secured(['ROLE_ADMIN'])
 class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
-	@Secured(['ROLE_ADMIN'])
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
@@ -21,6 +22,7 @@ class UsuarioController {
         respond usuarioInstance
     }
 
+	
     def create() {
         respond new Usuario(params)
     }
