@@ -49,6 +49,7 @@ local.properties
 .externalToolBuilders/
 *.launch
 .buildpath
+/target-eclipse
 
 # la carpeta que siempre se crea en cada projecto 
 /Servers
