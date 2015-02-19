@@ -33,7 +33,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Configuración</a></li>
-            <li><a href="logout">Salir s</a></li>
+            <li><a href="logout">Salir</a></li>
           </ul>
          
         </div>
@@ -45,7 +45,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="usuario"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Doctores</a></li>
+            <li><a href="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Doctores</a></li>
             
           </ul>
         </div>
