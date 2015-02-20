@@ -15,6 +15,7 @@
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<asset:stylesheet src="dashboard.css"/>
+		 <g:javascript src="utilerias.js" />
 		<g:layoutHead/>
 	</head>
 	<body>
@@ -31,10 +32,13 @@
           <a class="navbar-brand" href="${createLink(uri: '/')}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Administración del Sistema</b> </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Configuración</a></li>
-            <li><a href="logout">Salir</a></li>
-          </ul>
+	        <ul class="nav navbar-nav" id="contenedorNavbarPrincipal">
+<%--	        	<li><a href="#">Casdn</a></li>--%>
+	        </ul>
+			<ul class="nav navbar-nav navbar-right">
+			  <li><a href="#">Configuración</a></li>
+			  <li><a href="logout">Salir</a></li>
+			</ul>
          
         </div>
       </div>
