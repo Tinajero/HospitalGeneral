@@ -25,7 +25,7 @@
 			  	<div class="panel-heading">
 			  		<div class="row">
 			  			<h1 class="col-md-9"><g:message code="default.list.label" args="[entityName]" /></h1>
-						<g:link class="btn btn-primary col-md-2" action="create" role="button" sytle="margin-top: 20px;">
+						<g:link class="btn btn-primary col-md-2" action="create" role="button" sytle="margin-top: 20px;" data-toggle="tooltip" title="Crea un nuevo Doctor">
 						<g:message code="default.new.label" args="[entityName]" /> &nbsp;&nbsp;
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</g:link>
@@ -71,9 +71,9 @@
 
 <%--						<td>${fieldValue(bean: doctorInstance, field: "horario")}</td>--%>
 						<td> 
-							<g:link action="show" id="${doctorInstance.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></g:link> &nbsp;
-							<g:link action="#" id="${doctorInstance.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></g:link> &nbsp;
-							<g:link action="edit" id="${doctorInstance.id}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></g:link> &nbsp;
+							<g:link action="show" id="${doctorInstance.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Mostrar"></span></g:link> &nbsp;
+<%--							<g:link action="delete" id="${doctorInstance.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></g:link> &nbsp;--%>
+							<g:link action="edit" id="${doctorInstance.id}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></span></g:link> &nbsp;
 						</td>
 					
 					</tr>

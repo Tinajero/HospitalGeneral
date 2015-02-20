@@ -8,10 +8,10 @@
 	</head>
 	<body>
 	<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
-		<a href="#edit-doctor" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
+<%--		<a href="#edit-doctor" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--%>
+		<div class="nav" role="navigation" id="navTemp">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+<%--				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -34,11 +34,20 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons col-sm-offset-2">
-					<g:actionSubmit class="save" class="btn btn-default" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit class="save" class="btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 				
 			</g:form>
 		</div>
 	</div>
+	<script>
+		$(document).ready( function(){
+			var navhere = $(".nav ul");
+			var botones=navhere.html()
+			navhere = $("#navTemp");
+			navhere.remove();
+			setNavBarShowEdit(botones) 
+		});
+	</script>
 	</body>
 </html>
