@@ -11,10 +11,10 @@
 	<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
 <%--		<a href="#list-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--%>
 <%--		<div class="nav" role="navigation">--%>
-			<ul>
+<%--			<ul>--%>
 <%--				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+<%--				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--%>
+<%--			</ul>--%>
 <%--		</div>--%>
 		<div id="list-usuario" class="content scaffold-list" role="main">
 			
@@ -28,7 +28,7 @@
 			  		
 				  	<h1 class="col-md-9"><g:message code="default.list.label" args="[entityName]" /></h1>
 <%--					<div class="btn-group col-md-2" role="group" aria-label="..."> --%>
-						<g:link class="btn btn-primary col-md-2" action="create" role="button" sytle="margin-top: 20px;">
+						<g:link class="btn btn-primary col-md-2" action="create" role="button" sytle="margin-top: 20px;" data-toggle="tooltip" title="Crea un nuevo usuario">
 							<g:message code="default.new.label" args="[entityName]" /> &nbsp;&nbsp;
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</g:link>
@@ -71,9 +71,9 @@
 						
 							<td><g:formatBoolean boolean="${usuarioInstance.passwordExpired}" /></td>
 							<td> 
-								<g:link action="show" id="${usuarioInstance.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></g:link> &nbsp;
-								<g:link action="#" id="${usuarioInstance.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></g:link> &nbsp;
-								<g:link action="edit" id="${usuarioInstance.id}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></g:link> &nbsp;
+								<g:link action="show" id="${usuarioInstance.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Mostrar"></span></g:link> &nbsp;
+<%--								<g:link action="delete" id="${usuarioInstance.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></g:link> &nbsp;--%>
+								<g:link action="edit" id="${usuarioInstance.id}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></span></g:link> &nbsp;
 							</td>
 						</tr>
 					</g:each>
@@ -85,8 +85,6 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		$(document).ready( setNavBarNuevo("${entityName}") );
-	</script>
+
 	</body>
 </html>

@@ -36,5 +36,8 @@
 			</g:form>
 		</div>
 		</div>
+		<script>
+			$(document).ready( setNavBarLista("${entityName}")  );
+		</script>
 	</body>
 </html>

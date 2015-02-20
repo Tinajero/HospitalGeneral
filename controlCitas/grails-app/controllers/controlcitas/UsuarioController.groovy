@@ -38,9 +38,11 @@ class UsuarioController {
             respond usuarioInstance.errors, view:'create'
             return
         }
-
+		def userRole = SecRole.findOrSaveWhere(authority:'ROLE_USER')
+		
+		
         usuarioInstance.save flush:true
-
+		SecUserSecRole.create usuarioInstance, userRole, true
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.id])
@@ -79,7 +81,7 @@ class UsuarioController {
 
     @Transactional
     def delete(Usuario usuarioInstance) {
-
+		println "deleteando"
         if (usuarioInstance == null) {
             notFound()
             return

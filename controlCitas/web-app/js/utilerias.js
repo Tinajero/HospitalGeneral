@@ -1,15 +1,15 @@
 function setNavBarNuevo(entityName){
 	var navbar = $("#contenedorNavbarPrincipal");
 
-	navbar.empty();
-	navbar.append("<li><a class='create' href='"+ entityName +"/create'>Nuevo</a></li>");
+	//navbar.empty();
+	navbar.append("<li><a class='create' href='/"+ entityName +"/create'>Nuevo</a></li>");
 //	navbar.append("<li><g:link class='create' action='create'>Nuevo</a></li>");
 
 }
-function setNavBarLista(){
+function setNavBarLista(entityName){
 	var navbar = $("#contenedorNavbarPrincipal");
 
-	navbar.empty();
+	//navbar.empty();
 	navbar.append("<li><a class='list' href='index'>Lista</a></li>");
 
 
