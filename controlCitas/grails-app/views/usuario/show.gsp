@@ -18,10 +18,11 @@
 			</ul>
 		</div>
 		<div id="show-usuario" class="content scaffold-show" role="main">
-			
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
+			<div class="row">
+				<g:if test="${flash.message}">
+					<div  class="alert alert-success col-sm-4" role="alert">${flash.message}</div>
+				</g:if>
+			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading"><h1><g:message code="default.show.label" args="[entityName]" /></h1></div>
   				<div class="panel-body">

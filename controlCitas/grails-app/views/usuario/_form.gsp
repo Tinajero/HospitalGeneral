@@ -4,7 +4,7 @@
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'username', 'error')} required">
 	<label for="username" class="col-sm-2 control-label">
-		<g:message code="usuario.username.label" default="Username" />
+		<g:message code="usuario.username.label" default="Usuario" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div  class="col-sm-4">
@@ -14,14 +14,27 @@
 
 <div class="form-group ${hasErrors(bean: usuarioInstance, field: 'password', 'error')} required">
 	<label for="password" class="col-sm-2 control-label">
-		<g:message code="usuario.password.label" default="Password" />
+		<g:message code="usuario.password.label" default="Contraseña" />
 		<span class="required-indicator">*</span>
 	</label>
+	
 	<div  class="col-sm-4">
-		<g:passwordField  name="password" required=""  class="form-control"  value="${usuarioInstance?.password}"/>
+		<g:passwordField  name="password" required="" id="inputPassword" class="form-control" />
+		
 	</div>
 </div>
 
+<div class="form-group ${hasErrors(bean: usuarioInstance, field: 'password', 'error')} required">
+	<label for="password2" class="col-sm-2 control-label">
+		Repita la contraseña
+		
+	</label>
+	
+	<div  class="col-sm-4">
+		<g:passwordField  name="password2" required="" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Lo sentimos, la contraseña dada no coincide"  class="form-control"  />
+		<div class="help-block with-errors"></div>
+	</div>
+</div>
 <%--<div class="form-group ${hasErrors(bean: usuarioInstance, field: 'accountExpired', 'error')} ">--%>
 <%--	<label for="accountExpired" class="col-sm-2 control-label">--%>
 <%--		<g:message code="usuario.accountExpired.label" default="Account Expired" />--%>

@@ -29,15 +29,28 @@ class UsuarioController {
 
     @Transactional
     def save(Usuario usuarioInstance) {
+		
         if (usuarioInstance == null) {
             notFound()
             return
         }
 
-        if (usuarioInstance.hasErrors()) {
+        if (usuarioInstance.hasErrors() ) {
+			
             respond usuarioInstance.errors, view:'create'
             return
         }
+		println "params.password2 " + params.password2 
+		println "params.password " + params.password
+		if (params.password2 != params.password){
+			usuarioInstance.errors.reject('user.password.doesnotmatch ', 'Las contrase&ntilde;as no coinciden')
+			//flash.message = "error en con trase&ntilde;a"
+			//usuarioInstance.message = "error en la contraseña"
+			//usuarionInstance.errors = "error en contraseña"
+			//usuarioInstance.errors.
+			respond usuarioInstance.errors, view:'create'
+			return
+		}
 		def userRole = SecRole.findOrSaveWhere(authority:'ROLE_USER')
 		
 		
@@ -45,7 +58,7 @@ class UsuarioController {
 		SecUserSecRole.create usuarioInstance, userRole, true
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.username])
                 redirect usuarioInstance
             }
             '*' { respond usuarioInstance, [status: CREATED] }
@@ -72,7 +85,7 @@ class UsuarioController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Usuario.label', default: 'Usuario'), usuarioInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Usuario.label', default: 'Usuario'), usuarioInstance.username])
                 redirect usuarioInstance
             }
             '*'{ respond usuarioInstance, [status: OK] }
