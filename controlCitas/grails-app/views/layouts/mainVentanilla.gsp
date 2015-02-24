@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Citas Medicas"/></title>
+		<title><g:layoutTitle default="Grails"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
@@ -29,14 +29,14 @@
             <span class="icon-bar"></span>
           </button>
 <%--          <a class="home" href="${createLink(uri: '/')}">--%>
-          <a class="navbar-brand" href="${createLink(uri: '/')}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Administración del Sistema</b> </a>
+          <a class="navbar-brand" href="${createLink(uri: '/')}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b> Ventanilla</b> </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 	        <ul class="nav navbar-nav" id="contenedorNavbarPrincipal">
 <%--	        	<li><a href="#">Casdn</a></li>--%>
 	        </ul>
 			<ul class="nav navbar-nav navbar-right">
-			  <li><a href="#">Configuración</a></li>
+			 
 			  <li><a href="/controlCitas/logout">Salir</a></li>
 			</ul>
          
@@ -48,8 +48,9 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><g:link controller ="usuario"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</g:link></li>
-            <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Doctores</g:link></li>
+
+            <li><g:link controller ="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Citas</g:link></li>
+            <li><g:link controller ="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</g:link></li>
             
           </ul>
         </div>
