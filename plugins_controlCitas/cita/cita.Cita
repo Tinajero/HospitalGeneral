@@ -1,0 +1,1065 @@
+<dependencies>
+  <build>
+    <dependency group='xalan' name='serializer' version='2.7.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/xalan/serializer/jars/serializer-2.7.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-bootstrap-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='jline' name='jline' version='2.12'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/jline/jline/jars/jline-2.12.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant' version='1.8.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.ant/ant/jars/ant-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant-launcher' version='1.8.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.ant/ant-launcher/jars/ant-launcher-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant-trax' version='1.7.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar</jar>
+    </dependency>
+    <dependency group='net.java.dev.jna' name='jna' version='4.0.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/net.java.dev.jna/jna/jars/jna-4.0.0.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant-junit' version='1.8.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.ant/ant-junit/jars/ant-junit-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gant' name='gant_groovy1.8' version='1.9.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.gant/gant_groovy1.8/jars/gant_groovy1.8-1.9.6.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ivy' name='ivy' version='2.3.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.ivy/ivy/jars/ivy-2.3.0.jar</jar>
+    </dependency>
+    <dependency group='org.fusesource.jansi' name='jansi' version='1.11'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.fusesource.jansi/jansi/jars/jansi-1.11.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-project-api' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-project-api-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-scripts' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-scripts-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-docs' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-docs-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.xhtmlrenderer' name='core-renderer' version='R8'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.xhtmlrenderer/core-renderer/jars/core-renderer-R8.jar</jar>
+    </dependency>
+    <dependency group='org.yaml' name='snakeyaml' version='1.8'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.yaml/snakeyaml/jars/snakeyaml-1.8.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-gdoc-engine' version='1.0.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-gdoc-engine/jars/grails-gdoc-engine-1.0.1.jar</jar>
+    </dependency>
+    <dependency group='org.jsoup' name='jsoup' version='1.7.3'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.jsoup/jsoup/jars/jsoup-1.7.3.jar</jar>
+    </dependency>
+    <dependency group='com.lowagie' name='itext' version='2.0.8'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.lowagie/itext/jars/itext-2.0.8.jar</jar>
+    </dependency>
+    <dependency group='bouncycastle' name='bcmail-jdk14' version='138'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/bouncycastle/bcmail-jdk14/jars/bcmail-jdk14-138.jar</jar>
+    </dependency>
+    <dependency group='bouncycastle' name='bcprov-jdk14' version='138'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/bouncycastle/bcprov-jdk14/jars/bcprov-jdk14-138.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-lang/commons-lang/jars/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='release' version='3.0.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/release/3.0.1/release-3.0.1.zip</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-ant-tasks' version='2.1.3'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-ant-tasks/2.1.3/maven-ant-tasks-2.1.3.jar</jar>
+    </dependency>
+    <dependency group='classworlds' name='classworlds' version='1.1-alpha-2'>
+      <jar>/home/mid/.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.plexus' name='plexus-container-default' version='1.0-alpha-9-stable-1'>
+      <jar>/home/mid/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.plexus' name='plexus-utils' version='1.5.15'>
+      <jar>/home/mid/.m2/repository/org/codehaus/plexus/plexus-utils/1.5.15/plexus-utils-1.5.15.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.plexus' name='plexus-interpolation' version='1.11'>
+      <jar>/home/mid/.m2/repository/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-artifact' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-artifact-manager' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-repository-metadata' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='backport-util-concurrent' name='backport-util-concurrent' version='3.1'>
+      <jar>/home/mid/.m2/repository/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-model' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-project' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-profile' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-plugin-registry' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-error-diagnostics' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven' name='maven-settings' version='2.2.1'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-file' version='1.0-beta-6'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/wagon/wagon-file/1.0-beta-6/wagon-file-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-http-lightweight' version='1.0-beta-6'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/wagon/wagon-http-lightweight/1.0-beta-6/wagon-http-lightweight-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-http-shared' version='1.0-beta-6'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/wagon/wagon-http-shared/1.0-beta-6/wagon-http-shared-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='nekohtml' name='xercesMinimal' version='1.9.6.2'>
+      <jar>/home/mid/.m2/repository/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar</jar>
+    </dependency>
+    <dependency group='nekohtml' name='nekohtml' version='1.9.6.2'>
+      <jar>/home/mid/.m2/repository/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.jar</jar>
+    </dependency>
+    <dependency group='org.apache.maven.wagon' name='wagon-provider-api' version='1.0-beta-6'>
+      <jar>/home/mid/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='rest-client-builder' version='1.0.3'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/rest-client-builder/1.0.3/rest-client-builder-1.0.3.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='tomcat' version='7.0.54'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/tomcat/7.0.54/tomcat-7.0.54.zip</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-catalina-ant' version='7.0.53'>
+      <jar>/home/mid/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.53/tomcat-catalina-ant-7.0.53.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-jasper' version='7.0.53'>
+      <jar>/home/mid/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.53/tomcat-embed-jasper-7.0.53.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-el' version='7.0.53'>
+      <jar>/home/mid/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.53/tomcat-embed-el-7.0.53.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-logging-log4j' version='7.0.53'>
+      <jar>/home/mid/.m2/repository/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.53/tomcat-embed-logging-log4j-7.0.53.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-websocket' version='7.0.53'>
+      <jar>/home/mid/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/7.0.53/tomcat-embed-websocket-7.0.53.jar</jar>
+    </dependency>
+    <dependency group='org.eclipse.jdt.core.compiler' name='ecj' version='3.7.2'>
+      <jar>/home/mid/.m2/repository/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-core' version='7.0.53'>
+      <jar>/home/mid/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/7.0.53/tomcat-embed-core-7.0.53.jar</jar>
+    </dependency>
+  </build>
+  <compile>
+    <dependency group='org.codehaus.groovy' name='groovy-all' version='2.3.3'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.3.3.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-rest' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-rest-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='com.google.code.gson' name='gson' version='2.2.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.google.code.gson/gson/jars/gson-2.2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-common' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-common-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-webmvc' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-webmvc/jars/spring-webmvc-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context-support' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-context-support/jars/spring-context-support-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-url-mappings' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-url-mappings-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-fileupload' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-fileupload-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-fileupload' name='commons-fileupload' version='1.3.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-fileupload/commons-fileupload/jars/commons-fileupload-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='commons-io' name='commons-io' version='2.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-io/commons-io/jars/commons-io-2.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-gsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-gsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-mvc' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-mvc-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-sitemesh' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-sitemesh-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='opensymphony' name='sitemesh' version='2.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/opensymphony/sitemesh/jars/sitemesh-2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-jsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-jsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-controllers' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-controllers-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-validation' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-validation-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-async' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-async-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gpars' name='gpars' version='1.2.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.gpars/gpars/jars/gpars-1.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.jsr166-mirror' name='jsr166y' version='1.7.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.jsr166-mirror/jsr166y/jars/jsr166y-1.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-datasource' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-datasource-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-jdbc' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-jdbc/jars/spring-jdbc-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-jdbc' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat/tomcat-jdbc/jars/tomcat-jdbc-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-juli' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat/tomcat-juli/jars/tomcat-juli-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-context/jars/spring-context-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aop' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-aop/jars/spring-aop-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-core' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-core-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-core' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-core/jars/spring-core-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-beans' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-beans/jars/spring-beans-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-spring' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-spring-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-bootstrap-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='aopalliance' name='aopalliance' version='1.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/aopalliance/aopalliance/jars/aopalliance-1.0.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.javax.persistence' name='hibernate-jpa-2.1-api' version='1.0.0.Final'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/jars/hibernate-jpa-2.1-api-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-i18n' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-i18n-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-lang/commons-lang/jars/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-filters' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-filters-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-gsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-gsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-gsp-taglib' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-gsp-taglib-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-codecs' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-codecs-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-codec' name='commons-codec' version='1.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-codec/commons-codec/jars/commons-codec-1.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-encoder' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-encoder-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-web' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-web/jars/spring-web-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-logging' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-logging-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-log4j' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-log4j-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jul-to-slf4j' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/jul-to-slf4j/jars/jul-to-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-services' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-services-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-tx' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-tx/jars/spring-tx-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-servlets' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-servlets-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-url-mappings' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-url-mappings-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='com.googlecode.concurrentlinkedhashmap' name='concurrentlinkedhashmap-lru' version='1.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/jars/concurrentlinkedhashmap-lru-1.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-validation' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-validation-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-validator' name='commons-validator' version='1.4.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-validator/commons-validator/jars/commons-validator-1.4.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-mimetypes' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-mimetypes-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-domain-class' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-domain-class-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-converters' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-converters-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='scaffolding' version='2.1.2'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/scaffolding/2.1.2/scaffolding-2.1.2.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='cache' version='1.1.7'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/cache/1.1.7/cache-1.1.7.zip</jar>
+    </dependency>
+    <dependency group='org.javassist' name='javassist' version='3.17.1-GA'>
+      <jar>/home/mid/.m2/repository/org/javassist/javassist/3.17.1-GA/javassist-3.17.1-GA.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='webxml' version='1.4.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/webxml/1.4.1/webxml-1.4.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='asset-pipeline' version='1.8.11'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/asset-pipeline/1.8.11/asset-pipeline-1.8.11.zip</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-core' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-core/jars/grails-datastore-core-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-gorm/jars/grails-datastore-gorm-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-simple' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-simple/jars/grails-datastore-simple-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='spring-security-core' version='2.0-RC4'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/spring-security-core/2.0-RC4/spring-security-core-2.0-RC4.zip</jar>
+    </dependency>
+    <dependency group='org.springframework.security' name='spring-security-core' version='3.2.3.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework.security' name='spring-security-web' version='3.2.3.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-expression' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-expression/jars/spring-expression-4.0.5.RELEASE.jar</jar>
+    </dependency>
+  </compile>
+  <test>
+    <dependency group='javax.servlet' name='javax.servlet-api' version='3.0.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/javax.servlet/javax.servlet-api/jars/javax.servlet-api-3.0.1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.groovy' name='groovy-all' version='2.3.3'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.3.3.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-rest' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-rest-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='com.google.code.gson' name='gson' version='2.2.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.google.code.gson/gson/jars/gson-2.2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-common' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-common-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-webmvc' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-webmvc/jars/spring-webmvc-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context-support' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-context-support/jars/spring-context-support-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-url-mappings' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-url-mappings-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-fileupload' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-fileupload-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-fileupload' name='commons-fileupload' version='1.3.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-fileupload/commons-fileupload/jars/commons-fileupload-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='commons-io' name='commons-io' version='2.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-io/commons-io/jars/commons-io-2.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-gsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-gsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aspects' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-aspects/jars/spring-aspects-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-mvc' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-mvc-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-sitemesh' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-sitemesh-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='opensymphony' name='sitemesh' version='2.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/opensymphony/sitemesh/jars/sitemesh-2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-jsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-jsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjweaver' version='1.8.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.aspectj/aspectjweaver/jars/aspectjweaver-1.8.0.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjrt' version='1.8.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.aspectj/aspectjrt/jars/aspectjrt-1.8.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-controllers' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-controllers-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-validation' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-validation-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-async' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-async-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gpars' name='gpars' version='1.2.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.gpars/gpars/jars/gpars-1.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.jsr166-mirror' name='jsr166y' version='1.7.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.jsr166-mirror/jsr166y/jars/jsr166y-1.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-datasource' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-datasource-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-jdbc' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-jdbc/jars/spring-jdbc-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-logging-log4j' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat.embed/tomcat-embed-logging-log4j/jars/tomcat-embed-logging-log4j-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-jdbc' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat/tomcat-jdbc/jars/tomcat-jdbc-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-juli' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat/tomcat-juli/jars/tomcat-juli-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-context/jars/spring-context-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aop' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-aop/jars/spring-aop-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-core' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-core-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-core' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-core/jars/spring-core-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-beans' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-beans/jars/spring-beans-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='xalan' name='serializer' version='2.7.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/xalan/serializer/jars/serializer-2.7.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-spring' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-spring-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-bootstrap-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='aopalliance' name='aopalliance' version='1.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/aopalliance/aopalliance/jars/aopalliance-1.0.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.javax.persistence' name='hibernate-jpa-2.1-api' version='1.0.0.Final'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/jars/hibernate-jpa-2.1-api-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-i18n' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-i18n-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-lang/commons-lang/jars/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-filters' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-filters-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-gsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-gsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-gsp-taglib' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-gsp-taglib-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-codecs' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-codecs-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-codec' name='commons-codec' version='1.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-codec/commons-codec/jars/commons-codec-1.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-encoder' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-encoder-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-web' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-web/jars/spring-web-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-logging' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-logging-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-log4j' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-log4j-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jul-to-slf4j' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/jul-to-slf4j/jars/jul-to-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-services' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-services-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-tx' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-tx/jars/spring-tx-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-servlets' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-servlets-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-url-mappings' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-url-mappings-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='com.googlecode.concurrentlinkedhashmap' name='concurrentlinkedhashmap-lru' version='1.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/jars/concurrentlinkedhashmap-lru-1.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-validation' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-validation-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-validator' name='commons-validator' version='1.4.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-validator/commons-validator/jars/commons-validator-1.4.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-testing' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-testing-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-mimetypes' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-mimetypes-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-test' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-test-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-project-api' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-project-api-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='jline' name='jline' version='2.12'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/jline/jline/jars/jline-2.12.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant' version='1.8.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.ant/ant/jars/ant-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='org.apache.ant' name='ant-launcher' version='1.8.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.ant/ant-launcher/jars/ant-launcher-1.8.4.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gant' name='gant_groovy1.8' version='1.9.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.gant/gant_groovy1.8/jars/gant_groovy1.8-1.9.6.jar</jar>
+    </dependency>
+    <dependency group='org.fusesource.jansi' name='jansi' version='1.11'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.fusesource.jansi/jansi/jars/jansi-1.11.jar</jar>
+    </dependency>
+    <dependency group='org.objenesis' name='objenesis' version='1.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.objenesis/objenesis/jars/objenesis-1.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-domain-class' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-domain-class-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-test' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-test/jars/spring-test-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-converters' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-converters-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.spockframework' name='spock-core' version='0.7-groovy-2.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.spockframework/spock-core/jars/spock-core-0.7-groovy-2.0.jar</jar>
+    </dependency>
+    <dependency group='org.hamcrest' name='hamcrest-core' version='1.3'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.hamcrest/hamcrest-core/jars/hamcrest-core-1.3.jar</jar>
+    </dependency>
+    <dependency group='junit' name='junit' version='4.11'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/junit/junit/jars/junit-4.11.jar</jar>
+    </dependency>
+    <dependency group='com.h2database' name='h2' version='1.3.176'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.h2database/h2/jars/h2-1.3.176.jar</jar>
+    </dependency>
+    <dependency group='log4j' name='log4j' version='1.2.17'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/log4j/log4j/jars/log4j-1.2.17.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-resources' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-resources-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='scaffolding' version='2.1.2'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/scaffolding/2.1.2/scaffolding-2.1.2.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='cache' version='1.1.7'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/cache/1.1.7/cache-1.1.7.zip</jar>
+    </dependency>
+    <dependency group='org.javassist' name='javassist' version='3.17.1-GA'>
+      <jar>/home/mid/.m2/repository/org/javassist/javassist/3.17.1-GA/javassist-3.17.1-GA.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='webxml' version='1.4.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/webxml/1.4.1/webxml-1.4.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='asset-pipeline' version='1.8.11'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/asset-pipeline/1.8.11/asset-pipeline-1.8.11.zip</jar>
+    </dependency>
+    <dependency group='org.mozilla' name='rhino' version='1.7R4'>
+      <jar>/home/mid/.m2/repository/org/mozilla/rhino/1.7R4/rhino-1.7R4.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='hibernate4' version='4.3.5.4'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/hibernate4/4.3.5.4/hibernate4-4.3.5.4.zip</jar>
+    </dependency>
+    <dependency group='org.hibernate' name='hibernate-validator' version='5.0.3.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/hibernate-validator/5.0.3.Final/hibernate-validator-5.0.3.Final.jar</jar>
+    </dependency>
+    <dependency group='com.fasterxml' name='classmate' version='1.0.0'>
+      <jar>/home/mid/.m2/repository/com/fasterxml/classmate/1.0.0/classmate-1.0.0.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate' name='hibernate-ehcache' version='4.3.5.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/hibernate-ehcache/4.3.5.Final/hibernate-ehcache-4.3.5.Final.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate' name='hibernate-core' version='4.3.5.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/hibernate-core/4.3.5.Final/hibernate-core-4.3.5.Final.jar</jar>
+    </dependency>
+    <dependency group='org.jboss.spec.javax.transaction' name='jboss-transaction-api_1.2_spec' version='1.0.0.Final'>
+      <jar>/home/mid/.m2/repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/jboss-transaction-api_1.2_spec-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='antlr' name='antlr' version='2.7.7'>
+      <jar>/home/mid/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar</jar>
+    </dependency>
+    <dependency group='org.jboss' name='jandex' version='1.1.0.Final'>
+      <jar>/home/mid/.m2/repository/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar</jar>
+    </dependency>
+    <dependency group='net.sf.ehcache' name='ehcache-core' version='2.4.8'>
+      <jar>/home/mid/.m2/repository/net/sf/ehcache/ehcache-core/2.4.8/ehcache-core-2.4.8.jar</jar>
+    </dependency>
+    <dependency group='org.jboss.logging' name='jboss-logging' version='3.1.0.GA'>
+      <jar>/home/mid/.m2/repository/org/jboss/logging/jboss-logging/3.1.0.GA/jboss-logging-3.1.0.GA.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-core' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-core/jars/grails-datastore-core-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-gorm/jars/grails-datastore-gorm-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm-hibernate4' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/grails/grails-datastore-gorm-hibernate4/3.1.1.RELEASE/grails-datastore-gorm-hibernate4-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.common' name='hibernate-commons-annotations' version='4.0.4.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/common/hibernate-commons-annotations/4.0.4.Final/hibernate-commons-annotations-4.0.4.Final.jar</jar>
+    </dependency>
+    <dependency group='org.jboss.logging' name='jboss-logging-annotations' version='1.2.0.Beta1'>
+      <jar>/home/mid/.m2/repository/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar</jar>
+    </dependency>
+    <dependency group='dom4j' name='dom4j' version='1.6.1'>
+      <jar>/home/mid/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm-hibernate-core' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/grails/grails-datastore-gorm-hibernate-core/3.1.1.RELEASE/grails-datastore-gorm-hibernate-core-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm-plugin-support' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/grails/grails-datastore-gorm-plugin-support/3.1.1.RELEASE/grails-datastore-gorm-plugin-support-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-orm' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/spring-orm/4.0.5.RELEASE/spring-orm-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-simple' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-simple/jars/grails-datastore-simple-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='javax.validation' name='validation-api' version='1.1.0.Final'>
+      <jar>/home/mid/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='database-migration' version='1.4.0'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/database-migration/1.4.0/database-migration-1.4.0.zip</jar>
+    </dependency>
+    <dependency group='org.liquibase' name='liquibase-core' version='2.0.5'>
+      <jar>/home/mid/.m2/repository/org/liquibase/liquibase-core/2.0.5/liquibase-core-2.0.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='jquery' version='1.11.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/jquery/1.11.1/jquery-1.11.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='twitter-bootstrap' version='3.3.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/twitter-bootstrap/3.3.1/twitter-bootstrap-3.3.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='spring-security-core' version='2.0-RC4'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/spring-security-core/2.0-RC4/spring-security-core-2.0-RC4.zip</jar>
+    </dependency>
+    <dependency group='org.springframework.security' name='spring-security-core' version='3.2.3.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework.security' name='spring-security-web' version='3.2.3.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-expression' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-expression/jars/spring-expression-4.0.5.RELEASE.jar</jar>
+    </dependency>
+  </test>
+  <runtime>
+    <dependency group='org.codehaus.groovy' name='groovy-all' version='2.3.3'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.3.3.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-rest' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-rest-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jcl-over-slf4j' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/jcl-over-slf4j/jars/jcl-over-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='slf4j-api' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='com.google.code.gson' name='gson' version='2.2.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.google.code.gson/gson/jars/gson-2.2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-common' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-common-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-webmvc' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-webmvc/jars/spring-webmvc-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context-support' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-context-support/jars/spring-context-support-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-url-mappings' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-url-mappings-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-fileupload' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-fileupload-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-fileupload' name='commons-fileupload' version='1.3.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-fileupload/commons-fileupload/jars/commons-fileupload-1.3.1.jar</jar>
+    </dependency>
+    <dependency group='commons-io' name='commons-io' version='2.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-io/commons-io/jars/commons-io-2.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-gsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-gsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aspects' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-aspects/jars/spring-aspects-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-mvc' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-mvc-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-sitemesh' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-sitemesh-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='opensymphony' name='sitemesh' version='2.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/opensymphony/sitemesh/jars/sitemesh-2.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-jsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-jsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjweaver' version='1.8.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.aspectj/aspectjweaver/jars/aspectjweaver-1.8.0.jar</jar>
+    </dependency>
+    <dependency group='org.aspectj' name='aspectjrt' version='1.8.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.aspectj/aspectjrt/jars/aspectjrt-1.8.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-controllers' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-controllers-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-validation' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-validation-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-async' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-async-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.gpars' name='gpars' version='1.2.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.gpars/gpars/jars/gpars-1.2.1.jar</jar>
+    </dependency>
+    <dependency group='org.codehaus.jsr166-mirror' name='jsr166y' version='1.7.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.codehaus.jsr166-mirror/jsr166y/jars/jsr166y-1.7.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-datasource' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-datasource-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-jdbc' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-jdbc/jars/spring-jdbc-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat.embed' name='tomcat-embed-logging-log4j' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat.embed/tomcat-embed-logging-log4j/jars/tomcat-embed-logging-log4j-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-jdbc' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat/tomcat-jdbc/jars/tomcat-jdbc-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.apache.tomcat' name='tomcat-juli' version='7.0.50'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.apache.tomcat/tomcat-juli/jars/tomcat-juli-7.0.50.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-context' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-context/jars/spring-context-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-aop' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-aop/jars/spring-aop-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-databinding' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-databinding-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-core' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-core-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-core' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-core/jars/spring-core-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-beans' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-beans/jars/spring-beans-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='xalan' name='serializer' version='2.7.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/xalan/serializer/jars/serializer-2.7.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-spring' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-spring-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-bootstrap' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-bootstrap-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='aopalliance' name='aopalliance' version='1.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/aopalliance/aopalliance/jars/aopalliance-1.0.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.javax.persistence' name='hibernate-jpa-2.1-api' version='1.0.0.Final'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/jars/hibernate-jpa-2.1-api-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-i18n' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-i18n-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-lang' name='commons-lang' version='2.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-lang/commons-lang/jars/commons-lang-2.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-filters' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-filters-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-gsp' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-gsp-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-web-gsp-taglib' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-web-gsp-taglib-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-codecs' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-codecs-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-codec' name='commons-codec' version='1.6'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-codec/commons-codec/jars/commons-codec-1.6.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-encoder' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-encoder-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-web' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-web/jars/spring-web-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-logging' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-logging-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-log4j' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-log4j-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.slf4j' name='jul-to-slf4j' version='1.7.5'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.slf4j/jul-to-slf4j/jars/jul-to-slf4j-1.7.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-services' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-services-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-tx' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-tx/jars/spring-tx-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-servlets' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-servlets-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-url-mappings' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-url-mappings-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='com.googlecode.concurrentlinkedhashmap' name='concurrentlinkedhashmap-lru' version='1.4'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/jars/concurrentlinkedhashmap-lru-1.4.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-validation' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-validation-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='commons-validator' name='commons-validator' version='1.4.0'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/commons-validator/commons-validator/jars/commons-validator-1.4.0.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-mimetypes' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-mimetypes-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-domain-class' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-domain-class-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-plugin-converters' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-plugin-converters-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='com.h2database' name='h2' version='1.3.176'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/com.h2database/h2/jars/h2-1.3.176.jar</jar>
+    </dependency>
+    <dependency group='log4j' name='log4j' version='1.2.17'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/log4j/log4j/jars/log4j-1.2.17.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-resources' version='2.4.2'>
+      <jar>/home/mid/.gvm/grails/2.4.2/dist/grails-resources-2.4.2.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='scaffolding' version='2.1.2'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/scaffolding/2.1.2/scaffolding-2.1.2.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='cache' version='1.1.7'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/cache/1.1.7/cache-1.1.7.zip</jar>
+    </dependency>
+    <dependency group='org.javassist' name='javassist' version='3.17.1-GA'>
+      <jar>/home/mid/.m2/repository/org/javassist/javassist/3.17.1-GA/javassist-3.17.1-GA.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='webxml' version='1.4.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/webxml/1.4.1/webxml-1.4.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='asset-pipeline' version='1.8.11'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/asset-pipeline/1.8.11/asset-pipeline-1.8.11.zip</jar>
+    </dependency>
+    <dependency group='org.mozilla' name='rhino' version='1.7R4'>
+      <jar>/home/mid/.m2/repository/org/mozilla/rhino/1.7R4/rhino-1.7R4.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='hibernate4' version='4.3.5.4'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/hibernate4/4.3.5.4/hibernate4-4.3.5.4.zip</jar>
+    </dependency>
+    <dependency group='org.hibernate' name='hibernate-validator' version='5.0.3.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/hibernate-validator/5.0.3.Final/hibernate-validator-5.0.3.Final.jar</jar>
+    </dependency>
+    <dependency group='com.fasterxml' name='classmate' version='1.0.0'>
+      <jar>/home/mid/.m2/repository/com/fasterxml/classmate/1.0.0/classmate-1.0.0.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate' name='hibernate-ehcache' version='4.3.5.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/hibernate-ehcache/4.3.5.Final/hibernate-ehcache-4.3.5.Final.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate' name='hibernate-core' version='4.3.5.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/hibernate-core/4.3.5.Final/hibernate-core-4.3.5.Final.jar</jar>
+    </dependency>
+    <dependency group='org.jboss.spec.javax.transaction' name='jboss-transaction-api_1.2_spec' version='1.0.0.Final'>
+      <jar>/home/mid/.m2/repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/jboss-transaction-api_1.2_spec-1.0.0.Final.jar</jar>
+    </dependency>
+    <dependency group='antlr' name='antlr' version='2.7.7'>
+      <jar>/home/mid/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar</jar>
+    </dependency>
+    <dependency group='org.jboss' name='jandex' version='1.1.0.Final'>
+      <jar>/home/mid/.m2/repository/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar</jar>
+    </dependency>
+    <dependency group='net.sf.ehcache' name='ehcache-core' version='2.4.8'>
+      <jar>/home/mid/.m2/repository/net/sf/ehcache/ehcache-core/2.4.8/ehcache-core-2.4.8.jar</jar>
+    </dependency>
+    <dependency group='org.jboss.logging' name='jboss-logging' version='3.1.0.GA'>
+      <jar>/home/mid/.m2/repository/org/jboss/logging/jboss-logging/3.1.0.GA/jboss-logging-3.1.0.GA.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-core' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-core/jars/grails-datastore-core-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-gorm/jars/grails-datastore-gorm-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm-hibernate4' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/grails/grails-datastore-gorm-hibernate4/3.1.1.RELEASE/grails-datastore-gorm-hibernate4-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.hibernate.common' name='hibernate-commons-annotations' version='4.0.4.Final'>
+      <jar>/home/mid/.m2/repository/org/hibernate/common/hibernate-commons-annotations/4.0.4.Final/hibernate-commons-annotations-4.0.4.Final.jar</jar>
+    </dependency>
+    <dependency group='org.jboss.logging' name='jboss-logging-annotations' version='1.2.0.Beta1'>
+      <jar>/home/mid/.m2/repository/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar</jar>
+    </dependency>
+    <dependency group='dom4j' name='dom4j' version='1.6.1'>
+      <jar>/home/mid/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm-hibernate-core' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/grails/grails-datastore-gorm-hibernate-core/3.1.1.RELEASE/grails-datastore-gorm-hibernate-core-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-gorm-plugin-support' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/grails/grails-datastore-gorm-plugin-support/3.1.1.RELEASE/grails-datastore-gorm-plugin-support-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-orm' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/spring-orm/4.0.5.RELEASE/spring-orm-4.0.5.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.grails' name='grails-datastore-simple' version='3.1.1.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.grails/grails-datastore-simple/jars/grails-datastore-simple-3.1.1.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='javax.validation' name='validation-api' version='1.1.0.Final'>
+      <jar>/home/mid/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='database-migration' version='1.4.0'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/database-migration/1.4.0/database-migration-1.4.0.zip</jar>
+    </dependency>
+    <dependency group='org.liquibase' name='liquibase-core' version='2.0.5'>
+      <jar>/home/mid/.m2/repository/org/liquibase/liquibase-core/2.0.5/liquibase-core-2.0.5.jar</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='jquery' version='1.11.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/jquery/1.11.1/jquery-1.11.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='twitter-bootstrap' version='3.3.1'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/twitter-bootstrap/3.3.1/twitter-bootstrap-3.3.1.zip</jar>
+    </dependency>
+    <dependency group='org.grails.plugins' name='spring-security-core' version='2.0-RC4'>
+      <jar>/home/mid/.m2/repository/org/grails/plugins/spring-security-core/2.0-RC4/spring-security-core-2.0-RC4.zip</jar>
+    </dependency>
+    <dependency group='org.springframework.security' name='spring-security-core' version='3.2.3.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework.security' name='spring-security-web' version='3.2.3.RELEASE'>
+      <jar>/home/mid/.m2/repository/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar</jar>
+    </dependency>
+    <dependency group='org.springframework' name='spring-expression' version='4.0.5.RELEASE'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/org.springframework/spring-expression/jars/spring-expression-4.0.5.RELEASE.jar</jar>
+    </dependency>
+  </runtime>
+  <provided>
+    <dependency group='javax.servlet' name='javax.servlet-api' version='3.0.1'>
+      <jar>/home/mid/.gvm/grails/2.4.2/lib/javax.servlet/javax.servlet-api/jars/javax.servlet-api-3.0.1.jar</jar>
+    </dependency>
+  </provided>
+</dependencies>

@@ -10,6 +10,8 @@ grails.project.source.level = 1.6
 
 //se agregan los pluginsControlCitas
 grails.plugin.location."Doctor"="../plugins_controlCitas/Doctor"
+grails.plugin.location."Paciente"="../plugins_controlCitas/Paciente"
+grails.plugin.location."Cita"="../plugins_controlCitas/cita"
 
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required

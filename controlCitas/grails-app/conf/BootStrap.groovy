@@ -17,13 +17,15 @@ class BootStrap {
 		def userRole = new SecRole(authority: 'ROLE_USER').save(flush:true)
 		
 		def testUser = new Usuario(username: 'daniel@mail.com', password: 'password')
+		def userUser = new Usuario(username: 'daniel', password: 'pass')
 		testUser.save(flush:true)
+		userUser.save(flush:true)
 		
 		SecUserSecRole.create testUser, adminRole, true
-		
-		assert Usuario.count() == 1
+		SecUserSecRole.create userUser, userRole, true
+		assert Usuario.count() == 2
 		assert SecRole.count() == 2
-		assert SecUserSecRole.count() == 1
+		assert SecUserSecRole.count() == 2
     }
     def destroy = {
     }

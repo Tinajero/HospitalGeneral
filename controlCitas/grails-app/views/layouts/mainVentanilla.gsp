@@ -49,7 +49,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
 
-            <li><g:link controller ="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Citas</g:link></li>
+            <li><g:link controller ="cita" action="create"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Citas</g:link></li>
             <li><g:link controller ="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</g:link></li>
             
           </ul>
