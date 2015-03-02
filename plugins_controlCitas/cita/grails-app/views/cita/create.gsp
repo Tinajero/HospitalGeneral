@@ -21,11 +21,11 @@
 				</ul>
 				</g:hasErrors>
 				<g:form url="[resource:cita, action:'save']" >
-					<fieldset class="form">
+					<fieldset class="form-horizontal">
 						<g:render template="form"/>
 					</fieldset>
-					<fieldset class="buttons">
-						<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<fieldset class="buttons col-sm-offset-2">
+						<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 					</fieldset>
 				</g:form>
 			</div>
