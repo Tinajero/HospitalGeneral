@@ -12,7 +12,7 @@ grails.project.source.level = 1.6
 grails.plugin.location."Doctor"="../plugins_controlCitas/Doctor"
 grails.plugin.location."Paciente"="../plugins_controlCitas/Paciente"
 grails.plugin.location."Cita"="../plugins_controlCitas/cita"
-
+grails.plugin.location."HojaRegistroDiario"="../plugins_controlCitas/hojaRegistroDiario"
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
