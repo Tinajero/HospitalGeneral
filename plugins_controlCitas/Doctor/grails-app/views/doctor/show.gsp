@@ -103,7 +103,7 @@
 					</table>
 	
 					<g:form url="[resource:doctorInstance, action:'delete']" method="DELETE">
-						<div class="btn-group" role="group" aria-label="...">
+						<div role="group" aria-label="...">
 							<g:link class="btn btn-info" action="edit" resource="${doctorInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 							<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 						</div>

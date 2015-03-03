@@ -9,6 +9,10 @@ class Doctor {
 	String[] horario = {null}
 	String[] diasNoLaborales = {null}
     static constraints = {
+		tipoCita blank: false
+		nombre blank: false
+		apellidoPat blank: false
+		apellidoMat blank:false
 		diasLaborales blank: true
 		horario blank: true
 		diasNoLaborales blank: true
