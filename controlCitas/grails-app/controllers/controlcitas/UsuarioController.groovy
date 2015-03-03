@@ -48,6 +48,7 @@ class UsuarioController {
 			//usuarioInstance.message = "error en la contraseña"
 			//usuarionInstance.errors = "error en contraseña"
 			//usuarioInstance.errors.
+            println usuarioInstance.hasErrors()
 			respond usuarioInstance.errors, view:'create'
 			return
 		}
@@ -80,7 +81,22 @@ class UsuarioController {
             respond usuarioInstance.errors, view:'edit'
             return
         }
+        usuarioInstance.validate()
+        usuarioInstance.hasErrors()
+        if (params.password2 != params.password){
+            usuarioInstance.errors.reject('user.password.doesnotmatch ', 'Las contrase&ntilde;as no coinciden')
+            flash.message = "Las contrasenas no coinciden "
+                             
+            //usuarioInstance.message = "error en la contraseña"
+            //usuarionInstance.errors = "error en contraseña"
+            //usuarioInstance.errors.
+            println "hay error"
+            println usuarioInstance.hasErrors()
 
+            //respond usuarioInstance.errors, view:'edit'
+            render view: 'edit' , model:[usuarioInstance:usuarioInstance]
+            return
+        }
         usuarioInstance.save flush:true
 
         request.withFormat {

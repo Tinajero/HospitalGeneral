@@ -18,16 +18,20 @@
 		</div>
 		<div id="edit-usuario" class="content scaffold-edit" role="main">
 			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${usuarioInstance}">
-			<ul class="errors" role="alert">
-				<g:eachError bean="${usuarioInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			</g:hasErrors>
+			<div class="row">
+				<g:if test="${flash.message}">
+					<div class="alert alert-danger col-md-8" role="alert">${flash.message}</div>
+				</g:if>
+				<g:hasErrors bean="${usuarioInstance}">
+				as
+				<ul class="alert alert-danger col-md-8" role="alert">
+					asdad
+					<g:eachError bean="${usuarioInstance}" var="error">
+					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+					</g:eachError>
+				</ul>
+				</g:hasErrors>
+			</div>
 			<g:form url="[resource:usuarioInstance, action:'update']" method="PUT" class="form-horizontal" >
 				<g:hiddenField name="version" value="${usuarioInstance?.version}" />
 				<fieldset class="form">
