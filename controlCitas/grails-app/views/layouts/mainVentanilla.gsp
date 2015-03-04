@@ -15,7 +15,28 @@
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<asset:stylesheet src="dashboard.css"/>
+
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/dailog.css')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/calendar.css')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/dp.css')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/alert.css')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/main.css')}" type="text/css">
+
+		
+  
+    
+
 		 <g:javascript src="utilerias.js" />
+		 <g:javascript src="jquery1.4.js" />
+		 <g:javascript src="wdCalendarPlugins/Common.js"/>
+		 <g:javascript src="wdCalendarPlugins/datepicker_lang_US.js"/>
+		 <g:javascript src="wdCalendarPlugins/jquery.datepicker.js"/>
+		 <g:javascript src="wdCalendarPlugins/jquery.alert.js"/>
+		 <g:javascript src="wdCalendarPlugins/jquery.ifrmdailog.js"/>
+		 <g:javascript src="wdCalendarPlugins/wdCalendar_lang_US.js"/>
+		 <g:javascript src="wdCalendarPlugins/jquery.calendar.js"/>
+		 <g:javascript src="wdCalendarScript.js"/>
+		 
 		<g:layoutHead/>
 	</head>
 	<body>
