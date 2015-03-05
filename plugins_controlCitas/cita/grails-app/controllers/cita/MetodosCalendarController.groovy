@@ -8,6 +8,9 @@ class MetodosCalendarController {
     def metodo () {
     	String operacion = params['method']
     	println "me mandaraon "  + operacion
-    
+    	def ret = operacion
+    	model :[ret:ret]
+
+
     }
 }
