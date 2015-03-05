@@ -28,13 +28,13 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:doctor, action:'update']" method="PUT" >
+			<g:form url="[resource:doctorInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${doctorInstance?.version}" />
 				<fieldset class="form-horizontal">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons col-sm-offset-2">
-					<g:actionSubmit class="save" class="btn btn-success" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit class="save" class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 				
 			</g:form>

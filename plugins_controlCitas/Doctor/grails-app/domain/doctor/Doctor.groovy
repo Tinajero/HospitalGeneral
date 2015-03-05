@@ -5,7 +5,7 @@ class Doctor {
 	String nombre
 	String apellidoPat
 	String apellidoMat
-	String[] diasLaborales = {null}
+	String diasLaborales 
 	String[] horario = {null}
 	String[] diasNoLaborales = {null}
     static constraints = {
@@ -13,8 +13,13 @@ class Doctor {
 		nombre blank: false
 		apellidoPat blank: false
 		apellidoMat blank:false
-		diasLaborales blank: true
 		horario blank: true
 		diasNoLaborales blank: true
+
     }
+
+  	static mapping = {
+  		diasLaborales defaultvalue: "1000001"
+
+  	}
 }

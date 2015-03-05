@@ -41,6 +41,7 @@
 						<g:sortableColumn property="apellidoMat" title="${message(code: 'doctor.apellidoMat.label', default: 'Apellido Materno')}" />
 					
 						<g:sortableColumn property="tipoCita" title="${message(code: 'doctor.tipoCita.label', default: 'Tipo de Cita')}" />
+						<g:sortableColumn property="diasLaborales" title="${message(code: 'doctor.diasLaborales.label', default: 'Dias Laborales')}" />
 <%--						<g:sortableColumn property="diasLaborales" title="${message(code: 'doctor.diasLaborales.label', default: 'Dias Laborales')}" />--%>
 <%--					--%>
 <%--						<g:sortableColumn property="diasNoLaborales" title="${message(code: 'doctor.diasNoLaborales.label', default: 'Dias No Laborales')}" />--%>
@@ -64,6 +65,8 @@
 						<td>${fieldValue(bean: doctorInstance, field: "apellidoMat")}</td>
 						
 						<td>${fieldValue(bean: doctorInstance, field: "tipoCita")}</td>
+
+						<td>${fieldValue(bean: doctorInstance, field: "diasLaborales")}</td>
 					
 <%--						<td>${fieldValue(bean: doctorInstance, field: "diasLaborales")}</td>--%>
 

@@ -46,6 +46,51 @@
 	
 </div>
 
+	<div>
+		<%--<g:each in="${['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']}" var ="diaBoton">
+			
+			<button type="button" class="btn btn-success">${diaBoton}</button>
+		</g:each>
+		--%>
+	</div>
+
+	<%--Almacenar los dias laborales en variable(diasLaborales) y comparar con los dias del checkbox --%>
+	<div>
+
+		<table>
+			<g:if test="${doctorInstance?.diasLaborales != null}">
+				<g:set var = "diasLab" value="${doctorInstance?.diasLaborales}" />
+				<g:set var = "diasSemana" value = "${['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']}"/>
+			</g:if>
+			<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">
+				<tr>
+					<td>${diasSemana[diaBoton]}</td> 
+
+					<g:if test="${diasLab[diaBoton]=='0'}">
+					<td><g:checkBox name="${diasSemana[diaBoton]}" value="${false}"/></td>
+					</g:if>
+					<g:else>
+					<td><g:checkBox name="${diasSemana[diaBoton]}" value="${true}"/></td>
+					</g:else>
+
+					
+					
+
+				</tr>
+				
+			</g:each>
+		</table>
+	</div>
+
+	<br>
+</div>
+
+-<div class="fieldcontain ${hasErrors(bean: doctor, field: 'diasLaborales', 'error')} required">
+	<div class="col-sm-4">
+		<g:textField name="diasLaborales" style = "display:none;"class="form-control" required="" value="HOLa"/>
+	</div>
+</div>
+
 <%--<div class="fieldcontain ${hasErrors(bean: doctor, field: 'diasLaborales', 'error')} required">--%>
 <%--	<label for="diasLaborales">--%>
 <%--		<g:message code="doctor.diasLaborales.label" default="Dias Laborales" />--%>
