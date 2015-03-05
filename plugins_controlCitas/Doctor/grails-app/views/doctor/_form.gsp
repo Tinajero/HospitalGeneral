@@ -58,10 +58,15 @@
 	<div>
 
 		<table>
+			<g:set var = "diasSemana" value = "${['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']}"/>
 			<g:if test="${doctorInstance?.diasLaborales != null}">
 				<g:set var = "diasLab" value="${doctorInstance?.diasLaborales}" />
-				<g:set var = "diasSemana" value = "${['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']}"/>
+				
 			</g:if>
+			<g:else>
+				<g:set var = "diasLab" value="${'0000000'}"/>
+			</g:else>
+
 			<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">
 				<tr>
 					<td>${diasSemana[diaBoton]}</td> 
