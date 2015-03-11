@@ -7,7 +7,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField name="expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/>
+		<g:textField name="paciente.expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/>
 	</div>
 </div>
 
@@ -17,13 +17,13 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-2">
-		<g:textField name="apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>
+		<g:textField name="paciente.apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>
 	</div>
 	<div class="col-sm-2">
-		<g:textField name="apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>
+		<g:textField name="paciente.apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>
 	</div>
 	<div class="col-sm-2">
-		<g:textField name="nombre" class="form-control" required="" placeholder="Nombre(s)" value="${cita?.paciente?.apellidoMaterno}"/>
+		<g:textField name="paciente.nombre" class="form-control" required="" placeholder="Nombre(s)" value="${cita?.paciente?.apellidoMaterno}"/>
 	</div>
 </div>
 
@@ -33,7 +33,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField name="poblacion" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<g:textField name="paciente.poblacion" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
 	</div>
 </div>
 
@@ -43,7 +43,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<input type="tel" name="numeroTelefono" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<input type="tel" name="paciente.numeroTelefono" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
 	</div>
 </div>
 
@@ -53,7 +53,10 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:select id="doctor" name="doctor.tipoCita" from="${doctor.Doctor.list()}" optionKey="tipoCita" optionValue="tipoCita"required="" value="cita?.doctor?.tipoCita}" class="form-control"/>
+	<%--	<g:select id="doctor" name="doctor.tipoCita" from="${ doctor.Doctor.list() }" optionKey="tipoCita" optionValue="tipoCita"required="" value="cita?.doctor?.tipoCita}" class="form-control"/> 
+  optionKey="tipoCita" optionValue="tipoCita"
+  --%>
+    <g:select id="TipoCita" name="doctor.tipoCita" from="${doctor.Doctor.listUnique()}"  required="" value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="[null:'']" onchange="categoryChanged(this.value);"/>
 	</div>
 </div>
 
@@ -63,7 +66,20 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:select id="doctor" name="doctor.id" from="${doctor.Doctor.list()}" optionKey="nombre" optionValue="nombre" required="" value="cita?.doctor?.nombre}" class="many-to-one form-control"/>
+		<%-- <g:select id="doctor" name="doctor.id" from="${doctor.Doctor.list()}" optionKey="id" optionValue="nombre" required="" value="cita?.doctor?.nombre}" class="many-to-one form-control"/> --%>
+    <span id="subContainer"> </span>
+    <script>
+      /*function categoryChanged(tipoCita){
+        console.log(tipoCita);
+        <g:remoteFunction controller="cita" action="tipoCitaCambiada" update="subContainer" params="'tipoCita='+tipoCita" />
+      }*/
+
+     function categoryChanged(categoryId) {
+        console.log(categoryId);
+        jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){jQuery('#subContainer').html(data);},error:function(XMLHttpRequest,textStatus,errorThrown){}});
+    }
+    </script>
+
 	</div>
 </div>
 

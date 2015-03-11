@@ -22,4 +22,14 @@ class Doctor {
   		diasLaborales defaultvalue: "1000001"
 
   	}
+
+  	public static List listUnique(){
+  		//Doctor.list().unique{ it->}
+
+  		Doctor.withCriteria {
+        	projections {
+            	distinct "tipoCita"
+        	}	
+        }.sort() 
+  	}
 }

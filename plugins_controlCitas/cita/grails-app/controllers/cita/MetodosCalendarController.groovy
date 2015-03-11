@@ -46,14 +46,24 @@ class MetodosCalendarController {
     def addCalendar(st, et, sub, ade){
 
     	def ret = [:]
-    	Calendario calendario
+    	def stt = Date.parse("MM/dd/yyyy hh:mm", st)
+    	def ett = Date.parse("MM/dd/yyyy hh:mm", et)
+    	Calendario calendario = new Calendario()
+
+    	def isAllDayEvent = ade =="0"? false:true
+    	println isAllDayEvent
     	calendario.subject = sub
-    	calendario.startTime = st
-    	calendario.endTime = et
-    	calendario.isAllDayEvent = ade
+    	calendario.startTime = stt
+    	calendario.endTime = ett
+    	calendario.isAllDayEvent =  isAllDayEvent
+		println "here"
 
+    	calendario.save flush:true
 
-
+    	ret['IsSuccess'] = true
+      	ret['Msg'] = 'add success'
+      	ret['Data'] = calendario.id
+      	return ret
     }
     def listCalendar(day, type){
 
