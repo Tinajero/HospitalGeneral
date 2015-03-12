@@ -41,7 +41,8 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:textField name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita}"/>
+	<g:select name="tipoCita" value="${doctorInstance?.tipoCita}" class="form-control" from="${['Ginecologia','Peditria','Cirugia','Medicina Interna','Odontologia','Otros']}" noSelection="['':'-Selecciona una cita-']"/>
+	</div>
 	</div>
 	
 </div>
@@ -90,11 +91,6 @@
 	<br>
 </div>
 
--<div class="fieldcontain ${hasErrors(bean: doctor, field: 'diasLaborales', 'error')} required">
-	<div class="col-sm-4">
-		<g:textField name="diasLaborales" style = "display:none;"class="form-control" required="" value="HOLa"/>
-	</div>
-</div>
 
 <%--<div class="fieldcontain ${hasErrors(bean: doctor, field: 'diasLaborales', 'error')} required">--%>
 <%--	<label for="diasLaborales">--%>

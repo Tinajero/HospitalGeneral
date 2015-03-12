@@ -31,14 +31,18 @@ class DoctorController {
 
     @Transactional
     def save(Doctor doctor) {
-        print "Almacenando: " + doctor
-        doctor.diasLaborales = DoctorService.obtenDiasLaborales(params)
-        print doctor.diasLaborales
+        
+
         if (doctor == null) {
             notFound()
             return
         }
     
+      print "Almacenando: " + doctor
+      doctor.diasLaborales = DoctorService.obtenDiasLaborales(params)
+      print doctor.diasLaborales
+      doctor.validate()
+
         if (doctor.hasErrors()) {
             respond doctor.errors, view:'create'
             return
