@@ -34,23 +34,15 @@ class CitaController {
             notFound()
             return
         }
-        println params
-        println "paciente"
-        println cita.paciente.nombre
-        cita.paciente.save flush:true
-        println cita.paciente
-        /*paciente.expediente = params.expediente
-        paciente.nombre = params.nombre
-        paciente.apellidoPaterno = params.apellidoPaterno
-        paciente.apellidoMaterno = params.apellidoMaterno
-        paciente.telefono = params.numeroTelefono
-        if(paciente.hasErrors())
-            println "paciente tiene errores"*/
+        
         if (cita.hasErrors()) {
+            println "tiene errores"
+            println cita.errors
             respond cita.errors, view:'create'
             return
         }
 
+        cita.paciente.save flush:true
         cita.save flush:true
 
         request.withFormat {
