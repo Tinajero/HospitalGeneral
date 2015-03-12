@@ -34,7 +34,9 @@ class CitaController {
             notFound()
             return
         }
-        
+
+        cita.fecha =  new Date() 
+        cita.validate()
         if (cita.hasErrors()) {
             println "tiene errores"
             println cita.errors
