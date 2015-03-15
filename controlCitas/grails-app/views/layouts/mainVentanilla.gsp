@@ -37,6 +37,14 @@
 		 <g:javascript src="wdCalendarPlugins/jquery.calendar.js"/>
 		 <g:javascript src="wdCalendarScript.js"/>
 		 
+		 //plugin jQuery-ui
+		 <g:javascript src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"/>
+		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.css"/>
+		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.js"/>
+		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
+		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.min.js"/>
+		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.structure.css"/>
+		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.structure.min.css"/>
 		<g:layoutHead/>
 	</head>
 	<body>

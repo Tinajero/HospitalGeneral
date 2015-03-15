@@ -4,6 +4,41 @@
 		<meta name="layout" content="mainVentanilla">
 		<g:set var="entityName" value="${message(code: 'cita.label', default: 'Cita')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+
+		<script type="text/javascript">
+  
+	      $(function() {
+	      var availableTags = [
+	      "ActionScript",
+	      "AppleScript",
+	      "Asp",
+	      "BASIC",
+	      "C",
+	      "C++",
+	      "Clojure",
+	      "COBOL",
+	      "ColdFusion",
+	      "Erlang",
+	      "Fortran",
+	      "Groovy",
+	      "Haskell",
+	      "Java",
+	      "JavaScript",
+	      "Lisp",
+	      "Perl",
+	      "PHP",
+	      "Python",
+	      "Ruby",
+	      "Scala",
+	      "Scheme"
+	      ];
+	      $( "#tags" ).autocomplete({
+	      source: availableTags
+	      });
+	      });
+
+	</script>
+	
 	</head>
 	<body>
 		<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
@@ -28,6 +63,12 @@
 						<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 					</fieldset>
 				</g:form>
+
+				<div class="ui-widget">
+					<label for="tags">Tags: </label>
+					<input id="tags">
+				</div>
+
 			</div>
 		</div>
 		<script>
