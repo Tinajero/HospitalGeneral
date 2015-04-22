@@ -14,9 +14,12 @@ import grails.transaction.Transactional
 class DoctorController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def DoctorService 
-
+    def DoctorService
     def index(Integer max) {
+        //Opcional. modificar la actualizacion de intervalos
+        
+        
+
         params.max = Math.min(max ?: 10, 100)
         respond Doctor.list(params), model:[doctorCount: Doctor.count()]
     }

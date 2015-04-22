@@ -4,7 +4,8 @@ import grails.transaction.Transactional
 
 @Transactional
 class DoctorService {
-
+    def hora=[]
+    def minutos=[]
     def serviceMethod() {
 
     }
@@ -24,5 +25,26 @@ class DoctorService {
          }
 
         return diasLaborales
+    }
+
+    def intervalosDeTiempo(){
+
+        if (hora==[])
+        for ( int a= 0; a <60;a++){
+            if ( a < 24)
+                hora.add(sprintf("%02d",a))
+            minutos.add(sprintf("%02d",a))
+
+        }
+
+    }
+    
+    def getHoras(){
+        intervalosDeTiempo()
+        return hora
+    }
+
+    def getMinutos(){
+        return minutos
     }
 }

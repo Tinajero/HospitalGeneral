@@ -1,6 +1,7 @@
 <%@ page import="doctor.Doctor" %>
 
-
+<g:set name= ''var="doctorS" bean="doctorService"/>
+<script type='text/javascript' src='${request.contextPath}/js/horarios.js'></script>
 
 <div class="form-group ${hasErrors(bean: doctorInstance, field: 'nombre', 'error')} required">
 	<label for="nombre" class="col-sm-2 control-label">
@@ -35,30 +36,38 @@
 	
 </div>
 
-<div class="form-group ${hasErrors(bean: doctorInstance, field: 'tipoCita', 'error')} required">
-	<label for="tipoCita" class="col-sm-2 control-label">
-		<g:message code="doctor.tipoCita.label" default="Tipo de Cita" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-4">
-	<g:select name="tipoCita" value="${doctorInstance?.tipoCita}" class="form-control" from="${['Ginecologia','Peditria','Cirugia','Medicina Interna','Odontologia','Otros']}" noSelection="['':'-Selecciona una cita-']"/>
-	</div>
-	</div>
-	
-</div>
 
-	<div>
-		<%--<g:each in="${['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']}" var ="diaBoton">
-			
-			<button type="button" class="btn btn-success">${diaBoton}</button>
-		</g:each>
-		--%>
+	<%-- Asignacion de horario de los usuarios--%>
+	<div class="form-group required">
+		<label for="horaInicial" class="col-sm-4 control-label">
+			<g:message code="doctor.horaI.label" default="Hora de entrada" />
+			<g:select id = 'horaI' name="ss" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']"/>
+			<g:select id = 'minI' name="s2" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']"/>
+			<span class="required-indicator">*</span>
+		</label>
+	</div>
+
+	<div class="form-group required">
+		<label for="horaFinal" class="col-sm-4 control-label">
+			<g:message code="doctor.horaF.label" default="Hora de salida" />
+			<g:select id='horaF' name="ssf" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']"/>
+			<g:select id='minF'	name="s2f" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']"/>
+	
+			<span class="required-indicator">*</span>
+		</label>
+		
+	</div>
+	<div class="botonTabla">
+		<input type = "button" name="Horarios" value = "Horarios"onClick="leeTabla()"/>
 	</div>
 
 	<%--Almacenar los dias laborales en variable(diasLaborales) y comparar con los dias del checkbox --%>
-	<div>
+	<div class="form-group required">
 
 		<table>
+			<label for="diasLaborales" class="col-sm-2 control-label">
+			<g:message code="doctor.diasLaborales.label" default="Dias Laborales" />
+			<span class="required-indicator">*</span>
 			<g:set var = "diasSemana" value = "${['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']}"/>
 			<g:if test="${doctorInstance?.diasLaborales != null}">
 				<g:set var = "diasLab" value="${doctorInstance?.diasLaborales}" />
@@ -79,17 +88,17 @@
 					<td><g:checkBox name="${diasSemana[diaBoton]}" value="${true}"/></td>
 					</g:else>
 
-					
-					
-
 				</tr>
 				
 			</g:each>
 		</table>
 	</div>
 
-	<br>
+	<div id='tablaHoras'>
+	</div>
+	
 </div>
+
 
 
 <%--<div class="fieldcontain ${hasErrors(bean: doctor, field: 'diasLaborales', 'error')} required">--%>
