@@ -6,6 +6,10 @@ class Doctor {
 	String apellidoPat
 	String apellidoMat
 	String diasLaborales 
+	String horaI 
+	String horaF 
+	String minutoI
+	String minutoF
 	String[] horario = {null}
 	String[] diasNoLaborales = {null}
     static constraints = {

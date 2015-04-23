@@ -38,25 +38,27 @@
 
 
 	<%-- Asignacion de horario de los usuarios--%>
-	<div class="form-group required">
+	<div class="form-group ${hasErrors(bean: doctorInstance, field: 'horaI', 'error')} required">
 		<label for="horaInicial" class="col-sm-4 control-label">
 			<g:message code="doctor.horaI.label" default="Hora de entrada" />
-			<g:select id = 'horaI' name="ss" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']"/>
-			<g:select id = 'minI' name="s2" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']"/>
+			<g:select id = 'horaI' name="horaI" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']" value="${doctorInstance?.horaI}"/>
+			<g:select id = 'minI' name="minutoI" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']" value="${doctorInstance?.minutoI}"/>
 			<span class="required-indicator">*</span>
 		</label>
 	</div>
 
-	<div class="form-group required">
+	<div class="form-group ${hasErrors(bean: doctorInstance, 'error')}  required">
 		<label for="horaFinal" class="col-sm-4 control-label">
 			<g:message code="doctor.horaF.label" default="Hora de salida" />
-			<g:select id='horaF' name="ssf" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']"/>
-			<g:select id='minF'	name="s2f" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']"/>
+			<g:select id='horaF' name="horaF" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']" value="${doctorInstance?.horaF}"/>
+			<g:select id='minF'	name="minutoF" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']" value="${doctorInstance?.minutoF}"/>
 	
 			<span class="required-indicator">*</span>
 		</label>
 		
 	</div>
+
+	<%-- Boton para generar horarios --%>
 	<div class="botonTabla">
 		<input type = "button" name="Horarios" value = "Horarios"onClick="leeTabla()"/>
 	</div>

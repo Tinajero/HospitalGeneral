@@ -14,14 +14,18 @@ class DoctorService {
     	def arregloDias = [params.Domingo, params.Lunes, params.Martes, \
             params.Miercoles, params.Jueves, params.Viernes,params.Sabado ]
         def diasLaborales = ""
+        def diasString=['D','L','M','W','J','V','S']
+        def i
+            i = 0
         
          for ( dia in arregloDias){
             if (dia){
-                diasLaborales+="1"
+                diasLaborales+=diasString[i]
             }
             else{
-                diasLaborales+="0"
+                diasLaborales+=" "
             }
+            i++
          }
 
         return diasLaborales
