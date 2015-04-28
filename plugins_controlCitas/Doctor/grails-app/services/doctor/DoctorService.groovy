@@ -9,6 +9,10 @@ class DoctorService {
     def serviceMethod() {
 
     }
+    def listaTiposCita(){
+        def lista = ['pediatria','ginecologia','ortodoncia','cirugia','maternidad']
+        return lista
+    }
     def obtenDiasLaborales(params){
 
     	def arregloDias = [params.Domingo, params.Lunes, params.Martes, \
@@ -23,7 +27,7 @@ class DoctorService {
                 diasLaborales+=diasString[i]
             }
             else{
-                diasLaborales+=" "
+                diasLaborales+="-"
             }
             i++
          }

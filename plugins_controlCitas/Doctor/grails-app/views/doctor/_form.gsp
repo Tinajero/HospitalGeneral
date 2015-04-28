@@ -36,6 +36,16 @@
 	
 </div>
 
+<div class="form-group ${hasErrors(bean: doctorInstance, field: 'tipoCita', 'error')} required">
+	<label for="tipoCita" class="col-sm-2 control-label">
+		<g:message code="doctor.tipoCita.label" default="Tipo de cita" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:select name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita} " from="${doctorS.listaTiposCita()}"/>
+	</div>
+	
+</div>
 
 	<%-- Asignacion de horario de los usuarios--%>
 	<div class="form-group ${hasErrors(bean: doctorInstance, field: 'horaI', 'error')} required">
@@ -83,7 +93,7 @@
 				<tr>
 					<td>${diasSemana[diaBoton]}</td> 
 
-					<g:if test="${diasLab[diaBoton]=='0'}">
+					<g:if test="${diasLab[diaBoton]=='-'}">
 					<td><g:checkBox name="${diasSemana[diaBoton]}" value="${false}"/></td>
 					</g:if>
 					<g:else>
