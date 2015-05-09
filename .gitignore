@@ -52,6 +52,3 @@ local.properties
 
 # la carpeta que siempre se crea en cada projecto 
 /Servers
-
-# Datasource
-controlCitas/grails-app/conf/DataSource.groovy
