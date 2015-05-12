@@ -97,6 +97,10 @@
 
 
 <script> 
+  function categoryChanged(categoryId) {
+    console.log(categoryId);
+    jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){jQuery('#subContainer').html(data);},error:function(XMLHttpRequest,textStatus,errorThrown){}});
+  }
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
