@@ -16,35 +16,31 @@
 		<asset:javascript src="application.js"/>
 		<asset:stylesheet src="dashboard.css"/>
 
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/dailog.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/calendar.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/dp.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/alert.css')}" type="text/css">
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'wdCalendar/main.css')}" type="text/css">
+
 
 		
-  
-    
-
-		 <g:javascript src="utilerias.js" />
-		 <g:javascript src="jquery1.4.js" />
-		 <g:javascript src="wdCalendarPlugins/Common.js"/>
-		 <g:javascript src="wdCalendarPlugins/datepicker_lang_US.js"/>
-		 <g:javascript src="wdCalendarPlugins/jquery.datepicker.js"/>
-		 <g:javascript src="wdCalendarPlugins/jquery.alert.js"/>
-		 <g:javascript src="wdCalendarPlugins/jquery.ifrmdailog.js"/>
-		 <g:javascript src="wdCalendarPlugins/wdCalendar_lang_US.js"/>
-		 <g:javascript src="wdCalendarPlugins/jquery.calendar.js"/>
-		 <g:javascript src="wdCalendarScript.js"/>
-		 
+  	
+		
+		
 		 //plugin jQuery-ui
-		 <g:javascript src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"/>
+		<%--<g:javascript src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"/> --%>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.css"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.js"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.min.js"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.structure.css"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.structure.min.css"/>
+
+
+		 	<%-- fullCallendar plugin dependences--%>
+    	<link rel="stylesheet" href="${resource(dir: 'js', file: 'fullcalendar-2.3.1/fullcalendar.css')}" type="text/css">
+    	 <g:javascript src="fullcalendar-2.3.1/lib/moment.min.js"/>
+    	 <g:javascript src="fullcalendar-2.3.1/fullcalendar.js"/>
+    	 <%-- end fullCallendar plugin dependences --%>
+		 
+		 <g:javascript src="utilerias.js" />
+
+
 		<g:layoutHead/>
 	</head>
 	<body>
