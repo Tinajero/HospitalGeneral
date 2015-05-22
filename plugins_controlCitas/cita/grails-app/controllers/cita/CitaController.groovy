@@ -35,7 +35,7 @@ class CitaController {
             return
         }
 
-        cita.fecha =  new Date() 
+        
         cita.validate()
         if (cita.hasErrors()) {
             println "tiene errores"
@@ -122,7 +122,7 @@ class CitaController {
         def doctores = query.list()
         println doctores
         render g.select(id:'subCategory', name:'doctor.id',
-            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control'
+            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onChange:'cambioDoctor(this.value)'
         )
     }
 }

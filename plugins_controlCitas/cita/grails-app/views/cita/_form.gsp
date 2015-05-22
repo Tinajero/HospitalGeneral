@@ -74,15 +74,15 @@
 </div>
 
 
-<!-- <div class="fieldcontain ${hasErrors(bean: cita, field: 'fecha', 'error')} required">
+ <div class="form-group ${hasErrors(bean: cita, field: 'fecha', 'error')} required">
 	<label for="fecha" class="col-sm-2 control-label">
 		<g:message code="cita.fecha.label" default="Fecha" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-4">
-		<g:datePicker name="fecha" precision="day"  value="${cita?.fecha}"  />
+	<div class="col-sm-8">
+		<g:datePicker name="fecha" precision="minute" class= "form-control" value="${cita?.fecha}"  />
 	</div>	
-</div> -->
+</div> 
 
 <!-- <div class="fieldcontain ${hasErrors(bean: cita, field: 'paciente', 'error')} required">
 	<label for="paciente">
@@ -99,15 +99,39 @@
 <script> 
   function categoryChanged(categoryId) {
     console.log(categoryId);
-    jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){jQuery('#subContainer').html(data);},error:function(XMLHttpRequest,textStatus,errorThrown){}});
+    jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){
+    		jQuery('#subContainer').html(data);
+			
+    	},
+		error:function(XMLHttpRequest,textStatus,errorThrown){}});
+  }
+  function cambioDoctor(doctorId) {
+  	console.log("DoctorId " +  doctorId);
+  	$('#calendar').fullCalendar({
+		        // put your options and callbacks here
+		        header:{
+				    left:   'title',
+				    center: '',
+				    right:  'today month basicWeek basicDay prev,next'
+				},
+		       	 events: {
+		       	 	url: '../MetodosCalendar/consulta' ,
+		       	 	data: {
+			            DoctorId : doctorId
+			        },
+			        error: function(){
+			        	console.log("error");
+			        }
+			       
+
+		    	}
+    		})
   }
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
 
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-    })
+   
 
 });
 </script>
