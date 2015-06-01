@@ -1,3 +1,4 @@
+
 package cita
 import grails.plugin.springsecurity.annotation.Secured
 import grails.converters.JSON
@@ -14,8 +15,14 @@ class MetodosCalendarController {
         def startDate = Date.parse("yyyy-MM-dd", params['start'] )
         println startDate
         def endDate = Date.parse("yyyy-MM-dd", params['end'] )
-        JSON.use('deep')
+       // JSON.use('deep')
         ret = listCalendarByRangeAndDoctor( startDate, endDate, params['DoctorId'])
+       // ret = "[\"0\",            {                \"allDay\": \"\",                \"title\": \"Test event\",                \"id\": \"821\",                                \"start\": \"2015-06-02T19:24:00Z\"            },            \"1\",            {                \"allDay\": \"\",                \"title\": \"Test event 2\",                \"id\": \"822\",                                \"start\": \"2015-06-03T19:24:00Z\"            }        ]"
+        //println ret
+        //ret.size().times{
+        //    println ret[it] as JSON 
+        //    render ret[it] as JSON
+        //}
         render ret as JSON
     }
     def metodo () {
@@ -129,7 +136,7 @@ class MetodosCalendarController {
 
     }
     def listCalendarByRangeAndDoctor(startTime, endTime, doctorId){
-    	def ret = [:]
+    	def ret = []
     	JSON.use('deep')
     	//ret['events'] = []
     	
@@ -141,11 +148,11 @@ class MetodosCalendarController {
     	query.each{
     		//println it as  JSON
     		println i
-    		ret = [
+    		ret[i] = [
     							
-    							title: it.paciente.id + " " + it.paciente.nombre,
-                                start: it.fecha,
-                                end: it.fecha+1
+    							title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
+                                start: it.fecha,                                
+                                allDay : "false"
 							]
     		i++;
     	}

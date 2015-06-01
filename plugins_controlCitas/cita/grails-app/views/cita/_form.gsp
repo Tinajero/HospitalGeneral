@@ -105,7 +105,8 @@
     	},
 		error:function(XMLHttpRequest,textStatus,errorThrown){}});
   }
-  function cambioDoctor(doctorId) {
+
+ /* function cambioDoctor(doctorId) {
   	console.log("DoctorId " +  doctorId);
   	$('#calendar').fullCalendar({
 		        // put your options and callbacks here
@@ -126,12 +127,24 @@
 
 		    	}
     		})
-  }
+  }*/
+   	function cambioDoctor(doctorId){
+    	console.log(doctorId);
+    	var events = {
+    		url: '../MetodosCalendar/consulta' ,
+    		data: {
+    			DoctorId : doctorId
+    		}
+    	};
+    	$('#calendar').fullCalendar('removeEventSource',events);
+    	$('#calendar').fullCalendar('addEventSource', events);
+   	}
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
-
-   
+     $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    })
 
 });
 </script>
