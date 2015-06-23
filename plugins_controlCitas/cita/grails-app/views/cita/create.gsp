@@ -74,5 +74,22 @@
 		<script>
 			$(document).ready( setNavBarLista("${entityName}")  );
 		</script>
+
+		<script type="text/javascript">
+		
+		$(document).ready(function(){
+			$.ajax({
+				type: "GET",
+				url: "controlCitas/cita/getAllExpedientes",
+				success: function(response){
+
+					$("#expediente").autocomplete({
+						source: response
+					});
+				}
+			});
+		});
+
+		</script>
 	</body>
 </html>

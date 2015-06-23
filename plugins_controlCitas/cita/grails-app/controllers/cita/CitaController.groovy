@@ -1,6 +1,6 @@
 package cita
 
-
+import grails.converters.JSON
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -124,5 +124,17 @@ class CitaController {
         render g.select(id:'subCategory', name:'doctor.id',
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control'
         )
+    }
+
+    //Funciones para Autocomplete
+    def getAllExpedientes(){
+        def expendientes = Cita.list()
+        def response = []
+
+        expendientes.each{
+            response << "${it.expediente}"
+        }
+
+        render response as JSON
     }
 }

@@ -7,8 +7,9 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField name="paciente.expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/>
+		<g:textField name="paciente.expediente" id="expediente" placeholder="Introduce Expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/>
 	</div>
+  
 </div>
 
 <div class="form-group ${hasErrors(brean: paciente, field: nombre, 'has error')} required">
