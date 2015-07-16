@@ -1,11 +1,30 @@
+
 package cita
 import grails.plugin.springsecurity.annotation.Secured
 import grails.converters.JSON
 @Secured(['ROLE_USER'])
 class MetodosCalendarController {
 
-    def index() { }
+    def index() { println "Aqui" }
 
+    def consulta (){
+        String operacion = params['method']
+        println "me mandaraon "  + params
+        def ret 
+        println "Algo"
+        def startDate = Date.parse("yyyy-MM-dd", params['start'] )
+        println startDate
+        def endDate = Date.parse("yyyy-MM-dd", params['end'] )
+       // JSON.use('deep')
+        ret = listCalendarByRangeAndDoctor( startDate, endDate, params['DoctorId'])
+       // ret = "[\"0\",            {                \"allDay\": \"\",                \"title\": \"Test event\",                \"id\": \"821\",                                \"start\": \"2015-06-02T19:24:00Z\"            },            \"1\",            {                \"allDay\": \"\",                \"title\": \"Test event 2\",                \"id\": \"822\",                                \"start\": \"2015-06-03T19:24:00Z\"            }        ]"
+        //println ret
+        //ret.size().times{
+        //    println ret[it] as JSON 
+        //    render ret[it] as JSON
+        //}
+        render ret as JSON
+    }
     def metodo () {
     	String operacion = params['method']
     	println "me mandaraon "  + operacion
@@ -116,32 +135,24 @@ class MetodosCalendarController {
     	return listCalendarByRange(startTime, endTime)
 
     }
-    def listCalendarByRange(startTime, endTime){
-    	def ret = [:]
+    def listCalendarByRangeAndDoctor(startTime, endTime, doctorId){
+    	def ret = []
     	JSON.use('deep')
-    	ret['events'] = []
-    	ret["issort"] = true
-    	ret["start"] = startTime
-    	ret["end"] = endTime
-    	ret['error'] = null
+    	//ret['events'] = []
+    	
     	Calendario calendario 
-    	def query = Calendario.executeQuery("from Calendario cal where cal.startTime >= :startTime and cal.startTime < :endTime", [startTime:startTime, endTime:endTime])
+        println "DoctorID " + doctorId
+        def doctor = Long.parseLong(doctorId, 10);
+    	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId", [startTime:startTime, endTime:endTime, doctorId:doctor])
     	def i = 0;
     	query.each{
     		//println it as  JSON
     		println i
-    		ret['events'][i] = [
-    							it.id, 
-    							it.subject, 
-    							it.startTime,
-    							it.endTime,
-    							it.isAllDayEvent,
-    							0,//mas de un dia el evento
-    							0,// evento recurring
-    							it.color,
-    							1,//editable
-    							it.location,
-    							''//attends ? no se ara que es eso
+    		ret[i] = [
+    							
+    							title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
+                                start: it.fecha,                                
+                                allDay : "false"
 							]
     		i++;
     	}
