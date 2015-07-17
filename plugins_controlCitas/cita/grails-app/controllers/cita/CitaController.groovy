@@ -122,7 +122,7 @@ class CitaController {
         def doctores = query.list()
         println doctores
         render g.select(id:'subCategory', name:'doctor.id',
-            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onChange:'cambioDoctor(this.value)'
+            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value)'
         )
     }
 }
