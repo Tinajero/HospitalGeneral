@@ -48,7 +48,7 @@
 </div>
 
 	<%-- Asignacion de horario de los usuarios--%>
-	<div class="form-group ${hasErrors(bean: doctorInstance, field: 'horaI', 'error')} required">
+	<!-- <div class="form-group ${hasErrors(bean: doctorInstance, field: 'horaI', 'error')} required">
 		<label for="horaInicial" class="col-sm-4 control-label">
 			<g:message code="doctor.horaI.label" default="Hora de entrada" />
 			<g:select id = 'horaI' name="horaI" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']" value="${doctorInstance?.horaI}"/>
@@ -66,18 +66,18 @@
 			<span class="required-indicator">*</span>
 		</label>
 		
-	</div>
+	</div> -->
 
 	<%-- Boton para generar horarios --%>
-	<div class="botonTabla">
+<!-- 	<div class="botonTabla">
 		<input type = "button" name="Horarios" value = "Horarios"onClick="leeTabla()"/>
-	</div>
+	</div> -->
 
 	<%--Almacenar los dias laborales en variable(diasLaborales) y comparar con los dias del checkbox --%>
 	<div class="form-group required">
-
-		<table>
-			<label for="diasLaborales" class="col-sm-2 control-label">
+		<label for="diasLaborales" class="col-sm-2 control-label">
+		<table class="col-sm-offset-1">
+			
 			<g:message code="doctor.diasLaborales.label" default="Dias Laborales" />
 			<span class="required-indicator">*</span>
 			<g:set var = "diasSemana" value = "${['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']}"/>
@@ -88,26 +88,52 @@
 			<g:else>
 				<g:set var = "diasLab" value="${'0000000'}"/>
 			</g:else>
+			<tr>
+				<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">					
+					<td>&nbsp;&nbsp;${diasSemana[diaBoton]}&nbsp;&nbsp;</td> 					
+				</g:each>
+			</tr>
+			<tr>
+				<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">
+					<td align="center">
+						<g:if test="${diasLab[diaBoton]=='-'}">
+							<g:checkBox name="${diasSemana[diaBoton]}" value="${false}"/>
+						</g:if>
+						<g:else>
+							<g:checkBox name="${diasSemana[diaBoton]}" value="${true}"/>
+						</g:else>
+					</td>
+				</g:each>
+			</tr>
 
-			<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">
-				<tr>
-					<td>${diasSemana[diaBoton]}</td> 
 
-					<g:if test="${diasLab[diaBoton]=='-'}">
-					<td><g:checkBox name="${diasSemana[diaBoton]}" value="${false}"/></td>
-					</g:if>
-					<g:else>
-					<td><g:checkBox name="${diasSemana[diaBoton]}" value="${true}"/></td>
-					</g:else>
-
-				</tr>
-				
-			</g:each>
 		</table>
 	</div>
 
-	<div id='tablaHoras'>
+	<div class="row">
+		<div class="col-sm-2 col-sm-offset-1">
+				<input type="text" id="horario"  name="horario"/>
+		</div>
+		<div class="col-sm-2">
+			<a href="" title="" id="agregarFila" class="btn btn-default">Agregar hora</a>
+		</div>
 	</div>
+	<div  class="col-sm-4 col-sm-offset-1">
+		<table id='tablaHoras' class="table table-striped">
+			<thead>
+				<th style="width:100px;">No.</th>
+				<th style="width:200px;">Hora</th>
+			</thead>
+			<tbody>
+			<!-- 	<tr>
+					<td>0</td>
+					<td>1</td>
+				</tr> -->
+			</tbody>
+		</table>
+	</div>
+	<p id="horarios"> Aqui </p>
+
 	
 </div>
 
@@ -141,6 +167,42 @@
 <%--</div>--%>
 
 
+<!-- Codigo JQuery -->
+<script type="text/javascript">	
+	jQuery(function(){
+	    var counter = 0;
+	    /**funcion que agrega una fila a una tabla*/
+	    jQuery('#agregarFila').click(function(event) {
+	        event.preventDefault();
+	        console.log("click");
+	        var hora = $("#horario").val();
+	        counter++;
+	        var newRow = jQuery('<tr><td>' +
+	            counter + '</td><td id="renglon'+ counter +'">'+
+	            hora +'</td></tr>' );	       
+	        jQuery('#tablaHoras').append(newRow);	       
+	    });
+	});
+	$('#formularioDoctor').submit(function(){
+	//function insertInput(){
+		console.log("apunto de enviar");
 
-
+			//Funcion que recorrera la tabla con id tablaHoras
+		$('#tablaHoras tbody tr').each(function(index){
+			var numero, hora;		
+			$(this).children("td").each(function(index2){
+				switch(index2){
+					case 0: numero =$(this).text(); break;
+					case 1: hora = $(this).text(); break;
+				}				
+			});		
+        	$('<input />').attr('type', 'text')
+	          .attr('name', "hora_"+numero)
+	          .attr('value', hora)
+	          .appendTo('#formularioDoctor');        	
+		
+		});
+		return true;
+	});
+</script>
 

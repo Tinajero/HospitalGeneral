@@ -42,6 +42,7 @@ class DoctorController {
         }
     
       print "Almacenando: " + doctor
+      print params
       doctor.diasLaborales = DoctorService.obtenDiasLaborales(params)
       print doctor.diasLaborales
       doctor.validate()

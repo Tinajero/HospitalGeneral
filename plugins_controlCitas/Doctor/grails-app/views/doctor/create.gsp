@@ -26,11 +26,11 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:doctor, action:'save']" >
+			<g:form url="[resource:doctor, action:'save']" onkeypress="return event.keyCode != 13;" id="formularioDoctor" >
 				<fieldset class="form-horizontal">
 					<g:render template="form"/>
 				</fieldset>
-				<fieldset class="buttons col-sm-offset-2">
+				<fieldset class="buttons col-sm-offset-4">
 					<g:submitButton name="create" class="save" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
 			</g:form>
