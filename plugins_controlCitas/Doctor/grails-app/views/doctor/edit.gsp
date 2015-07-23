@@ -28,7 +28,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:doctorInstance, action:'update']" method="PUT" >
+			<g:form url="[resource:doctorInstance, action:'update']" method="PUT" onkeypress="return event.keyCode != 13;"  id="formularioDoctor">
 				<g:hiddenField name="version" value="${doctorInstance?.version}" />
 				<fieldset class="form-horizontal">
 					<g:render template="form"/>

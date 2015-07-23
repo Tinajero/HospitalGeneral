@@ -1,6 +1,8 @@
 package doctor
 
 import grails.transaction.Transactional
+import grails.converters.*
+import org.codehaus.groovy.grails.web.json.*;
 
 @Transactional
 class DoctorService {
@@ -45,6 +47,13 @@ class DoctorService {
 
         }
 
+    }
+    /**
+    *   Funcion que a partir de la cadena de horario en su dato los convertira todos en tiempos
+    *   
+    */
+    def obtenHorario(horario){
+        return JSON.parse(horario);
     }
     
     def getHoras(){
