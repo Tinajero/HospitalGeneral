@@ -47,32 +47,6 @@
 	
 </div>
 
-	<%-- Asignacion de horario de los usuarios--%>
-	<!-- <div class="form-group ${hasErrors(bean: doctorInstance, field: 'horaI', 'error')} required">
-		<label for="horaInicial" class="col-sm-4 control-label">
-			<g:message code="doctor.horaI.label" default="Hora de entrada" />
-			<g:select id = 'horaI' name="horaI" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']" value="${doctorInstance?.horaI}"/>
-			<g:select id = 'minI' name="minutoI" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']" value="${doctorInstance?.minutoI}"/>
-			<span class="required-indicator">*</span>
-		</label>
-	</div>
-
-	<div class="form-group ${hasErrors(bean: doctorInstance, 'error')}  required">
-		<label for="horaFinal" class="col-sm-4 control-label">
-			<g:message code="doctor.horaF.label" default="Hora de salida" />
-			<g:select id='horaF' name="horaF" from="${doctorS.getHoras()}"  noSelection="['':'-Hora-']" value="${doctorInstance?.horaF}"/>
-			<g:select id='minF'	name="minutoF" from="${doctorS.getMinutos()}"  noSelection="['':'-Min.-']" value="${doctorInstance?.minutoF}"/>
-	
-			<span class="required-indicator">*</span>
-		</label>
-		
-	</div> -->
-
-	<%-- Boton para generar horarios --%>
-<!-- 	<div class="botonTabla">
-		<input type = "button" name="Horarios" value = "Horarios"onClick="leeTabla()"/>
-	</div> -->
-
 	<%--Almacenar los dias laborales en variable(diasLaborales) y comparar con los dias del checkbox --%>
 	<div class="form-group required">
 		<label for="diasLaborales" class="col-sm-2 control-label">
@@ -111,8 +85,13 @@
 	</div>
 
 	<div class="row">
+		<div class="col-sm-4 col-sm-offset-1" id="cajaWarning">
+
+		</div>
+	</div>
+	<div class="row">		
 		<div class="col-sm-2 col-sm-offset-1">
-				<input type="text" id="horario"  name="horario"/>
+				<input type="text" id="horarioInput"  name="horarioInput"/>
 		</div>
 		<div class="col-sm-2">
 			<a href="" title="" id="agregarFila" class="btn btn-default">Agregar hora</a>
@@ -121,20 +100,28 @@
 	<div  class="col-sm-4 col-sm-offset-1">
 		<table id='tablaHoras' class="table table-striped">
 			<thead>
-				<th style="width:100px;">No.</th>
+				
 				<th style="width:200px;">Hora</th>
 			</thead>
 			<tbody>
-			<!-- 	<tr>
-					<td>0</td>
-					<td>1</td>
-				</tr> -->
+				<g:each in="${horario}" status="i" var="horas">
+					<tr> 
+						<td id="renglon${i+1}">
+							${horas.hora} 
+						</td>
+						<td> 
+							<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a> 
+						</td>
+					</tr>
+				</g:each>
 			</tbody>
 		</table>
 	</div>
 	<p id="horarios"> Aqui </p>
 
-	
+	<div>
+		${horario}
+	</div>
 </div>
 
 
@@ -169,40 +156,78 @@
 
 <!-- Codigo JQuery -->
 <script type="text/javascript">	
-	jQuery(function(){
-	    var counter = 0;
+	var counter = 0;
+		jQuery(function(){
+		    $('.eliminarFila').click(function(event) {
+		    	event.preventDefault();
+		        console.log("click Eliminar");
+		        $(this).parent().parent().remove();
+		    });
+		});
 	    /**funcion que agrega una fila a una tabla*/
 	    jQuery('#agregarFila').click(function(event) {
 	        event.preventDefault();
 	        console.log("click");
-	        var hora = $("#horario").val();
-	        counter++;
-	        var newRow = jQuery('<tr><td>' +
-	            counter + '</td><td id="renglon'+ counter +'">'+
-	            hora +'</td></tr>' );	       
-	        jQuery('#tablaHoras').append(newRow);	       
+	        var hora = $("#horarioInput").val();
+	        if ( hora && tieneFormato(hora) ){
+		        counter++;
+		        var newRow = jQuery('<tr><td id="renglon'+ counter +'">'+
+		            hora +'  </td><td>' +
+		            '<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a>' 
+		            + '</td></tr>' );	       
+		        jQuery('#tablaHoras').append(newRow);
+		        $('#cajaWarning').empty();	   
+
+		         $('.eliminarFila').click(function(event) {
+		    	event.preventDefault();
+		        console.log("click Eliminar");
+		        $(this).parent().parent().remove();
+		    });
+
+		     } else {
+		     	$('#cajaWarning').append('<p class="bg-warning">Introduzca la hora con el formato HH:mm</p>');
+		     }
 	    });
-	});
+	    
 	$('#formularioDoctor').submit(function(){
 	//function insertInput(){
 		console.log("apunto de enviar");
-
+		var horas = "[";
+		var first = false;
 			//Funcion que recorrera la tabla con id tablaHoras
 		$('#tablaHoras tbody tr').each(function(index){
 			var numero, hora;		
+			if (first)
+				horas += ",";
+			first = true;
 			$(this).children("td").each(function(index2){
-				switch(index2){
-					case 0: numero =$(this).text(); break;
-					case 1: hora = $(this).text(); break;
+				switch(index2){					
+					case 0: hora = $(this).text(); break;
 				}				
-			});		
-        	$('<input />').attr('type', 'text')
-	          .attr('name', "hora_"+numero)
-	          .attr('value', hora)
-	          .appendTo('#formularioDoctor');        	
-		
+			});	
+			horas += "{hora: '" +  hora + "'}";        	        	
 		});
+		
+		horas += " ]";
+		if(!counter)
+			return false;
+		console.log(horas);
+		$('<input />').attr('type', 'text')
+	          .attr('name', "horario")
+	          .attr('value', horas)
+	          .attr("style", "visibility: hidden")
+	          .appendTo('#formularioDoctor');
+	   
 		return true;
+		
 	});
+	function tieneFormato(cadena){
+		if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(cadena)){
+      		//$('.alert-box').html('Please use the correct format');
+      		return false;
+		}
+		return true;
+	}
+
 </script>
 

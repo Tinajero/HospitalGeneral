@@ -6,20 +6,13 @@ class Doctor {
 	String apellidoPat
 	String apellidoMat
 	String diasLaborales 
-	String horaI 
-	String horaF 
-	String minutoI
-	String minutoF
-	String[] horario = {null}
-	String[] diasNoLaborales = {null}
+	String horario 
     static constraints = {
 		tipoCita blank: false
 		nombre blank: false
 		apellidoPat blank: false
 		apellidoMat blank:false
-		horario blank: true
-		diasNoLaborales blank: true
-
+		horario blank: false
     }
 
   	static mapping = {

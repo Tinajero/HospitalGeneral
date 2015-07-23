@@ -45,10 +45,13 @@ class DoctorController {
       print params
       doctor.diasLaborales = DoctorService.obtenDiasLaborales(params)
       print doctor.diasLaborales
+      doctor.horario = params.horario;
       doctor.validate()
 
         if (doctor.hasErrors()) {
-            respond doctor.errors, view:'create'
+            print "tiene errores"
+            print doctor.errors
+            respond doctor.errors,view:'create', model:[doctor:doctor]
             return
         }
    
@@ -65,7 +68,9 @@ class DoctorController {
     
     def edit(Doctor doctorInstance) {
         print "edit recibe " + doctorInstance
-        respond doctorInstance
+        def horario = DoctorService.obtenHorario(doctorInstance.horario);
+        print horario.hora
+        respond doctorInstance, model:[horario: horario]
     }
 
     @Transactional
@@ -74,6 +79,9 @@ class DoctorController {
         doctorInstance.diasLaborales = DoctorService.obtenDiasLaborales(params)
         //doctor.diasLaborales ="as"
         //doctor.diasLaborales = DoctorService.obtenDiasLaborales(params)
+        printf "Actualizando Doctor"
+        print params
+        doctorInstance.horario = params.horario;
         if (doctorInstance == null) {
             print "1fst"
             notFound()
