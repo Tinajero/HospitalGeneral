@@ -12,7 +12,7 @@ class DoctorService {
 
     }
     def listaTiposCita(){
-        def lista = ['pediatria','ginecologia','ortodoncia','cirugia','maternidad']
+        def lista = ['PED pediatria','G.O. ginecologia','Dental','cirugia','maternidad' ]
         return lista
     }
     def obtenDiasLaborales(params){
@@ -56,6 +56,23 @@ class DoctorService {
         return JSON.parse(horario);
     }
     
+    def getDoctoresWhitTipoCita(tipoCita){
+        print "doctorService, getDoctoresWhitTipoCita "
+        print tipoCita
+        def query = Doctor.where {
+            tipoCita == tipoCita
+        }
+        def doctores = query.list();
+        
+        
+        if (doctores.size() != 0){
+            for (int i = 0; i < doctores.size() ; i++){
+                doctores[i].nombre = doctores[i].nombre + " " + doctores[i].apellidoPat + " " + doctores[i].apellidoMat
+            }
+        }
+        print doctores
+        return doctores;
+    }
     def getHoras(){
         intervalosDeTiempo()
         return hora

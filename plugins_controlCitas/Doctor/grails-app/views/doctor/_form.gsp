@@ -106,9 +106,8 @@
 			<tbody>
 				<g:each in="${horario}" status="i" var="horas">
 					<tr> 
-						<td id="renglon${i+1}">
-							${horas.hora} 
-						</td>
+						<td id="renglon${i+1}">${horas.hora}</td>				
+						
 						<td> 
 							<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a> 
 						</td>
@@ -201,6 +200,7 @@
 				horas += ",";
 			first = true;
 			$(this).children("td").each(function(index2){
+				counter++;
 				switch(index2){					
 					case 0: hora = $(this).text(); break;
 				}				
