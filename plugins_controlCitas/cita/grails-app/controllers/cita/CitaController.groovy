@@ -13,6 +13,7 @@ class CitaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def DoctorService
+    def CitaService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Cita.list(params), model:[citaCount: Cita.count()]
@@ -111,7 +112,10 @@ class CitaController {
             '*'{ render status: NOT_FOUND }
         }
     }
-
+    /*  
+        listener que responde cuando es cambiado el tipo de cita y 
+        regresa los Doctores que atienden ese tipo de cita en un g:select
+    */
     def tipoCitaCambiada(String tipoCita){
         println "tipoCitaCambiada"
         println tipoCita
@@ -122,11 +126,85 @@ class CitaController {
         }
         def doctores = query.list()*/
         def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );
-        render g.select(id:'subCategory', name:'doctor.id',
+        render g.select(id:'cbDoctores', name:'doctor.id',
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value)'
         )
     }
+    /**
+     *
+     */
+    def mostrarHorario(int doctorID, String fecha){
 
+        print "accedio a mostrarHorario de citaController"
+        //print params
+        def horario = DoctorService.getHorarioFromDoctorID(doctorID)
+        
+        def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
+    
+        def ret = [];
+        def libre = true;
+        def i = 0;        
+        if (horario != null ){
+            def ohorario = JSON.parse(horario)
+            print ohorario
+            ohorario.each{
+
+                def hora = getHoraDeString(it.hora)
+                def minuto = getMinutoDeString(it.hora)
+                print hora + " " + minuto
+                libre = isLibre(hora, minuto, citas)
+                ret[i++] = [
+                    hora: it.hora,
+                    libre:libre
+                ]
+            }
+        }
+        print ret as JSON
+        
+
+
+       // print horario        
+        render ret as JSON
+    }
+    def isLibre(int hora, int minuto,citas){
+        def esta = true;
+        Calendar calendar = Calendar.getInstance()
+        int hours, minutes
+        for(int i = 0; i < citas.size(); i++ ){
+            def it = citas[i]
+            calendar.setTime( it.fecha );
+            hours = calendar.get(Calendar.HOUR_OF_DAY);
+            minutes = calendar.get(Calendar.MINUTE);
+            
+            if (hora == hours && minutes == minuto){
+                esta = false
+                break;
+            }
+        }
+
+        return esta
+    }
+    def getHoraDeString(String hora){
+        String temp = ""
+        int horaEntero = 0;
+        for (int i = 0; i < hora.length() && hora.charAt(i) !=':' ; i++){
+            temp += hora.charAt(i)
+        }        
+        horaEntero = Integer.parseInt(temp)        
+        return horaEntero;
+    }
+    def getMinutoDeString(String hora){
+        String temp = ""
+        int minutoEntero = 0;
+        int i;
+        for ( i = 0; i < hora.length() && hora.charAt(i) !=':' ; i++);
+        i++;
+        for  ( ; i < hora.length() && hora.charAt(i) >='0' && hora.charAt(i) <='9' ; i++){
+             temp += hora.charAt(i)
+        }                    
+        minutoEntero = Integer.parseInt(temp)        
+        return minutoEntero;
+    }
     //Funciones para Autocomplete
     def getAllExpedientes(){
         def expendientes = Cita.list()

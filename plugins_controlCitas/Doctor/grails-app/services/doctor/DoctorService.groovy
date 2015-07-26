@@ -52,10 +52,17 @@ class DoctorService {
     *   Funcion que a partir de la cadena de horario en su dato los convertira todos en tiempos
     *   
     */
-    def obtenHorario(horario){
+    def jsonHorario(horario){
         return JSON.parse(horario);
     }
-    
+    /**
+    *   Servicio que regresa el horario de un doctor a parti de su ID
+    */
+    def getHorarioFromDoctorID( doctorId ) {
+        def doctor = Doctor.get( doctorId )
+        return  doctor?.horario;
+    }
+
     def getDoctoresWhitTipoCita(tipoCita){
         print "doctorService, getDoctoresWhitTipoCita "
         print tipoCita

@@ -4,7 +4,24 @@
 		<meta name="layout" content="mainVentanilla">
 		<g:set var="entityName" value="${message(code: 'cita.label', default: 'Cita')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
-
+		<style >
+			.centrado {
+				 text-align:center;
+			}
+			.libre {
+				background-color:#6BCDAE;
+				color: WHITE;
+			}
+			.libre:hover {
+				background-color:#286090;
+				color: WHITE;	
+			}
+			.seleccionado{
+				background-color:#12436E;
+				color: WHITE;	
+			}
+			
+		</style>
 		<script type="text/javascript">
   
 	      $(function() {

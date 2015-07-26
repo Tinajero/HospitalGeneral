@@ -205,7 +205,7 @@
 					case 0: hora = $(this).text(); break;
 				}				
 			});	
-			horas += "{hora: '" +  hora + "'}";        	        	
+			horas += "{\"hora\": \"" +  hora + "\"}";        	        	
 		});
 		
 		horas += " ]";
