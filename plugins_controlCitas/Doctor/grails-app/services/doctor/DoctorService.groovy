@@ -62,7 +62,7 @@ class DoctorService {
         def doctor = Doctor.get( doctorId )
         return  doctor?.horario;
     }
-
+   
     def getDoctoresWhitTipoCita(tipoCita){
         print "doctorService, getDoctoresWhitTipoCita "
         print tipoCita
