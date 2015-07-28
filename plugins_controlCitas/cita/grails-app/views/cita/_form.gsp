@@ -81,7 +81,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-3">
-		<g:datePicker name="fecha" id="cbFechaCita" precision="day" class= "form-control" value="${cita?.fecha}"  />
+		<g:datePicker name="fecha" id="cbFechaCita" precision="day" class= "form-control" value="${cita?.fecha}" onchange="cambioFecha();"/>
 	</div>
 	<div class="col-sm-1">
 		<!-- Button trigger modal -->
@@ -236,34 +236,9 @@
     
     return temp;
   }
-  // agregando comportamiento cuando el mouse este sobre la fila
-	  // 		$("td.libre").mouseover(function() {     
-		 //    	$(this).addClass('cell-highlight' );     
-	  // 		}).mouseout(function() { 
-	  //   		$(this).removeClass('cell-highlight' );        
-			// });  
- /* function cambioDoctor(doctorId) {
-  	console.log("DoctorId " +  doctorId);
-  	$('#calendar').fullCalendar({
-		        // put your options and callbacks here
-		        header:{
-				    left:   'title',
-				    center: '',
-				    right:  'today month basicWeek basicDay prev,next'
-				},
-		       	 events: {
-		       	 	url: '../MetodosCalendar/consulta' ,
-		       	 	data: {
-			            DoctorId : doctorId
-			        },
-			        error: function(){
-			        	console.log("error");
-			        }
-			       
-
-		    	}
-    		})
-  }*/
+  function cambioFecha(){
+  	console.log("cambio fecha");
+  }
    	function cambioDoctor(doctorId){
     	console.log(doctorId);
     	// quitar la bandera de que a sido seleccionado algo
@@ -283,6 +258,9 @@ $(document).ready(function() {
      $('#calendar').fullCalendar({
         // put your options and callbacks here
     })
-
+  //     $('#cbFechaCita_day').on('change', 'option', cambioFecha());
+  // $('#cbFechaCita_month').on('change', 'option', cambioFecha());
+  // $('#cbFechaCita_year').on('change', 'option', cambioFecha());
+   
 });
 </script>

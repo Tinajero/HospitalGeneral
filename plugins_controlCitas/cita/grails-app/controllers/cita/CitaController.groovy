@@ -38,10 +38,10 @@ class CitaController {
 
         
         cita.validate()
-        if (cita.hasErrors()) {
+        if (cita.hasErrors() ) {
             println "tiene errores"
             println cita.errors
-            respond cita.errors, view:'create'
+            respond cita.errors, view:'create', model:[cita:cita]
             return
         }
 
@@ -137,32 +137,59 @@ class CitaController {
 
         print "accedio a mostrarHorario de citaController"
         //print params
-        def horario = DoctorService.getHorarioFromDoctorID(doctorID)
-        
-        def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
-    
+        def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, fecha)
+        print "es un dia Laboral? " + esDiaLaboral
         def ret = [];
-        def libre = true;
-        def i = 0;        
-        if (horario != null ){
-            def ohorario = JSON.parse(horario)
-            print ohorario
-            ohorario.each{
-
-                def hora = getHoraDeString(it.hora)
-                def minuto = getMinutoDeString(it.hora)
-                print hora + " " + minuto
-                libre = isLibre(hora, minuto, citas)
-                ret[i++] = [
-                    hora: it.hora,
-                    libre:libre
-                ]
+        if ( esDiaLaboral ) {
+            def horario = DoctorService.getHorarioFromDoctorID(doctorID)            
+            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )                
+            def libre = true;
+            def i = 0;        
+            if (horario != null ){
+                def ohorario = JSON.parse(horario)
+                print ohorario
+                ohorario.each{
+                    def hora = getHoraDeString(it.hora)
+                    def minuto = getMinutoDeString(it.hora)
+                    print hora + " " + minuto
+                    libre = isLibre(hora, minuto, citas)
+                    ret[i++] = [
+                        hora: it.hora,
+                        libre:libre
+                    ]
+                }
             }
+            print ret as JSON
+        } else { // no trabaja ese dia
+            def dias = DoctorService.getDiasLaboralesDoctor(doctorID)
+            def mensajeDias = ""
+            for (int i = 0; i < dias.length(); i++){
+                if (dias.charAt(i) != '-') {
+                    if (mensajeDias.length() != 0)
+                        mensajeDias += ", "
+
+                    switch(i){
+                        case 0: mensajeDias += "Domingo"; break;
+                        case 1: mensajeDias += "Lunes"; break;
+                        case 2: mensajeDias += "Martes"; break;
+                        case 3: mensajeDias += "Miercoles"; break;
+                        case 4: mensajeDias += "Jueves"; break;
+                        case 5: mensajeDias += "Viernes"; break;
+                        case 6: mensajeDias += "Sabado"; break;
+                    }
+                }
+
+            }
+            ret[0] = [
+                hora: "No atiende citas ese dia, unicamente ",
+                libre: false
+            ] 
+            ret[1] = [
+                hora: mensajeDias,
+                libre: false
+            ]  
+
         }
-        print ret as JSON
-        
-
-
        // print horario        
         render ret as JSON
     }
