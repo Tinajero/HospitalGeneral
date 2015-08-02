@@ -20,7 +20,16 @@
 				background-color:#12436E;
 				color: WHITE;	
 			}
-			
+			.selectionBox {
+				padding-right:0px;
+			}
+			.col-narrow {
+				padding-right:0px !important;
+			}
+			.nopadding {
+			   padding-right: 0 !important;
+			   margin: 0 !important;
+			}
 		</style>
 		<script type="text/javascript">
   

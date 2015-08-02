@@ -9,7 +9,6 @@
 	<div class ="col-sm-4">
 		<g:textField name="paciente.expediente" id="expediente" placeholder="Introduce Expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/>
 	</div>
-  
 </div>
 
 <div class="form-group ${hasErrors(brean: paciente, field: nombre, 'has error')} required">
@@ -54,9 +53,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-	<%--	<g:select id="doctor" name="doctor.tipoCita" from="${ doctor.Doctor.list() }" optionKey="tipoCita" optionValue="tipoCita"required="" value="cita?.doctor?.tipoCita}" class="form-control"/> 
-  optionKey="tipoCita" optionValue="tipoCita"
-  --%>
     <g:select id="TipoCita" name="doctor.tipoCita" from="${doctor.Doctor.listUnique()}"  required="" value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="[null:'']" onchange="categoryChanged(this.value);"/>
 	</div>
 </div>
@@ -67,7 +63,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<%-- <g:select id="doctor" name="doctor.id" from="${doctor.Doctor.list()}" optionKey="id" optionValue="nombre" required="" value="cita?.doctor?.nombre}" class="many-to-one form-control"/> --%>
     <span id="subContainer"> </span>
 
 
@@ -80,34 +75,67 @@
 		<g:message code="cita.fecha.label" default="Fecha" />
 		<span class="required-indicator">*</span>
 	</label>
-	<div class="col-sm-3">
-		<g:datePicker name="fecha" id="cbFechaCita" precision="day" class= "form-control" value="${cita?.fecha}" onclick="cambioFecha();"/>
+	<div class="col-sm-1 nopadding" 	style="padding-right:15px;">		
+		<select name="fecha_day" class="form-control selectionBox" id="cbFechaCita_day" onchange="quitarSeleccionado();">
+		<% def count=31 %>
+		<g:each in="${1..count}" var="dia" >
+			<option value="${dia}">${dia}</option>
+		</g:each>
+		<select>
 	</div>
-	<div class="col-sm-1">
+	<div class="col-sm-2 nopadding" >
+		<select name="fecha_month" class="form-control selectionBox" id="cbFechaCita_month" onchange="quitarSeleccionado();">
+			<option value="1">enero</option>
+			<option value="2">febrero</option>
+			<option value="3">marzo</option>
+			<option value="4">abril</option>
+			<option value="5">mayo</option>
+			<option value="6">junio</option>
+			<option value="7">julio</option>
+			<option value="8">agosto</option>
+			<option value="9">septiembre</option>
+			<option value="10">octubre</option>
+			<option value="11">noviembre</option>
+			<option value="12">diciembre</option>
+		</select>
+	</div>
+	<div class="col-sm-1 nopadding">
+		<select name="fecha_year" class="form-control selectionBox" id="cbFechaCita_year" onchange="quitarSeleccionado();"><option value="2115">2115</option>		
+			<option value="2031">2031</option>
+			<option value="2030">2030</option>
+			<option value="2029">2029</option>
+			<option value="2028">2028</option>
+			<option value="2027">2027</option>
+			<option value="2026">2026</option>
+			<option value="2025">2025</option>
+			<option value="2024">2024</option>
+			<option value="2023">2023</option>
+			<option value="2022">2022</option>
+			<option value="2021">2021</option>
+			<option value="2020">2020</option>
+			<option value="2019">2019</option>
+			<option value="2018">2018</option>
+			<option value="2017">2017</option>
+			<option value="2016">2016</option>
+			<option value="2015" selected="selected">2015</option>
+			<option value="2014">2014</option>
+			<option value="2013">2013</option>
+		</select>
+	</div>
+	<div class="col-sm-1 col-narrow">
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
 		onclick="getHorarios()">
 			Horario
 		</button>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-sm-3 col-narrow">
 		<input type="text" id="cbFechaCita_hour" name="fecha_hour" hidden="true"/>
 	</div>
 	<div class="col-sm-3">
 		<input type="text" id="cbFechaCita_minute" name="fecha_minute" hidden="true"/>
 	</div>
 </div> 
-
-<!-- <div class="fieldcontain ${hasErrors(bean: cita, field: 'paciente', 'error')} required">
-	<label for="paciente">
-		<g:message code="cita.paciente.label" default="Paciente" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="paciente" name="paciente.id" from="${paciente.Paciente.list()}" optionKey="id" required="" value="${cita?.paciente?.id}" class="many-to-one"/>
-
-</div> -->
-
-
 
 <div id='calendar' style="width:600px;"></div>
 
@@ -269,12 +297,22 @@ $(document).ready(function() {
 				},
 
        	timezone: 'local',
-       	lang: 'es'
-        	
+       	lang: 'es',
+       	//// funcion que es accionada cuando el usuario da click en el calendar
+       	dayClick: function(date, jsEvent, view) {
+	        var fecha = date.toDate();
+	        var day = 1;
+	        var month = 1;
+	        var year = 2015;
+	        	day = date.format('D');
+	        	month = date.format('M');
+	        	year = fecha.getFullYear();
+	        // cambiando la fecha a donde dio Click el usuario
+	        $('#cbFechaCita_day').val( day );
+	        $('#cbFechaCita_month').val(  month );
+	        $('#cbFechaCita_year').val( year );	   	    
+	       $('#calendar').fullCalendar('select', date);
+		}        	
     })
-  //     $('#cbFechaCita_day').on('change', 'option', cambioFecha());
-  // $('#cbFechaCita_month').on('change', 'option', cambioFecha());
-  // $('#cbFechaCita_year').on('change', 'option', cambioFecha());
-   
 });
 </script>
