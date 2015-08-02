@@ -81,7 +81,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-3">
-		<g:datePicker name="fecha" id="cbFechaCita" precision="day" class= "form-control" value="${cita?.fecha}" onchange="cambioFecha();"/>
+		<g:datePicker name="fecha" id="cbFechaCita" precision="day" class= "form-control" value="${cita?.fecha}" onclick="cambioFecha();"/>
 	</div>
 	<div class="col-sm-1">
 		<!-- Button trigger modal -->
@@ -109,7 +109,7 @@
 
 
 
-<div id='calendar'></div>
+<div id='calendar' style="width:600px;"></div>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -146,6 +146,7 @@
  	var seleccionado = false;
   function categoryChanged(categoryId) {
     console.log(categoryId);
+    quitarSeleccionado();
     jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){
     		jQuery('#subContainer').html(data);		
     	},
@@ -217,6 +218,9 @@
   }
   function quitarSeleccionado(){
   	seleccionado = false;
+  	console.log("quitandoSeleccionado");
+  	$('#cbFechaCita_hour').val("");
+  	$('#cbFechaCita_minute').val("");
   }
   function getHora(hora){
   	var temp = ""    
@@ -242,7 +246,7 @@
    	function cambioDoctor(doctorId){
     	console.log(doctorId);
     	// quitar la bandera de que a sido seleccionado algo
-    	seleccionado = false;
+    	quitarSeleccionado();
     	var events = {
     		url: '../MetodosCalendar/consulta' ,
     		data: {
@@ -251,12 +255,22 @@
     	};
     	$('#calendar').fullCalendar('removeEventSource',events);
     	$('#calendar').fullCalendar('addEventSource', events);
+    	
    	}
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
      $('#calendar').fullCalendar({
         // put your options and callbacks here
+        header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+
+       	timezone: 'local',
+       	lang: 'es'
+        	
     })
   //     $('#cbFechaCita_day').on('change', 'option', cambioFecha());
   // $('#cbFechaCita_month').on('change', 'option', cambioFecha());

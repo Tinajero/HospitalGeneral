@@ -36,6 +36,7 @@
     	<link rel="stylesheet" href="${resource(dir: 'js', file: 'fullcalendar-2.3.1/fullcalendar.css')}" type="text/css">
     	 <g:javascript src="fullcalendar-2.3.1/lib/moment.min.js"/>
     	 <g:javascript src="fullcalendar-2.3.1/fullcalendar.js"/>
+    	 <g:javascript src="fullcalendar-2.3.1/lang/es.js"/>
     	 <%-- end fullCallendar plugin dependences --%>
 		 
 		 <g:javascript src="utilerias.js" />

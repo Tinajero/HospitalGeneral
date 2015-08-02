@@ -127,7 +127,7 @@ class CitaController {
         def doctores = query.list()*/
         def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );
         render g.select(id:'cbDoctores', name:'doctor.id',
-            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value)'
+            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value);'
         )
     }
     /**
