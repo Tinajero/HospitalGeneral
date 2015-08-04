@@ -7,7 +7,11 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField name="paciente.expediente" id="expediente" placeholder="Introduce Expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/>
+		<!--<g:textField name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/> -->
+		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value=""/>
+	</div>
+	<div class ="col-sm-4">
+		<input type="hidden" id="expediente" name="expediente" value=""/>
 	</div>
 </div>
 
@@ -17,7 +21,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-2">
-		<g:textField name="paciente.apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>
+		<g:textField id="apaterno" name="paciente.apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>
 	</div>
 	<div class="col-sm-2">
 		<g:textField name="paciente.apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>

@@ -63,6 +63,45 @@
 	      });
 	      });
 
+	      $(document).ready(function() {
+    		$.ajax({
+        	type: "GET",
+	        url: "getAllExpedientes",
+	        dataType: "json",
+	        success : function(response) {
+            
+ 				$("#expediente_textField").autocomplete({
+                	source: response
+            	});    		
+    			/*var data =
+                $.map(response, function(item){
+
+                  console.log("id: " + item.paciente.id);
+                  console.log("name: " + item.paciente.expediente);
+                    return{
+                        id: item.expediente,
+                        value: item.apellidoPaterno
+                    }
+                });
+
+                $("#expediente_textField").autocomplete({
+                	source: data,
+                	select: function (event, ui){
+                    	console.log("selected id:" + ui.item.id);
+                    	console.log("selected name:" + ui.item.value);
+ 
+                    	//when a country is selected(ie: type China and press enter),
+                    	//change the value of hidden field to the country's id.
+                    	$('#apaterno').val(ui.item.apellidoPaterno);
+                	}
+            	});*/
+            
+        	}
+    		});
+ 
+			});
+	      
+
 	</script>
 	
 	</head>
@@ -101,21 +140,5 @@
 			$(document).ready( setNavBarLista("${entityName}")  );
 		</script>
 
-		<script type="text/javascript">
-		
-		$(document).ready(function(){
-			$.ajax({
-				type: "GET",
-				url: "controlCitas/cita/getAllExpedientes",
-				success: function(response){
-
-					$("#expediente").autocomplete({
-						source: response
-					});
-				}
-			});
-		});
-
-		</script>
 	</body>
 </html>

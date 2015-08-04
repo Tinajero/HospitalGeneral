@@ -234,11 +234,11 @@ class CitaController {
     }
     //Funciones para Autocomplete
     def getAllExpedientes(){
-        def expendientes = Cita.list()
+        def citas = Cita.list()
         def response = []
 
-        expendientes.each{
-            response << "${it.expediente}"
+        citas.each{
+            response << "${it.paciente.expediente}"
         }
 
         render response as JSON
