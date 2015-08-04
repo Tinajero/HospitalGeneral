@@ -68,7 +68,7 @@ class DoctorController {
     
     def edit(Doctor doctorInstance) {
         print "edit recibe " + doctorInstance
-        def horario = DoctorService.json    Horario(doctorInstance.horario);
+        def horario = DoctorService.jsonHorario(doctorInstance.horario);
         print horario.hora
         respond doctorInstance, model:[horario: horario]
     }

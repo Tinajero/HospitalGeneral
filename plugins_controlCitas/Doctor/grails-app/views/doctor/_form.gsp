@@ -116,11 +116,9 @@
 			</tbody>
 		</table>
 	</div>
-	<p id="horarios"> Aqui </p>
+	<p id="horarios">  </p>
 
-	<div>
-		${horario}
-	</div>
+	
 </div>
 
 
