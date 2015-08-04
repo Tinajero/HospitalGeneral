@@ -83,6 +83,10 @@
 		</g:each>
 		<select>
 	</div>
+
+	
+              <input type="hidden" name="fecha" value="date.struct" />
+
 	<div class="col-sm-2 nopadding" >
 		<select name="fecha_month" class="form-control selectionBox" id="cbFechaCita_month" onchange="quitarSeleccionado();">
 			<option value="1">enero</option>
