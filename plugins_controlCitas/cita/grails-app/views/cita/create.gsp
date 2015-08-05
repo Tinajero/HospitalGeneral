@@ -32,36 +32,6 @@
 			}
 		</style>
 		<script type="text/javascript">
-  
-	      $(function() {
-	      var availableTags = [
-	      "ActionScript",
-	      "AppleScript",
-	      "Asp",
-	      "BASIC",
-	      "C",
-	      "C++",
-	      "Clojure",
-	      "COBOL",
-	      "ColdFusion",
-	      "Erlang",
-	      "Fortran",
-	      "Groovy",
-	      "Haskell",
-	      "Java",
-	      "JavaScript",
-	      "Lisp",
-	      "Perl",
-	      "PHP",
-	      "Python",
-	      "Ruby",
-	      "Scala",
-	      "Scheme"
-	      ];
-	      $( "#tags" ).autocomplete({
-	      source: availableTags
-	      });
-	      });
 
 	      $(document).ready(function() {
     		$.ajax({
@@ -69,32 +39,43 @@
 	        url: "getAllExpedientes",
 	        dataType: "json",
 	        success : function(response) {
-            
+            	/*console.log("response:" + response);
  				$("#expediente_textField").autocomplete({
-                	source: response
-            	});    		
-    			/*var data =
+ 					source: response
+            	});*/  
+				var datos =
                 $.map(response, function(item){
 
-                  console.log("id: " + item.paciente.id);
-                  console.log("name: " + item.paciente.expediente);
                     return{
-                        id: item.expediente,
-                        value: item.apellidoPaterno
+                        value: item.expediente, 	//busca por expediende                        
+                        apaterno: item.apellidoPaterno,
+                        amaterno: item.apellidoMaterno,
+                        nombre: item.nombre,
+                        poblacion: item.poblacion,
+                        telefono: item.numeroTelefono
                     }
-                });
 
+                });
+                
                 $("#expediente_textField").autocomplete({
-                	source: data,
+                	source: datos,
+                	//focus: function (event, ui){
                 	select: function (event, ui){
-                    	console.log("selected id:" + ui.item.id);
-                    	console.log("selected name:" + ui.item.value);
+                    	console.log("selected expediente:" + ui.item.value);
+                    	console.log("selected apellidoPaterno:" + ui.item.apaterno);
+                    	console.log("selected apellidoPaterno:" + ui.item.amaterno);
+                    	console.log("selected nombre:" + ui.item.nombre);
+                    	console.log("selected poblacion:" + ui.item.poblacion);
+                    	console.log("selected telefono:" + ui.item.telefono);
  
-                    	//when a country is selected(ie: type China and press enter),
-                    	//change the value of hidden field to the country's id.
-                    	$('#apaterno').val(ui.item.apellidoPaterno);
+                    	$('#expediente').val(ui.item.apaterno);
+                    	$('#apaterno').val(ui.item.apaterno);
+                    	$('#amaterno').val(ui.item.amaterno);
+                    	$('#nombre').val(ui.item.nombre);
+                    	$('#poblacion').val(ui.item.poblacion);
+                    	$('#telefono').val(ui.item.telefono);
                 	}
-            	});*/
+            	});
             
         	}
     		});
@@ -128,11 +109,6 @@
 						<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 					</fieldset>
 				</g:form>
-
-				<div class="ui-widget">
-					<label for="tags">Tags: </label>
-					<input id="tags">
-				</div>
 
 			</div>
 		</div>

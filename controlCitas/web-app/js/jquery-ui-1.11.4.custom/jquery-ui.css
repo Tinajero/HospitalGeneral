@@ -203,6 +203,7 @@
 	top: 0;
 	left: 0;
 	cursor: default;
+	background: white;
 }
 .ui-button {
 	display: inline-block;
@@ -559,7 +560,12 @@ button.ui-button::-moz-focus-inner {
 	line-height: 0;
 	border-width: 1px 0 0 0;
 }
-.ui-menu .ui-state-focus,
+.ui-menu .ui-state-focus{
+    color: white;
+    background: black;
+    outline:none;
+}
+
 .ui-menu .ui-state-active {
 	margin: -1px;
 }

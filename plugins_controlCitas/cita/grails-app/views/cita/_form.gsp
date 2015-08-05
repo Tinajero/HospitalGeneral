@@ -12,6 +12,7 @@
 	</div>
 	<div class ="col-sm-4">
 		<input type="hidden" id="expediente" name="expediente" value=""/>
+		<!--<g:hiddenField id= "expediente" name="cita.expediente" value=""></g:hiddenField>-->
 	</div>
 </div>
 
@@ -24,10 +25,10 @@
 		<g:textField id="apaterno" name="paciente.apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>
 	</div>
 	<div class="col-sm-2">
-		<g:textField name="paciente.apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>
+		<g:textField id="amaterno" name="paciente.apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>
 	</div>
 	<div class="col-sm-2">
-		<g:textField name="paciente.nombre" class="form-control" required="" placeholder="Nombre(s)" value="${cita?.paciente?.apellidoMaterno}"/>
+		<g:textField id="nombre" name="paciente.nombre" class="form-control" required="" placeholder="Nombre(s)" value="${cita?.paciente?.apellidoMaterno}"/>
 	</div>
 </div>
 
@@ -37,7 +38,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField name="paciente.poblacion" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<g:textField id="poblacion" name="paciente.poblacion" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
 	</div>
 </div>
 
@@ -47,7 +48,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<input type="tel" name="paciente.numeroTelefono" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<input id="telefono" type="tel" name="paciente.numeroTelefono" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
 	</div>
 </div>
 

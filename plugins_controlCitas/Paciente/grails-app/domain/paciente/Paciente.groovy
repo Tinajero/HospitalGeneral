@@ -20,5 +20,11 @@ class Paciente {
 	static hasMany = [numeroTelefono:String, poblacion:String] 
 	
     static constraints = {
+    	apellidoPaterno blank: false
+    	apellidoMaterno blank: false
+    	nombre blank:false
+    	expediente blank: false, matches: '\\d{2}\\-\\d{2}-\\d{2}'//format: 'dd-dd-dd' //unique: true
+    	numeroTelefono blank:false
+    	poblacion blank: false
     }
 }

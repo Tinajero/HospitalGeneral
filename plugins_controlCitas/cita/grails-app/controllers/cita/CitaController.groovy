@@ -30,13 +30,12 @@ class CitaController {
 
     @Transactional
     def save(Cita cita) {
-
+        
         if (cita == null) {
             notFound()
             return
         }
 
-        
         cita.validate()
         if (cita.hasErrors() ) {
             println "tiene errores"
@@ -55,6 +54,53 @@ class CitaController {
             }
             '*' { respond cita, [status: CREATED] }
         }
+
+
+        /*try {
+            cita.validate()
+            cita.paciente.save flush:true
+            cita.save flush:true
+        }
+        catch(Exception e) {
+            print "No se pudo guardar el registro";
+        }*/
+
+        /*cita.paciente.save flush:true
+
+        def saveOK = cita.save flush:true
+
+        if(saveOK){
+            println "Save OK"
+            request.withFormat {
+                form multipartForm {
+                  flash.message = message(code: 'default.created.message', args: [message(code: 'cita.label', default: 'Cita'), cita.id])
+                    redirect cita
+                }
+                '*' { respond cita, [status: CREATED] }
+            }
+        }
+        else{
+            def error = cita.errors.getFieldError('expediente_textField')
+
+            if(error){
+                println "error code: $error.code";
+                if(error.code == 'unique'){
+                    printl "Expediente repetido"
+                    render view: 'create', model:[cita:cita]
+                }
+            }
+            else{
+                cita.validate()
+                if (cita.hasErrors() ) {
+                    println "tiene errores"
+                    println cita.errors
+                    respond cita.errors, view:'create', model:[cita:cita]
+                    return
+                }
+            }
+        }*/
+
+        
     }
 
     def edit(Cita cita) {
@@ -234,13 +280,17 @@ class CitaController {
     }
     //Funciones para Autocomplete
     def getAllExpedientes(){
-        def citas = Cita.list()
+        /*def citas = Cita.list()
         def response = []
 
         citas.each{
             response << "${it.paciente.expediente}"
         }
 
-        render response as JSON
+        render response as JSON*/
+        def citas = Cita.list()
+
+        render citas?.paciente as JSON
+        
     }
 }
