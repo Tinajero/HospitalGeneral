@@ -23,7 +23,7 @@ class Paciente {
     	apellidoPaterno blank: false
     	apellidoMaterno blank: false
     	nombre blank:false
-    	expediente blank: false, matches: '\\d{2}\\-\\d{2}-\\d{2}'//format: 'dd-dd-dd' //unique: true
+    	expediente blank: false, matches: '\\d{2}\\-\\d{2}\\-\\d{2}', unique: true
     	numeroTelefono blank:false
     	poblacion blank: false
     }

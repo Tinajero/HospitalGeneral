@@ -30,8 +30,33 @@ class CitaController {
 
     @Transactional
     def save(Cita cita) {
-        
+
         if (cita == null) {
+            notFound()
+            return
+        }
+
+        def p = Paciente.findByExpediente(cita.paciente.expediente)
+
+        if(p){
+            println "p = " + p.expediente
+            cita.paciente = p
+            println "cita.paciente : " + cita.paciente
+        }
+
+        cita.validate()
+        cita.paciente.save flush:true
+        cita.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'cita.label', default: 'Cita'), cita.id])
+                redirect cita
+            }
+            '*' { respond cita, [status: CREATED] }
+        }
+
+        /*if (cita == null) {
             notFound()
             return
         }
@@ -53,53 +78,7 @@ class CitaController {
                 redirect cita
             }
             '*' { respond cita, [status: CREATED] }
-        }
-
-
-        /*try {
-            cita.validate()
-            cita.paciente.save flush:true
-            cita.save flush:true
-        }
-        catch(Exception e) {
-            print "No se pudo guardar el registro";
         }*/
-
-        /*cita.paciente.save flush:true
-
-        def saveOK = cita.save flush:true
-
-        if(saveOK){
-            println "Save OK"
-            request.withFormat {
-                form multipartForm {
-                  flash.message = message(code: 'default.created.message', args: [message(code: 'cita.label', default: 'Cita'), cita.id])
-                    redirect cita
-                }
-                '*' { respond cita, [status: CREATED] }
-            }
-        }
-        else{
-            def error = cita.errors.getFieldError('expediente_textField')
-
-            if(error){
-                println "error code: $error.code";
-                if(error.code == 'unique'){
-                    printl "Expediente repetido"
-                    render view: 'create', model:[cita:cita]
-                }
-            }
-            else{
-                cita.validate()
-                if (cita.hasErrors() ) {
-                    println "tiene errores"
-                    println cita.errors
-                    respond cita.errors, view:'create', model:[cita:cita]
-                    return
-                }
-            }
-        }*/
-
         
     }
 
@@ -291,9 +270,9 @@ class CitaController {
         }
 
         render response as JSON*/
-        def citas = Cita.list()
-
-        render citas?.paciente as JSON
+        def pacientes = Paciente.list()
         
+        //render citas?.paciente as JSON
+        render pacientes as JSON
     }
 }
