@@ -19,10 +19,11 @@
 
 
 
-
-
-
-		 //plugin jQuery-ui
+		
+  	
+		
+		
+		 <!-- plugin jQuery-ui -->
 		<%--<g:javascript src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"/> --%>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.css"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.js"/>

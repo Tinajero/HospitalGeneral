@@ -278,6 +278,9 @@ class CitaController {
         minutoEntero = Integer.parseInt(temp)        
         return minutoEntero;
     }
+    def otraFuncion(){
+        render "Hola Mundo"
+    }
     //Funciones para Autocomplete
     def getAllExpedientes(){
         /*def citas = Cita.list()
