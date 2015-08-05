@@ -18,10 +18,10 @@
 
 
 
-		
-  	
-		
-		
+
+
+
+
 		 //plugin jQuery-ui
 		<%--<g:javascript src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"/> --%>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.css"/>
@@ -38,7 +38,7 @@
     	 <g:javascript src="fullcalendar-2.3.1/fullcalendar.js"/>
     	 <g:javascript src="fullcalendar-2.3.1/lang/es.js"/>
     	 <%-- end fullCallendar plugin dependences --%>
-		 
+
 		 <g:javascript src="utilerias.js" />
 
 
@@ -62,27 +62,28 @@
 <%--	        	<li><a href="#">Casdn</a></li>--%>
 	        </ul>
 			<ul class="nav navbar-nav navbar-right">
-			 
+
 			  <li><a href="/controlCitas/logout">Salir</a></li>
 			</ul>
-         
+
         </div>
       </div>
     </nav>
-    
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
 
             <li><g:link controller ="cita" action="create"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Citas</g:link></li>
+						<li><g:link controller ="hojaRegistroDiario" action=""><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Hojas de registro diario</g:link></li>
             <li><g:link controller ="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</g:link></li>
-            
+
           </ul>
         </div>
 <%--		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>--%>
 		<g:layoutBody/>
-		
+
 		</div>
 	</div>
 <%--		<div class="footer" role="contentinfo"></div>--%>
@@ -91,11 +92,11 @@
 		<div class="col-sm-7 col-md-8">
 			<footer class="blog-footer">
       		<div class="container">
-      			Esto es el footer 
+      			Esto es el footer
 	  		</div>
     	</footer>
 	</div>
 </div>
-	
+
 </body>
 </html>
