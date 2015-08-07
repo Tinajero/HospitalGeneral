@@ -32,7 +32,9 @@
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.structure.css"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.structure.min.css"/>
 
-
+		 <!-- plugin jQuery-mask para mask en los inputs de Expediente y Telefono en Citas -->
+		 <g:javascript src="jquery-mask/jquery.mask.js"/>
+		
 		 	<%-- fullCallendar plugin dependences--%>
     	<link rel="stylesheet" href="${resource(dir: 'js', file: 'fullcalendar-2.3.1/fullcalendar.css')}" type="text/css">
     	 <g:javascript src="fullcalendar-2.3.1/lib/moment.min.js"/>

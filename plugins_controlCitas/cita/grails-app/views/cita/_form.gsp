@@ -2,18 +2,20 @@
 
 
 <div class="form-group ${hasErrors(brean: paciente, field: expediente, 'has error')} required">
+
 	<label for="expediente" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.label" default='Expediente'/>
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
 		<!--<g:textField name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/> -->
-		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value=""/>
+		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" format='\\d{2}\\-\\d{2}\\-\\d{2}' required="" value=""/>
 	</div>
 	<div class ="col-sm-4">
 		<input type="hidden" id="expediente" name="expediente" value=""/>
 		<!--<g:hiddenField id= "expediente" name="cita.expediente" value=""></g:hiddenField>-->
 	</div>
+
 </div>
 
 <div class="form-group ${hasErrors(brean: paciente, field: nombre, 'has error')} required">
@@ -324,4 +326,12 @@ $(document).ready(function() {
 		}        	
     })
 });
+		//Mask for Expediente
+	    $(document).ready(function(){
+	   
+	    	$("#expediente_textField").mask('00-00-00');
+	    	$("#telefono").mask('(000)000-0000');
+	    	
+    	});
+
 </script>
