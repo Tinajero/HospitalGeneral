@@ -16,7 +16,14 @@
 				</g:each>
 			</ul>
 		</div>
-
+		<div>
+			<span>PDF Generado</span>
+			<div>
+	    	<object data="consulta.pdf" type="application/pdf" width="300" height="200">
+	        alt : <a href="consulta.pdf">test.pdf</a>
+	    	</object>
+			</div>
+		</div>
 	</body>
 
 

@@ -4,6 +4,8 @@ import grails.transaction.Transactional
 import cita.Cita
 import java.util.Date
 import java.text.SimpleDateFormat
+import rkl.GenerarPdf
+
 @Transactional
 class HojaRegistroDiarioService {
 
@@ -11,13 +13,14 @@ class HojaRegistroDiarioService {
 
     }
 
-    //La lista se usara para crear el pdf
+//metodo que regresa el resultado de la consulta
   def consulta(date1, date2, tipoCita){
     def resultados=[]
     def select ="select  c.fecha, d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita\
      from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
+    //si no se selecciono cita entonces procede con solo la fecha especificada
     if (tipoCita == "")
       resultados = Cita.executeQuery(	select + where + "  ORDER BY d.nombre ASC",[ date1, date2])
     else
@@ -52,7 +55,27 @@ class HojaRegistroDiarioService {
         print map
 		}
 
+    printPDF(lista)
+
 		return lista
 
 	}
+  def printPDF(def lista)
+  {
+    try{
+    def generar_pdf = new GenerarPdf()
+    //Asignar direccion de impresion
+    generar_pdf.setAddressPdf("consulta.pdf")
+    //Asignar campo de datos
+    generar_pdf.setData(lista)
+    //Crea el pdf y cuando termina cierra la aplicacion
+      generar_pdf.createPdf()
+    }catch(Exception e){
+      print "Un error aqui"
+      e.printStackTrace()
+    }
+
+
+
+  }
 }
