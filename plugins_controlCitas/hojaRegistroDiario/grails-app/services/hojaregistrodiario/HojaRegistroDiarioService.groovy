@@ -35,8 +35,10 @@ class HojaRegistroDiarioService {
     */
   		def resultados=[]
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-      def date1 = sdf.parse( params.fecha.format("yyyy-MM-dd")+" 00:00:00" )
-      def date2 = sdf.parse( params.fecha.format("yyyy-MM-dd")+" 23:59:59" )
+      def date1 = sdf.parse(params.fecha+" 00:00:00")
+      def date2 = sdf.parse(params.fecha+" 23:59:59")
+      //def date1 = sdf.parse( params.fecha.format("yyyy-MM-dd")+" 00:00:00" )
+      //def date2 = sdf.parse( params.fecha.format("yyyy-MM-dd")+" 23:59:59" )
       def tipoCita = params.tipoCita;
       def lista = []
       resultados = consulta(date1, date2, tipoCita)
