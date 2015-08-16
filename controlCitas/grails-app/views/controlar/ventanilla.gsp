@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta name="layout" content="mainVentanilla">
-		
-		
+
+
 	</head>
 <body>
 
-    
-    
+
+
        <div class="col-sm-7 col-md-8 col-sm-offset-3 col-md-offset-2 main">
 	       <div class="bs-docs-section">
 	 				<h1 id="carousel" class="page-header"> Hospital General <small>Huajuapan de León, Oax.</small></h1>
@@ -45,10 +45,10 @@
   	</div>
 
 
-	
-       
+
+
 <%--        	<p class="text-muted" align="center"; >Universidad Tecnológica de la Mixteca.</p>--%>
-        
-    
+
+
 </body>
 </html>

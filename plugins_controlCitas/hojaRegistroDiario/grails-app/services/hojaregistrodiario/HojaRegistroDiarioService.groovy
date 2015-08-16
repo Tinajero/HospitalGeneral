@@ -51,12 +51,16 @@ class HojaRegistroDiarioService {
     El objeto (lista) se rellenara con mapas para almacenar la informacion pertinente a la hora
       un mapa contine fecha, doctor y paciente
   */
-     def lista_ret = [0,params.fecha, tipoCita]
-    if ( resultados == [] )
+    def lista_ret = [0,params.fecha, tipoCita]
+    print "resultados obtenidos"
+    if ( resultados.size() < 1 )
     {
       lista_ret[0] = 0
+      print "Sin resultado"
       return lista_ret
+
     }
+    print "En for"
 		for ( Object[] r in resultados )
     {
 			def map =	[	'fecha': r[0],
@@ -78,7 +82,7 @@ return lista_ret
     try{
     def generar_pdf = new GenerarPdf()
     //Asignar direccion de impresion
-    generar_pdf.setAddressPdf("consulta.pdf")
+    generar_pdf.setAddressPdf("web-app/pdf/consulta.pdf")
     //Asignar campo de datos
     generar_pdf.setData(lista)
     //Crea el pdf y cuando termina cierra la aplicacion

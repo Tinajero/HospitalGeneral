@@ -40,23 +40,23 @@
 			  <li><a href="#">Configuración</a></li>
 			  <li><a href="/controlCitas/logout">Salir</a></li>
 			</ul>
-         
+
         </div>
       </div>
     </nav>
-    
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><g:link controller ="usuario"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</g:link></li>
             <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Doctores</g:link></li>
-            
+
           </ul>
         </div>
 <%--		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>--%>
 		<g:layoutBody/>
-		
+
 		</div>
 	</div>
 <%--		<div class="footer" role="contentinfo"></div>--%>
@@ -65,11 +65,11 @@
 		<div class="col-sm-7 col-md-8">
 			<footer class="blog-footer">
       		<div class="container">
-      			Esto es el footer 
+      			Esto es el footer
 	  		</div>
     	</footer>
 	</div>
 </div>
-	
+
 </body>
 </html>
