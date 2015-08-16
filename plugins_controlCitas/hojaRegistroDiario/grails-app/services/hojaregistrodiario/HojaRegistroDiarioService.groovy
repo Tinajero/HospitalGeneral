@@ -41,13 +41,24 @@ class HojaRegistroDiarioService {
       //def date2 = sdf.parse( params.fecha.format("yyyy-MM-dd")+" 23:59:59" )
       def tipoCita = params.tipoCita;
       def lista = []
+
       resultados = consulta(date1, date2, tipoCita)
+
+      if (tipoCita == "" )
+        tipoCita="Todas"
 		/*
     construcción de lista de mapas
     El objeto (lista) se rellenara con mapas para almacenar la informacion pertinente a la hora
       un mapa contine fecha, doctor y paciente
   */
-		for ( Object[] r in resultados ){
+     def lista_ret = [0,params.fecha, tipoCita]
+    if ( resultados == [] )
+    {
+      lista_ret[0] = 0
+      return lista_ret
+    }
+		for ( Object[] r in resultados )
+    {
 			def map =	[	'fecha': r[0],
 							'doctor': r[1]+" " + r[2]+" "+ r[3],
 							'paciente' : r[4] +" "+ r[5] +" "+ r[6],
@@ -58,8 +69,8 @@ class HojaRegistroDiarioService {
 		}
 
     printPDF(lista)
-
-		return lista
+    lista_ret[0]=1
+return lista_ret
 
 	}
   def printPDF(def lista)
