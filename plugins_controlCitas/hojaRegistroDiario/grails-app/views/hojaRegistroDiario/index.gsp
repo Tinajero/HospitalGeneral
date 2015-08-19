@@ -8,13 +8,13 @@
 
 	<body>
 		<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
-			<p>Por favor selecciona una fecha para generar la HDR. </p>
+			<p>Introduzca una fecha para generar la HDR, los dem&aacute;s campos son opcionales. </p>
 	<fieldset class="form-horizontal">
 			<g:form  name = 'busquedaHDR' url = "[resource : hojaRegistroDiario, action : 'buscar']" >
 
 				<div class="form-group">
 						<label for="fecha" class="col-sm-2 control-label">
-							Introduce fecha de b&uacute;squeda:
+						Fecha de b&uacute;squeda:
 						</label>
 						<span class="required-indicator">*</span>
 						<div class="col-sm-4">
@@ -24,12 +24,43 @@
 
 				<div class="form-group">
 					<label for="tipoCita" class="col-sm-2 control-label">
-						Introduce el tipo de cita (opcional):
+					Tipo de cita (opcional):
 					</label>
 					<div class="col-sm-4">
 						<g:textField class="form-control" name='tipoCita' placeHolder= 'Tipo de cita' value ="${tipoCita}"/> <br>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label for="paciente" class="col-sm-2 control-label">
+						Nombre del paciente (opcional):
+					</label>
+					<div class="col-sm-2">
+						<g:textField class="form-control" name='paciente' placeHolder= 'Apellido paterno' value ="${p_a_paterno}"/> <br>
+					</div>
+					<div class="col-sm-2">
+						<g:textField class="form-control" name='paciente' placeHolder= 'Apellido materno' value ="${p_a_materno}"/> <br>
+					</div>
+					<div class="col-sm-2">
+						<g:textField class="form-control" name='paciente' placeHolder= 'Nombre(s)' value ="${p_nombre_s}"/> <br>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="doctor" class="col-sm-2 control-label">
+						Nombre del doctor (opcional):
+					</label>
+					<div class="col-sm-2">
+						<g:textField class="form-control" name='doctor' placeHolder= 'Apellido paterno' value ="${d_a_paterno}"/> <br>
+					</div>
+					<div class="col-sm-2">
+						<g:textField class="form-control" name='doctor' placeHolder= 'Apellido materno' value ="${d_a_materno}"/> <br>
+					</div>
+					<div class="col-sm-2">
+						<g:textField class="form-control" name='doctor' placeHolder= 'Nombre(s)' value ="${d_nombre_s}"/> <br>
+					</div>
+				</div>
+
 				<fieldset class="buttons col-sm-offset-2">
 					<g:submitButton name='buscar' value='Buscar datos' class="btn btn-primary"/>
 				</fieldset>

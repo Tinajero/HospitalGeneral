@@ -14,7 +14,12 @@ class HojaRegistroDiarioService {
     }
 
 //metodo que regresa el resultado de la consulta
-  def consulta(date1, date2, tipoCita){
+  def consulta(date1, date2, tipoCita, paciente){}
+  def consulta(date1, date2, tipoCita, paciente, doctor){}
+  def consulta(date1, date2, paciente){}
+    
+  def consulta(date1, date2, tipoCita)
+  {
     def resultados=[]
     def select ="select  c.fecha, d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita\
      from Cita as c, Doctor as d, Paciente as p ";
@@ -37,8 +42,6 @@ class HojaRegistroDiarioService {
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
       def date1 = sdf.parse(params.fecha+" 00:00:00")
       def date2 = sdf.parse(params.fecha+" 23:59:59")
-      //def date1 = sdf.parse( params.fecha.format("yyyy-MM-dd")+" 00:00:00" )
-      //def date2 = sdf.parse( params.fecha.format("yyyy-MM-dd")+" 23:59:59" )
       def tipoCita = params.tipoCita;
       def lista = []
 
@@ -77,24 +80,23 @@ class HojaRegistroDiarioService {
 return lista_ret
 
 	}
+
+
   def printPDF(def lista)
   {
     try{
-    def generar_pdf = new GenerarPdfv2()
-    //Asignar direccion de impresion
-    print "Generando nuevo archivo"
-    generar_pdf.setAddressPdf("web-app/pdf/consulta.pdf")
-    //Asignar campo de datos
-    print "Termina impresion"
-    generar_pdf.setData(lista)
-    //Crea el pdf y cuando termina cierra la aplicacion
+      def generar_pdf = new GenerarPdfv2()
+      //Asignar direccion de impresion
+      print "Generando nuevo archivo"
+      generar_pdf.setAddressPdf("web-app/pdf/consulta.pdf")
+      //Asignar campo de datos
+      print "Termina impresion"
+      generar_pdf.setData(lista)
+      //Crea el pdf y cuando termina cierra la aplicacion
       generar_pdf.createPdf()
     }catch(Exception e){
       print "Un error aqui"
       e.printStackTrace()
     }
-
-
-
   }
 }

@@ -14,6 +14,9 @@
 			  	Lo sentimos, no se encontro informaci&oacute;n para los datos:
 				</br>Fecha: ${lista[1]}
 				</br>Tipo de cita: ${lista[2]}
+				</br>Doctor:
+				</br>Paciente:
+				</br>
 			</g:if>
 			<g:else>
 			   Se encontro la siguiente información para:
