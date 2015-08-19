@@ -4,7 +4,7 @@ import grails.transaction.Transactional
 import cita.Cita
 import java.util.Date
 import java.text.SimpleDateFormat
-import rkl.GenerarPdf
+import rkl.GenerarPdfv2
 
 @Transactional
 class HojaRegistroDiarioService {
@@ -80,10 +80,12 @@ return lista_ret
   def printPDF(def lista)
   {
     try{
-    def generar_pdf = new GenerarPdf()
+    def generar_pdf = new GenerarPdfv2()
     //Asignar direccion de impresion
+    print "Generando nuevo archivo"
     generar_pdf.setAddressPdf("web-app/pdf/consulta.pdf")
     //Asignar campo de datos
+    print "Termina impresion"
     generar_pdf.setData(lista)
     //Crea el pdf y cuando termina cierra la aplicacion
       generar_pdf.createPdf()
