@@ -31,36 +31,6 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label for="paciente" class="col-sm-2 control-label">
-						Nombre del paciente (opcional):
-					</label>
-					<div class="col-sm-2">
-						<g:textField class="form-control" name='paciente' placeHolder= 'Apellido paterno' value ="${p_a_paterno}"/> <br>
-					</div>
-					<div class="col-sm-2">
-						<g:textField class="form-control" name='paciente' placeHolder= 'Apellido materno' value ="${p_a_materno}"/> <br>
-					</div>
-					<div class="col-sm-2">
-						<g:textField class="form-control" name='paciente' placeHolder= 'Nombre(s)' value ="${p_nombre_s}"/> <br>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="doctor" class="col-sm-2 control-label">
-						Nombre del doctor (opcional):
-					</label>
-					<div class="col-sm-2">
-						<g:textField class="form-control" name='doctor' placeHolder= 'Apellido paterno' value ="${d_a_paterno}"/> <br>
-					</div>
-					<div class="col-sm-2">
-						<g:textField class="form-control" name='doctor' placeHolder= 'Apellido materno' value ="${d_a_materno}"/> <br>
-					</div>
-					<div class="col-sm-2">
-						<g:textField class="form-control" name='doctor' placeHolder= 'Nombre(s)' value ="${d_nombre_s}"/> <br>
-					</div>
-				</div>
-
 				<fieldset class="buttons col-sm-offset-2">
 					<g:submitButton name='buscar' value='Buscar datos' class="btn btn-primary"/>
 				</fieldset>

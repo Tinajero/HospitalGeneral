@@ -14,10 +14,7 @@ class HojaRegistroDiarioService {
     }
 
 //metodo que regresa el resultado de la consulta
-  def consulta(date1, date2, tipoCita, paciente){}
-  def consulta(date1, date2, tipoCita, paciente, doctor){}
-  def consulta(date1, date2, paciente){}
-    
+
   def consulta(date1, date2, tipoCita)
   {
     def resultados=[]
