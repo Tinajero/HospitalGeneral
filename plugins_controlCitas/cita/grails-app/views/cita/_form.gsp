@@ -8,14 +8,8 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<!--<g:textField name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value="${cita?.paciente?.expediente}"/> -->
-		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" format='\\d{2}\\-\\d{2}\\-\\d{2}' required="" value=""/>
+		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value=""/>
 	</div>
-	<div class ="col-sm-4">
-		<input type="hidden" id="expediente" name="expediente" value=""/>
-		<!--<g:hiddenField id= "expediente" name="cita.expediente" value=""></g:hiddenField>-->
-	</div>
-
 </div>
 
 <div class="form-group ${hasErrors(brean: paciente, field: nombre, 'has error')} required">
@@ -24,13 +18,16 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-2">
-		<g:textField id="apaterno" name="paciente.apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>
+		<!--<g:textField id="apaterno" name="paciente.apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>-->
+		<input type="text" name="paciente.apellidoPaterno" id="apaterno" placeholder="Apellido Paterno" class="form-control" required="" value=""/>
 	</div>
 	<div class="col-sm-2">
-		<g:textField id="amaterno" name="paciente.apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>
+		<!--<g:textField id="amaterno" name="paciente.apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>-->
+		<input type="text" name="paciente.apellidoMaterno" id="amaterno" placeholder="Apellido Materno" class="form-control" required="" value=""/>
 	</div>
 	<div class="col-sm-2">
-		<g:textField id="nombre" name="paciente.nombre" class="form-control" required="" placeholder="Nombre(s)" value="${cita?.paciente?.apellidoMaterno}"/>
+		<!--<g:textField id="nombre" name="paciente.nombre" class="form-control" required="" placeholder="Nombre(s)" value="${cita?.paciente?.apellidoMaterno}"/>-->
+		<input type="text" name="paciente.nombre" id="nombre" placeholder="Nombre(s)" class="form-control" required="" value=""/>
 	</div>
 </div>
 

@@ -270,9 +270,9 @@ class CitaController {
         render "Hola Mundo"
     }
     //Funciones para Autocomplete
-    def getAllExpedientes(){
-        /*def citas = Cita.list()
-        def response = []
+    def AutocompletadoEnCitas(){
+        //def citas = Cita.list()
+        /*def response = []
 
         citas.each{
             response << "${it.paciente.expediente}"
@@ -281,7 +281,6 @@ class CitaController {
         render response as JSON*/
         def pacientes = Paciente.list()
         
-        //render citas?.paciente as JSON
         render pacientes as JSON
     }
 }

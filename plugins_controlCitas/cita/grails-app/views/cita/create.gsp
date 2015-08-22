@@ -36,16 +36,18 @@
 	      $(document).ready(function() {
     		$.ajax({
         	type: "GET",
-	        url: "getAllExpedientes",
+	        url: "AutocompletadoEnCitas",
 	        dataType: "json",
 	        success : function(response) {
-            	/*console.log("response:" + response);
- 				$("#expediente_textField").autocomplete({
+            	console.log("Pacientes en JSON:" + response);
+            	//console.log("expediente:" + response.paciente.expediente);
+ 				/*$("#expediente_textField").autocomplete({
  					source: response
             	});*/  
 				var datos =
                 $.map(response, function(item){
-
+                	console.log("item: "+item);
+                
                     return{
                         value: item.expediente, 	//busca por expediende                        
                         apaterno: item.apellidoPaterno,
@@ -68,7 +70,7 @@
                     	console.log("selected poblacion:" + ui.item.poblacion);
                     	console.log("selected telefono:" + ui.item.telefono);
  
-                    	$('#expediente').val(ui.item.apaterno);
+                    	$('#expediente_textField').val(ui.item.value);
                     	$('#apaterno').val(ui.item.apaterno);
                     	$('#amaterno').val(ui.item.amaterno);
                     	$('#nombre').val(ui.item.nombre);
@@ -82,6 +84,51 @@
  
 			});
 	      
+	      $(document).ready(function() {
+    		$.ajax({
+        	type: "GET",
+	        url: "AutocompletadoEnCitas",
+	        dataType: "json",
+	        success : function(response) {
+            	 
+				var datos =
+                $.map(response, function(item){
+                
+                    return{
+                        value: item.nombre, 	//busca por expediende                        
+                        expediente: item.expediente,
+                        amaterno: item.apellidoMaterno,
+                        apaterno: item.apellidoPaterno,
+                        poblacion: item.poblacion,
+                        telefono: item.numeroTelefono
+                    }
+
+                });
+                
+                $("#nombre").autocomplete({
+                	source: datos,
+                	//focus: function (event, ui){
+                	select: function (event, ui){
+                    	console.log("selected expediente:" + ui.item.expediente);
+                    	console.log("selected apellidoPaterno:" + ui.item.apaterno);
+                    	console.log("selected apellidoPaterno:" + ui.item.amaterno);
+                    	console.log("selected nombre:" + ui.item.nombre);
+                    	console.log("selected poblacion:" + ui.item.poblacion);
+                    	console.log("selected telefono:" + ui.item.telefono);
+ 
+                    	$('#expediente_textField').val(ui.item.expediente);
+                    	$('#apaterno').val(ui.item.apaterno);
+                    	$('#amaterno').val(ui.item.amaterno);
+                    	$('#nombre').val(ui.item.value);
+                    	$('#poblacion').val(ui.item.poblacion);
+                    	$('#telefono').val(ui.item.telefono);
+                	}
+            	});
+            
+        	}
+    		});
+ 
+			});
 
 	</script>
 	
