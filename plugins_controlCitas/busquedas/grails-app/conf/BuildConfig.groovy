@@ -1,6 +1,9 @@
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
+grails.plugin.location."Paciente"="../Paciente"
+grails.plugin.location."Doctor"="../Doctor"
+grails.plugin.location."Cita"="../cita"
 
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
@@ -40,6 +43,10 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
+       compile ":scaffolding:2.1.2"
+       compile ':cache:1.1.7'
+       compile ":asset-pipeline:1.8.11"
+
         build(":release:3.0.1",
               ":rest-client-builder:1.0.3") {
             export = false
