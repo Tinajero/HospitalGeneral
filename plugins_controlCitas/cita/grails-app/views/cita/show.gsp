@@ -79,7 +79,7 @@
 									<span id="paciente-label" class="property-label"><g:message code="cita.paciente.label" default="Paciente" /></span>
 									</td>
 									<td>
-										<span class="property-value" aria-labelledby="paciente-label"><g:link controller="paciente" action="show" id="${citaInstance?.paciente?.id}">${citaInstance?.paciente?.nombre.encodeAsHTML()} ${citaInstance?.paciente?.apellidoMaterno.encodeAsHTML()} ${citaInstance?.paciente?.apellidoPaterno.encodeAsHTML()}</g:link></span>
+										<span class="property-value" aria-labelledby="paciente-label"><g:link controller="paciente" action="show" id="${citaInstance?.paciente?.id}">${citaInstance?.paciente?.nombre.encodeAsHTML()} ${citaInstance?.paciente?.apellidoPaterno.encodeAsHTML()} ${citaInstance?.paciente?.apellidoMaterno.encodeAsHTML()}</g:link></span>
 									</td>
 								</li>
 								</tr>

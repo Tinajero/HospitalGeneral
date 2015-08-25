@@ -33,21 +33,16 @@
 		</style>
 		<script type="text/javascript">
 
+	      //Genera autocomplete solo por Expediente
 	      $(document).ready(function() {
     		$.ajax({
         	type: "GET",
 	        url: "AutocompletadoEnCitas",
 	        dataType: "json",
-	        success : function(response) {
-            	console.log("Pacientes en JSON:" + response);
-            	//console.log("expediente:" + response.paciente.expediente);
- 				/*$("#expediente_textField").autocomplete({
- 					source: response
-            	});*/  
+	        success : function(response) { 
 				var datos =
                 $.map(response, function(item){
-                	console.log("item: "+item);
-                
+             
                     return{
                         value: item.expediente, 	//busca por expediende                        
                         apaterno: item.apellidoPaterno,
@@ -76,6 +71,13 @@
                     	$('#nombre').val(ui.item.nombre);
                     	$('#poblacion').val(ui.item.poblacion);
                     	$('#telefono').val(ui.item.telefono);
+                    	//desactivamos los inputs una vez seleccionado el paciente
+                    	document.getElementById('expediente_textField').readOnly=true;
+                    	document.getElementById('apaterno').readOnly=true;
+                    	document.getElementById('amaterno').readOnly=true;
+                    	document.getElementById('nombre').readOnly=true;
+                    	document.getElementById('poblacion').readOnly=true;
+                    	document.getElementById('telefono').readOnly=true;
                 	}
             	});
             
@@ -84,6 +86,7 @@
  
 			});
 	      
+	      //Genera autocomplete por apellidoPaterno + apellidoMaterno + Nombre
 	      $(document).ready(function() {
     		$.ajax({
         	type: "GET",
@@ -95,17 +98,19 @@
                 $.map(response, function(item){
                 
                     return{
-                        value: item.nombre, 	//busca por expediende                        
+                        value: item.apellidoPaterno + " " + item.apellidoMaterno + " " +item.nombre, //busca por apellidoPaterno + apellidoMaterno + nombre
                         expediente: item.expediente,
+                        nombre: item.nombre,
+					    apaterno: item.apellidoPaterno,                   
                         amaterno: item.apellidoMaterno,
-                        apaterno: item.apellidoPaterno,
                         poblacion: item.poblacion,
                         telefono: item.numeroTelefono
+
                     }
 
                 });
-                
-                $("#nombre").autocomplete({
+
+                $("#apaterno").autocomplete({
                 	source: datos,
                 	//focus: function (event, ui){
                 	select: function (event, ui){
@@ -115,13 +120,23 @@
                     	console.log("selected nombre:" + ui.item.nombre);
                     	console.log("selected poblacion:" + ui.item.poblacion);
                     	console.log("selected telefono:" + ui.item.telefono);
- 
+
+                    	event.preventDefault();
+ 					
                     	$('#expediente_textField').val(ui.item.expediente);
                     	$('#apaterno').val(ui.item.apaterno);
                     	$('#amaterno').val(ui.item.amaterno);
-                    	$('#nombre').val(ui.item.value);
+                    	$('#nombre').val(ui.item.nombre);
                     	$('#poblacion').val(ui.item.poblacion);
                     	$('#telefono').val(ui.item.telefono);
+                    	//desactivamos los inputs una vez seleccionado el paciente
+                    	document.getElementById('expediente_textField').readOnly=true;
+                    	document.getElementById('apaterno').readOnly=true;
+                    	document.getElementById('amaterno').readOnly=true;
+                    	document.getElementById('nombre').readOnly=true;
+                    	document.getElementById('poblacion').readOnly=true;
+                    	document.getElementById('telefono').readOnly=true;
+              
                 	}
             	});
             

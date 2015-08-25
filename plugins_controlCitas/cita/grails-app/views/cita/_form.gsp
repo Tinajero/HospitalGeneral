@@ -19,15 +19,16 @@
 	</label>
 	<div class="col-sm-2">
 		<!--<g:textField id="apaterno" name="paciente.apellidoPaterno" class="form-control" required="" placeholder="Apellido Paterno" value="${cita?.paciente?.apellidoPaterno}"/>-->
-		<input type="text" name="paciente.apellidoPaterno" id="apaterno" placeholder="Apellido Paterno" class="form-control" required="" value=""/>
+		<input type="text" name="paciente.apellidoPaterno" id="apaterno" class="por_nombre form-control" placeholder="Apellido Paterno" required="" value=""/>
+		<input type="hidden" id="apaterno_only" name="country_id" value="" />
 	</div>
 	<div class="col-sm-2">
 		<!--<g:textField id="amaterno" name="paciente.apellidoMaterno" class="form-control" required="" placeholder="Apellido Materno" value="${cita?.paciente?.apellidoMaterno}"/>-->
-		<input type="text" name="paciente.apellidoMaterno" id="amaterno" placeholder="Apellido Materno" class="form-control" required="" value=""/>
+		<input type="text" name="paciente.apellidoMaterno" id="amaterno" class="por_nombre form-control" placeholder="Apellido Materno" required="" value=""/>
 	</div>
 	<div class="col-sm-2">
 		<!--<g:textField id="nombre" name="paciente.nombre" class="form-control" required="" placeholder="Nombre(s)" value="${cita?.paciente?.apellidoMaterno}"/>-->
-		<input type="text" name="paciente.nombre" id="nombre" placeholder="Nombre(s)" class="form-control" required="" value=""/>
+		<input type="text" name="paciente.nombre" id="nombre" class="por_nombre form-control" placeholder="Nombre(s)" required="" value=""/>
 	</div>
 </div>
 
