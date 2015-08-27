@@ -2,10 +2,12 @@
 package cita
 import grails.plugin.springsecurity.annotation.Secured
 import grails.converters.JSON
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 @Secured(['ROLE_USER'])
 class MetodosCalendarController {
-
-    def index() { println "Aqui" }
+    def CitaService;
+    def index() { println "Aqui" }  
 
     def consulta (){
         String operacion = params['method']
@@ -143,16 +145,28 @@ class MetodosCalendarController {
     	Calendario calendario 
         println "DoctorID " + doctorId
         def doctor = Long.parseLong(doctorId, 10);
-    	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId", [startTime:startTime, endTime:endTime, doctorId:doctor])
-    	def i = 0;
+    	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId ORDER BY cit.fecha", [startTime:startTime, endTime:endTime, doctorId:doctor])
+        def i = 0;
+        String fechaStringAct, fechaStringAnt = ""
+        def ocupadoRes = 0;
+        DateFormat outputFormatter = new SimpleDateFormat("dd-MM-yyyy");
     	query.each{
     		//println it as  JSON
-    		println i
+    		//println i
+            fechaStringAct = outputFormatter.format(it.fecha)
+            // esto es intuyendo que me regresa los dias ordenados de acuerdo a su dia
+            if ( !fechaStringAct.equals(fechaStringAnt) ) {// checo si cambio de dia
+                ocupadoRes = CitaService.isBussyDay(doctor, fechaStringAct) 
+                fechaStringAnt = fechaStringAct;// esto es como tengo varias fehcas el mismo dia para no llamar al service a cada rato
+
+            }
+            print ocupadoRes
     		ret[i] = [
     							
     							title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
                                 start: it.fecha,                                
-                                allDay : "false"
+                                allDay : false,
+                                ocupado: ocupadoRes
 							]
     		i++;
     	}

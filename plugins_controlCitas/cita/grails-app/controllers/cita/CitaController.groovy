@@ -125,4 +125,26 @@ class CitaController {
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value)'
         )
     }
+    
+    def mostrarHorario(int doctorID, String fecha){
+        def ret = CitaService.mostrarHorario(doctorID, fecha);
+        render ret as JSON
+    }    
+    def otraFuncion(){
+        render "Hola Mundo"
+    }
+    //Funciones para Autocomplete
+    def AutocompletadoEnCitas(){
+        //def citas = Cita.list()
+        /*def response = []
+
+        citas.each{
+            response << "${it.paciente.expediente}"
+        }
+
+        render response as JSON*/
+        def pacientes = Paciente.list()
+        
+        render pacientes as JSON
+    }
 }

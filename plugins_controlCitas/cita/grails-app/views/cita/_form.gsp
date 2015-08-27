@@ -97,6 +97,9 @@
 
 
 <script> 
+ 	var seleccionado = false;
+ 	var cadena;
+ 	var eventsLoaded;
   function categoryChanged(categoryId) {
     console.log(categoryId);
     jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){
@@ -105,6 +108,8 @@
     	},
 		error:function(XMLHttpRequest,textStatus,errorThrown){}});
   }
+  
+  function getHorarios(  ){
 
  /* function cambioDoctor(doctorId) {
   	console.log("DoctorId " +  doctorId);
@@ -138,12 +143,53 @@
     	};
     	$('#calendar').fullCalendar('removeEventSource',events);
     	$('#calendar').fullCalendar('addEventSource', events);
+    	eventsLoaded = $('#calendar').fullCalendar('clientEvents');
+
+    	
    	}
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
      $('#calendar').fullCalendar({
         // put your options and callbacks here
+        header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+
+       	timezone: 'local',
+       	lang: 'es',
+       	//// funcion que es accionada cuando el usuario da click en el calendar
+       	dayClick: function(date, jsEvent, view) {
+	        var fecha = date.toDate();
+	        var day = 1;
+	        var month = 1;
+	        var year = 2015;
+	        	day = date.format('D');
+	        	month = date.format('M');
+	        	year = fecha.getFullYear();
+	        // cambiando la fecha a donde dio Click el usuario
+	        $('#cbFechaCita_day').val( day );
+	        $('#cbFechaCita_month').val(  month );
+	        $('#cbFechaCita_year').val( year );	   	    
+	       
+		},
+		// funcion que modifica el color de fondo de un dia
+		dayRender:function( date, cell ) { 
+			//console.log(cell);
+			//$(cell).css("background", "red");
+			console.log("called dayRender");
+		},
+		// funcion llamada cuando los datos son cargados
+		loading: function(isLoading, view) {
+			console.log("loading = " + isLoading);
+			if (isLoading == false){ // cuando ya se cargaron
+				eventsLoaded = $('#calendar').fullCalendar('clientEvents');
+				console.log(eventsLoaded)
+			}
+		}
+		
     })
 
 });
