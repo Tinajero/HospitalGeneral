@@ -88,7 +88,6 @@
 		</g:each>
 		<select>
 	</div>
-
 	
               <input type="hidden" name="fecha" value="date.struct" />
 
