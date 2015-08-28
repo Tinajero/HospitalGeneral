@@ -4,7 +4,9 @@ dataSource {
     //driverClassName = "org.h2.Driver"
     driverClassName = "com.mysql.jdbc.Driver"
     username = "root"
+
     password = "mirror09"
+
 }
 hibernate {
     cache.use_second_level_cache = true
