@@ -2,10 +2,13 @@
 package cita
 import grails.plugin.springsecurity.annotation.Secured
 import grails.converters.JSON
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 @Secured(['ROLE_USER'])
 class MetodosCalendarController {
-
-    def index() { println "Aqui" }
+    def CitaService;
+    def CalendarioService
+    def index() { println "Aqui" }  
 
     def consulta (){
         String operacion = params['method']
@@ -139,20 +142,24 @@ class MetodosCalendarController {
     	def ret = []
     	JSON.use('deep')
     	//ret['events'] = []
-    	
+        
     	Calendario calendario 
         println "DoctorID " + doctorId
         def doctor = Long.parseLong(doctorId, 10);
     	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId ORDER BY cit.fecha", [startTime:startTime, endTime:endTime, doctorId:doctor])
-    	def i = 0;
+        def i = 0;
+       
+        
     	query.each{
     		//println it as  JSON
-    		println i
+    		//println i
+            
     		ret[i] = [
     							
     							title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
                                 start: it.fecha,                                
                                 allDay : false
+                            
 							]
     		i++;
     	}
