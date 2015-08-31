@@ -294,6 +294,37 @@
     	$('#calendar').fullCalendar('addEventSource', events);
     	
    	}
+   	function cambiarColorDias(){
+   		var  startDay = $('#calendar').fullCalendar('getView').intervalStart.format();
+   		var  endDay = $('#calendar').fullCalendar('getView').intervalEnd.format();
+   		var doctorId = $("#cbDoctores").val();
+   		console.log(startDay + " " + endDay + " d " + doctorId);
+
+   		$.ajax({
+   			type:'POST',   		
+   			data: 'startTime=' + startDay + "&endTime=" + endDay + "&doctorId=" + doctorId,
+   			url:'getBussyDays',
+   			success:function(data,textStatus){
+    			console.log("exito Ajax");
+    			$.each( data, function( index, dia){
+    				//console.log(dia);
+    				var cell = $('#dia'+dia.id);
+    				if ( dia.ocupado == 0){
+    					cell.css('background-color','#7DE96E');
+    				} else if ( dia.ocupado == 1 ) {
+    					console.log("dia ocupado ");
+    					cell.css('background-color','#E94E58');
+    				} else {
+    					console.log("dia no laboral ");
+    					cell.css('background-color','#868080');
+    				}
+    				
+    			});
+
+    		},
+			error:function(XMLHttpRequest,textStatus,errorThrown){}
+		});
+   	}
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
@@ -321,9 +352,26 @@ $(document).ready(function() {
 	        $('#cbFechaCita_month').val(  month );
 	        $('#cbFechaCita_year').val( year );	   	    
 	       $('#calendar').fullCalendar('select', date);
+		},
+		// funcion que modifica el color de fondo de un dia
+		dayRender:function( date, cell ) { 
+			//console.log( date.format() );
+			cell.attr("id","dia" + date.format() );
+			//$(cell).css("background", "red");
+			console.log("called dayRender");
+		},
+		// funcion llamada cuando los datos son cargados
+		loading: function(isLoading, view) {
+			console.log("loading = " + isLoading);
+			if (isLoading == false){ // cuando ya se cargaron
+				eventsLoaded = $('#calendar').fullCalendar('clientEvents');
+				console.log(eventsLoaded);
+				cambiarColorDias();
+			}
 		}        	
     })
 });
+
 		//Mask for Expediente
 	    $(document).ready(function(){
 	   
@@ -333,3 +381,4 @@ $(document).ready(function() {
     	});
 
 </script>
+

@@ -1,7 +1,7 @@
 package cita
 
-import grails.converters.JSON
 
+import grails.converters.JSON
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
@@ -9,10 +9,9 @@ import paciente.Paciente
 import doctor.Doctor
 @Transactional(readOnly = true)
 @Secured(['ROLE_USER'])
-class CitaController {
+class CitaController { 
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def DoctorService
     def CitaService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -36,45 +35,12 @@ class CitaController {
             return
         }
 
-        def p = Paciente.findByExpediente(cita.paciente.expediente)
-
-        if(p){
-            println "Se encontró el expediente en la BD"
-            println "p = " + p.expediente
-            cita.paciente = p
-            println "cita.paciente : " + cita.paciente
-        }
-
-        cita.validate()
-        if (cita.hasErrors() ) {
-            println "Cita tiene errores"
-            println "Errores" + cita.errors + "END Errores"
-
-            respond cita.errors, view:'create', model:[cita:cita]
-            return
-        }
         
-        cita.paciente.save flush:true
-        cita.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'cita.label', default: 'Cita'), cita.id])
-                redirect cita
-            }
-            '*' { respond cita, [status: CREATED] }
-        }
-
-        /*if (cita == null) {
-            notFound()
-            return
-        }
-
         cita.validate()
-        if (cita.hasErrors() ) {
+        if (cita.hasErrors()) {
             println "tiene errores"
             println cita.errors
-            respond cita.errors, view:'create', model:[cita:cita]
+            respond cita.errors, view:'create'
             return
         }
 
@@ -87,8 +53,7 @@ class CitaController {
                 redirect cita
             }
             '*' { respond cita, [status: CREATED] }
-        }*/
-        
+        }
     }
 
     def edit(Cita cita) {
@@ -146,126 +111,25 @@ class CitaController {
             '*'{ render status: NOT_FOUND }
         }
     }
-    /*  
-        listener que responde cuando es cambiado el tipo de cita y 
-        regresa los Doctores que atienden ese tipo de cita en un g:select
-    */
+
     def tipoCitaCambiada(String tipoCita){
         println "tipoCitaCambiada"
         println tipoCita
         //printn params.  
-        /*
         def query = Doctor.where {
             tipoCita == tipoCita
         }
-        def doctores = query.list()*/
-        def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );
+        def doctores = query.list()
+        println doctores
         render g.select(id:'cbDoctores', name:'doctor.id',
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value);'
         )
     }
-    /**
-     *
-     */
+    
     def mostrarHorario(int doctorID, String fecha){
-
-        print "accedio a mostrarHorario de citaController"
-        //print params
-        def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, fecha)
-        print "es un dia Laboral? " + esDiaLaboral
-        def ret = [];
-        if ( esDiaLaboral ) {
-            def horario = DoctorService.getHorarioFromDoctorID(doctorID)            
-            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )                
-            def libre = true;
-            def i = 0;        
-            if (horario != null ){
-                def ohorario = JSON.parse(horario)
-                print ohorario
-                ohorario.each{
-                    def hora = getHoraDeString(it.hora)
-                    def minuto = getMinutoDeString(it.hora)
-                    print hora + " " + minuto
-                    libre = isLibre(hora, minuto, citas)
-                    ret[i++] = [
-                        hora: it.hora,
-                        libre:libre
-                    ]
-                }
-            }
-            print ret as JSON
-        } else { // no trabaja ese dia
-            def dias = DoctorService.getDiasLaboralesDoctor(doctorID)
-            def mensajeDias = ""
-            for (int i = 0; i < dias.length(); i++){
-                if (dias.charAt(i) != '-') {
-                    if (mensajeDias.length() != 0)
-                        mensajeDias += ", "
-
-                    switch(i){
-                        case 0: mensajeDias += "Domingo"; break;
-                        case 1: mensajeDias += "Lunes"; break;
-                        case 2: mensajeDias += "Martes"; break;
-                        case 3: mensajeDias += "Miercoles"; break;
-                        case 4: mensajeDias += "Jueves"; break;
-                        case 5: mensajeDias += "Viernes"; break;
-                        case 6: mensajeDias += "Sabado"; break;
-                    }
-                }
-
-            }
-            ret[0] = [
-                hora: "No atiende citas ese dia, unicamente ",
-                libre: false
-            ] 
-            ret[1] = [
-                hora: mensajeDias,
-                libre: false
-            ]  
-
-        }
-       // print horario        
+        def ret = CitaService.mostrarHorario(doctorID, fecha);
         render ret as JSON
-    }
-    def isLibre(int hora, int minuto,citas){
-        def esta = true;
-        Calendar calendar = Calendar.getInstance()
-        int hours, minutes
-        for(int i = 0; i < citas.size(); i++ ){
-            def it = citas[i]
-            calendar.setTime( it.fecha );
-            hours = calendar.get(Calendar.HOUR_OF_DAY);
-            minutes = calendar.get(Calendar.MINUTE);
-            
-            if (hora == hours && minutes == minuto){
-                esta = false
-                break;
-            }
-        }
-
-        return esta
-    }
-    def getHoraDeString(String hora){
-        String temp = ""
-        int horaEntero = 0;
-        for (int i = 0; i < hora.length() && hora.charAt(i) !=':' ; i++){
-            temp += hora.charAt(i)
-        }        
-        horaEntero = Integer.parseInt(temp)        
-        return horaEntero;
-    }
-    def getMinutoDeString(String hora){
-        String temp = ""
-        int minutoEntero = 0;
-        int i;
-        for ( i = 0; i < hora.length() && hora.charAt(i) !=':' ; i++);
-        i++;
-        for  ( ; i < hora.length() && hora.charAt(i) >='0' && hora.charAt(i) <='9' ; i++){
-             temp += hora.charAt(i)
-        }                    
-        minutoEntero = Integer.parseInt(temp)        
-        return minutoEntero;
-    }
+    }    
     def otraFuncion(){
         render "Hola Mundo"
     }
@@ -282,5 +146,14 @@ class CitaController {
         def pacientes = Paciente.list()
         
         render pacientes as JSON
+    }
+
+    def getBussyDays(String startTime,String endTime, Long doctorId){
+        print "getBussyDays citaControler: "
+        print startTime
+        print endTime
+        print doctorId
+        def bussyDays = CitaService.getBussyDays(startTime, endTime, doctorId)
+        render bussyDays as JSON
     }
 }
