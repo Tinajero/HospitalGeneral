@@ -29,24 +29,32 @@ class CitaController {
 
     @Transactional
     def save(Cita cita) {
-
+        
         if (cita == null) {
             notFound()
             return
         }
-
         
+        def p = Paciente.findByExpediente(cita.paciente.expediente)
+
+        if(p){
+            println "Se encontró el expediente en la BD"
+            println "p = " + p.expediente
+            cita.paciente = p
+            println "cita.paciente : " + cita.paciente
+        }
+
         cita.validate()
-        if (cita.hasErrors()) {
-            println "tiene errores"
-            println cita.errors
-            respond cita.errors, view:'create'
+        if (cita.hasErrors() ) {
+            println "Cita tiene errores"
+            println "Errores" + cita.errors + "END Errores"
+            respond cita.errors, view:'create', model:[cita:cita]
             return
         }
 
         cita.paciente.save flush:true
         cita.save flush:true
-
+        
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'cita.label', default: 'Cita'), cita.id])
