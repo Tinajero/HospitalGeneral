@@ -153,8 +153,8 @@ class MetodosCalendarController {
     	query.each{
     		//println it as  JSON
     		//println i
-            
-    		ret[i] = [
+    		
+            ret[i] = [
     							
     							title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
                                 start: it.fecha,                                
