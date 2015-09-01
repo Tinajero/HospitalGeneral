@@ -13,6 +13,7 @@ class CitaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def CitaService
+    def DoctorService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Cita.list(params), model:[citaCount: Cita.count()]
@@ -127,7 +128,7 @@ class CitaController {
         def query = Doctor.where {
             tipoCita == tipoCita
         }
-        def doctores = query.list()
+        def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );
         println doctores
         render g.select(id:'cbDoctores', name:'doctor.id',
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value);'
