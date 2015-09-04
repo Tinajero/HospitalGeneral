@@ -78,6 +78,17 @@
                 $("#apaterno").autocomplete({
                 	source: datos,
                 	//focus: function (event, ui){
+                    focus: function(event, ui) {
+                        // prevent autocomplete from updating the textbox
+                        event.preventDefault();
+                        // manually update the textboxs
+                        $('#expediente_textField').val(ui.item.expediente);
+                        $(this).val(ui.item.apaterno);
+                        $('#amaterno').val(ui.item.amaterno);
+                        $('#nombre').val(ui.item.nombre);
+                        $('#poblacion').val(ui.item.poblacion);
+                        $('#telefono').val(ui.item.telefono);
+                    },
                 	select: function (event, ui){
                     	console.log("selected expediente:" + ui.item.expediente);
                     	console.log("selected apellidoPaterno:" + ui.item.apaterno);

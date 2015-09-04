@@ -144,8 +144,8 @@ class CitaController {
     }
     //Funciones para Autocomplete
     def AutocompletadoEnCitas(){
-        //def citas = Cita.list()
-        /*def response = []
+        /*def citas = Cita.list()
+        def response = []
 
         citas.each{
             response << "${it.paciente.expediente}"
