@@ -60,5 +60,9 @@ grails.project.dependency.resolution = {
         
         //bootstrap
         runtime ':twitter-bootstrap:3.3.1'
+
+        //
+        //runtime ':resources:1.2.14'
+        //
     }
 }

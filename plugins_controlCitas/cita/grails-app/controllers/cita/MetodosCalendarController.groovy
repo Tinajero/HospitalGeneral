@@ -2,8 +2,7 @@
 package cita
 import grails.plugin.springsecurity.annotation.Secured
 import grails.converters.JSON
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+
 @Secured(['ROLE_USER'])
 class MetodosCalendarController {
     def CitaService;
@@ -153,8 +152,8 @@ class MetodosCalendarController {
     	query.each{
     		//println it as  JSON
     		//println i
-    		
-            ret[i] = [
+            
+    		ret[i] = [
     							
     							title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
                                 start: it.fecha,                                
