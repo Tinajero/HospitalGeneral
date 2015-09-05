@@ -24,29 +24,29 @@
 				<table class="table table-striped">
 				<thead>
 						<tr>
-						
+
 							<g:sortableColumn property="apellidoPaterno" title="${message(code: 'paciente.apellidoPaterno.label', default: 'Apellido Paterno')}" />
-						
+
 							<g:sortableColumn property="apellidoMaterno" title="${message(code: 'paciente.apellidoMaterno.label', default: 'Apellido Materno')}" />
-						
+
 							<g:sortableColumn property="nombre" title="${message(code: 'paciente.nombre.label', default: 'Nombre')}" />
-						
+
 							<g:sortableColumn property="expediente" title="${message(code: 'paciente.expediente.label', default: 'Expediente')}" />
-						
+
 						</tr>
 					</thead>
 					<tbody>
 					<g:each in="${pacienteList}" status="i" var="paciente">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						
-							<td><g:link action="show" id="${paciente.id}">${fieldValue(bean: paciente, field: "apellidoPaterno")}</g:link></td>
-						
+
+							<td><g:link action="paciente/show/" id="${paciente.id}">${fieldValue(bean: paciente, field: "apellidoPaterno")}</g:link></td>
+
 							<td>${fieldValue(bean: paciente, field: "apellidoMaterno")}</td>
-						
+
 							<td>${fieldValue(bean: paciente, field: "nombre")}</td>
-						
+
 							<td>${fieldValue(bean: paciente, field: "expediente")}</td>
-						
+
 						</tr>
 					</g:each>
 					</tbody>

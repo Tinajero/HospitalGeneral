@@ -13,7 +13,7 @@ class BusquedasService {
     def consultaNombre(nombre, a_materno, a_paterno)
     {
         def resultados = []
-        def select ="select  c.fecha, d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita\
+        def select ="select  c.fecha, d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita, p.id\
          from Cita as c, Doctor as d, Paciente as p ";
 
         def where = "where p.id = c.paciente and c.doctor = d.id  and p.nombre like ? and p.apellidoPaterno like ? and p.apellidoMaterno like ? order by c.fecha DESC";
@@ -48,7 +48,8 @@ class BusquedasService {
 			def map =	[	'fecha': r[0],
 							'doctor': r[1]+" " + r[2]+" "+ r[3],
 							'paciente' : r[4] +" "+ r[5] +" "+ r[6],
-              'tipoCita' : r[7],
+                            'tipoCita' : r[7],
+                            'id': r[8],
 						]
 				lista += map
                 print map

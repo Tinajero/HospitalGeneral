@@ -11,17 +11,14 @@
 		<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
 			<fieldset class="form-horizontal">
 				<!-- resource indica el nombre del paquete donde esta la acccion a ejecutar-->
+				<div>
+					<p>	Favor de introducir el nombre del paciente con apellidos antes de iniciar la b&uacute;squeda.</p>
+					<br/>
+						<p>Nota: Tambien puede dejar nombres y apellidos incompletos sin introducir para ampliar la b&uacute;squeda.</p>
+					<br/>
+				</div>
 					<g:form name="busquedas" url="[resource:busquedas, action:'buscar' ]">
-						<!-- busquedas por fecha,-
-						<div class="form-group">
-								<label for="fecha" class="col-sm-2 control-label">
-								Fecha de b&uacute;squeda:
-								</label>
-								<div class="col-sm-4">
-									<g:textField id="date" class="form-control" name = 'fecha' precision='day' value = "${HojaRegistroDiario?.fecha}"/><br>
-								</div>
-						</div>
-						-->
+
 						<div class="form-group">
 						<!-- busquedas por nombre-->
 							<label for="Paciente" class="col-sm-2 control-label">
