@@ -11,20 +11,23 @@
 
 		<table class="table table-striped">
 			<thead style="color: blue;">
-				<td>Fecha</td>
-				<td>Paciente</td>
-				<td>Doctor</td>
-				<td>Tipo de cita</td>
+				<td>Apellido paterno</td>
+				<td>Apellido materno</td>
+				<td>Nombre</td>
+				<td>Expediente</td>
 			</thead>
 
 			<tbody>
 				<g:each in="${lista}" status="${i}" var ="elemento">
+
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-							<td>${elemento.fecha}</td>
-							<td><g:link controller="paciente" action="show" id="${elemento.id}">${elemento.paciente}</g:link></td>
-							<td>${elemento.doctor}</td>
-							<td>${elemento.tipoCita}</td>
+							<td>${elemento.ap_pat}</td>
+							<td>${elemento.ap_mat}</td>
+							<td>${elemento.nombre}</td>
+
+							<td> <g:link controller="paciente" action="show" id="${elemento.id}"> ${elemento.expediente} </g:link> </td>
 						</tr>
+
 				</g:each>
 			</tbody>
 
