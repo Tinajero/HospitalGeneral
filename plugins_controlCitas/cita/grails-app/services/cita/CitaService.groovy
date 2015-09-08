@@ -244,6 +244,12 @@ class CitaService {
         return ans
     }
 
+    def getCitasWhitPacienteId(Long pacienteId){
+        println pacienteId
+        def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId",[pacienteId: pacienteId]);
+        return citas
+    }
+
 }
 
 

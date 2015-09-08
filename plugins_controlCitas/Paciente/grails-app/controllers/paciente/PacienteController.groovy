@@ -8,7 +8,7 @@ import grails.plugin.springsecurity.annotation.Secured
 @Transactional(readOnly = true)
 @Secured(['ROLE_USER'])
 class PacienteController {
-
+    def CitaService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -17,7 +17,9 @@ class PacienteController {
     }
 
     def show(Paciente paciente) {
-        respond paciente
+        def listaCitas = CitaService.getCitasWhitPacienteId(paciente.id)
+
+        respond paciente, model:[historialCitas : listaCitas]
     }
 
     def create() {
