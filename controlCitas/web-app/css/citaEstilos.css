@@ -1,0 +1,25 @@
+.centrado {
+	 text-align:center;
+}
+.libre {
+	background-color:#6BCDAE;
+	color: WHITE;
+}
+.libre:hover {
+	background-color:#286090;
+	color: WHITE;	
+}
+.seleccionado{
+	background-color:#12436E;
+	color: WHITE;	
+}
+.selectionBox {
+	padding-right:0px;
+}
+.col-narrow {
+	padding-right:0px !important;
+}
+.nopadding {
+   padding-right: 0 !important;
+   margin: 0 !important;
+}
