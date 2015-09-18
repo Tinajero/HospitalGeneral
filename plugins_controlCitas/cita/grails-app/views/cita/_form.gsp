@@ -7,6 +7,7 @@
 		<g:message code="cita.paciente.label" default='Expediente'/>
 		<span class="required-indicator">*</span>
 	</label>
+	
 	<div class ="col-sm-4">
 		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value=""/>
 	</div>
@@ -169,9 +170,14 @@
         		</div>
   			</div>
   			<div class="modal-footer">
-  				<button type="button" class="btn btn-primary" onclick="seleccionarHora()">
-  					Seleccionar hora
+  				<button type="button" class="btn btn-warning" onclick="agregarHora()">
+  					Agregar Hora
   				</button>
+
+  				<button type="button" class="btn btn-primary" onclick="seleccionarHora()">
+  					Seleccionar Hora
+  				</button>
+
   			</div>
 		 		
 		 </div>

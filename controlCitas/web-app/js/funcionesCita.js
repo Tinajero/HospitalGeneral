@@ -1,6 +1,6 @@
 var seleccionado = false;
 var cadena;
-
+var arregloHorarios;
 function categoryChanged(categoryId) {
   console.log(categoryId);
   quitarSeleccionado();
@@ -24,6 +24,7 @@ function getHorarios(  ){
       		//jQuery('#subContainer').html(data);		
       		console.log(data);
       		var arreglo = data;//JSON.parse(data);
+          arregloHorarios = data; //copia de los horarios para usarlo en agregar hora
       		var htmlString = "";
       		// con each recorremos
       		// luego agregamos una fila a la tabla en su tbody
@@ -39,7 +40,7 @@ function getHorarios(  ){
       			} else {
       				$("<tr ></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" + horario.hora + "</td>");
       			}
-      		});
+      		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {
   			    var selected = $(this).hasClass("seleccionado");
   			    $("#tablaHorariosCita tr").removeClass("seleccionado");
@@ -53,6 +54,51 @@ function getHorarios(  ){
   } 
 
 }
+function agregarHora(){
+  var tamaño = arregloHorarios.length;
+  if ( tamaño == 2 && arregloHorarios[0]['hora'] == "No atiende citas ese dia, unicamente "){
+    // no se pueden agregar horas, pues ese dia no labora
+    return ;
+  } else {
+    //event.preventDefault();
+    $("<tr class='libre'></tr>").appendTo( '#tablaHorariosCita tbody').append(
+      "<td class='centrado'>"+(tamaño + 1)+"</td>" +
+      "<td class='centrado' id='renglonHorario_" +(tamaño+1)+ "'><input type='text' id='idaAgregarHora'  class='form-control'/></td>"+
+      "<td class='centrado'> </td>"
+      );
+
+    $("#idaAgregarHora").mask('00:00');  
+    $("#idaAgregarHora").focus();
+    $("#idaAgregarHora").focusout(function(){
+      var horaIntroducida = $("#idaAgregarHora").val();
+      if((/^(?:[0-5][0-9]):[0-5][0-9]$/).test(horaIntroducida)){
+      //console.log(horaIntroducida);
+        $("#renglonHorario_" +(tamaño+1)).empty();
+        $("#renglonHorario_" +(tamaño+1)).text(horaIntroducida);
+        $("#renglonHorario_" +(tamaño+1)).parent().click(function(){
+
+            var selected = $(this).hasClass("seleccionado");
+            $(this).removeClass("seleccionado");
+            if (!selected){
+              $(this).addClass("seleccionado");
+              seleccionado = false;
+            }
+        });
+      }
+      
+    });
+      
+  }
+
+  console.log(tamaño);
+}
+function tieneFormatoHora(cadena){
+    if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(cadena)){
+          //$('.alert-box').html('Please use the correct format');
+          return false;
+    }
+    return true;
+  }
 function seleccionarHora(){
 	console.log("Hola");
 	seleccionado = false;

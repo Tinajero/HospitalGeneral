@@ -182,6 +182,7 @@
 		    });
 
 		     } else {
+		     	$('#cajaWarning').empty();	
 		     	$('#cajaWarning').append('<p class="bg-warning">Introduzca la hora con el formato HH:mm</p>');
 		     }
 	    });
