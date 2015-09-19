@@ -6,6 +6,10 @@
 		<title><g:message code="default.create.label" args="[entityName]" /></title>		
 		<!-- se pusieron en mainVentanilla referenciados -->
 	    <!-- controlCitas/web-app/js/autoCompleteMax.js -->
+	    <g:javascript src="funcionesCita.js"/>
+		 <!-- script usados para el autocomplete de la vista de creacion Citas-->
+		 <g:javascript src="autoCompleteMax.js"/>
+
 	</head>
 	<body>
 		<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">

@@ -31,14 +31,24 @@ function getHorarios(  ){
       		$('#tablaHorariosCita tbody').empty();
       		$.each( arreglo, function( index, horario){
       			console.log(index + " " + horario.hora);
-      			if (horario.libre ) {
-      				$("<tr class='libre'></tr>").appendTo( '#tablaHorariosCita tbody').append(
-      					"<td class='centrado'>"+(index+1)+"</td>" +
-      					"<td class='centrado'>" + horario.hora + "</td>"+
-      					"<td class='centrado'> </td>"
-      					);
+      			if ( horario.libre ) {
+              console.log("t " + horario.tipo + ".")
+              if ( horario.tipo == "Primera Vez"){
+                $("<tr class='libre primeraVez'></tr>").appendTo( '#tablaHorariosCita tbody').append(
+                  "<td class='centrado'>"+(index+1)+"</td>" +
+                  "<td class='centrado'>" + horario.hora + "</td>"+
+                  "<td class='centrado'>" + horario.tipo + "</td>"                  
+                );
+
+              } else {
+        				$("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
+        					"<td class='centrado'>"+(index+1)+"</td>" +
+        					"<td class='centrado'>" + horario.hora + "</td>"+
+                  "<td class='centrado'>" + horario.tipo + "</td>"        					
+        				);
+              }
       			} else {
-      				$("<tr ></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" + horario.hora + "</td>");
+      				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" + horario.hora + "</td><td class='centrado'>"+horario.tipo+"</td>");
       			}
       		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {
@@ -61,7 +71,7 @@ function agregarHora(){
     return ;
   } else {
     //event.preventDefault();
-    $("<tr class='libre'></tr>").appendTo( '#tablaHorariosCita tbody').append(
+    $("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
       "<td class='centrado'>"+(tamaño + 1)+"</td>" +
       "<td class='centrado' id='renglonHorario_" +(tamaño+1)+ "'><input type='text' id='idaAgregarHora'  class='form-control'/></td>"+
       "<td class='centrado'> </td>"

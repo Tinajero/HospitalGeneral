@@ -1,6 +1,5 @@
 <%@ page import="cita.Cita" %>
 
-
 <div class="form-group ${hasErrors(brean: paciente, field: expediente, 'has error')} required">
 
 	<label for="expediente" class="col-sm-2 control-label">
@@ -161,7 +160,9 @@
 		 			<div class="col-sm-5 col-sm-offset-2">
 		        		<table id="tablaHorariosCita" class="table">
 		        			<thead>
-		        				<th class="centrado">No</th><th class="centrado">Hora</th>
+		        				<th class="centrado">No</th>
+		        				<th class="centrado">Hora</th>
+		        				<th class="centrado">Tipo</th>
 		        			</thead>
 		        			<tbody>
 		        			</tbody>

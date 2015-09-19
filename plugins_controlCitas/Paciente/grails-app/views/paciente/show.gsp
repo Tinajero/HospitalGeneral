@@ -56,7 +56,7 @@
           </thead>
           <g:each in="${historialCitas}" var="historial">
             <tr>
-              <td><g:formatDate format="dd-MMMMMM-yyyy" date="${historial.fecha}"/></td>
+              <td><g:formatDate format=" EEEE dd 'de' MMMMMM 'del' yyyy" date="${historial.fecha}"/></td>
               <td><g:formatDate format="HH:mm" date="${historial.fecha}"/></td>
 
               <td>${historial.doctor.nombre} ${historial.doctor.apellidoPat} ${historial.doctor.apellidoMat}</td>

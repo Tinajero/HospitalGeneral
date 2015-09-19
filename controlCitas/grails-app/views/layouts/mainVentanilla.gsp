@@ -34,10 +34,8 @@
     	 <!-- end fullCallendar plugin dependences -->
 
 		 <g:javascript src="utilerias.js" />
-		 <!-- Js de las funciones utilizadas en la vista de creacion de citas -->
-		 <g:javascript src="funcionesCita.js"/>
-		 <!-- script usados para el autocomplete de la vista de creacion Citas-->
-		 <g:javascript src="autoCompleteMax.js"/>
+		 <!-- Js de las funciones utilizadas en la vista de creacion de citas -->		
+		 
 
 		 <!--  Estilos usados en la vista de citas-->
 		 <link rel="stylesheet" href="${resource(dir: 'css', file: 'citaEstilos.css')}" type="text/css">
@@ -45,6 +43,9 @@
 		 <link rel="stylesheet" href="${resource(dir: 'css', file: 'daterangepicker.css')}" type="text/css">
 
 
+		 <g:javascript src="funcionesCita.js"/>
+		 <!-- script usados para el autocomplete de la vista de creacion Citas-->
+		 <g:javascript src="autoCompleteMax.js"/>
 
 		<g:javascript src="daterangepicker.js"/>
 

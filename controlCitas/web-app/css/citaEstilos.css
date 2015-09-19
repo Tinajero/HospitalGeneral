@@ -1,13 +1,23 @@
 .centrado {
 	 text-align:center;
 }
-.libre {
+.primeraVez {
+	background-color:#138963;
+	color: WHITE;
+}
+.subsecuente {
 	background-color:#6BCDAE;
+}
+.libre {
 	color: WHITE;
 }
 .libre:hover {
 	background-color:#286090;
 	color: WHITE;	
+}
+.horaOcupada {
+	background-color:#78646A; 
+	color: WHITE;
 }
 .seleccionado{
 	background-color:#12436E;

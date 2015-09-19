@@ -17,6 +17,7 @@
 		<asset:javascript src="application.js"/>
 		<asset:stylesheet src="dashboard.css"/>
 		 <g:javascript src="utilerias.js" />
+		<g:javascript src="jquery-mask/jquery.mask.js"/>
 		<g:layoutHead/>
 	</head>
 	<body>

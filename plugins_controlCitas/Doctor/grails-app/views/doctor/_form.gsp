@@ -89,8 +89,16 @@
 
 		</div>
 	</div>
+	<br/>
 	<div class="row">		
 		<div class="col-sm-2 col-sm-offset-1">
+			
+			<input type="checkbox" id="tipoHora" name="checkBox_tipoHora"/>
+			<label for="checkBox_tipoHora" >
+				Primera Vez
+			</label>
+		</div>
+		<div class="col-sm-2">
 				<input type="text" id="horarioInput"  name="horarioInput"/>
 		</div>
 		<div class="col-sm-2">
@@ -102,12 +110,14 @@
 			<thead>
 				
 				<th style="width:200px;">Hora</th>
+				<th style="width:200px;">Tipo</th>
+				<th style="width:200px;">Quitar</th>
 			</thead>
 			<tbody>
 				<g:each in="${horario}" status="i" var="horas">
 					<tr> 
 						<td id="renglon${i+1}">${horas.hora}</td>				
-						
+						<td>${horas.tipo}</td>
 						<td> 
 							<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a> 
 						</td>
@@ -164,12 +174,19 @@
 	    /**funcion que agrega una fila a una tabla*/
 	    jQuery('#agregarFila').click(function(event) {
 	        event.preventDefault();
-	        console.log("click");
+	        //console.log("click");
+	        var tipoHora;
+	        if ($("#tipoHora").is(":checked"))
+	        	tipoHora = "Primera Vez"
+	       	else
+	       		tipoHora = "Subsecuente"
+
 	        var hora = $("#horarioInput").val();
 	        if ( hora && tieneFormato(hora) ){
 		        counter++;
 		        var newRow = jQuery('<tr><td id="renglon'+ counter +'">'+
-		            hora +'  </td><td>' +
+		            hora +'</td><td>' +
+		            tipoHora +'</td><td>' +
 		            '<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a>' 
 		            + '</td></tr>' );	       
 		        jQuery('#tablaHoras').append(newRow);
@@ -194,7 +211,7 @@
 		var first = false;
 			//Funcion que recorrera la tabla con id tablaHoras
 		$('#tablaHoras tbody tr').each(function(index){
-			var numero, hora;		
+			var numero, hora, tipo;		
 			if (first)
 				horas += ",";
 			first = true;
@@ -202,9 +219,10 @@
 				counter++;
 				switch(index2){					
 					case 0: hora = $(this).text(); break;
+					case 1: tipo = $(this).text(); break;
 				}				
 			});	
-			horas += "{\"hora\": \"" +  hora + "\"}";        	        	
+			horas += "{\"hora\":\"" +  hora + "\",\"tipo\":\""+tipo+"\"}";        	        	
 		});
 		
 		horas += " ]";
@@ -227,6 +245,8 @@
 		}
 		return true;
 	}
-
+	$(document).ready(function(){	
+		$("#horarioInput").mask("00:00");
+	})
 </script>
 

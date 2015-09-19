@@ -4,9 +4,16 @@
 		<meta name="layout" content="mainAdmin">
 		<g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+
+
+
+		
+		
+		 
 		
 	</head>
 	<body>
+		<g:javascript src="funcionesCita.js"/>
 	<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
 		<div id="create-usuario" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
@@ -35,5 +42,8 @@
 		<script>
 			$(document).ready( setNavBarLista("${entityName}")  );
 		</script>
+		<asset:javascript src="funcionesCita.js"/>
+		 <!-- script usados para el autocomplete de la vista de creacion Citas-->
+		 <asset:javascript src="autoCompleteMax.js"/>
 	</body>
 </html>

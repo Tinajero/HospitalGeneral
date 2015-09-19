@@ -112,6 +112,7 @@ class CitaService {
                     libre = isLibre(hora, minuto, citas)
                     ret[i++] = [
                         hora: it.hora,
+                        tipo: it.tipo,
                         libre:libre
                     ]
                 }
