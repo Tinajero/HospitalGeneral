@@ -13,6 +13,7 @@ class Doctor {
 		apellidoPat blank: false
 		apellidoMat blank:false
 		horario blank: false
+    horario maxSize: 500
     }
 
   	static mapping = {

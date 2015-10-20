@@ -36,7 +36,7 @@ class CitaService {
      * @return 0 si esta libre, 1 si esta ocupado, -1 si no trabaja ese dia
      */
     def isBussyDay(Long doctorId,String date ){
-        print date 
+       // print date 
         int doctorID = (int) doctorId;
         int resultado = 0
         def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, date)                
@@ -246,7 +246,7 @@ class CitaService {
     }
 
     def getCitasWhitPacienteId(Long pacienteId){
-        println pacienteId
+        //println pacienteId
         def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId",[pacienteId: pacienteId]);
         return citas
     }

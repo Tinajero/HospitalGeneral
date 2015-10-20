@@ -117,7 +117,7 @@
 				<g:each in="${horario}" status="i" var="horas">
 					<tr> 
 						<td id="renglon${i+1}">${horas.hora}</td>				
-						<td>${horas.tipo}</td>
+						<td>${horas.tipo=='1'?"Primera Vez":"Subsecuente"}</td>
 						<td> 
 							<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a> 
 						</td>
@@ -219,9 +219,16 @@
 				counter++;
 				switch(index2){					
 					case 0: hora = $(this).text(); break;
-					case 1: tipo = $(this).text(); break;
+					case 1: 
+							console.log($(this).text());
+							if ( $(this).text() === "Primera Vez")  {
+								tipo = 1;
+							} else {
+								tipo = 0;
+							}
 				}				
 			});	
+			// tipo true = primera vez, false = subsecuente
 			horas += "{\"hora\":\"" +  hora + "\",\"tipo\":\""+tipo+"\"}";        	        	
 		});
 		

@@ -33,18 +33,18 @@ function getHorarios(  ){
       			console.log(index + " " + horario.hora);
       			if ( horario.libre ) {
               console.log("t " + horario.tipo + ".")
-              if ( horario.tipo == "Primera Vez"){
+              if ( horario.tipo === '1'){
                 $("<tr class='libre primeraVez'></tr>").appendTo( '#tablaHorariosCita tbody').append(
                   "<td class='centrado'>"+(index+1)+"</td>" +
                   "<td class='centrado'>" + horario.hora + "</td>"+
-                  "<td class='centrado'>" + horario.tipo + "</td>"                  
+                  "<td class='centrado'>  Primera Vez </td>"                  
                 );
 
               } else {
         				$("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
         					"<td class='centrado'>"+(index+1)+"</td>" +
         					"<td class='centrado'>" + horario.hora + "</td>"+
-                  "<td class='centrado'>" + horario.tipo + "</td>"        					
+                  "<td class='centrado'> Subsecuente </td>"        					
         				);
               }
       			} else {

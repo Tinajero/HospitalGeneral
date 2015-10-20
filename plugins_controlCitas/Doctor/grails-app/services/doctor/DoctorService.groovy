@@ -12,7 +12,7 @@ class DoctorService {
 
     }
     def listaTiposCita(){
-        def lista = ['PED pediatria','G.O. ginecologia','Dental','cirugia','maternidad' ]
+        def lista = ['CIRUGIA GENERAL', 'MEDICINA INTERNA', 'PEDIATRIA', 'GINECOLOGIA Y OBSTETRICIA', 'TRAUMATOLOGIA Y ORTOPEDIA','DENTAL', 'PSICOLOGIA','ULTRASONIDOS' ]
         return lista
     }
     def obtenDiasLaborales(params){
