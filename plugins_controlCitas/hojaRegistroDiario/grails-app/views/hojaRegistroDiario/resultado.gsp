@@ -24,7 +24,7 @@
 			 </br>Tipo de cita: ${lista[2]}
 		 	</br>
 				 <div class="">
-	 				<object data="http://localhost:8080/controlCitas/pdf/consulta.pdf" type="application/pdf" width="100%" height="600px">
+	 				<object data="http://localhost:8080/controlCitas/temp_pdf/consulta.pdf" type="application/pdf" width="100%" height="600px">
 	 					<p>Parece ser que no puedes visualizar el pdf. Click para descargar <a href="http://localhost:8080/controlCitas/pdf/consulta.pdf">consulta.pdf</a></p>
 
 	 				</object>
