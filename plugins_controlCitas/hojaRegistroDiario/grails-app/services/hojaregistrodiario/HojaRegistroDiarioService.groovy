@@ -85,7 +85,7 @@ return lista_ret
       def generar_pdf = new GenerarPdfv2()
       //Asignar direccion de impresion
       print "Generando nuevo archivo"
-      generar_pdf.setAddressPdf("web-app/pdf/consulta.pdf")
+      generar_pdf.setAddressPdf("web-app/temp_pdf/consulta.pdf")
       //Asignar campo de datos
       print "Termina impresion"
       generar_pdf.setData(lista)
