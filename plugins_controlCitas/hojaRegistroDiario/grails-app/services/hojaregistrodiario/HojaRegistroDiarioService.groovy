@@ -18,15 +18,15 @@ class HojaRegistroDiarioService {
   def consulta(date1, date2, tipoCita)
   {
     def resultados=[]
-    def select ="select  c.fecha, d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita\
+    def select ="select  date_format(c.fecha,'%H:%i'), d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita\
      from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
     //si no se selecciono cita entonces procede con solo la fecha especificada
     if (tipoCita == "")
-      resultados = Cita.executeQuery(	select + where + "  ORDER BY d.nombre ASC",[ date1, date2])
+      resultados = Cita.executeQuery(	select + where + "  ORDER BY c.doctor, c.fecha ASC",[ date1, date2])
     else
-      resultados = Cita.executeQuery(	select + where +  " and d.tipoCita = ?  ORDER BY d.nombre ASC",[ date1, date2, tipoCita])
+      resultados = Cita.executeQuery(	select + where +  " and d.tipoCita = ?  ORDER BY c.doctor, c.fecha ASC",[ date1, date2, tipoCita])
 //and d.tipoCita = ?  , params.tipoCita
     return resultados
   }
