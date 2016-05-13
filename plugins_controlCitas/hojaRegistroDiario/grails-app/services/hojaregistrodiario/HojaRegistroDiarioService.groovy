@@ -18,7 +18,7 @@ class HojaRegistroDiarioService {
   def consulta(date1, date2, tipoCita)
   {
     def resultados=[]
-    def select ="select  date_format(c.fecha,'%H:%i'), d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita\
+    def select ="select d.tipoCita, date_format(c.fecha,'%H:%i') , concat (d.nombre,' ', d.apellidoPat,' ', d.apellidoMat), concat(p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno), p.expediente\
      from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
@@ -29,6 +29,43 @@ class HojaRegistroDiarioService {
       resultados = Cita.executeQuery(	select + where +  " and d.tipoCita = ?  ORDER BY c.doctor, c.fecha ASC",[ date1, date2, tipoCita])
 //and d.tipoCita = ?  , params.tipoCita
     return resultados
+  }
+
+  def obten_lista(resultado)
+  {
+
+    def key = ""
+    def key_ant = ""
+    def informe = []
+    def value="";
+    //Object es una instancia del registro n
+    for (Object[] r in resultado)
+    {
+
+        //La llave es conformada por el nombre del doctor y el tipo de cita
+        key = r[0]+'|'+r[2] //+r[3]+r[7]
+        //Valors: Datos restantes y variantes
+        print (key)
+        print (value)
+        if (key_ant=="")
+          key_ant = key
+  
+        //Como analizar el ultimo caso
+        if (key != key_ant)
+        { 
+          informe+= key_ant+'~'+value
+          key_ant = key
+          value=""
+        }
+
+        value += r[1]+'|'+r[3]+'|'+r[4]+'~'//+r[6]+r[0]+'|'
+    } 
+
+    if(value!="")
+      informe+=key+'~'+value
+
+    return informe
+
   }
 
 	def list(params){
@@ -44,35 +81,22 @@ class HojaRegistroDiarioService {
 
       resultados = consulta(date1, date2, tipoCita)
 
-      if (tipoCita == "" )
-        tipoCita="Todas"
-		/*
-    construcción de lista de mapas
-    El objeto (lista) se rellenara con mapas para almacenar la informacion pertinente a la hora
-      un mapa contine fecha, doctor y paciente
-  */
-    def lista_ret = [0,params.fecha, tipoCita]
-    print "resultados obtenidos"
-    if ( resultados.size() < 1 )
-    {
-      lista_ret[0] = 0
-      print "Sin resultado"
-      return lista_ret
-
-    }
-    print "En for"
-		for ( Object[] r in resultados )
-    {
-			def map =	[	'fecha': r[0],
-							'doctor': r[1]+" " + r[2]+" "+ r[3],
-							'paciente' : r[4] +" "+ r[5] +" "+ r[6],
-              'tipoCita' : r[7],
-						]
-				lista += map
-        print map
-		}
-
-    printPDF(lista)
+      lista = obten_lista(resultados)
+      
+      for (value in lista)
+      {
+        print value
+      }
+      
+      def lista_ret = [0,params.fecha, tipoCita]
+      
+      
+      if ( resultados.size() < 1 )
+      {
+        lista_ret[0] = 0
+        return lista_ret
+      }
+//    printPDF(lista)
     lista_ret[0]=1
 return lista_ret
 
