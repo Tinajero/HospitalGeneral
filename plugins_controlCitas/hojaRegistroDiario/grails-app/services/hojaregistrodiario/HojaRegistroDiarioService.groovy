@@ -4,7 +4,7 @@ import grails.transaction.Transactional
 import cita.Cita
 import java.util.Date
 import java.text.SimpleDateFormat
-import rkl.GenerarPdfv2
+import required.GeneratePDF
 
 @Transactional
 class HojaRegistroDiarioService {
@@ -18,7 +18,7 @@ class HojaRegistroDiarioService {
   def consulta(date1, date2, tipoCita)
   {
     def resultados=[]
-    def select ="select d.tipoCita, date_format(c.fecha,'%H:%i') , concat (d.nombre,' ', d.apellidoPat,' ', d.apellidoMat), concat(p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno), p.expediente\
+    def select ="select d.tipoCita, concat(d.nombre,' ', d.apellidoPat,' ', d.apellidoMat), date_format(c.fecha,'%H:%i'), concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno), p.expediente\
      from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
@@ -43,10 +43,10 @@ class HojaRegistroDiarioService {
     {
 
         //La llave es conformada por el nombre del doctor y el tipo de cita
-        key = r[0]+'|'+r[2] //+r[3]+r[7]
+        key = r[0]+'|'+r[1] //+r[3]+r[7]
         //Valors: Datos restantes y variantes
-        print (key)
-        print (value)
+        print ("key:"+key)
+        print ("value."+value)
         if (key_ant=="")
           key_ant = key
   
@@ -58,7 +58,7 @@ class HojaRegistroDiarioService {
           value=""
         }
 
-        value += r[1]+'|'+r[3]+'|'+r[4]+'~'//+r[6]+r[0]+'|'
+        value += r[2]+r[3]+'|'+r[4]+'~'//+r[6]+r[0]+'|'
     } 
 
     if(value!="")
@@ -83,6 +83,7 @@ class HojaRegistroDiarioService {
 
       lista = obten_lista(resultados)
       
+      print ("Lista obtenida")
       for (value in lista)
       {
         print value
@@ -96,19 +97,31 @@ class HojaRegistroDiarioService {
         lista_ret[0] = 0
         return lista_ret
       }
-//    printPDF(lista)
+    printPDF(lista,params.fecha)
     lista_ret[0]=1
 return lista_ret
 
 	}
 
 
-  def printPDF(def lista)
+  def printPDF(def lista,def fecha)
   {
+    try {
+      def gpdf = new GeneratePDF();
+      gpdf.setPathOut("web-app/temp_pdf/consulta.pdf")
+      gpdf.setPathTemplates("web-app/plantillas_consultas/")
+      gpdf.generateBook(lista as String[], fecha as String)
+    } catch(Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    /*
     try{
-      def generar_pdf = new GenerarPdfv2()
+      def generar_pdf = new GeneratePDF()
       //Asignar direccion de impresion
       print "Generando nuevo archivo"
+
       generar_pdf.setAddressPdf("web-app/temp_pdf/consulta.pdf")
       //Asignar campo de datos
       print "Termina impresion"
@@ -118,6 +131,6 @@ return lista_ret
     }catch(Exception e){
       print "Un error aqui"
       e.printStackTrace()
-    }
+    }*/
   }
 }
