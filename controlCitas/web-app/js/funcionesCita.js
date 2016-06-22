@@ -1,8 +1,7 @@
 var seleccionado = false;
 var cadena;
 var arregloHorarios;
-function categoryChanged(categoryId) {
-  console.log(categoryId);
+function categoryChanged(categoryId) {  
   quitarSeleccionado();
   jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){
   		jQuery('#subContainer').html(data);		
@@ -11,10 +10,11 @@ function categoryChanged(categoryId) {
 }
   
 function getHorarios(  ){
-
-  	if (!seleccionado ) {
+    var doctorId = $("#cbDoctores").val();
+    console.log("functio getHorarios()");
+  	if (!seleccionado && doctorId != null ) {
     	var doctorId = $("#cbDoctores").val();
-    	console.log(doctorId);
+    	console.log("doctorId = " +doctorId);
     	var dia = $('#cbFechaCita_day').val();
     	var mes = $('#cbFechaCita_month').val();
     	var anio = $('#cbFechaCita_year').val();
@@ -109,8 +109,7 @@ function tieneFormatoHora(cadena){
     }
     return true;
   }
-function seleccionarHora(){
-	console.log("Hola");
+function seleccionarHora(){	
 	seleccionado = false;
 	$(".seleccionado").each(function(index){
 		$(this).children("td").each(function(index2){
@@ -120,8 +119,7 @@ function seleccionarHora(){
 		});
 		seleccionado = true;
 		var hour = getHora(hora);
-		var minute = getMinuto(hora);
-		console.log(hour+ " " + minute);
+		var minute = getMinuto(hora);		
 		$('#cbFechaCita_hour').val(hour);
 		$('#cbFechaCita_minute').val(minute);
 	});
@@ -131,7 +129,6 @@ function seleccionarHora(){
 }
 function quitarSeleccionado(){
 	seleccionado = false;
-	console.log("quitandoSeleccionado");
 	$('#cbFechaCita_hour').val("");
 	$('#cbFechaCita_minute').val("");
 }
@@ -157,49 +154,53 @@ function cambioFecha(){
 	console.log("cambio fecha");
 }
 function cambioDoctor(doctorId){
-	console.log(doctorId);
+	console.log("function cambioDoctor doctorId= " + doctorId);
 	// quitar la bandera de que a sido seleccionado algo
 	quitarSeleccionado();
-	var events = {
-		url: '../MetodosCalendar/consulta' ,
-		data: {
-			DoctorId : doctorId
-		}
-	};
-	$('#calendar').fullCalendar('removeEventSource',events);
-	$('#calendar').fullCalendar('addEventSource', events);
-	
+  	if (doctorId != '' ){
+    var events = {
+  		url: '../MetodosCalendar/consulta' ,
+  		data: {
+  			DoctorId : doctorId
+  		}
+  	};
+
+  	$('#calendar').fullCalendar('removeEventSource',events);
+  	$('#calendar').fullCalendar('addEventSource', events);
+  	} else {
+      console.log("else function cambioDoctor");
+      $('#calendar').fullCalendar('removeEventSource',events);
+    }
 	}
 function cambiarColorDias(){
 	var  startDay = $('#calendar').fullCalendar('getView').intervalStart.format();
 	var  endDay = $('#calendar').fullCalendar('getView').intervalEnd.format();
 	var doctorId = $("#cbDoctores").val();
-	console.log(startDay + " " + endDay + " d " + doctorId);
+	console.log("function cambiarColorDias ");
+  if (doctorId != ''){
+    console.log("function cambiarColorDias >> ENTRO");
+  	$.ajax({
+  		type:'POST',   		
+  		data: 'startTime=' + startDay + "&endTime=" + endDay + "&doctorId=" + doctorId,
+  		url:'getBussyDays',
+  		success:function(data,textStatus){			
+  			$.each( data, function( index, dia){
+  				//console.log(dia);
+  				var cell = $('#dia'+dia.id);
+  				if ( dia.ocupado == 0){
+  					cell.css('background-color','#7DE96E');
+  				} else if ( dia.ocupado == 1 ) {					
+  					cell.css('background-color','#E94E58');
+  				} else {					
+  					cell.css('background-color','#868080');
+  				}
+  				
+  			});
 
-	$.ajax({
-		type:'POST',   		
-		data: 'startTime=' + startDay + "&endTime=" + endDay + "&doctorId=" + doctorId,
-		url:'getBussyDays',
-		success:function(data,textStatus){
-			console.log("exito Ajax");
-			$.each( data, function( index, dia){
-				//console.log(dia);
-				var cell = $('#dia'+dia.id);
-				if ( dia.ocupado == 0){
-					cell.css('background-color','#7DE96E');
-				} else if ( dia.ocupado == 1 ) {
-					console.log("dia ocupado ");
-					cell.css('background-color','#E94E58');
-				} else {
-					console.log("dia no laboral ");
-					cell.css('background-color','#868080');
-				}
-				
-			});
-
-	  },
-    error:function(XMLHttpRequest,textStatus,errorThrown){}
-  });
+  	  },
+      error:function(XMLHttpRequest,textStatus,errorThrown){}
+    });
+  }
 }
 $(document).ready(function() {
 
@@ -234,14 +235,12 @@ $(document).ready(function() {
     	//console.log( date.format() );
     	cell.attr("id","dia" + date.format() );
     	//$(cell).css("background", "red");
-    	console.log("called dayRender");
+    	
     },
     // funcion llamada cuando los datos son cargados
-    loading: function(isLoading, view) {
-    	console.log("loading = " + isLoading);
+    loading: function(isLoading, view) {    
     	if (isLoading == false){ // cuando ya se cargaron
-    		eventsLoaded = $('#calendar').fullCalendar('clientEvents');
-    		console.log(eventsLoaded);
+    		eventsLoaded = $('#calendar').fullCalendar('clientEvents');    		
     		cambiarColorDias();
     	}
     }        	

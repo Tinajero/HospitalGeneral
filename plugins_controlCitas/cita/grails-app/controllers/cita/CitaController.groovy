@@ -35,14 +35,18 @@ class CitaController {
             notFound()
             return
         }
-        
-        def p = Paciente.findByExpediente(cita.paciente.expediente)
+        if (cita.paciente.expediente == null){
+            cita.paciente.expediente = CitaService.generateExpediente();
 
-        if(p){
-            println "Se encontró el expediente en la BD"
-            println "p = " + p.expediente
-            cita.paciente = p
-            println "cita.paciente : " + cita.paciente
+        } else {
+
+            def p = Paciente.findByExpediente(cita.paciente.expediente)
+            if(p){
+                println "Se encontró el expediente en la BD"
+                println "p = " + p.expediente
+                cita.paciente = p
+                println "cita.paciente : " + cita.paciente
+            }
         }
 
         cita.validate()
@@ -130,8 +134,10 @@ class CitaController {
         }
         def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );
         println doctores
+        def noSelection = ['':'Seleccione un Medico']
         render g.select(id:'cbDoctores', name:'doctor.id',
-            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onClick:'cambioDoctor(this.value);'
+            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onchange:'cambioDoctor(this.value);',
+           noSelection:noSelection
         )
     }
     

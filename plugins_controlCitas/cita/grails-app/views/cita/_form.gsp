@@ -4,11 +4,11 @@
 
 	<label for="expediente" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.label" default='Expediente'/>
-		<span class="required-indicator">*</span>
+		
 	</label>
 	
 	<div class ="col-sm-4">
-		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control" required="" value=""/>
+		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control"  value=""/>
 	</div>
 </div>
 
@@ -58,7 +58,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-    <g:select id="TipoCita" name="doctor.tipoCita" from="${doctor.Doctor.listUnique()}"  required="" value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="[null:'']" onchange="categoryChanged(this.value);"/>
+    <g:select id="TipoCita" name="doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="[null:'']" onchange="categoryChanged(this.value);"/>
 	</div>
 </div>
 
@@ -130,20 +130,24 @@
 			<option value="2013">2013</option>
 		</select>
 	</div>
-	<div class="col-sm-1 col-narrow">
+	
+	
+</div> 
+<div class="form-group ${hasErrors(bean: cita, field: 'fecha', 'error')} required">
+	<label for="cbFechaCita_hour" class="col-sm-2 control-label">
+		<g:message code="cita.fecha.label" default="Hora" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-2 col-narrow">
+		<input type="text" id="cbFechaCita_hour" style="width:50px;display:inline;" disabled="true" class="form-control" name="fecha_hour" />	:
+		<input type="text" id="cbFechaCita_minute" style="width:50px;display:inline;" disabled="true" class="form-control" name="fecha_minute"/>
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
 		onclick="getHorarios()">
 			Horario
 		</button>
 	</div>
-	<div class="col-sm-3 col-narrow">
-		<input type="text" id="cbFechaCita_hour" name="fecha_hour" hidden="true"/>
-	</div>
-	<div class="col-sm-3">
-		<input type="text" id="cbFechaCita_minute" name="fecha_minute" hidden="true"/>
-	</div>
-</div> 
+</div>
 
 <div id='calendar' style="width:600px;"></div>
 

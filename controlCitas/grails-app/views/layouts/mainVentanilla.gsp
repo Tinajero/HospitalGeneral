@@ -70,7 +70,7 @@
 	        </ul>
 			<ul class="nav navbar-nav navbar-right">
 
-			  <li><a href="/controlCitas/logout">Salir</a></li>
+			  <li><g:link controller='logout'>Salir</g:link></li>
 			</ul>
 
         </div>

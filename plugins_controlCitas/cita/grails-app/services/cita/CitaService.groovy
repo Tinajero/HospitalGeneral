@@ -10,6 +10,7 @@ class CitaService {
 	def DoctorService 	
     def CitaService
     def CalendarioService
+    def LastIndiceTempService
     def serviceMethod() {
 
     }
@@ -249,6 +250,10 @@ class CitaService {
         //println pacienteId
         def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId",[pacienteId: pacienteId]);
         return citas
+    }
+
+    def generateExpediente(){
+        println LastIndiceTempService.getLastIndex();        
     }
 
 }

@@ -64,20 +64,20 @@ class DoctorService {
     }
    
     def getDoctoresWhitTipoCita(tipoCita){
-        print "doctorService, getDoctoresWhitTipoCita "
+        print "doctorService, getDoctoresWhitTipoCita " + tipoCita
         print tipoCita
         def query = Doctor.where {
-            tipoCita == tipoCita
+            tipoCita ==~ tipoCita
         }
         def doctores = query.list();
-        
-        
         if (doctores.size() != 0){
-            for (int i = 0; i < doctores.size() ; i++){
-                doctores[i].nombre = doctores[i].nombre + " " + doctores[i].apellidoPat + " " + doctores[i].apellidoMat
+            
+            print doctores
+            for (int i = 0; i < doctores.size() ; i++){                
+                doctores[ i ].nombre = doctores[i].nombre + " " + doctores[i].apellidoPat + " " + doctores[i].apellidoMat                
             }
         }
-        print doctores
+        
         return doctores;
     }
     def getHoras(){
