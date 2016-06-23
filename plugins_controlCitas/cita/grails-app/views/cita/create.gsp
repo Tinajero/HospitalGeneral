@@ -22,7 +22,9 @@
 				<g:hasErrors bean="${cita}">
 				<ul class="errors" role="alert">
 					<g:eachError bean="${cita}" var="error">
-					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+						<div class="alert alert-danger" role="alert">
+							<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+						</div>
 					</g:eachError>
 				</ul>
 				</g:hasErrors>

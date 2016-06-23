@@ -137,7 +137,7 @@ class CitaController {
         def noSelection = ['':'Seleccione un Medico']
         render g.select(id:'cbDoctores', name:'doctor.id',
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onchange:'cambioDoctor(this.value);',
-           noSelection:noSelection
+           noSelection:noSelection, required:'true'
         )
     }
     
