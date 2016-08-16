@@ -34,7 +34,7 @@
 
 <div class="form-group ${hasErrors(brean: paciente, field: poblacion, 'has error')} required">
 	<label for="Poblacion" class="col-sm-2 control-label">
-		<g:message code="cita.paciente.poblacion.label" default="Poblacion" />
+		<g:message code="cita.paciente.poblacion.label" default="Localidad" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
@@ -139,8 +139,8 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-2 col-narrow">
-		<input type="text" id="vista_hour" required="true" disabled="true" style="width:50px;display:inline;" class="form-control" name="minutoHora" />	:
-		<input type="text" id="vista_minute" required="true" disabled="true" style="width:50px;display:inline;"  class="form-control" name="minutoVista"/>
+		<input type="text" id="vista_hour"  disabled="true" style="width:50px;display:inline;" class="form-control" name="minutoHora" />	:
+		<input type="text" id="vista_minute"  disabled="true" style="width:50px;display:inline;"  class="form-control" name="minutoVista"/>
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
 		onclick="getHorarios()">		

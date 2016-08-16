@@ -122,6 +122,9 @@ function seleccionarHora(){
 		var minute = getMinuto(hora);		
 		$('#cbFechaCita_hour').val(hour);
 		$('#cbFechaCita_minute').val(minute);
+
+    $('#vista_hour').val(hour);
+    $('#vista_minute').val(minute);
 	});
 	$('#myModal').modal('hide')
 
