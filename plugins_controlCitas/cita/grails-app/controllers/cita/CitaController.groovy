@@ -70,6 +70,7 @@ class CitaController {
     }
 
     def edit(Cita cita) {
+        println cita
         respond cita
     }
 

@@ -27,13 +27,13 @@
                     $("#expediente_textField").autocomplete({
                     	source: datos,
                     	//focus: function (event, ui){
-                    	select: function (event, ui){
+                    	select: function (event, ui){/*
                         	console.log("selected expediente:" + ui.item.value);
                         	console.log("selected apellidoPaterno:" + ui.item.apaterno);
                         	console.log("selected apellidoPaterno:" + ui.item.amaterno);
                         	console.log("selected nombre:" + ui.item.nombre);
                         	console.log("selected poblacion:" + ui.item.poblacion);
-                        	console.log("selected telefono:" + ui.item.telefono);
+                        	console.log("selected telefono:" + ui.item.telefono);*/
      
                         	$('#expediente_textField').val(ui.item.value);
                         	$('#apaterno').val(ui.item.apaterno);
@@ -97,13 +97,13 @@ $(document).ready(function() {
                         $('#poblacion').val(ui.item.poblacion);
                         $('#telefono').val(ui.item.telefono);
                     },
-                	select: function (event, ui){
+                	select: function (event, ui){/*
                     	console.log("selected expediente:" + ui.item.expediente);
                     	console.log("selected apellidoPaterno:" + ui.item.apaterno);
                     	console.log("selected apellidoPaterno:" + ui.item.amaterno);
                     	console.log("selected nombre:" + ui.item.nombre);
                     	console.log("selected poblacion:" + ui.item.poblacion);
-                    	console.log("selected telefono:" + ui.item.telefono);
+                    	console.log("selected telefono:" + ui.item.telefono);*/
 
                     	event.preventDefault();
             			
