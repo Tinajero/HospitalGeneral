@@ -1,8 +1,5 @@
 <%@ page import="cita.Cita" %>
 
-		 <!-- script usados para el autocomplete de la vista de creacion Citas-->
-		 <g:javascript src="autoCompleteMax.js"/>
-
 <div class="form-group ${hasErrors(brean: paciente, field: expediente, 'has error')} required">
 
 	<label for="expediente" class="col-sm-2 control-label">
