@@ -30,19 +30,16 @@ class CitaController {
 
     @Transactional
     def save(Cita cita) {
-        
+        println cita
         if (cita == null) {
             notFound()
             return
         }
-        if (cita.paciente.expediente == null){
-            cita.paciente.expediente = CitaService.generateExpediente();
-
-        } else {
+        if (cita.paciente.expediente != null) {
 
             def p = Paciente.findByExpediente(cita.paciente.expediente)
             if(p){
-                println "Se encontrÃ³ el expediente en la BD"
+                println "Se encontró el expediente en la BD"
                 println "p = " + p.expediente
                 cita.paciente = p
                 println "cita.paciente : " + cita.paciente
@@ -136,7 +133,7 @@ class CitaController {
         def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );
         println doctores
         def noSelection = ['':'Seleccione un Medico']
-        render g.select(id:'cbDoctores', name:'doctor.id',
+        render g.select(id:'cbDoctores', name:'cita.doctor.id',
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onchange:'cambioDoctor(this.value);',
            noSelection:noSelection, required:'true'
         )
