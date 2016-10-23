@@ -61,5 +61,8 @@ grails.project.dependency.resolution = {
         
         //bootstrap
         runtime ':twitter-bootstrap:3.3.1'
+		
+		//plugin de seguridad
+		compile ':spring-security-core:2.0-RC4'
     }
 }
