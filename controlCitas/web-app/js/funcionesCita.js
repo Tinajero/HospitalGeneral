@@ -11,7 +11,7 @@ function categoryChanged(categoryId) {
   
 function getHorarios(  ){
     var doctorId = $("#cbDoctores").val();
-    console.log("functio getHorarios()");
+	var tipoCita = $("#tipoCita").val();
   	if (!seleccionado && doctorId != null ) {
     	var doctorId = $("#cbDoctores").val();
     	console.log("doctorId = " +doctorId);
@@ -40,7 +40,7 @@ function getHorarios(  ){
                   "<td class='centrado'>  Primera Vez </td>"                  
                 );
 
-              } else {
+              } else if (tipoCita == '2'){ // si el tipo de cita es subsecuente;
         				$("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
         					"<td class='centrado'>"+(index+1)+"</td>" +
         					"<td class='centrado'>" + horario.hora + "</td>"+
@@ -205,6 +205,18 @@ function cambiarColorDias(){
     });
   }
 }
+/*fuuncion llamada cuando se cambia el select del tipo de cita que debera de ocultar o mostrar
+ * campos, en este caso el de expediente ya que un tipo de primera vez no tiene expediente
+ * */
+function onChangeTipoCita(){
+	var valueSelect = $("#tipoCita").val();
+	if (valueSelect == '2') {
+		$("#divExpediente").removeClass("ocultar-contenido");
+	} else {
+		$("#divExpediente").addClass("ocultar-contenido");
+	}
+}
+
 $(document).ready(function() {
 
 // page is now ready, initialize the calendar...
