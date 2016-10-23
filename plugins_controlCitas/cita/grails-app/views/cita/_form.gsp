@@ -1,6 +1,25 @@
 <%@ page import="cita.Cita" %>
 
-<div class="form-group ${hasErrors(brean: paciente, field: expediente, 'has error')} required">
+<div class="form-group required">
+	<label for="tipoCita" class="col-sm-2 control-label">
+		<g:message code="cita.tipoCita" default="Tipo de Cita"/>
+		
+	</label>
+	<div class="col-sm-5">
+		<select 
+			name="cita.tipoCita" 
+			id="tipoCita" 
+			class="form-control selectionBox" 
+			required="true"
+			onChange="onChangeTipoCita()">
+			<option value="1">Primera Vez</option>
+			<option value="2">Subsecuente</option>
+			<option value="3">Niño Sano</option>
+		</select>
+	</div> 
+</div>
+
+<div class="form-group ocultar-contenido ${hasErrors(brean: paciente, field: expediente, 'has error')}" id="divExpediente">
 
 	<label for="expediente" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.label" default='Expediente'/>
@@ -8,24 +27,28 @@
 	</label>
 	
 	<div class ="col-sm-4">
-		<input type="text" name="paciente.expediente" id="expediente_textField" placeholder="Introduce Expediente" class="form-control"  value=""/>
+		<input type="text" 
+			name="cita.paciente.expediente" 
+			id="expediente_textField" 
+			placeholder="Introduce Expediente" 
+			class="form-control"  value=""/>
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(brean: paciente, field: nombre, 'has error')} required">
+<div class="form-group ${hasErrors(brean: paciente, field: nombre, 'has error')} required" >
 	<label for="apellidoPaterno" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.nombre.label" default="Paciente" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-2">
-		<input type="text" name="paciente.apellidoPaterno" id="apaterno" class="por_nombre form-control" placeholder="Apellido Paterno" required="" value=""/>
+		<input type="text" name="cita.paciente.apellidoPaterno" id="apaterno" class="por_nombre form-control" placeholder="Apellido Paterno" required="" value=""/>
 		<input type="hidden" id="apaterno_only" name="country_id" value="" />
 	</div>
 	<div class="col-sm-2">
-		<input type="text" name="paciente.apellidoMaterno" id="amaterno" class="por_nombre form-control" placeholder="Apellido Materno" required="" value=""/>
+		<input type="text" name="cita.paciente.apellidoMaterno" id="amaterno" class="por_nombre form-control" placeholder="Apellido Materno" required="" value=""/>
 	</div>
 	<div class="col-sm-2">
-		<input type="text" name="paciente.nombre" id="nombre" class="por_nombre form-control" placeholder="Nombre(s)" required="" value=""/>
+		<input type="text" name="cita.paciente.nombre" id="nombre" class="por_nombre form-control" placeholder="Nombre(s)" required="" value=""/>
 	</div>
 </div>
 
@@ -35,7 +58,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="poblacion" name="paciente.poblacion" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<g:textField id="poblacion" name="cita.paciente.poblacion" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
 	</div>
 </div>
 
@@ -45,7 +68,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<input id="telefono" type="tel" name="paciente.numeroTelefono" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
 	</div>
 </div>
 
@@ -55,7 +78,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-    <g:select id="TipoCita" name="doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged(this.value);"/>
+    <g:select id="TipoCita" name="cita.doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged(this.value);"/>
 	</div>
 </div>
 
@@ -78,7 +101,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-1 nopadding" 	style="padding-right:15px;">		
-		<select name="fecha_day" class="form-control selectionBox" id="cbFechaCita_day" onchange="quitarSeleccionado();" required="true">
+		<select name="cita.fecha_day" class="form-control selectionBox" id="cbFechaCita_day" onchange="quitarSeleccionado();" required="true">
 		<% def count=31 %>
 		<g:each in="${1..count}" var="dia" >
 			<option value="${dia}">${dia}</option>
@@ -86,10 +109,9 @@
 		<select>
 	</div>
 	
-              <input type="hidden" name="fecha" value="date.struct" />
-
+              <input type="hidden" name="cita.fecha" value="date.struct" />
 	<div class="col-sm-2 nopadding" >
-		<select name="fecha_month" class="form-control selectionBox" id="cbFechaCita_month" required="" onchange="quitarSeleccionado();">
+		<select name="cita.fecha_month" class="form-control selectionBox" id="cbFechaCita_month" required="" onchange="quitarSeleccionado();">
 			<option value="1">enero</option>
 			<option value="2">febrero</option>
 			<option value="3">marzo</option>
@@ -105,7 +127,7 @@
 		</select>
 	</div>
 	<div class="col-sm-1 nopadding">
-		<select name="fecha_year" class="form-control selectionBox" id="cbFechaCita_year" required="" onchange="quitarSeleccionado();"><option value="2115">2115</option>		
+		<select name="cita.fecha_year" class="form-control selectionBox" id="cbFechaCita_year" required="" onchange="quitarSeleccionado();"><option value="2115">2115</option>		
 			<option value="2031">2031</option>
 			<option value="2030">2030</option>
 			<option value="2029">2029</option>
@@ -144,8 +166,8 @@
 			Horario
 		</button>
 
-		<input type="hidden" id="cbFechaCita_hour" class="" name="fecha_hour" />
-		<input type="hidden" id="cbFechaCita_minute" class="" name="fecha_minute"/>
+		<input type="hidden" id="cbFechaCita_hour" class="" name="cita.fecha_hour" />
+		<input type="hidden" id="cbFechaCita_minute" class="" name="cita.fecha_minute"/>
 	</div>
 </div>
 
