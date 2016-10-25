@@ -49,3 +49,6 @@ local.properties
 *.launch
 .buildpath
 /target-eclipse
+
+#DataSource
+/grails-app/conf/DataSource.groovy
