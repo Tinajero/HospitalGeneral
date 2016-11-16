@@ -40,7 +40,8 @@
 						
 
 							<th><g:message code="cita.doctor.label" default="Doctor" /></th>
-									
+							
+							<th><g:message code="cita.paciente.label" default="Expediente" /></th>		
 							<th><g:message code="cita.paciente.label" default="Paciente" /></th>
 							
 							<td><b>Opciones</b></td>	
@@ -54,8 +55,8 @@
 							<td><g:formatDate format="dd/MM/yyyy" date="${citaInstance.fecha}" /></td>
 
 							<td>${citaInstance.doctor.nombre} ${citaInstance.doctor.apellidoPat} ${citaInstance.doctor.apellidoMat}</td>
-								
-							<td>${citaInstance.paciente.expediente} ${citaInstance.paciente.apellidoPaterno} ${citaInstance.paciente.apellidoMaterno} ${citaInstance.paciente.nombre} </td>							
+							<td>${citaInstance.paciente.expediente}</td>
+							<td> ${citaInstance.paciente.apellidoPaterno} ${citaInstance.paciente.apellidoMaterno} ${citaInstance.paciente.nombre} </td>							
 				
 		
 							<td> 
