@@ -146,21 +146,45 @@ class CitaController {
     def otraFuncion(){
         render "Hola Mundo"
     }
-    //Funciones para Autocomplete
-    def AutocompletadoEnCitas(){
-        /*def citas = Cita.list()
-        def response = []
+    //Funciones para Autocomplete en Citas
+    def autocompleteByExpediente(String expediente){
+        println "entra a autocompleteByExpediente";
+        println expediente;
+        def pacientes = CitaService.getPacientesWithExpediente( expediente );
+        render pacientes as JSON
+    }
+    def autocompleteByNombre(String nombre){
+        println "entra a autocompleteByNombre";
+        println nombre;
+        def pacientes = CitaService.getPacientesWithNombre( nombre );
+        render pacientes as JSON
+    }
+    def autocompleteByApaterno(String apaterno){
+        println "entra a autocompleteByApaterno";
+        println apaterno;
+        def pacientes = CitaService.getPacientesWithApaterno( apaterno );
+        render pacientes as JSON
+    }
+    def autocompleteByAmaterno(String amaterno){
+        println "entra a autocompleteByAmaterno";
+        println amaterno;
+        def pacientes = CitaService.getPacientesWithAmaterno( amaterno );
+        render pacientes as JSON
+    }
+    /*def AutocompletadoEnCitas(){
+        //def citas = Cita.list()
+        //def response = []
 
-        citas.each{
-            response << "${it.paciente.expediente}"
-        }
+        //citas.each{
+        //    response << "${it.paciente.expediente}"
+        //}
 
-        render response as JSON*/
+        //render response as JSON
         def pacientes = Paciente.list()
         
         render pacientes as JSON
-    }
-
+    }*/
+    //End Funciones para Autocomplete en Citas
     def getBussyDays(String startTime,String endTime, Long doctorId){
         print "getBussyDays citaControler: "
         print startTime

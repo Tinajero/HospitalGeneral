@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 import grails.converters.JSON
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import paciente.Paciente
 @Transactional
 class CitaService {
 
@@ -256,6 +257,50 @@ class CitaService {
         println LastIndiceTempService.getLastIndex();        
     }
 
+    //service for autocomplete
+    def getPacientesWithExpediente(String expediente){
+        println 'getPacientesWithExpediente';
+        println expediente;
+        def criteria = Paciente.createCriteria()
+        def results = criteria.listDistinct () {
+            and {
+                Paciente.each {  like('expediente', expediente+'%') }
+            }
+            maxResults(50)
+        }
+        return results
+    }
+    def getPacientesWithNombre(String nombre){
+        def criteria = Paciente.createCriteria()
+        def results = criteria.listDistinct () {
+            and {
+                Paciente.each {  like('nombre', nombre+'%') }
+            }
+            maxResults(50)
+        }
+        return results
+    }
+    def getPacientesWithApaterno(String apaterno){
+        def criteria = Paciente.createCriteria()
+        def results = criteria.listDistinct () {
+            and {
+                Paciente.each {  like('apellidoPaterno', apaterno+'%') }
+            }
+            maxResults(50)
+        }
+        return results
+    }
+    def getPacientesWithAmaterno(String amaterno){
+        def criteria = Paciente.createCriteria()
+        def results = criteria.listDistinct () {
+            and {
+                Paciente.each {  like('apellidoMaterno', amaterno+'%') }
+            }
+            maxResults(50)
+        }
+        return results
+    }
+    //service for autocomplete
 }
 
 
