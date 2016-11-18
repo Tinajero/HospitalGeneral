@@ -36,3 +36,37 @@
 .ocultar-contenido {
 	display: none !important; 
 }
+
+.cita h1{
+	margin: 0 0 1em;
+}
+.cita-form{
+	margin: 0;
+}
+.cita-form .form-group{
+	margin: 0 0 2.5em;
+}
+.cita-form .form-group .btn-horario{
+	margin: 2em 0;
+}
+.cita-buttons{
+	margin: 2em 0;
+}
+.cita-buttons .btn{
+	display: block;
+	margin: 0 auto;
+	width: 90px;
+}
+.cita .calendar{
+	width: 70%;
+}
+@media (max-width: 1024px) {
+	.cita .calendar{
+		width: 90%;
+	}
+}
+/*@media (min-width: 768px) and (max-width: 959px) {
+	.cita .calendar{
+		width: 90%;
+	}
+}*/

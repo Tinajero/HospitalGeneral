@@ -161,17 +161,19 @@
 		<input type="text" id="vista_hour"  disabled="true" style="width:50px;display:inline;" class="form-control" name="minutoHora" />	:
 		<input type="text" id="vista_minute"  disabled="true" style="width:50px;display:inline;"  class="form-control" name="minutoVista"/>
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-		onclick="getHorarios()">		
-			Horario
-		</button>
+		<fieldset class="btn-horario">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+			onclick="getHorarios()">		
+				Horario
+			</button>
+		</fieldset>
 
 		<input type="hidden" id="cbFechaCita_hour" class="" name="cita.fecha_hour" />
 		<input type="hidden" id="cbFechaCita_minute" class="" name="cita.fecha_minute"/>
 	</div>
 </div>
 
-<div id='calendar' style="width:600px;"></div>
+<div id='calendar' class="col-sm-offset-1 col-xs-offset-0 calendar"></div>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
