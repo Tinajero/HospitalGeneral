@@ -2,7 +2,7 @@ var Autocomplete = function(){
     function autocompleteExpediente() {
         $('#expediente_textField').on("keyup", function(){
             value = $(this).val();
-        
+            if(value.length >= 3){
                 $.ajax({
                     type: "GET",
                     url: "autocompleteByExpediente",
@@ -36,7 +36,7 @@ var Autocomplete = function(){
                         });
                     }
                 });
-
+            }
         });
     }
     function autocompleteNombre() {
