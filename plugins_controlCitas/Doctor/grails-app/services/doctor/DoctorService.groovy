@@ -13,7 +13,11 @@ class DoctorService {
 
     }
     def listaTiposCita(){
-        def lista = ['CIRUGIA GENERAL', 'MEDICINA INTERNA', 'PEDIATRIA', 'GINECOLOGIA Y OBSTETRICIA', 'TRAUMATOLOGIA Y ORTOPEDIA','DENTAL', 'PSICOLOGIA','ULTRASONIDOS' ]
+
+	    //esto es de Orla//def lista = ["pediatria","otras","odontologia",	"medicina_interna", "ginecologia","consulta_externa", "cirugia"]
+
+        def lista = ['CIRUGIA GENERAL', 'MEDICINA INTERNA', 'PEDIATRIA', 'GINECOLOGIA Y OBSTETRICIA', 'TRAUMATOLOGIA Y ORTOPEDIA','DENTAL', 'PSICOLOGIA','ULTRASONIDOS', 'CONSULTA EXTERNA' ]
+
         return lista
     }
     def obtenDiasLaborales(params){
@@ -70,7 +74,7 @@ class DoctorService {
     *   Servicio que regresa el horario de un doctor a parti de su ID
     */
     def getHorarioFromDoctorID(Long doctorId,String fechaQuery ) {
-        print "fechaQuery " + fechaQuery
+        //print "fechaQuery " + fechaQuery
         def fechaDate = Date.parse("d-M-yyyy", fechaQuery)
         Calendar c = Calendar.getInstance();
         c.setTime(fechaDate);
@@ -81,15 +85,15 @@ class DoctorService {
     }
    
     def getDoctoresWhitTipoCita(tipoCita){
-        print "doctorService, getDoctoresWhitTipoCita " + tipoCita
-        print tipoCita
+        //print "doctorService, getDoctoresWhitTipoCita " + tipoCita
+        //print tipoCita
         def query = Doctor.where {
             tipoCita ==~ tipoCita
         }
         def doctores = query.list();
         if (doctores.size() != 0){
             
-            print doctores
+           // print doctores
             for (int i = 0; i < doctores.size() ; i++){                
                 doctores[ i ].nombre = doctores[i].nombre + " " + doctores[i].apellidoPat + " " + doctores[i].apellidoMat                
             }
@@ -140,7 +144,7 @@ class DoctorService {
         def dias = ""
         for (int i = 0; i < matrizHorarios.size(); i++){
             JSONObject.Null.metaClass.asBoolean = {-> false}
-            print matrizHorarios[i][0]            
+            //print matrizHorarios[i][0]            
            // matrizHorarios[i][0]
             if (matrizHorarios[i][0].toString() != "null" )
                 dias += diasString[i] 
