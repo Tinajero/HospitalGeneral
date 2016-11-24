@@ -4,11 +4,22 @@ import grails.transaction.Transactional
 import cita.Cita
 import java.util.Date
 import java.text.SimpleDateFormat
-import rkl.GenerarPdfv2
+import required.GeneratePDF
 
 @Transactional
 class HojaRegistroDiarioService {
-
+  
+    def mapaResultado = [
+      'CIRUGIA GENERAL':'cirugia',
+      'MEDICINA INTERNA':'medicina_interna', 
+      'PEDIATRIA':'pediatria', 
+      'GINECOLOGIA Y OBSTETRICIA':'ginecologia', 
+      'TRAUMATOLOGIA Y ORTOPEDIA':'otras',
+      'DENTAL':'odontologia', 
+      'PSICOLOGIA':'otras',
+      'ULTRASONIDOS':'otras',
+      'CONSULTA EXTERNA':'consulta_externa'
+    ]
     def serviceMethod() {
 
     }
@@ -18,17 +29,54 @@ class HojaRegistroDiarioService {
   def consulta(date1, date2, tipoCita)
   {
     def resultados=[]
-    def select ="select  c.fecha, d.nombre, d.apellidoPat, d.apellidoMat, p.nombre, p.apellidoPaterno, p.apellidoMaterno, d.tipoCita\
+    def select ="select d.tipoCita, concat(d.nombre,' ', d.apellidoPat,' ', d.apellidoMat), date_format(c.fecha,'%H:%i'), concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno), p.expediente\
      from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
     //si no se selecciono cita entonces procede con solo la fecha especificada
     if (tipoCita == "")
-      resultados = Cita.executeQuery(	select + where + "  ORDER BY d.nombre ASC",[ date1, date2])
+      resultados = Cita.executeQuery(	select + where + "  ORDER BY c.doctor, c.fecha ASC",[ date1, date2])
     else
-      resultados = Cita.executeQuery(	select + where +  " and d.tipoCita = ?  ORDER BY d.nombre ASC",[ date1, date2, tipoCita])
+      resultados = Cita.executeQuery(	select + where +  " and d.tipoCita = ?  ORDER BY c.doctor, c.fecha ASC",[ date1, date2, tipoCita])
 //and d.tipoCita = ?  , params.tipoCita
     return resultados
+  }
+
+  def obten_lista(resultado)
+  {
+
+    def key = ""
+    def key_ant = ""
+    def informe = []
+    def value="";
+    //Object es una instancia del registro n
+    for (Object[] r in resultado)
+    {
+
+        //La llave es conformada por el nombre del doctor y el tipo de cita
+        key = mapaResultado[r[0]]+'|'+r[1] //+r[3]+r[7]
+        //Valors: Datos restantes y variantes
+        // // print ("key:"+key)
+        // // print ("value."+value)
+        if (key_ant=="")
+          key_ant = key
+  
+        //Como analizar el ultimo caso
+        if (key != key_ant)
+        { 
+          informe+= key_ant+'~'+value
+          key_ant = key
+          value=""
+        }
+
+        value += r[2]+r[3]+'|'+r[4]+'~'//+r[6]+r[0]+'|'
+    } 
+
+    if(value!="")
+      informe+=key+'~'+value
+
+    return informe
+
   }
 
 	def list(params){
@@ -44,56 +92,56 @@ class HojaRegistroDiarioService {
 
       resultados = consulta(date1, date2, tipoCita)
 
-      if (tipoCita == "" )
-        tipoCita="Todas"
-		/*
-    construcción de lista de mapas
-    El objeto (lista) se rellenara con mapas para almacenar la informacion pertinente a la hora
-      un mapa contine fecha, doctor y paciente
-  */
-    def lista_ret = [0,params.fecha, tipoCita]
-    print "resultados obtenidos"
-    if ( resultados.size() < 1 )
-    {
-      lista_ret[0] = 0
-      print "Sin resultado"
-      return lista_ret
-
-    }
-    print "En for"
-		for ( Object[] r in resultados )
-    {
-			def map =	[	'fecha': r[0],
-							'doctor': r[1]+" " + r[2]+" "+ r[3],
-							'paciente' : r[4] +" "+ r[5] +" "+ r[6],
-              'tipoCita' : r[7],
-						]
-				lista += map
-        print map
-		}
-
-    printPDF(lista)
+      lista = obten_lista(resultados)
+      
+      // print ("Lista obtenida")
+    //  for (value in lista)
+      //{
+        // print value
+     // }
+      
+      def lista_ret = [0,params.fecha, tipoCita]
+      
+      
+      if ( resultados.size() < 1 )
+      {
+        lista_ret[0] = 0
+        return lista_ret
+      }
+    printPDF(lista,params.fecha)
     lista_ret[0]=1
 return lista_ret
 
 	}
 
 
-  def printPDF(def lista)
+  def printPDF(def lista,def fecha)
   {
+    try {
+      def gpdf = new GeneratePDF();
+      gpdf.setPathOut("web-app/temp_pdf/consulta.pdf")
+      gpdf.setPathTemplates("web-app/plantillas_consultas/")
+      gpdf.generateBook(lista as String[], fecha as String)
+    } catch(Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    /*
     try{
-      def generar_pdf = new GenerarPdfv2()
+      def generar_pdf = new GeneratePDF()
       //Asignar direccion de impresion
-      print "Generando nuevo archivo"
-      generar_pdf.setAddressPdf("web-app/pdf/consulta.pdf")
+      // print "Generando nuevo archivo"
+
+      generar_pdf.setAddressPdf("web-app/temp_pdf/consulta.pdf")
       //Asignar campo de datos
-      print "Termina impresion"
+      // print "Termina impresion"
       generar_pdf.setData(lista)
       //Crea el pdf y cuando termina cierra la aplicacion
       generar_pdf.createPdf()
     }catch(Exception e){
-      print "Un error aqui"
-      e.printStackTrace()
-    }
+      // print "Un error aqui"
+      e.// printStackTrace()
+    }*/
   }
 }
