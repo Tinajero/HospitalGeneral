@@ -15,6 +15,7 @@ class DoctorController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def DoctorService
+    def HorarioService
     def index(Integer max) {
         //Opcional. modificar la actualizacion de intervalos
         
@@ -40,14 +41,12 @@ class DoctorController {
             notFound()
             return
         }
-    
-      print "Almacenando: " + doctor
-      print params
-      doctor.diasLaborales = DoctorService.obtenDiasLaborales(params)
-      print doctor.diasLaborales
-      doctor.horario = params.horario;
+              
+      doctor.diasLaborales = DoctorService.obtenerDiasLaboralesPorHorario(params.horario)              
       doctor.validate()
-
+      
+      
+  
         if (doctor.hasErrors()) {
             print "tiene errores"
             print doctor.errors
@@ -56,6 +55,7 @@ class DoctorController {
         }
    
         doctor.save flush:true
+        HorarioService.crearHorarioParaDoctor(doctor, params.horario)
 
         request.withFormat {
             form multipartForm {
@@ -76,12 +76,12 @@ class DoctorController {
     @Transactional
     def update(Doctor doctorInstance) {
         
-        doctorInstance.diasLaborales = DoctorService.obtenDiasLaborales(params)
-        //doctor.diasLaborales ="as"
-        //doctor.diasLaborales = DoctorService.obtenDiasLaborales(params)
+        doctorInstance.diasLaborales = DoctorService.obtenDiasLaborales(params)        
         printf "Actualizando Doctor"
         print params
-        doctorInstance.horario = params.horario;
+        print "MAATRI " +params.horario
+        return
+       // doctorInstance.horario = params.horario;
         if (doctorInstance == null) {
             print "1fst"
             notFound()

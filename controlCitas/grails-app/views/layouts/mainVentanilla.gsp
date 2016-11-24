@@ -16,16 +16,7 @@
 		<asset:javascript src="application.js"/>
 		<asset:stylesheet src="dashboard.css"/>
 
-
-
-
-
-
-
-
-		 <!-- plugin jQuery-ui -->
-
-		<%--<g:javascript src="jquery-ui-1.11.4.custom/external/jquery/jquery.js"/> --%>
+		 <!-- plugin jQuery-ui -->		
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.css"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.js"/>
 		 <g:javascript src="jquery-ui-1.11.4.custom/jquery-ui.min.css"/>
@@ -35,16 +26,28 @@
 
 		 <!-- plugin jQuery-mask para mask en los inputs de Expediente y Telefono en Citas -->
 		 <g:javascript src="jquery-mask/jquery.mask.js"/>
-		 	<%-- fullCallendar plugin dependences--%>
+		 <!-- fullCallendar plugin dependences-->
     	<link rel="stylesheet" href="${resource(dir: 'js', file: 'fullcalendar-2.3.1/fullcalendar.css')}" type="text/css">
     	 <g:javascript src="fullcalendar-2.3.1/lib/moment.min.js"/>
     	 <g:javascript src="fullcalendar-2.3.1/fullcalendar.js"/>
     	 <g:javascript src="fullcalendar-2.3.1/lang/es.js"/>
-    	 <%-- end fullCallendar plugin dependences --%>
+    	 <!-- end fullCallendar plugin dependences -->
 
 		 <g:javascript src="utilerias.js" />
+		 <!-- Js de las funciones utilizadas en la vista de creacion de citas -->		
+		 
+
+		 <!--  Estilos usados en la vista de citas-->
+		 <link rel="stylesheet" href="${resource(dir: 'css', file: 'citaEstilos.css')}" type="text/css">
+
 		 <link rel="stylesheet" href="${resource(dir: 'css', file: 'daterangepicker.css')}" type="text/css">
-			<g:javascript src="daterangepicker.js"/>
+
+
+		 <g:javascript src="funcionesCita.js"/>
+		 <!-- script usados para el autocomplete de la vista de creacion Citas-->
+		 <g:javascript src="autoCompleteMax.js"/>
+
+		<g:javascript src="daterangepicker.js"/>
 
 		<g:layoutHead/>
 	</head>
@@ -67,7 +70,7 @@
 	        </ul>
 			<ul class="nav navbar-nav navbar-right">
 
-			  <li><a href="/controlCitas/logout">Salir</a></li>
+			  <li><g:link controller='logout'>Salir</g:link></li>
 			</ul>
 
         </div>

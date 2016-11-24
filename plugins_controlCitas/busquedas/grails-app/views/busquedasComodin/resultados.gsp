@@ -8,16 +8,30 @@
 	<body>
 	<div class="col-sm-20 col-md-10 col-sm-offset-3 col-md-offset-2 main">
 		Los resultados obtenidos son:
-		<div>
-			<ul>
-				<g:each in="${lista}" var ="elemento">
-					<li>${elemento.fecha}</li>
-					<li>${elemento.paciente}</li>
-					<li>${elemento.doctor}</li>
-					<li>${elemento.tipoCita}</li>
+
+		<table class="table table-striped">
+			<thead style="color: blue;">
+				<td>Apellido paterno</td>
+				<td>Apellido materno</td>
+				<td>Nombre</td>
+				<td>Expediente</td>
+			</thead>
+
+			<tbody>
+				<g:each in="${lista}" status="${i}" var ="elemento">
+
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+							<td>${elemento.ap_pat}</td>
+							<td>${elemento.ap_mat}</td>
+							<td>${elemento.nombre}</td>
+
+							<td> <g:link controller="paciente" action="show" id="${elemento.id}"> ${elemento.expediente} </g:link> </td>
+						</tr>
+
 				</g:each>
-			<ul>
-		</div>
+			</tbody>
+
+		</table>
 	</div>
 	</body>
 

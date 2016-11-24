@@ -5,7 +5,7 @@ dataSource {
     driverClassName = "com.mysql.jdbc.Driver"
     username = "root"
 
-    password = ""
+    password = "kamikazelab"
 
 }
 hibernate {

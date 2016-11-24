@@ -36,10 +36,12 @@
 					<thead>
 						<tr>
 						
-							<g:sortableColumn property="fecha" title="${message(code: 'cita.fecha.label', default: 'Fecha')}" /> 
+						<g:sortableColumn property="fecha" title="${message(code: 'cita.fecha.label', default: 'Fecha')}" />
+						
 
 							<th><g:message code="cita.doctor.label" default="Doctor" /></th>
-									
+							
+							<th><g:message code="cita.paciente.label" default="Expediente" /></th>		
 							<th><g:message code="cita.paciente.label" default="Paciente" /></th>
 							
 							<td><b>Opciones</b></td>	
@@ -47,21 +49,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<g:each in="${citaList}" status="i" var="cita">
+						<g:each in="${citaInstanceList}" status="i" var="citaInstance">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 							
-							<td><g:formatDate format="dd/MM/yyyy" date="${cita.fecha}" /></td>
+							<td><g:formatDate format="dd/MM/yyyy" date="${citaInstance.fecha}" /></td>
 
-							<td><g:link action="show" id="${cita.id}">${fieldValue(bean: cita, field: "doctor")}</g:link></td>
-						
-							<td>${fieldValue(bean: cita, field: "paciente")}</td>
-							
+							<td>${citaInstance.doctor.nombre} ${citaInstance.doctor.apellidoPat} ${citaInstance.doctor.apellidoMat}</td>
+							<td>${citaInstance.paciente.expediente}</td>
+							<td> ${citaInstance.paciente.apellidoPaterno} ${citaInstance.paciente.apellidoMaterno} ${citaInstance.paciente.nombre} </td>							
+				
+		
 							<td> 
-								<g:link action="show" id="${cita.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Mostrar"></span></g:link> &nbsp;
-	<%--							<g:link action="delete" id="${cita.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></g:link> &nbsp;--%>
-								<g:link action="edit" id="${cita.id}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></span></g:link> &nbsp;
+								<g:link action="show" id="${citaInstance.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Mostrar"></span></g:link> &nbsp;
+								<g:link action="delete" id="${citaInstance.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></g:link> &nbsp;
+								<g:link action="edit" id="${citaInstance.id}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></span></g:link> &nbsp;
 							</td>
-
 						</tr>
 						</g:each>
 					</tbody>

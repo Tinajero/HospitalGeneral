@@ -8,7 +8,18 @@ import required.GeneratePDF
 
 @Transactional
 class HojaRegistroDiarioService {
-
+  
+    def mapaResultado = [
+      'CIRUGIA GENERAL':'cirugia',
+      'MEDICINA INTERNA':'medicina_interna', 
+      'PEDIATRIA':'pediatria', 
+      'GINECOLOGIA Y OBSTETRICIA':'ginecologia', 
+      'TRAUMATOLOGIA Y ORTOPEDIA':'otras',
+      'DENTAL':'odontologia', 
+      'PSICOLOGIA':'otras',
+      'ULTRASONIDOS':'otras',
+      'CONSULTA EXTERNA':'consulta_externa'
+    ]
     def serviceMethod() {
 
     }
@@ -43,10 +54,10 @@ class HojaRegistroDiarioService {
     {
 
         //La llave es conformada por el nombre del doctor y el tipo de cita
-        key = r[0]+'|'+r[1] //+r[3]+r[7]
+        key = mapaResultado[r[0]]+'|'+r[1] //+r[3]+r[7]
         //Valors: Datos restantes y variantes
-        print ("key:"+key)
-        print ("value."+value)
+        // // print ("key:"+key)
+        // // print ("value."+value)
         if (key_ant=="")
           key_ant = key
   
@@ -83,11 +94,11 @@ class HojaRegistroDiarioService {
 
       lista = obten_lista(resultados)
       
-      print ("Lista obtenida")
-      for (value in lista)
-      {
-        print value
-      }
+      // print ("Lista obtenida")
+    //  for (value in lista)
+      //{
+        // print value
+     // }
       
       def lista_ret = [0,params.fecha, tipoCita]
       
@@ -120,17 +131,17 @@ return lista_ret
     try{
       def generar_pdf = new GeneratePDF()
       //Asignar direccion de impresion
-      print "Generando nuevo archivo"
+      // print "Generando nuevo archivo"
 
       generar_pdf.setAddressPdf("web-app/temp_pdf/consulta.pdf")
       //Asignar campo de datos
-      print "Termina impresion"
+      // print "Termina impresion"
       generar_pdf.setData(lista)
       //Crea el pdf y cuando termina cierra la aplicacion
       generar_pdf.createPdf()
     }catch(Exception e){
-      print "Un error aqui"
-      e.printStackTrace()
+      // print "Un error aqui"
+      e.// printStackTrace()
     }*/
   }
 }

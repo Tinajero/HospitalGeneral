@@ -22,13 +22,13 @@
 					    </ol>
 			      		<div class="carousel-inner" role="listbox">
 				     		<div class="item active">
-					     		<img src="${resource(dir: 'images', file: 'hospital1.jpg') }" style="width: 900px; height: 500px">
+					     		<img src="${resource(dir: 'images', file: 'Hospital.jpg') }" style="width: 1000px; height: 500px">
 					  		</div>
 			          		<div class="item">
-			        	 		<img src="${resource(dir: 'images', file: 'hospital3.jpg') }" style="width: 900px; height: 500px">
+			        	 		<img src="${resource(dir: 'images', file: 'hospital2.jpg') }" style="width: 900px; height: 500px">
 			          		</div>
 					        <div class="item">
-					        	<img src="${resource(dir: 'images', file: 'hospital2.jpg') }" style="width: 900px; height: 500px">
+					        	<img src="${resource(dir: 'images', file: 'hospital1.jpg') }" style="width: 900px; height: 500px">
 					        </div>
 			        	</div>
 				      	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
