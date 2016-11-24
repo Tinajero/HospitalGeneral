@@ -26,6 +26,7 @@ var Autocomplete = function(){
                         $('#expediente_textField').autocomplete({
                             source: datos,
                             select: function (event, ui){
+                                event.preventDefault();
                                 $('#expediente_textField').val(ui.item.value);
                                 $('#apaterno').val(ui.item.apaterno);
                                 $('#amaterno').val(ui.item.amaterno);
@@ -42,7 +43,7 @@ var Autocomplete = function(){
     function autocompleteNombre() {
         $('#nombre').on("keyup", function(){
             value = $(this).val();
-            if($('#tipoCita').val() == '2'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
+            if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
                 $.ajax({
                     type: "GET",
                     url: "autocompleteByNombre",
@@ -66,7 +67,8 @@ var Autocomplete = function(){
 
                         $("#nombre").autocomplete({
                             source: datos,
-                            select: function (event, ui){                                
+                            select: function (event, ui){
+                                event.preventDefault();                             
                                 $('#expediente_textField').val(ui.item.expediente);
                                 $('#apaterno').val(ui.item.apaterno);
                                 $('#amaterno').val(ui.item.amaterno);
@@ -81,7 +83,7 @@ var Autocomplete = function(){
         });
         $('#apaterno').on("keyup", function(){
             value = $(this).val();
-            if($('#tipoCita').val() == '2'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
+            if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
                 $.ajax({
                     type: "GET",
                     url: "autocompleteByApaterno",
@@ -93,7 +95,7 @@ var Autocomplete = function(){
                         var datos =
                         $.map(response, function(item){
                             return{
-                                value: item.apellidoPaterno + " " + item.apellidoMaterno + " " +item.nombre, //busca por apellidoPaterno
+                                value: item.apellidoPaterno + " " + item.apellidoMaterno + " " +item.nombre,//busca por apellidoPaterno
                                 expediente: item.expediente,
                                 nombre: item.nombre,
                                 apaterno: item.apellidoPaterno,                   
@@ -105,13 +107,15 @@ var Autocomplete = function(){
 
                         $("#apaterno").autocomplete({
                             source: datos,
-                            select: function (event, ui){                                
+                            select: function (event, ui){
+                                event.preventDefault();                              
                                 $('#expediente_textField').val(ui.item.expediente);
-                                $('#apaterno').val(ui.item.apaterno);
+                                $(this).val(ui.item.apaterno);
+                                $('.ui-autocomplete-input').val(ui.item.apaterno);
                                 $('#amaterno').val(ui.item.amaterno);
                                 $('#nombre').val(ui.item.nombre);
                                 $('#poblacion').val(ui.item.poblacion);
-                                $('#telefono').val(ui.item.telefono);   
+                                $('#telefono').val(ui.item.telefono);
                             }
                         });
                     }
@@ -120,7 +124,7 @@ var Autocomplete = function(){
         });
         $('#amaterno').on("keyup", function(){
             value = $(this).val();
-            if($('#tipoCita').val() == '2'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
+            if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
                 $.ajax({
                     type: "GET",
                     url: "autocompleteByAmaterno",
@@ -144,10 +148,11 @@ var Autocomplete = function(){
 
                         $("#amaterno").autocomplete({
                             source: datos,
-                            select: function (event, ui){                                
+                            select: function (event, ui){
+                                event.preventDefault();                           
                                 $('#expediente_textField').val(ui.item.expediente);
                                 $('#apaterno').val(ui.item.apaterno);
-                                $('#amaterno').val(ui.item.amaterno);
+                                $(this).val(ui.item.amaterno);
                                 $('#nombre').val(ui.item.nombre);
                                 $('#poblacion').val(ui.item.poblacion);
                                 $('#telefono').val(ui.item.telefono);
