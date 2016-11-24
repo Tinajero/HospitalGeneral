@@ -11,7 +11,7 @@ function categoryChanged(categoryId) {
   
 function getHorarios(  ){
     var doctorId = $("#cbDoctores").val();
-	var tipoCita = $("#tipoCita").val();
+		var tipoCita = $("#tipoCita").val();
   	if (!seleccionado && doctorId != null ) {
     	var doctorId = $("#cbDoctores").val();
     	console.log("doctorId = " +doctorId);
@@ -31,16 +31,15 @@ function getHorarios(  ){
       		$('#tablaHorariosCita tbody').empty();
       		$.each( arreglo, function( index, horario){
       			console.log(index + " " + horario.hora);
-      			if ( horario.libre ) {
-              console.log("t " + horario.tipo + ".")
-              if ( horario.tipo === '1'){
+      			if ( horario.libre ) {              
+              if ( horario.tipo == 0){
                 $("<tr class='libre primeraVez'></tr>").appendTo( '#tablaHorariosCita tbody').append(
                   "<td class='centrado'>"+(index+1)+"</td>" +
                   "<td class='centrado'>" + horario.hora + "</td>"+
                   "<td class='centrado'>  Primera Vez </td>"                  
                 );
 
-              } else if (tipoCita == '2'){ // si el tipo de cita es subsecuente;
+              } else if (horario.tipo == 1){ // si el tipo de cita es subsecuente;
         				$("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
         					"<td class='centrado'>"+(index+1)+"</td>" +
         					"<td class='centrado'>" + horario.hora + "</td>"+
@@ -48,7 +47,9 @@ function getHorarios(  ){
         				);
               }
       			} else {
-      				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" + horario.hora + "</td><td class='centrado'>"+horario.tipo+"</td>");
+      				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
+								+ horario.hora 
+								+ "</td><td class='centrado'>"+(horario.tipo==1?"Subsecuente":"Primera Vez") +"</td>");
       			}
       		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {
@@ -207,14 +208,18 @@ function cambiarColorDias(){
 }
 /*fuuncion llamada cuando se cambia el select del tipo de cita que debera de ocultar o mostrar
  * campos, en este caso el de expediente ya que un tipo de primera vez no tiene expediente
+ * 
+ * Mal esta funcion ya ni sera llamada siempre se podra escojer entre dos tipos solo que 
+ * si existe una seleccion cruzada se debe poder ver, esa funcionalidad la hara Max
  * */
 function onChangeTipoCita(){
 	var valueSelect = $("#tipoCita").val();
-	if (valueSelect == '2') {
+	// comentado por que ya no se debe hacer nada
+	/*if (valueSelect == '2') {
 		$("#divExpediente").removeClass("ocultar-contenido");
 	} else {
 		$("#divExpediente").addClass("ocultar-contenido");
-	}
+	}*/
 }
 
 $(document).ready(function() {

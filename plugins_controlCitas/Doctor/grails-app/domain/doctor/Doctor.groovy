@@ -5,20 +5,16 @@ class Doctor {
 	String nombre
 	String apellidoPat
 	String apellidoMat
-	String diasLaborales 
-	String horario 
+	String diasLaborales 	
     static constraints = {
 		tipoCita blank: false
 		nombre blank: false
 		apellidoPat blank: false
-		apellidoMat blank:false
-		horario blank: false
-    horario maxSize: 500
+		apellidoMat blank:false		   
     }
 
   	static mapping = {
   		diasLaborales defaultvalue: "1000001"
-
   	}
 
   	public static List listUnique(){

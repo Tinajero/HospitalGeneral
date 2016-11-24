@@ -8,6 +8,7 @@ import org.codehaus.groovy.grails.web.json.*;
 class DoctorService {
     def hora=[]
     def minutos=[]
+    def HorarioService
     def serviceMethod() {
 
     }
@@ -60,7 +61,23 @@ class DoctorService {
     */
     def getHorarioFromDoctorID( doctorId ) {
         def doctor = Doctor.get( doctorId )
+
+
         return  doctor?.horario;
+    }
+
+    /**
+    *   Servicio que regresa el horario de un doctor a parti de su ID
+    */
+    def getHorarioFromDoctorID(Long doctorId,String fechaQuery ) {
+        print "fechaQuery " + fechaQuery
+        def fechaDate = Date.parse("d-M-yyyy", fechaQuery)
+        Calendar c = Calendar.getInstance();
+        c.setTime(fechaDate);
+        int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;
+        HorarioService.obtenerHorarioJsonDeDoctorDiaSemana( doctorId, day_of_week );
+        
+        
     }
    
     def getDoctoresWhitTipoCita(tipoCita){
@@ -116,4 +133,22 @@ class DoctorService {
     def getMinutos(){
         return minutos
     }
+    def obtenerDiasLaboralesPorHorario(jsonHorario){  
+        def matrizHorarios = JSON.parse(jsonHorario);
+        matrizHorarios       
+        def diasString=['D','L','M','W','J','V','S']
+        def dias = ""
+        for (int i = 0; i < matrizHorarios.size(); i++){
+            JSONObject.Null.metaClass.asBoolean = {-> false}
+            print matrizHorarios[i][0]            
+           // matrizHorarios[i][0]
+            if (matrizHorarios[i][0].toString() != "null" )
+                dias += diasString[i] 
+            else
+                dias += "-"
+        }
+        return dias
+    }
+    
+    
 }

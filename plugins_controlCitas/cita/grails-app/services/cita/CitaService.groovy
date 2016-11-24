@@ -44,17 +44,21 @@ class CitaService {
         def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, date)                
         boolean f = true;
         if ( esDiaLaboral ) {
-            def horario = DoctorService.getHorarioFromDoctorID(doctorID)            
+            //def horario = DoctorService.getHorarioFromDoctorID(doctorID)
+            def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)            
             def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )                
             def libre = true;
             def i = 0;        
             f = true;
             if (horario != null ){
-                def ohorario = JSON.parse(horario)                
-                for (int j = 0; j < ohorario.size(); j ++){// checo hora por hora 
-                    def it = ohorario[j];
+                //def ohorario = JSON.parse(horario)                
+                for (int j = 0; j < horario.size(); j ++){// checo hora por hora 
+                    /*def it = ohorario[j]; // se cambia por el cambio de horarios que tuvo
                     def hora = getHoraDeString(it.hora)
-                    def minuto = getMinutoDeString(it.hora) 
+                    def minuto = getMinutoDeString(it.hora)
+                    */ 
+                    def hora = horario[j][0]
+                    def minuto = horario[j][1]
                   //  print hora + " " + minuto + " " + citas                  
                     if ( isLibre(hora, minuto, citas)  ){// encuentra una hora libre ese dia
                   //      print "si entro"
@@ -100,21 +104,24 @@ class CitaService {
         //print "es un dia Laboral? " + esDiaLaboral
         def ret = [];
         if ( esDiaLaboral ) {
-            def horario = DoctorService.getHorarioFromDoctorID(doctorID)            
+            def horario = DoctorService.getHorarioFromDoctorID(doctorID, fecha)            
             def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )                
             def libre = true;
             def i = 0;        
             if (horario != null ){
-                def ohorario = JSON.parse(horario)
+                //def ohorario = JSON.parse(horario)
                 //print ohorario
-                ohorario.each{
-                    def hora = getHoraDeString(it.hora)
-                    def minuto = getMinutoDeString(it.hora)
-                   // print hora + " " + minuto
+                horario.each{
+                    //def hora = getHoraDeString(it.hora)
+                    //def minuto = getMinutoDeString(it.hora)
+                    def hora = it[0]
+                    def minuto = it[1]
+                    def tipo = it[2]
+                   def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
                     libre = isLibre(hora, minuto, citas)
                     ret[i++] = [
-                        hora: it.hora,
-                        tipo: it.tipo,
+                        hora: horaString,
+                        tipo: tipo,
                         libre:libre
                     ]
                 }

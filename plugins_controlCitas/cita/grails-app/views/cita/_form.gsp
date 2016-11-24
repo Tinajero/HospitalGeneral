@@ -12,14 +12,13 @@
 			class="form-control selectionBox" 
 			required="true"
 			onChange="onChangeTipoCita()">
-			<option value="1">Primera Vez</option>
-			<option value="2">Subsecuente</option>
-			<option value="3">Niño Sano</option>
+			<option value="0">Primera Vez</option>
+			<option value="1">Subsecuente</option>			
 		</select>
 	</div> 
 </div>
 
-<div class="form-group ocultar-contenido ${hasErrors(brean: paciente, field: expediente, 'has error')}" id="divExpediente">
+<div class="form-group ${hasErrors(brean: paciente, field: expediente, 'has error')}" id="divExpediente">
 
 	<label for="expediente" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.label" default='Expediente'/>
