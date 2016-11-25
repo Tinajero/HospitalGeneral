@@ -36,4 +36,33 @@ class HorarioService {
          
          return resultado
     }
+
+    def obtenerHorarioDeDoctor(doctorId){
+        def query = []
+        def resultado = []
+        if (doctorId != null){
+            query = Horario.executeQuery("select horario.diaDeLaSemana, horario.hora, horario.minuto, horario.tipoCita from Horario horario where horario.doctor.id = :doctorId",[doctorId: doctorId]);
+            if (query != null){
+
+                for (int i = 0; i < 7; i++){
+                    resultado[i] = [];
+                }
+
+                for (int i = 0; i < query.size(); i++){
+                    
+                    def item = query[i]
+                    String horaS = sprintf("%02d", item[1]) + ":" + sprintf("%02d", item[2])
+                    String tipoCita = item[3] == 0? "primeraVez":"subsecuente" 
+                    def horarioDia = [
+                        'hora': horaS,
+                        'tipoCita' : tipoCita
+                    ]
+                    
+                    resultado[ item[0] ].add(horarioDia)
+                }
+            }
+        }
+       
+        return resultado
+    }
 }

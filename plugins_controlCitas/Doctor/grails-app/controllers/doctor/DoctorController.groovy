@@ -30,7 +30,9 @@ class DoctorController {
     }
 
     def create() {
-        respond new Doctor(params)
+        def horario = []
+        def maxim = 0
+        respond new Doctor(params),model:[horario: horario, horarioLength: maxim]
     }
 
     @Transactional
@@ -68,9 +70,14 @@ class DoctorController {
     
     def edit(Doctor doctorInstance) {
         print "edit recibe " + doctorInstance
-        def horario = DoctorService.jsonHorario(doctorInstance.horario);
-        print horario.hora
-        respond doctorInstance, model:[horario: horario]
+       // def horario = DoctorService.jsonHorario(doctorInstance.horario);
+       def horario = HorarioService.obtenerHorarioDeDoctor(doctorInstance?.id)
+       def maxim = 0  
+       for (int i = 0; i < horario.size() ; i++){
+           if (maxim < horario[i].size()) maxim = horario[i].size()
+       }
+       print horario
+       respond doctorInstance, model:[horario: horario, horarioLength: maxim]
     }
 
     @Transactional

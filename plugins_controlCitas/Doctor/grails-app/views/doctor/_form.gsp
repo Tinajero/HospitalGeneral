@@ -111,6 +111,7 @@
 		</div>
 	</div>
 	<div class="col-sm-4 col-sm-offset-1">
+		${horarioLength}
 		<table class="table table-striped">
 			<thead>
 				<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">					
@@ -118,7 +119,20 @@
 				</g:each>
 			</thead>
 			<tbody id="tablaHorarios">
+				
+				<g:each in="${ (0..< horarioLength) }" status="i" var="fila">
+					<tr  >	
+						<g:each in="${ (0..< 7) }" status="j" var="columnaS">						
+							<td id="f${i}_c${j}" class="${ horario[j][i]?.tipoCita } centrado">			
+								<g:if test="${horario[j][i]}">
+									${horario[j][i]?.hora}&nbsp;								
+									<a href='' class='eliminarCelda glyphicon glyphicon-trash'/>
+								</g:if>				 																																									
+							</td>
+						</g:each>					
+					</tr>
 
+				</g:each>
 			</tbody>
 		</table>
 	</div>
