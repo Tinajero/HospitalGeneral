@@ -8,7 +8,7 @@ import paciente.Paciente
 @Transactional
 class CitaService {
 
-	def DoctorService 	
+	def DoctorService
     def CitaService
     def CalendarioService
     def LastIndiceTempService
@@ -25,10 +25,10 @@ class CitaService {
         //print "CitaService "
         //print "fecha " + fechaQuery + " doctorid " + doctorId
         def doctorIdLong = new Long(doctorId)
-        def inicioDia = Date.parse("d-M-yyyy HH:mm:ss", fechaQuery +" 00:00:00")        
+        def inicioDia = Date.parse("d-M-yyyy HH:mm:ss", fechaQuery +" 00:00:00")
         def finDia = Date.parse("d-M-yyyy HH:mm:ss", fechaQuery +" 23:59:59")
        	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId", [startTime:inicioDia, endTime:finDia, doctorId:doctorIdLong])
-       	return query     
+       	return query
     }
     /**
      * Funcion que dada una fecha del tipo dd-MM-yyyy regresa si ese dia este ocupado
@@ -38,28 +38,28 @@ class CitaService {
      * @return 0 si esta libre, 1 si esta ocupado, -1 si no trabaja ese dia
      */
     def isBussyDay(Long doctorId,String date ){
-       // print date 
+       // print date
         int doctorID = (int) doctorId;
         int resultado = 0
-        def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, date)                
+        def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, date)
         boolean f = true;
         if ( esDiaLaboral ) {
             //def horario = DoctorService.getHorarioFromDoctorID(doctorID)
-            def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)            
-            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )                
+            def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)
+            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )
             def libre = true;
-            def i = 0;        
+            def i = 0;
             f = true;
             if (horario != null ){
-                //def ohorario = JSON.parse(horario)                
-                for (int j = 0; j < horario.size(); j ++){// checo hora por hora 
+                //def ohorario = JSON.parse(horario)
+                for (int j = 0; j < horario.size(); j ++){// checo hora por hora
                     /*def it = ohorario[j]; // se cambia por el cambio de horarios que tuvo
                     def hora = getHoraDeString(it.hora)
                     def minuto = getMinutoDeString(it.hora)
-                    */ 
+                    */
                     def hora = horario[j][0]
                     def minuto = horario[j][1]
-                  //  print hora + " " + minuto + " " + citas                  
+                  //  print hora + " " + minuto + " " + citas
                     if ( isLibre(hora, minuto, citas)  ){// encuentra una hora libre ese dia
                   //      print "si entro"
                         if (f){
@@ -67,7 +67,7 @@ class CitaService {
                             f = false
                         }
                         break
-                        
+
                     }
                 }
                 // recorrio todas sus horas y no encontro una libre, entonces ese dia esta ocupado
@@ -75,9 +75,9 @@ class CitaService {
                     resultado = 1
                     f = false
                 }
-            }            
+            }
         }
-        // ese dia ni siquiera trabaja 
+        // ese dia ni siquiera trabaja
         if (f){
             resultado = -1
             f = false
@@ -90,11 +90,11 @@ class CitaService {
      * Service que a partir de el ID de un doctor, y la fecha en formato de cadena  dia + "-" + mes + "-" + anio
      * regresa el horario de un Doctor, con las horas ocupadas marcadas en un arreglo, que debe ser convertido a Json
      * como respuesta para el script que lo llama
-     * @param doctorID es el ID del doctor 
+     * @param doctorID es el ID del doctor
      * @param fecha en formato de cadena  dia - mes- anio ej: 7-5-2015 (7  de mayo de 2015)
-     * @return  regresa en caso correcto un Json con los horarios del doctor, en caso de que no trabaje ese dia 
+     * @return  regresa en caso correcto un Json con los horarios del doctor, en caso de que no trabaje ese dia
      * la leyenda  No atiende citas ese dia, unicamente (los dias que atiende)
-     * 
+     *
      */
    def mostrarHorario(int doctorID, String fecha){
 
@@ -104,10 +104,10 @@ class CitaService {
         //print "es un dia Laboral? " + esDiaLaboral
         def ret = [];
         if ( esDiaLaboral ) {
-            def horario = DoctorService.getHorarioFromDoctorID(doctorID, fecha)            
-            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )                
+            def horario = DoctorService.getHorarioFromDoctorID(doctorID, fecha)
+            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
             def libre = true;
-            def i = 0;        
+            def i = 0;
             if (horario != null ){
                 //def ohorario = JSON.parse(horario)
                 //print ohorario
@@ -150,16 +150,16 @@ class CitaService {
             ret[0] = [
                 hora: "No atiende citas ese dia, unicamente ",
                 libre: false
-            ] 
+            ]
             ret[1] = [
                 hora: mensajeDias,
                 libre: false
-            ]  
+            ]
 
         }
-       // print horario        
+       // print horario
        // esto deberia ser mostrado en JSON
-        return ret 
+        return ret
     }
     /**
      * Funcion utilizada por el service mostrarHorario que checa a partir de la hora y minuto dado
@@ -178,7 +178,7 @@ class CitaService {
             calendar.setTime( it.fecha );
             hours = calendar.get(Calendar.HOUR_OF_DAY);
             minutes = calendar.get(Calendar.MINUTE);
-            
+
             if (hora == hours && minutes == minuto){
                 esta = false
                 break;
@@ -190,22 +190,22 @@ class CitaService {
     /**
      * Funcion que a partir de una cadena del tipo "hh:mm" regresa la hora
      * ej: "07:45" regresa el 7
-     * @param cadena del tipo "hh:mm" 
-     * @return entero de la hora de 
+     * @param cadena del tipo "hh:mm"
+     * @return entero de la hora de
      */
     def getHoraDeString(String hora){
         String temp = ""
         int horaEntero = 0;
         for (int i = 0; i < hora.length() && hora.charAt(i) !=':' ; i++){
             temp += hora.charAt(i)
-        }        
-        horaEntero = Integer.parseInt(temp)        
+        }
+        horaEntero = Integer.parseInt(temp)
         return horaEntero;
     }
     /**
      * Funcion que a partir de una cadena del tipo "hh:mm" regresa la hora
      * ej: "07:45" regresa el 45
-     * @param hora, cadena del tipo "hh:mm" 
+     * @param hora, cadena del tipo "hh:mm"
      * @return entero de la hora de la cadena
      */
     def getMinutoDeString(String hora){
@@ -216,8 +216,8 @@ class CitaService {
         i++;
         for  ( ; i < hora.length() && hora.charAt(i) >='0' && hora.charAt(i) <='9' ; i++){
              temp += hora.charAt(i)
-        }                    
-        minutoEntero = Integer.parseInt(temp)        
+        }
+        minutoEntero = Integer.parseInt(temp)
         return minutoEntero;
     }
     /**
@@ -225,17 +225,17 @@ class CitaService {
      * con los dias ocupados y libres
      * @param  startTime fecha en String de forma yyyy-MM-dd inicio del intervalo a checar
      * @param  endTime   fecha en String de forma yyyy-MM-dd final del intervalo a checar
-     * @param  doctorId  Id del doctor 
+     * @param  doctorId  Id del doctor
      * @return              arreglo que contiene un int: ocupado, String: fechaString, date: date
      */
     def getBussyDays(String startTime, String endTime, Long doctorId){
         def ans = [] // arreglo de mapas que regresaremos
         //print "getBussyDays CitaService : "
-        def startDate = Date.parse("yyyy-MM-dd HH:mm:ss", startTime + " 00:00:00")    
-        def endDate = Date.parse("yyyy-MM-dd HH:mm:ss", endTime + " 00:00:00")    
+        def startDate = Date.parse("yyyy-MM-dd HH:mm:ss", startTime + " 00:00:00")
+        def endDate = Date.parse("yyyy-MM-dd HH:mm:ss", endTime + " 00:00:00")
         DateFormat outputFormatter = new SimpleDateFormat("dd-MM-yyyy")
         DateFormat formato = new SimpleDateFormat("yyyy-MM-dd")
-        def bussy 
+        def bussy
         String fechaString = "", fechaId = ""
         if  ( startTime != null )
         for (int i = 0; startDate.compareTo(endDate) < 0 ; i++ ){ // mientras tempDate este antes que endDate
@@ -261,10 +261,16 @@ class CitaService {
     }
 
     def generateExpediente(){
-        println LastIndiceTempService.getLastIndex();        
+        println LastIndiceTempService.getLastIndex();
     }
 
     //service for autocomplete
+	 def getPacientesWithFullExpediente(String expediente){
+        println 'getPacientesWithFullExpediente';
+        println expediente;
+		  def paciente = Paciente.executeQuery("from Paciente paciente where paciente.expediente = :expediente",[expediente: expediente]);
+        return paciente
+    }
     def getPacientesWithExpediente(String expediente){
         println 'getPacientesWithExpediente';
         println expediente;
@@ -309,5 +315,3 @@ class CitaService {
     }
     //service for autocomplete
 }
-
-

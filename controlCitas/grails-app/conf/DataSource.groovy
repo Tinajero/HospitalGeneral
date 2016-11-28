@@ -5,7 +5,7 @@ dataSource {
     driverClassName = "com.mysql.jdbc.Driver"
     username = "root"
 
-    password = "kamikazelab"
+    password = "seiyamax1"
 
 }
 hibernate {
@@ -22,7 +22,7 @@ environments {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             //url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-            
+
             url = "jdbc:mysql://localhost/controlCitaDB" //localhost/nombre_de_la_BaseDeDatos
         }
     }

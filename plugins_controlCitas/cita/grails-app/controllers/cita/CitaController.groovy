@@ -9,7 +9,7 @@ import paciente.Paciente
 import doctor.Doctor
 @Transactional(readOnly = true)
 @Secured(['ROLE_USER'])
-class CitaController { 
+class CitaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def CitaService
@@ -39,7 +39,7 @@ class CitaController {
 
             def p = Paciente.findByExpediente(cita.paciente.expediente)
             if(p){
-                println "Se encontró el expediente en la BD"
+                println "Se encontrï¿½ el expediente en la BD"
                 println "p = " + p.expediente
                 cita.paciente = p
                 println "cita.paciente : " + cita.paciente
@@ -56,7 +56,7 @@ class CitaController {
 
         cita.paciente.save flush:true
         cita.save flush:true
-        
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'cita.label', default: 'Cita'), cita.id])
@@ -126,7 +126,7 @@ class CitaController {
     def tipoCitaCambiada(String tipoCita){
         println "tipoCitaCambiada"
         println tipoCita
-        //printn params.  
+        //printn params.
         def query = Doctor.where {
             tipoCita == tipoCita
         }
@@ -138,15 +138,21 @@ class CitaController {
            noSelection:noSelection, required:'true'
         )
     }
-    
+
     def mostrarHorario(int doctorID, String fecha){
         def ret = CitaService.mostrarHorario(doctorID, fecha);
         render ret as JSON
-    }    
+    }
     def otraFuncion(){
         render "Hola Mundo"
     }
     //Funciones para Autocomplete en Citas
+    def autocompleteByFullExpediente(String expediente){
+        println "entra a autocompleteByFullExpediente";
+        println expediente;
+        def paciente = CitaService.getPacientesWithFullExpediente( expediente );
+        render paciente as JSON
+    }
     def autocompleteByExpediente(String expediente){
         println "entra a autocompleteByExpediente";
         println expediente;
@@ -181,7 +187,7 @@ class CitaController {
 
         //render response as JSON
         def pacientes = Paciente.list()
-        
+
         render pacientes as JSON
     }*/
     //End Funciones para Autocomplete en Citas
