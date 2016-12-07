@@ -10,45 +10,29 @@ var changeTipoCita = function(){
    });
 }
 var focus = function(){
-   $('#expediente_textField').focusin(function(){
-      if($('#tipoCita').val() == '1'){
+   $('#expediente_textField').focusin(function(){      
+         $(this).prop('readonly', false);      
+   });
+   $('#expediente_textField').focusout(function(){      
+         $(this).prop('readonly', true);      
+   });
+   $('#nombre').focusin(function(){      
+         $(this).prop('readonly', false);      
+   });
+   $('#nombre').focusout(function(){      
+         $(this).prop('readonly', true);      
+   });
+   $('#apaterno').focusin(function(){      
+         $(this).prop('readonly', false);      
+   });
+   $('#apaterno').focusout(function(){      
+         $(this).prop('readonly', true);      
+   });
+   $('#amaterno').focusin(function(){      
          $(this).prop('readonly', false);
-      }
    });
-   $('#expediente_textField').focusout(function(){
-      if($('#tipoCita').val() == '1'){
-         $(this).prop('readonly', true);
-      }
-   });
-   $('#nombre').focusin(function(){
-      if($('#tipoCita').val() == '1'){
-         $(this).prop('readonly', false);
-      }
-   });
-   $('#nombre').focusout(function(){
-      if($('#tipoCita').val() == '1'){
-         $(this).prop('readonly', true);
-      }
-   });
-   $('#apaterno').focusin(function(){
-      if($('#tipoCita').val() == '1'){
-         $(this).prop('readonly', false);
-      }
-   });
-   $('#apaterno').focusout(function(){
-      if($('#tipoCita').val() == '1'){
-         $(this).prop('readonly', true);
-      }
-   });
-   $('#amaterno').focusin(function(){
-      if($('#tipoCita').val() == '1'){
-         $(this).prop('readonly', false);
-      }
-   });
-   $('#amaterno').focusout(function(){
-      if($('#tipoCita').val() == '1'){
-         $(this).prop('readonly', true);
-      }
+   $('#amaterno').focusout(function(){      
+         $(this).prop('readonly', true);      
    });
 }
 var readOnlyInputs = function(value){
@@ -64,7 +48,7 @@ var Autocomplete = function(){
     function autocompleteExpediente() {
         $('#expediente_textField').on("keyup", function(){
             value = $(this).val();
-            if($('#tipoCita').val() == '1'){
+         //   if($('#tipoCita').val() == '1'){
                if(value.length >= 4){
                   $.ajax({
                       type: "GET",
@@ -121,13 +105,13 @@ var Autocomplete = function(){
                       }
                   });
                }
-            }
+           // }
         });
     }
     function autocompleteNombre() {
         $('#nombre').on("keyup", function(){
             value = $(this).val();
-            if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
+       ///     if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
                 $.ajax({
                     type: "GET",
                     url: "autocompleteByNombre",
@@ -164,11 +148,11 @@ var Autocomplete = function(){
                         });
                     }
                 });
-            }
+      //      }
         });
         $('#apaterno').on("keyup", function(){
             value = $(this).val();
-            if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
+         //   if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
                 $.ajax({
                     type: "GET",
                     url: "autocompleteByApaterno",
@@ -205,11 +189,11 @@ var Autocomplete = function(){
                         });
                     }
                 });
-            }
+          //  }
         });
         $('#amaterno').on("keyup", function(){
             value = $(this).val();
-            if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
+         //   if($('#tipoCita').val() == '1'){ //esto para que solo haga el autocomplete en tipo de cita Subsecuente
                 $.ajax({
                     type: "GET",
                     url: "autocompleteByAmaterno",
@@ -246,7 +230,7 @@ var Autocomplete = function(){
                         });
                     }
                 });
-            }
+       //     }
         });
     }
     return{
