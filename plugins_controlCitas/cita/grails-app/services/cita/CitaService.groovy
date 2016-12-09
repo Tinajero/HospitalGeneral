@@ -111,20 +111,36 @@ class CitaService {
             if (horario != null ){
                 //def ohorario = JSON.parse(horario)
                 //print ohorario
-                horario.each{
+                /*horario.each{
                     //def hora = getHoraDeString(it.hora)
                     //def minuto = getMinutoDeString(it.hora)
                     def hora = it[0]
                     def minuto = it[1]
                     def tipo = it[2]
-                   def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
+                    def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
                     libre = isLibre(hora, minuto, citas)
                     ret[i++] = [
                         hora: horaString,
                         tipo: tipo,
                         libre:libre
                     ]
+                }*/
+                //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
+                horario.each{
+                    def hora = it[0]
+                    def minuto = it[1]
+                    def tipo = it[2]
+                    def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
+                    libre = isLibre(hora, minuto, citas)
+                    def asignadaA = isAsignadaA(doctorID, fecha, horaString)
+                    ret[i++] = [
+                        hora: horaString,
+                        tipo: tipo,
+                        libre: libre,
+                        asignadaA: asignadaA
+                    ]
                 }
+                //end
             }
             //print ret as JSON
         } else { // no trabaja ese dia
@@ -314,4 +330,18 @@ class CitaService {
         return results
     }
     //service for autocomplete
+    //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
+    def isAsignadaA(int doctorID, String fecha, String horaString){
+        def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
+        def asignadaA = ''
+        def citaHora = ''
+        citas.each{
+            citaHora = it.fecha.toString().split(' ')[1].substring(0, 5)
+            if( citaHora == horaString ){
+                asignadaA = it.asignadaA
+            }
+        }
+        return asignadaA
+    }
+    //end
 }

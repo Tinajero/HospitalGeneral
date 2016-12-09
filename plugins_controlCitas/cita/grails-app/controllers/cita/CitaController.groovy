@@ -45,7 +45,16 @@ class CitaController {
                 println "cita.paciente : " + cita.paciente
             }
         }
-
+        //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
+        if (cita.tipoCita != null) {
+            //decimos qué tipo de cita fue asignada al horario seleccionado
+            if(cita.tipoCita == 0){
+                cita.asignadaA = "primera vez"
+            }else if(cita.tipoCita == 1){
+                cita.asignadaA = "subsecuente"
+            }
+        }
+        //end
         cita.validate()
         if (cita.hasErrors() ) {
             println "Cita tiene errores"
@@ -177,19 +186,6 @@ class CitaController {
         def pacientes = CitaService.getPacientesWithAmaterno( amaterno );
         render pacientes as JSON
     }
-    /*def AutocompletadoEnCitas(){
-        //def citas = Cita.list()
-        //def response = []
-
-        //citas.each{
-        //    response << "${it.paciente.expediente}"
-        //}
-
-        //render response as JSON
-        def pacientes = Paciente.list()
-
-        render pacientes as JSON
-    }*/
     //End Funciones para Autocomplete en Citas
     def getBussyDays(String startTime,String endTime, Long doctorId){
         print "getBussyDays citaControler: "

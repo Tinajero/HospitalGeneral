@@ -190,6 +190,7 @@
 		        				<th class="centrado">No</th>
 		        				<th class="centrado">Hora</th>
 		        				<th class="centrado">Tipo</th>
+		        				<th class="centrado">Asignado a un</th>
 		        			</thead>
 		        			<tbody>
 		        			</tbody>

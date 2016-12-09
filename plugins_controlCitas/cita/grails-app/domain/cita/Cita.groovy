@@ -9,6 +9,7 @@ class Cita {
 	Date fecha
 	/*Tipo de cita sera 1 para primera vez 2 para subsecuente*/
 	Integer tipoCita
+	String asignadaA
     static constraints = {
     }
 }

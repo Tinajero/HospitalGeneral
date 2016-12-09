@@ -8,7 +8,7 @@ function categoryChanged(categoryId) {
   	},
 	error:function(XMLHttpRequest,textStatus,errorThrown){}});
 }
-  
+
 function getHorarios(  ){
     var doctorId = $("#cbDoctores").val();
 		var tipoCita = $("#tipoCita").val();
@@ -26,6 +26,7 @@ function getHorarios(  ){
       		var arreglo = data;//JSON.parse(data);
           arregloHorarios = data; //copia de los horarios para usarlo en agregar hora
       		var htmlString = "";
+          var asignadoA = ""; //asignadoA es progra de Max
       		// con each recorremos
       		// luego agregamos una fila a la tabla en su tbody
       		$('#tablaHorariosCita tbody').empty();
@@ -36,7 +37,7 @@ function getHorarios(  ){
                 $("<tr class='libre primeraVez'></tr>").appendTo( '#tablaHorariosCita tbody').append(
                   "<td class='centrado'>"+(index+1)+"</td>" +
                   "<td class='centrado'>" + horario.hora + "</td>"+
-                  "<td class='centrado'>  Primera Vez </td>"                  
+                  "<td class='centrado'>  Primera Vez </td>"              
                 );
 
               } else if (horario.tipo == 1){ // si el tipo de cita es subsecuente;
@@ -47,9 +48,19 @@ function getHorarios(  ){
         				);
               }
       			} else {
+              //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
+              if(horario.asignadaA=='primera vez' && horario.tipo==1){
+                asignadoA = "<td class='centrado asignadaA'>Primera vez</td>";
+              }else if(horario.asignadaA=='subsecuente' && horario.tipo==0){
+                asignadoA = "<td class='centrado asignadaA'>Subsecuente</td>";
+              }else{
+                asignadoA = "";
+              }
+              //end
       				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
 								+ horario.hora 
-								+ "</td><td class='centrado'>"+(horario.tipo==1?"Subsecuente":"Primera Vez") +"</td>");
+								+ "</td><td class='centrado'>"+(horario.tipo==1?"Subsecuente":"Primera Vez") +"</td>"
+                + asignadoA); //asignadoA es progra de Max
       			}
       		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {
@@ -59,7 +70,7 @@ function getHorarios(  ){
   		            $(this).addClass("seleccionado");
   		            seleccionado = false;
   			    }
-  			});  					
+  			  });  					
       	},
   		error:function(XMLHttpRequest,textStatus,errorThrown){}});
   } 

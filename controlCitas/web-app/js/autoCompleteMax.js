@@ -34,6 +34,18 @@ var focus = function(){
    $('#amaterno').focusout(function(){      
          $(this).prop('readonly', true);      
    });
+   $('#poblacion').focusin(function(){      
+         $(this).prop('readonly', false);
+   });
+   $('#poblacion').focusout(function(){      
+         $(this).prop('readonly', true);      
+   });
+   $('#telefono').focusin(function(){      
+         $(this).prop('readonly', false);
+   });
+   $('#telefono').focusout(function(){      
+         $(this).prop('readonly', true);      
+   });
 }
 var readOnlyInputs = function(value){
    $('#expediente_textField').prop('readonly', value);
@@ -95,13 +107,15 @@ var Autocomplete = function(){
                       },
                       dataType: "json",
                       success: function(response){
-                        $('#expediente_textField').val(response[0].expediente);
-                        $('#apaterno').val(response[0].apellidoPaterno);
-                        $('#amaterno').val(response[0].apellidoMaterno);
-                        $('#nombre').val(response[0].nombre);
-                        $('#poblacion').val(response[0].poblacion);
-                        $('#telefono').val(response[0].numeroTelefono);
-                        readOnlyInputs(true);
+                        if(response.length > 0){
+                          $('#expediente_textField').val(response[0].expediente);
+                          $('#apaterno').val(response[0].apellidoPaterno);
+                          $('#amaterno').val(response[0].apellidoMaterno);
+                          $('#nombre').val(response[0].nombre);
+                          $('#poblacion').val(response[0].poblacion);
+                          $('#telefono').val(response[0].numeroTelefono);
+                          readOnlyInputs(true);
+                        }
                       }
                   });
                }
@@ -245,30 +259,3 @@ $(function(){
     Autocomplete.autoCompleteByExpediente();
     Autocomplete.autoCompleteByNombre();
 });
-
-                    /*$("#expediente_textField").autocomplete({
-                        source: datos,
-                        //focus: function (event, ui){
-                        select: function (event, ui){
-                            //console.log("selected expediente:" + ui.item.value);
-                            //console.log("selected apellidoPaterno:" + ui.item.apaterno);
-                            //console.log("selected apellidoPaterno:" + ui.item.amaterno);
-                            //console.log("selected nombre:" + ui.item.nombre);
-                            //console.log("selected poblacion:" + ui.item.poblacion);
-                            //console.log("selected telefono:" + ui.item.telefono);
-
-                            $('#expediente_textField').val(ui.item.value);
-                            $('#apaterno').val(ui.item.apaterno);
-                            $('#amaterno').val(ui.item.amaterno);
-                            $('#nombre').val(ui.item.nombre);
-                            $('#poblacion').val(ui.item.poblacion);
-                            $('#telefono').val(ui.item.telefono);
-                            //desactivamos los inputs una vez seleccionado el paciente
-                            document.getElementById('expediente_textField').readOnly=true;
-                            document.getElementById('apaterno').readOnly=true;
-                            document.getElementById('amaterno').readOnly=true;
-                            document.getElementById('nombre').readOnly=true;
-                            document.getElementById('poblacion').readOnly=true;
-                            document.getElementById('telefono').readOnly=true;
-                        }
-                    });*/
