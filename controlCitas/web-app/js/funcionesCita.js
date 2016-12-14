@@ -146,6 +146,9 @@ function quitarSeleccionado(){
 	seleccionado = false;
 	$('#cbFechaCita_hour').val("");
 	$('#cbFechaCita_minute').val("");
+
+	$("#vista_hour").val("");
+	$("#vista_minute").val("");
 }
 function getHora(hora){
 	var temp = ""    
@@ -260,6 +263,7 @@ $(document).ready(function() {
       $('#cbFechaCita_month').val(  month );
       $('#cbFechaCita_year').val( year );	   	    
      $('#calendar').fullCalendar('select', date);
+		 quitarSeleccionado();
     },
     // funcion que modifica el color de fondo de un dia
     dayRender:function( date, cell ) { 
