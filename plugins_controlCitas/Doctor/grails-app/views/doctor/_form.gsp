@@ -1,5 +1,5 @@
 <%@ page import="doctor.Doctor" %>
-
+ <g:javascript src="funcionesDoctor.js"/>
 <g:set name= ''var="doctorS" bean="doctorService"/>
 <script type='text/javascript' src='${request.contextPath}/js/horarios.js'></script>
 
@@ -107,7 +107,7 @@
 				<input type="text" id="horarioInput"  name="horarioInput"/>
 		</div>
 		<div class="col-sm-2">
-			<a href="" title="" id="agregarFila" class="btn btn-default">Agregar hora</a>
+			<a title="" id="agregarFila" class="btn btn-default" onclick="agregarFila()">Agregar hora</a>
 		</div>
 	</div>
 	<div class="col-sm-4 col-sm-offset-1">
@@ -123,11 +123,11 @@
 				<g:each in="${ (0..< horarioLength) }" status="i" var="fila">
 					<tr  >	
 						<g:each in="${ (0..< 7) }" status="j" var="columnaS">						
-							<td id="f${i}_c${j}" class="${ horario[j][i]?.tipoCita } centrado">			
+							<td id="f${i}_c${j}" class="${ horario[j][i]?.tipoCita} centrado">			
 								<g:if test="${horario[j][i]}">
-									${horario[j][i]?.hora}&nbsp;								
-									<a href='' class='eliminarCelda glyphicon glyphicon-trash'/>
-								</g:if>				 																																									
+									<span>${horario[j][i]?.hora}</span>
+									<a class='eliminarCelda glyphicon glyphicon-trash' onclick="eliminarCelda('f${j}_c${i}')"/>
+								</g:if>				 																																								
 							</td>
 						</g:each>					
 					</tr>
@@ -144,168 +144,6 @@
 
 <!-- Codigo JQuery -->
 <script type="text/javascript">	
-	var counter = 0;		
-		/**
-		 * Regresa un arreglo que dice que dias estan marcados.
-		 */
-		function obtenerDiasMarcados(){
-			var d = $("#diasMarcados");
-			var diasValores = [];
-			d.each(function(index){
-				$(this).children("td").each(function(index2){
-					var t = $(this).children("input");					
-					diasValores[index2] = t.is(":checked");
-				});
-			});
 
-			return diasValores;
-
-		}
-		function eliminarCelda(event){
-				event.preventDefault();
-				var idCelda = event.target.parentNode.id;
-				var fila = obtenerFila(idCelda);
-				var columna = obtenerColumna(idCelda);
-				matrizDias[fila].splice(columna,1);
-				tope[fila]--;
-				pintarMatriz();
-		}
-		function pintarMatriz(){
-			$("#tablaHorarios").empty();
-			var cadena = '';
-			for (var i = 0 ; i < maxTope; i++){
-				cadena += "<tr>";	
-				for (var j = 0 ; j < 7 ; j++ ){
-					if (matrizDias[j][i] != undefined){
-						cadena +=  "<td id='f" + j + "_c"+ i +"' class='"+ matrizDias[j][i].tipoHora +" centrado'>" 
-							    + matrizDias[j][i].hora + ":" + matrizDias[j][i].minuto 								 					 
-								 + "&nbsp;<a href='' class='eliminarCelda glyphicon glyphicon-trash'>"									 
-								 + "</a></td>";
-					}
-
-					else cadena += "<td> </td>";
-				}
-				cadena += "</tr>";
-			}			
-			$("#tablaHorarios").append(cadena);
-			$('.eliminarCelda').click(eliminarCelda);
-		}
-
-	    /**funcion que agrega una fila a una tabla*/
-	    jQuery('#agregarFila').click(function(event) {
-	        event.preventDefault();
-			var dias = obtenerDiasMarcados();
-	        //console.log("click");
-	        var tipoHora;
-	        if ($("#tipoHora").is(":checked"))
-	        	tipoHora = "primeraVez"
-	       	else
-	       		tipoHora = "subsecuente"
-
-	        var hora = $("#horarioInput").val();		
-			//-------------
-			if(hora){				
-				for (var i = 0; i < dias.length ; i++ ) {
-					if (dias[i]) {
-						var par = {'hora':hora.split(":")[0],'minuto':hora.split(":")[1], 'tipoHora':tipoHora};
-						matrizDias[i][ tope[i] ] = par;
-						tope[i]++;
-						if (maxTope < tope[i]) maxTope = tope[i];
-					}										
-				}
-				pintarMatriz();
-			}
-			
-			//-----------
-	        if ( hora && tieneFormato(hora) ){
-		        counter++;
-		        var newRow = jQuery('<tr><td id="renglon'+ counter +'">'+
-		            hora +'</td><td>' +
-		            tipoHora +'</td><td>' +
-		            '<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a>' 
-		            + '</td></tr>' );	       
-		        jQuery('#tablaHoras').append(newRow);
-		        $('#cajaWarning').empty();	   
-
-		         $('.eliminarFila').click(function(event) {
-		    	event.preventDefault();
-		        console.log("click Eliminar");
-		        $(this).parent().parent().remove();
-		    });
-
-		     } else {
-		     	$('#cajaWarning').empty();	
-		     	$('#cajaWarning').append('<p class="bg-warning">Introduzca la hora con el formato HH:mm</p>');
-		     }
-	    });
-	    
-	$('#formularioDoctor').submit(function(){
-	//function insertInput(){
-		console.log("apunto de enviar");
-		var horas = "[";
-		var first = false;
-			//Funcion que recorrera la tabla con id tablaHoras
-		$('#tablaHoras tbody tr').each(function(index){
-			var numero, hora, tipo;		
-			if (first)
-				horas += ",";
-			first = true;
-			$(this).children("td").each(function(index2){
-				counter++;
-				switch(index2){					
-					case 0: hora = $(this).text(); break;
-					case 1: 
-							console.log($(this).text());
-							if ( $(this).text() === "Primera Vez")  {
-								tipo = 1;
-							} else {
-								tipo = 0;
-							}
-				}				
-			});	
-			// tipo true = primera vez, false = subsecuente
-			horas += "{\"hora\":\"" +  hora + "\",\"tipo\":\""+tipo+"\"}";        	        	
-		});
-		
-		horas += " ]";
-		if(!counter)
-			return false;
-		$('<input />').attr('type', 'text')
-	          .attr('name', "horario")
-	          .attr('value', JSON.stringify(matrizDias))
-	          .attr("style", "visibility: hidden")
-	          .appendTo('#formularioDoctor');
-	   
-		return true;
-		
-	});
-	function tieneFormato(cadena){
-		if(!(/^(?:[0-5][0-9]):[0-5][0-9]$/).test(cadena)){
-      		//$('.alert-box').html('Please use the correct format');
-      		return false;
-		}
-		return true;
-	}
-	function obtenerFila(s){
-		var fila = s.match(/\d+/)[0];
-		return fila;
-	}	
-	function obtenerColumna(s){
-		var columna = s.replace(/.*\D/g, "");
-		return columna;
-	}
-	var matrizDias;	
-	var tope;
-	var maxTope;
-	$(document).ready(function(){	
-		$("#horarioInput").mask("00:00");
-		matrizDias = [];
-		tope = [];
-		maxTope = -1;
-		for (var i = 0; i < 7; i++){
-			matrizDias[i] = new Array(1);
-			tope[i] = 0;
-		}
-	})
 </script>
 

@@ -83,19 +83,17 @@ class DoctorController {
     @Transactional
     def update(Doctor doctorInstance) {
         
-        doctorInstance.diasLaborales = DoctorService.obtenDiasLaborales(params)        
-        printf "Actualizando Doctor"
-        print params
-        print "MAATRI " +params.horario
-        return
-       // doctorInstance.horario = params.horario;
+       
+        doctorInstance.diasLaborales = DoctorService.obtenerDiasLaboralesPorHorario(params.horario)              
+        doctorInstance.validate()
+      
+    
         if (doctorInstance == null) {
             print "1fst"
             notFound()
             return
         }
 
-         
 
         if (doctorInstance.hasErrors()) {
             print "2d"
@@ -104,6 +102,8 @@ class DoctorController {
         }
 
         doctorInstance.save flush:true
+        HorarioService.eliminarHorariosDeDoctor(doctorInstance.id)
+        HorarioService.crearHorarioParaDoctor(doctorInstance, params.horario)
 
         request.withFormat {
             form multipartForm {
@@ -122,7 +122,7 @@ class DoctorController {
             notFound()
             return
         }
-
+        HorarioService.eliminarHorariosDeDoctor(doctor.id)
         doctor.delete flush:true
 
         request.withFormat {

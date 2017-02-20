@@ -65,4 +65,9 @@ class HorarioService {
        
         return resultado
     }
+
+    def eliminarHorariosDeDoctor(doctorId){
+        Horario.executeUpdate("delete Horario horario where horario.doctor.id = :doctorId",[doctorId: doctorId])
+
+    }
 }
