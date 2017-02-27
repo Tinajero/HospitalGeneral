@@ -12,6 +12,8 @@ class Paciente {
 	String apellidoMaterno
 	String nombre
 	String expediente
+	String curp
+	String folioSeguroPopular
 	/* Esto para que el paciente pueda cambiar de telefono, o no tener, y podamos tener todos
 	 * asi como las poblaciones, que tal que se cambia de lugar de residencia, esto para no tener
 	 * problemas en los formularios al momento que ingresen datos que no tenian por las razones
