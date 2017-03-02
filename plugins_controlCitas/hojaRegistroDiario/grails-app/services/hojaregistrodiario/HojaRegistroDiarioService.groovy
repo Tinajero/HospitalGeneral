@@ -40,7 +40,9 @@ class HojaRegistroDiarioService {
     def resultados=[]
     def select ="select d.tipoCita, concat(d.nombre,' ', d.apellidoPat,' ', d.apellidoMat),\
      date_format(c.fecha,'%H:%i'), concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno), p.expediente,\
-     p.curp, p.folioSeguroPopular from Cita as c, Doctor as d, Paciente as p ";
+     p.curp, p.folioSeguroPopular, \
+     p.edad \
+     from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
     //si no se selecciono cita entonces procede con solo la fecha especificada
@@ -78,7 +80,7 @@ class HojaRegistroDiarioService {
           value=""
         }
 
-        value += r[2]+r[3]+'|'+r[4]+'|'+r[5]+'|'+r[6]+'~'//+r[6]+r[0]+'|'
+        value += r[2]+'|'+r[3]+'|'+r[4]+'|'+r[5]+'|'+r[6]+'|'+r[7]+'~'
          print ("key:"+key)
          print ("value."+value)
     } 
@@ -132,11 +134,11 @@ return lista_ret
       def gpdf = new GeneratePDF();
 
       String[] arregloGenerico = ["Fecha","Doctor","Tipo de cita"]
-      String[] variables = ["Hora","Paciente","Expediente", "curp", "folioSeguroPopular"]
+      String[] variables = ["Hora","Paciente","Expediente", "curp", "folioSeguroPopular", "edad"]
       gpdf.setPathOut("web-app/temp_pdf/consulta.pdf")
       gpdf.setPathTemplates("web-app/plantillas_consultas/")
-      gpdf.setPatterns(arregloGenerico, variables)
       gpdf.setTemplates(sources)
+      gpdf.setPatterns(arregloGenerico, variables)      
       gpdf.generateBook(lista as String[], fecha as String)
     } catch(Exception e) {
       // TODO Auto-generated catch block
