@@ -33,4 +33,12 @@ class Paciente {
     static mapping = {
     	edad formula: "controlCitaDB.calcular_edad_curp(curp)"
     }
+
+    /*Esta es la function que se debe de crear en la base de datos.
+    CREATE DEFINER=`root`@`localhost` FUNCTION `calcular_edad_curp`( curp VARCHAR(20)) RETURNS int(11)
+	BEGIN
+	
+		RETURN TIMESTAMPDIFF(YEAR, concat(substring(curp, 4,2),'-' ,substring(curp, 6,2), '-',substring(curp, 8,2) ), CURDATE());
+	END
+    */
 }
