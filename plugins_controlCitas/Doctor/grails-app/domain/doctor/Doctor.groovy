@@ -6,6 +6,8 @@ class Doctor {
 	String apellidoPat
 	String apellidoMat
 	String diasLaborales 	
+  String cedulaProfesional
+  String curp
     static constraints = {
 		tipoCita blank: false
 		nombre blank: false

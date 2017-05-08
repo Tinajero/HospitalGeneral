@@ -64,7 +64,7 @@
 									<span id="fecha-label" class="property-label"><g:message code="cita.fecha.label" default="Hora" /></span>
 								</td>
 								<td>
-									<span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="HH:mm a" date="${citaInstance?.fecha}" /></span>
+									<span class="property-value" aria-labelledby="fecha-label"><g:formatDate format="HH:mm" date="${citaInstance?.fecha}" /></span>
 								</td>
 							</li>
 							<tr>

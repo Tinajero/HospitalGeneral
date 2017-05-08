@@ -38,10 +38,11 @@ class HojaRegistroDiarioService {
   def consulta(date1, date2, tipoCita)
   {
     def resultados=[]
-    def select ="select d.tipoCita, concat(d.nombre,' ', d.apellidoPat,' ', d.apellidoMat),\
-     date_format(c.fecha,'%H:%i'), concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno), p.expediente,\
-     p.curp, p.folioSeguroPopular, \
-     p.edad \
+    def select ="select d.tipoCita, concat(d.nombre,' ', d.apellidoPat,' ', d.apellidoMat) as doctorNombre,\
+      d.curp as curpDoctor, d.cedulaProfesional,\
+     date_format(c.fecha,'%d') as diaFecha, date_format(c.fecha,'%m') as mesFecha, date_format(c.fecha,'%y') as anioFecha, \
+     concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno) as nombrePaciente, p.expediente,\
+     p.curp, p.folioSeguroPopular as seguroPaciente, p.edad \
      from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
@@ -66,7 +67,7 @@ class HojaRegistroDiarioService {
     {
 
         //La llave es conformada por el nombre del doctor y el tipo de cita
-        key = mapaResultado[r[0]]+'|'+r[1] //+r[3]+r[7]
+        key = mapaResultado[r[0]]+'|'+r[1] +'|'+r[2]+'|'+r[3]+'|'+r[4]+'|'+r[5]+'|'+r[6]
         //Valors: Datos restantes y variantes
         
         if (key_ant=="")
@@ -80,7 +81,7 @@ class HojaRegistroDiarioService {
           value=""
         }
 
-        value += r[2]+'|'+r[3]+'|'+r[4]+'|'+r[5]+'|'+r[6]+'|'+r[7]+'~'
+        value += r[7]+'|'+r[8]+'|'+r[9]+'|'+r[10]+'|'+r[11]+'~'
          print ("key:"+key)
          print ("value."+value)
     } 
@@ -104,8 +105,9 @@ class HojaRegistroDiarioService {
       def lista = []
 
       resultados = consulta(date1, date2, tipoCita)
-
+      println("RESULTADOS "+resultados)
       lista = obten_lista(resultados)
+      println("LISTA " + lista)
       
        print ("Lista obtenida")
       for (value in lista)
@@ -133,8 +135,8 @@ return lista_ret
     try {
       def gpdf = new GeneratePDF();
 
-      String[] arregloGenerico = ["Fecha","Doctor","Tipo de cita"]
-      String[] variables = ["Hora","Paciente","Expediente", "curp", "folioSeguroPopular", "edad"]
+      String[] arregloGenerico = [ "Tipo de cita", "doctorNombre", "curpDoctor",  "cedulaProfesional", "diaFecha", "mesFecha", "anioFecha"]
+      String[] variables = ["nombrePaciente", "expediente", "curp", "seguroPaciente", "edad"]
       gpdf.setPathOut("web-app/temp_pdf/consulta.pdf")
       gpdf.setPathTemplates("web-app/plantillas_consultas/")
       gpdf.setTemplates(sources)

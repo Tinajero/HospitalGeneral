@@ -20,6 +20,7 @@ class CitaController {
     }
 
     def show(Cita cita) {
+        println cita
         respond cita
     }
 

@@ -28,8 +28,11 @@
 						<tbody>
 							<g:if test="${doctorInstance?.nombre}">
 							<tr>
-								<td><span id="nombre-label" class="property-label"><g:message code="doctor.nombre.label" default="Nombre" /></span></td>
-					
+								<td>
+									<span id="nombre-label" class="property-label">
+										<g:message code="doctor.nombre.label" default="Nombre" />
+									</span>
+								</td>					
 								<td>
 									<span class="property-value" aria-labelledby="nombre-label">
 										<g:fieldValue bean="${doctorInstance}" field="nombre"/>
@@ -41,7 +44,11 @@
 							
 							<g:if test="${doctorInstance?.apellidoPat}">
 							<tr>
-								<td><span id="apellidoPat-label" class="property-label"><g:message code="doctor.apellidoPat.label" default="Apellido Paterno" /></span></td>
+								<td>
+									<span id="apellidoPat-label" class="property-label">
+										<g:message code="doctor.apellidoPat.label" default="Apellido Paterno" />
+									</span>
+								</td>
 								
 								<td>
 									<span class="property-value" aria-labelledby="apellidoPat-label">
@@ -53,8 +60,8 @@
 							
 							<g:if test="${doctorInstance?.apellidoMat}">
 							<tr>
-								<td><span id="apellidoMat-label" class="property-label"><g:message code="doctor.apellidoMat.label" default="Apellido Materno" /></span></td>
-					
+								<td><span id="apellidoMat-label" class="property-label">
+									<g:message code="doctor.apellidoMat.label" default="Apellido Materno" /></span></td>					
 								<td>
 									<span class="property-value" aria-labelledby="apellidoMat-label">
 										<g:fieldValue bean="${doctorInstance}" field="apellidoMat"/>
@@ -66,37 +73,18 @@
 							
 							<g:if test="${doctorInstance?.tipoCita}">
 							<tr>
-								<td><span id="tipoCita-label" class="property-label"><g:message code="doctor.tipoCita.label" default="Tipo de Cita" /></span></td>
-					
+								<td>
+									<span id="tipoCita-label" class="property-label">
+										<g:message code="doctor.tipoCita.label" default="Tipo de Cita" />
+									</span>
+								</td>					
 								<td>
 									<span class="property-value" aria-labelledby="tipoCita-label">
 										<g:fieldValue bean="${doctorInstance}" field="tipoCita"/>
 									</span>
 								</td>
 							</tr>
-							</g:if>
-			
-<%--							<g:if test="${doctorInstance?.diasLaborales}">--%>
-<%--							<tr>--%>
-<%--								<td><span id="diasLaborales-label" class="property-label"><g:message code="doctor.diasLaborales.label" default="Dias Laborales" /></span></td>--%>
-<%--					--%>
-<%--							</tr>--%>
-<%--							</g:if>--%>
-<%--			--%>
-<%--							<g:if test="${doctorInstance?.diasNoLaborales}">--%>
-<%--							<tr>--%>
-<%--								<td><span id="diasNoLaborales-label" class="property-label"><g:message code="doctor.diasNoLaborales.label" default="Dias No Laborales" /></span></td>--%>
-<%--					--%>
-<%--							</tr>--%>
-<%--							</g:if>--%>
-<%--			--%>
-<%--							<g:if test="${doctorInstance?.horario}">--%>
-<%--							<tr>--%>
-<%--								<td><span id="horario-label" class="property-label"><g:message code="doctor.horario.label" default="Horario" /></span></td>--%>
-<%--					--%>
-<%--							</tr>--%>
-<%--							</g:if>--%>
-			
+							</g:if>					
 						</tbody>
 					</table>
 	

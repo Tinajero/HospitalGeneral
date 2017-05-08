@@ -36,6 +36,29 @@
 	
 </div>
 
+
+<div class="form-group ${hasErrors(bean: doctorInstance, field: 'cedulaProfesional', 'error')} required">
+	<label for="cedulaProfesional" class="col-sm-2 control-label">
+		<g:message code="doctor.cedulaProfesional.label" default="Cedula Profesional" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:textField name="cedulaProfesional" class="form-control" required="" value="${doctorInstance?.cedulaProfesional}"/>
+	</div>
+	
+</div>
+
+<div class="form-group ${hasErrors(bean: doctorInstance, field: 'curp', 'error')} required">
+	<label for="curp" class="col-sm-2 control-label">
+		<g:message code="doctor.curp.label" default="Curp" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		<g:textField name="curp" class="form-control" required="" value="${doctorInstance?.curp}"/>
+	</div>
+	
+</div>
+
 <div class="form-group ${hasErrors(bean: doctorInstance, field: 'tipoCita', 'error')} required">
 	<label for="tipoCita" class="col-sm-2 control-label">
 		<g:message code="doctor.tipoCita.label" default="Tipo de cita" />
