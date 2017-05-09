@@ -286,4 +286,37 @@ $(document).ready(function() {
   $(document).ready(function(){ 
   	$("#expediente_textField").mask('00-00-00');
   	$("#telefono").mask('(000)000-0000');  	
+
+	// Mascara customizada para el curp
+     $("#curp").mask('ABCDEFGHIJKLMNOPQR', {'translation': {
+      A:{pattern: '[A-Z]'},
+      B:{pattern: '[AEIOU]'},
+      C:{pattern: '[A-Z]'},
+      E:{pattern: '[0-9]'},
+      F:{pattern: '[0-9]'},
+      G:{pattern: '[0-1]'},
+      H:{pattern: '[0-9]'},
+      I:{pattern: '[0-9]'},
+      J:{pattern: '[0-9]'},
+      K:{pattern: '[H,M]'},
+      L:{pattern: '[A-Z]'},
+      M:{pattern: '[A-Z]'},
+      N:{pattern: '[B-DF-HJ-NP-TV-Z]'},
+      O:{pattern: '[B-DF-HJ-NP-TV-Z]'},
+      P:{pattern: '[B-DF-HJ-NP-TV-Z]'},
+      Q:{pattern: '[0-9A-Z]'},
+      R:{pattern: '[0-9]'}           
+     }
+   });
+
+/*
+   
+    regex:"[A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}" +
+          "(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])" +
+          "[HM]{1}" +
+          "(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)" +
+          "[B-DF-HJ-NP-TV-Z]{3}" +
+          "[0-9A-Z]{1}[0-9]{1}$"
+    });
+*/
 });

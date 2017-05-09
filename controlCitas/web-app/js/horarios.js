@@ -54,3 +54,26 @@
 		objeto.html(salida);
 	}
 
+	$(document).ready(function(){ 
+		 $("#curpDoctor").mask('ABCDEFGHIJKLMNOPQR', {'translation': {
+			  A:{pattern: '[A-Z]'},
+			  B:{pattern: '[AEIOU]'},
+			  C:{pattern: '[A-Z]'},
+			  E:{pattern: '[0-9]'},
+			  F:{pattern: '[0-9]'},
+			  G:{pattern: '[0-1]'},
+			  H:{pattern: '[0-9]'},
+			  I:{pattern: '[0-9]'},
+			  J:{pattern: '[0-9]'},
+			  K:{pattern: '[H,M]'},
+			  L:{pattern: '[A-Z]'},
+			  M:{pattern: '[A-Z]'},
+			  N:{pattern: '[B-DF-HJ-NP-TV-Z]'},
+			  O:{pattern: '[B-DF-HJ-NP-TV-Z]'},
+			  P:{pattern: '[B-DF-HJ-NP-TV-Z]'},
+			  Q:{pattern: '[0-9A-Z]'},
+			  R:{pattern: '[0-9]'}           
+			 }
+   		});
+	});
+

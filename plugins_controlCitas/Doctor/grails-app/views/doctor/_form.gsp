@@ -54,7 +54,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:textField name="curp" class="form-control" required="" value="${doctorInstance?.curp}"/>
+		<g:textField id='curpDoctor' name="curp" class="form-control" required="" value="${doctorInstance?.curp}"/>
 	</div>
 	
 </div>
