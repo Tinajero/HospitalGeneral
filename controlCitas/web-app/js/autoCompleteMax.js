@@ -46,6 +46,18 @@ var focus = function(){
    $('#telefono').focusout(function(){      
          $(this).prop('readonly', true);      
    });
+   $('#curp').focusin(function(){      
+         $(this).prop('readonly', false);
+   });
+   $('#curp').focusout(function(){      
+         $(this).prop('readonly', true);      
+   });
+   $('#folioSeguroPopular').focusin(function(){      
+         $(this).prop('readonly', false);
+   });
+   $('#folioSeguroPopular').focusout(function(){      
+         $(this).prop('readonly', true);      
+   });
 }
 var readOnlyInputs = function(value){
    $('#expediente_textField').prop('readonly', value);
@@ -54,6 +66,8 @@ var readOnlyInputs = function(value){
    $('#nombre').prop('readonly', value);
    $('#poblacion').prop('readonly', value);
    $('#telefono').prop('readonly', value);
+   $('#curp').prop('readonly', value);
+   $('#folioSeguroPopular').prop('readonly', value);
 }
 
 var Autocomplete = function(){
@@ -78,7 +92,10 @@ var Autocomplete = function(){
                                   amaterno: item.apellidoMaterno,
                                   nombre: item.nombre,
                                   poblacion: item.poblacion,
-                                  telefono: item.numeroTelefono
+                                  telefono: item.numeroTelefono,
+                                  curp: item.curp,
+                                  folioSeguroPopular: item.folioSeguroPopular
+
                               }
                           });
 
@@ -92,6 +109,8 @@ var Autocomplete = function(){
                                   $('#nombre').val(ui.item.nombre);
                                   $('#poblacion').val(ui.item.poblacion);
                                   $('#telefono').val(ui.item.telefono);
+                                  $('#curp').val(ui.item.curp);
+                                  $('#folioSeguroPopular').val(ui.item.folioSeguroPopular);
                                   readOnlyInputs(true);
                               }
                           });
@@ -114,6 +133,8 @@ var Autocomplete = function(){
                           $('#nombre').val(response[0].nombre);
                           $('#poblacion').val(response[0].poblacion);
                           $('#telefono').val(response[0].numeroTelefono);
+                          $('#curp').val(response[0].curp);
+                          $('#folioSeguroPopular').val(response[0].folioSeguroPopular);
                           readOnlyInputs(true);
                         }
                       }
@@ -143,7 +164,9 @@ var Autocomplete = function(){
                                 apaterno: item.apellidoPaterno,
                                 amaterno: item.apellidoMaterno,
                                 poblacion: item.poblacion,
-                                telefono: item.numeroTelefono
+                                telefono: item.numeroTelefono,
+                                curp: item.curp,
+                                folioSeguroPopular: item.folioSeguroPopular
                             }
                         });
 
@@ -157,6 +180,8 @@ var Autocomplete = function(){
                                 $('#nombre').val(ui.item.nombre);
                                 $('#poblacion').val(ui.item.poblacion);
                                 $('#telefono').val(ui.item.telefono);
+                                $('#curp').val(ui.item.curp);
+                                $('#folioSeguroPopular').val(ui.item.folioSeguroPopular);
                                 readOnlyInputs(true);
                             }
                         });
@@ -184,7 +209,9 @@ var Autocomplete = function(){
                                 apaterno: item.apellidoPaterno,
                                 amaterno: item.apellidoMaterno,
                                 poblacion: item.poblacion,
-                                telefono: item.numeroTelefono
+                                telefono: item.numeroTelefono,
+                                curp: item.curp,
+                                folioSeguroPopular: item.folioSeguroPopular
                             }
                         });
 
@@ -198,6 +225,8 @@ var Autocomplete = function(){
                                 $('#nombre').val(ui.item.nombre);
                                 $('#poblacion').val(ui.item.poblacion);
                                 $('#telefono').val(ui.item.telefono);
+                                 $('#curp').val(ui.item.curp);
+                                $('#folioSeguroPopular').val(ui.item.folioSeguroPopular);
                                 readOnlyInputs(true);
                             }
                         });
@@ -225,7 +254,9 @@ var Autocomplete = function(){
                                 apaterno: item.apellidoPaterno,
                                 amaterno: item.apellidoMaterno,
                                 poblacion: item.poblacion,
-                                telefono: item.numeroTelefono
+                                telefono: item.numeroTelefono,
+                                curp: item.curp,
+                                folioSeguroPopular: item.folioSeguroPopular
                             }
                         });
 
@@ -239,6 +270,8 @@ var Autocomplete = function(){
                                 $('#nombre').val(ui.item.nombre);
                                 $('#poblacion').val(ui.item.poblacion);
                                 $('#telefono').val(ui.item.telefono);
+                                 $('#curp').val(ui.item.curp);
+                                $('#folioSeguroPopular').val(ui.item.folioSeguroPopular);
                                 readOnlyInputs(true);
                             }
                         });

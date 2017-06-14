@@ -13,20 +13,22 @@ class HojaRegistroDiarioService {
       'CIRUGIA GENERAL':'cirugia',
       'MEDICINA INTERNA':'medicina_interna', 
       'PEDIATRIA':'pediatria', 
-      'GINECOLOGIA Y OBSTETRICIA':'ginecologia', 
-      'TRAUMATOLOGIA Y ORTOPEDIA':'otras',
-      'DENTAL':'odontologia', 
-      'PSICOLOGIA':'otras',
+      'GINECOLOGIA Y OBSTETRICIA':'ginecobstetricia', 
+      'TRAUMATOLOGIA Y ORTOPEDIA':'traumatologia',
+      'DENTAL':'dental', 
+      'PSICOLOGIA':'psicologia',
       'ULTRASONIDOS':'otras',
       'CONSULTA EXTERNA':'consulta_externa'
     ]
     String[] sources = ["cirugia",
       "medicina_interna", 
       "pediatria", 
-      "ginecologia",       
-      "odontologia", 
-      "otras",      
-      "consulta_externa"
+      "ginecobstetricia",       
+      "dental", 
+      "otras", 
+      "traumatologia",
+      "consulta_externa",
+      "psicologia"
     ]
 
     def serviceMethod() {
@@ -140,7 +142,9 @@ return lista_ret
       gpdf.setPathOut("web-app/temp_pdf/consulta.pdf")
       gpdf.setPathTemplates("web-app/plantillas_consultas/")
       gpdf.setTemplates(sources)
-      gpdf.setPatterns(arregloGenerico, variables)      
+      gpdf.setPatterns(arregloGenerico, variables)     
+      println("Lista > " + lista)
+      println("fecha > " + fecha ) 
       gpdf.generateBook(lista as String[], fecha as String)
     } catch(Exception e) {
       // TODO Auto-generated catch block
