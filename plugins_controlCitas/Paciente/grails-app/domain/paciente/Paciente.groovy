@@ -37,8 +37,13 @@ class Paciente {
     /*Esta es la function que se debe de crear en la base de datos.
     CREATE DEFINER=`root`@`localhost` FUNCTION `calcular_edad_curp`( curp VARCHAR(20)) RETURNS int(11)
 	BEGIN
-	
-		RETURN TIMESTAMPDIFF(YEAR, concat(substring(curp, 4,2),'-' ,substring(curp, 6,2), '-',substring(curp, 8,2) ), CURDATE());
-	END
+	DECLARE EDAD intEGER;
+	IF (substring(CURP, 17,1) REGEXP '^-?[0-9]+$' > 0) THEN
+		SET EDAD = TIMESTAMPDIFF(YEAR, concat( '19',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
+	ELSE
+		SET EDAD = TIMESTAMPDIFF(YEAR, concat( '20',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
+	END IF;
+	RETURN EDAD;
+END
     */
 }
