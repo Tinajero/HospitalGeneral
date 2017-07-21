@@ -11,8 +11,8 @@
     
        <div class="col-sm-7 col-md-8 col-sm-offset-3 col-md-offset-2 main">
 	       <div class="bs-docs-section">
-	 				<h1 id="carousel" class="page-header"> Hospital General <small>Huajuapan de León, Oax.</small></h1>
-	 				<h2 id="carousel-examples">Fotografías</h2>
+	 				<h1 id="carousel" class="page-header"> Hospital General <small>Huajuapan de Le&oacute;n, Oax.</small></h1>
+	 				<h2 id="carousel-examples">Fotograf&iacute;as</h2>
 			  	<div class="bs-example" data-example-id="simple-carousel">
 				    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 					    <ol class="carousel-indicators">
@@ -47,7 +47,7 @@
 
 	
        
-<%--        	<p class="text-muted" align="center"; >Universidad Tecnológica de la Mixteca.</p>--%>
+<%--        	<p class="text-muted" align="center"; >Universidad Tecnol&oacute;gica de la Mixteca.</p>--%>
         
     
 </body>

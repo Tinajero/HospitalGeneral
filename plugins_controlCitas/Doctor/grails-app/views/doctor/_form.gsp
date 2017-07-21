@@ -70,6 +70,20 @@
 	
 </div>
 
+<div class="form-group ${hasErrors(bean: doctorInstance, field: 'tipoCita', 'error')} required">
+	<label for="turno" class="col-sm-2 control-label">
+		<g:message code="doctor.turno.label" default="Turno" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		
+		<g:select id="turno" name="turno" class="form-control" required="" value="${doctorInstance?.turno}"
+          from="${['1': 'MATUTINO', '2': 'VESPERTINO']}"
+          optionKey="key" optionValue="value" />
+	</div>
+	
+</div>
+
 <%--Almacenar los dias laborales en variable(diasLaborales) y comparar con los dias del checkbox --%>
 <div class="form-group required">
 	<div class="row">

@@ -53,21 +53,19 @@
 
 <div class="form-group ${hasErrors(brean: paciente, field: curp, 'has error')} required">
 	<label for="curp" class="col-sm-2 control-label">
-		<g:message code="cita.paciente.curp.label" default="Curp" />
-		<span class="required-indicator">*</span>
+		<g:message code="cita.paciente.curp.label" default="Curp" />		
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="curp" name="cita.paciente.curp" class="form-control" required="" value="${cita?.paciente?.curp}"/>
+		<g:textField id="curp" name="cita.paciente.curp" class="form-control"  value="${cita?.paciente?.curp}"/>
 	</div>
 </div>
 
 <div class="form-group ${hasErrors(brean: paciente, field: folioSeguroPopular, 'has error')} required">
 	<label for="folioSeguroPopular" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.folioSeguroPopular.label" default="Folio Seguro Popular" />
-		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="folioSeguroPopular" name="cita.paciente.folioSeguroPopular" class="form-control" required="" value="${cita?.paciente?.folioSeguroPopular}"/>
+		<g:textField id="folioSeguroPopular" name="cita.paciente.folioSeguroPopular" class="form-control"  value="${cita?.paciente?.folioSeguroPopular}"/>
 	</div>
 </div>
 

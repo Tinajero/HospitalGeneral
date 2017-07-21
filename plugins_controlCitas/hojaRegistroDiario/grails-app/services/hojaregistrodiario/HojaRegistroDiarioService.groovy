@@ -9,6 +9,7 @@ import required.GeneratePDF
 @Transactional
 class HojaRegistroDiarioService {
   
+    def  grailsApplication
     def mapaResultado = [
       'CIRUGIA GENERAL':'cirugia',
       'MEDICINA INTERNA':'medicina_interna', 
@@ -139,8 +140,12 @@ return lista_ret
 
       String[] arregloGenerico = [ "Tipo de cita", "doctorNombre", "curpDoctor",  "cedulaProfesional", "diaFecha", "mesFecha", "anioFecha"]
       String[] variables = ["nombrePaciente", "expediente", "curp", "seguroPaciente", "edad"]
-      gpdf.setPathOut("web-app/temp_pdf/consulta.pdf")
-      gpdf.setPathTemplates("web-app/plantillas_consultas/")
+      def s = grailsApplication.mainContext.getResource("temp_pdf/consulta.pdf").file
+      println("PAth " + s)
+      def e = grailsApplication.mainContext.getResource("plantillas_consultas").file
+      println("PAth " + e)      
+      gpdf.setPathOut("" + s)
+      gpdf.setPathTemplates("" + e + "/")
       gpdf.setTemplates(sources)
       gpdf.setPatterns(arregloGenerico, variables)     
       println("Lista > " + lista)

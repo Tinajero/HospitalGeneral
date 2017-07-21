@@ -32,14 +32,14 @@
             <span class="icon-bar"></span>
           </button>
 <%--          <a class="home" href="${createLink(uri: '/')}">--%>
-          <a class="navbar-brand" href="${createLink(uri: '/')}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Administración del Sistema</b> </a>
+          <a class="navbar-brand" href="${createLink(uri: '/')}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <b>Administraci&oacute;n del Sistema</b> </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 	        <ul class="nav navbar-nav" id="contenedorNavbarPrincipal">
 <%--	        	<li><a href="#">Casdn</a></li>--%>
 	        </ul>
 			<ul class="nav navbar-nav navbar-right">
-			  <li><a href="#">Configuración</a></li>
+			  <li><a href="#">Configuraci&oacute;n</a></li>
 			  <li><g:link controller='logout'>Salir</g:link></li>
 			</ul>
 

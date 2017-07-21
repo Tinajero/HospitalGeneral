@@ -15,12 +15,9 @@ class Paciente {
 	String curp
 	String folioSeguroPopular
 	Long edad
-	/* Esto para que el paciente pueda cambiar de telefono, o no tener, y podamos tener todos
-	 * asi como las poblaciones, que tal que se cambia de lugar de residencia, esto para no tener
-	 * problemas en los formularios al momento que ingresen datos que no tenian por las razones
-	 * anteriores.
-	 * */
-	static hasMany = [numeroTelefono:String, poblacion:String] 
+	String numeroTelefono
+	String poblacion
+	
 	
     static constraints = {
     	apellidoPaterno blank: false
@@ -29,6 +26,9 @@ class Paciente {
     	expediente blank: true, matches: '\\d{2}\\-\\d{2}\\-\\d{2}', unique: true, nullable: true
     	numeroTelefono blank:false
     	poblacion blank: false
+    	curp nullable: true
+    	folioSeguroPopular nullable: true
+    	
     }
     static mapping = {
     	edad formula: "controlCitaDB.calcular_edad_curp(curp)"
@@ -36,13 +36,22 @@ class Paciente {
 
     /*Esta es la function que se debe de crear en la base de datos.
     CREATE DEFINER=`root`@`localhost` FUNCTION `calcular_edad_curp`( curp VARCHAR(20)) RETURNS int(11)
-	BEGIN
+BEGIN
+	
 	DECLARE EDAD intEGER;
-	IF (substring(CURP, 17,1) REGEXP '^-?[0-9]+$' > 0) THEN
-		SET EDAD = TIMESTAMPDIFF(YEAR, concat( '19',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
+    
+    IF (curp is not null and 
+		substring(CURP, 5, 6) REGEXP '^-?[0-9]+$' = 0) THEN
+        SET edad = -1;
 	ELSE
-		SET EDAD = TIMESTAMPDIFF(YEAR, concat( '20',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
-	END IF;
+			IF (curp is not null and substring(CURP, 17,1) REGEXP '^-?[0-9]+$' > 0) THEN
+				SET EDAD = TIMESTAMPDIFF(YEAR, concat( '19',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
+			ELSEIF curp is not null then
+				SET EDAD = TIMESTAMPDIFF(YEAR, concat( '20',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
+			ELSE
+				SET edad = -1;
+		END IF;
+    end if;
 	RETURN EDAD;
 END
     */

@@ -14,4 +14,9 @@ def HojaRegistroDiarioService
     	
     }
 
+
+    def listadoHojas(){
+    	
+    }
+
 }

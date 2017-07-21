@@ -8,6 +8,7 @@ class Doctor {
 	String diasLaborales 	
   String cedulaProfesional
   String curp
+  Integer turno 
     static constraints = {
 		tipoCita blank: false
 		nombre blank: false

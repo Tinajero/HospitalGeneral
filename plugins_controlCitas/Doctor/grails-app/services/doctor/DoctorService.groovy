@@ -20,6 +20,12 @@ class DoctorService {
 
         return lista
     }
+
+    def listaTurnos() {
+        def turnos = [[value:1, turno:'MATUTINO'], [value:2, turno:'VESPERTINO']]
+        return turnos
+    }
+
     def obtenDiasLaborales(params){
 
     	def arregloDias = [params.Domingo, params.Lunes, params.Martes, \
