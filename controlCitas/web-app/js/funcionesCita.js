@@ -190,6 +190,16 @@ function cambioDoctor(doctorId){
       $('#calendar').fullCalendar('removeEventSource',events);
     }
 	}
+  function cambiarFechaCalendario(){
+    var dia = $("#cbFechaCita_day").val();
+    var mes = $('#cbFechaCita_month').val() - 1;
+    var year = $('#cbFechaCita_year').val();
+    var fecha = new Date(year, mes, dia);
+    $('#calendar').fullCalendar( 'gotoDate', fecha);
+    $('#calendar').fullCalendar('select', fecha);
+    quitarSeleccionado();
+
+  }
 function cambiarColorDias(){
 	var  startDay = $('#calendar').fullCalendar('getView').intervalStart.format();
 	var  endDay = $('#calendar').fullCalendar('getView').intervalEnd.format();
@@ -309,6 +319,11 @@ $(document).ready(function() {
       R:{pattern: '[0-9]'}           
      }
    });
+
+   // Para que se seleccione el anio
+   var d = new Date(); 
+   console.log(d.getFullYear());
+   $("#cbFechaCita_year").val("" + d.getFullYear());
 
 /*
    

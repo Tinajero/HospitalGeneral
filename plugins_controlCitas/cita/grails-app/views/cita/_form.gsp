@@ -95,7 +95,8 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-    <g:select id="TipoCita" name="cita.doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged(this.value);"/>
+    <g:select id="TipoCita" name="cita.doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" 
+	value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged(this.value);"/>
 	</div>
 </div>
 
@@ -118,7 +119,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-1 nopadding" 	style="padding-right:15px;">		
-		<select name="cita.fecha_day" class="form-control selectionBox" id="cbFechaCita_day" onchange="quitarSeleccionado();" required="true">
+		<select name="cita.fecha_day" class="form-control selectionBox" id="cbFechaCita_day" onchange="cambiarFechaCalendario();" required="true">
 		<% def count=31 %>
 		<g:each in="${1..count}" var="dia" >
 			<option value="${dia}">${dia}</option>
@@ -128,7 +129,7 @@
 	
               <input type="hidden" name="cita.fecha" value="date.struct" />
 	<div class="col-sm-2 nopadding" >
-		<select name="cita.fecha_month" class="form-control selectionBox" id="cbFechaCita_month" required="" onchange="quitarSeleccionado();">
+		<select name="cita.fecha_month" class="form-control selectionBox" id="cbFechaCita_month" required="" onchange="cambiarFechaCalendario();">
 			<option value="1">enero</option>
 			<option value="2">febrero</option>
 			<option value="3">marzo</option>
@@ -144,7 +145,7 @@
 		</select>
 	</div>
 	<div class="col-sm-1 nopadding">
-		<select name="cita.fecha_year" class="form-control selectionBox" id="cbFechaCita_year" required="" onchange="quitarSeleccionado();"><option value="2115">2115</option>		
+		<select name="cita.fecha_year" class="form-control selectionBox" id="cbFechaCita_year" required="" onchange="cambiarFechaCalendario();"><option value="2115">2115</option>		
 			<option value="2031">2031</option>
 			<option value="2030">2030</option>
 			<option value="2029">2029</option>
@@ -161,7 +162,7 @@
 			<option value="2018">2018</option>
 			<option value="2017">2017</option>
 			<option value="2016">2016</option>
-			<option value="2015" selected="selected">2015</option>
+			<option value="2015">2015</option>
 			<option value="2014">2014</option>
 			<option value="2013">2013</option>
 		</select>
