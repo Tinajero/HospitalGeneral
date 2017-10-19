@@ -40,15 +40,16 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-2">
+			<input type="text" name="cita.paciente.nombre" id="nombre" class="por_nombre form-control" placeholder="Nombre(s)" required="" value=""/>
+	</div>
+	<div class="col-sm-2">
 		<input type="text" name="cita.paciente.apellidoPaterno" id="apaterno" class="por_nombre form-control" placeholder="Apellido Paterno" required="" value=""/>
 		<input type="hidden" id="apaterno_only" name="country_id" value="" />
 	</div>
 	<div class="col-sm-2">
 		<input type="text" name="cita.paciente.apellidoMaterno" id="amaterno" class="por_nombre form-control" placeholder="Apellido Materno" required="" value=""/>
 	</div>
-	<div class="col-sm-2">
-		<input type="text" name="cita.paciente.nombre" id="nombre" class="por_nombre form-control" placeholder="Nombre(s)" required="" value=""/>
-	</div>
+	
 </div>
 
 <div class="form-group ${hasErrors(brean: paciente, field: curp, 'has error')} required">

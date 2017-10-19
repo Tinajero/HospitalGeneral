@@ -44,7 +44,7 @@
 			<div class="row">
 		</g:if>			
 			<div class="col-sm-2 ${( (i % 2) == 0) ? 'col-sm-offset-3 col-md-offset-2': ''}">
-				<label><input type="checkbox" name="optradio_${servicio}">${servicio}</label> 
+				<label><input type="checkbox" name="optradio_${servicio.replaceAll('\\s','')}">${servicio}</label> 
 			</div>
 		<g:if test="${(i % 2) != 0}">	
 			</div>
@@ -91,7 +91,7 @@
 	</div>	
 </div>
 
-
+<%--
 <div class="form-group">
     <label class="col-sm-2 control-label">
 		Mostrar citas libres como espacios en blanco
@@ -103,7 +103,7 @@
         <input type="radio" name="mostrarEnBlanco"> No
     </div>
 </div>
-
+--%>
 
 	<script type="text/javascript">
 		// Detalles en http://www.daterangepicker.com/#examples
