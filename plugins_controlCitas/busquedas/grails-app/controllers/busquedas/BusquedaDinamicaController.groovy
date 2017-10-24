@@ -19,8 +19,9 @@ class BusquedaDinamicaController {
         print params
 
         def listaResultados = BusquedaDinamicaService.busquedaDinamica(params)
-
-       render(view: "listado", model:[lista:listaResultados])
+        def listaPropiedades = BusquedaDinamicaService.obtenPropiedades()
+        print listaPropiedades
+       render(view: "listado", model:[lista:listaResultados, propiedades:listaPropiedades])
 
     }
 }
