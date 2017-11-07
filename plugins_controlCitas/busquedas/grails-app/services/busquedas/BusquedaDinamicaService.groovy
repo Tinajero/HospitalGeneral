@@ -2,7 +2,8 @@ package busquedas
 
 import grails.transaction.Transactional
 import org.hibernate.Criteria
-import cita.Cita
+
+
 @Transactional
 class BusquedaDinamicaService {
     def sessionFactory
@@ -19,18 +20,126 @@ class BusquedaDinamicaService {
         def tiposCitas =obtieneCitas(params)
         print tiposCitas
         def currentSession = sessionFactory.currentSession
-        def q = "select DATE_FORMAT(cita.fecha,'%Y-%m-%d') as Fecha " + datosMostrar +
+
+        def q = "select DATE_FORMAT(cita.fecha,'%Y-%m-%d') as fecha, doctor.tipo_cita as tipoCita, doctor.id as idDoctor " + datosMostrar +
                 " from cita inner join paciente on cita.paciente_id = paciente.id "+
                 "inner join doctor on doctor.id = cita.doctor_id " +
                 "where FIND_IN_SET(doctor.tipo_cita, \""+ tiposCitas +"\") " +
                 "and cita.fecha >= '" + params.fechaInicio + "'" +
-                " and cita.fecha <= '" + params.fechaFin + "';"
+                " and cita.fecha <= '" + params.fechaFin + "' order by doctor.tipo_cita;"
         print q;
         def data = currentSession.createSQLQuery(q) 
         data.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);//if you are using alias for query e.g bank.credit_amount as creditAmount     
-        final result = data.list()
+        final result = convertirAObjetos(data.list())
+        
         print result;
         return result;
+    }
+
+    def convertirAObjetos(listaResultados){
+        //Cita cita;
+        def listaAgrupador =[]
+        def agrupados = [:]
+        if (listaResultados == null || listaResultados.size() == 0 )
+            return listaAgrupador;
+        def anterior = listaResultados[0].idDoctor;
+        def fechaAnterior = listaResultados[0].fecha
+        def cita = [:]
+        println anterior
+        def doctor = [:]
+        def primer = listaResultados[0]
+        def listaCitas = []
+        def listaFechas = []
+        def fecha = [:]
+        doctor.put('idDoctor', anterior )                                
+        if (primer.containsKey('nombreDoctor')){
+            doctor.put('nombreDoctor' , primer.nombreDoctor) 
+            doctor.put('paternoDoctor', primer.paternoDoctor)
+            doctor.put('maternoDoctor', primer.maternoDoctor)
+        }
+
+        
+		fecha.put('fecha', fechaAnterior)
+		def row
+        
+        for (int i = 0; i < listaResultados.size(); ){
+			
+			
+            row = listaResultados[i];
+			
+            def fechaActual = row.fecha;
+            if ( row.idDoctor == anterior ){             
+                if (fechaActual == fechaAnterior){                    
+					cita = row;                  
+                    listaCitas.add(row);					
+                    
+					++i;
+					
+					if(i == listaResultados.size() ){
+						fecha.put('citas', listaCitas)
+						listaFechas.add(fecha);						
+						doctor.put('fechas', listaFechas)
+						listaAgrupador.add(doctor)
+						break;
+					}
+					
+					
+										
+                } else {      
+					              
+                    fecha.put('citas', listaCitas)                    
+                    listaFechas.add(fecha);
+					listaCitas = []
+					fecha = [:]
+					fecha.put('fecha', fechaActual)
+                   
+                    fechaAnterior = fechaActual
+                }
+
+            } else {                                
+                
+				
+				fecha.put('citas', listaCitas)
+				listaFechas.add(fecha);
+				listaCitas = []
+				
+                doctor.put('fechas', listaFechas)
+                listaAgrupador.add(doctor)
+                println row.idDoctor
+				listaCitas = []
+				listaFechas = []
+				fecha = [:]
+				fechaAnterior = row.fecha
+				fecha.put('fecha', fechaAnterior)
+                anterior = row.idDoctor;
+                doctor = [:]
+                doctor.put('idDoctor', row.idDoctor )                                
+                if (row.containsKey('nombreDoctor')){
+                    doctor.put('nombreDoctor' , row.nombreDoctor) 
+                    doctor.put('paternoDoctor', row.paternoDoctor)
+                    doctor.put('maternoDoctor', row.maternoDoctor)
+                }
+				
+				
+            }
+
+        }
+
+        for (int i  =0; i<listaAgrupador.size();i++){
+            def d = listaAgrupador[i];
+            println "."+d.nombreDoctor
+            for (int j = 0; j < d.fechas.size();j++){
+                def f = d.fechas[j];
+                println ">"+f.fecha
+                for (int m= 0 ; m < f.citas.size();m++){
+                    def c = f.citas[m]
+                    println "#"+c
+                }
+            }
+        }
+		
+		println listaAgrupador
+		return listaAgrupador
     }
 
     def obtieneParametrosMostrar(params){      

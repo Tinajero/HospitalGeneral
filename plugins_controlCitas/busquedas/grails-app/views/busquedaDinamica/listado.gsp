@@ -10,36 +10,52 @@
 </head>
 <body>
     <div class="col-sm-5 col-md-6 col-sm-offset-3 col-md-offset-2 main"> 
-            <button id="btnExport" onclick="fnExcelReport();"> Exportar a Excel </button>
+            
             <iframe id="txtArea1" style="display:none"></iframe>
-            <table class="table table-striped" id="listaResultados">
-            <thead>
-                <tr>
-                        <g:each in="${propiedades}" status="i" var="propiedad">
-                                <td>${propiedad}</td>
-                        </g:each>
-                    
-                    
-                </tr>
-
-            </thead>
-            <tbody>
-                <g:each in="${lista}" status="i" var="dato">
-                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                        <g:each in="${propiedades}" status="j" var="propiedad">
-                                <td>${dato[propiedad]}</td>
-                        </g:each>                                          
-                    </tr>                                
-                </g:each>
-            </tbody>
-        </table>
+            
+            <g:each in="${lista}" status="i" var="doctor">
+            	
+            	<g:each in="${doctor.fechas}" status="j" var="fecha">
+            		<button id="btnExport" onclick="fnExcelReport(listaResultados${doctor.idDoctor}${j});"> Exportar a Excel </button>
+		            <table class="table table-striped" id="listaResultados${doctor.idDoctor}${j}">
+			            <thead>
+			            	
+				            	<tr >
+				            		<g:if test="${doctor.containsKey('nombreDoctor')}">
+				            			<td colspan="${propiedades.size()-1}">Doctor: ${doctor.nombreDoctor} ${doctor.paternoDoctor} ${doctor.maternoDoctor}</td>
+				            		</g:if>
+				            		<td> ${fecha.fecha} </td>
+				            	<tr>
+				            
+				            	
+			                <tr>
+		                        <g:each in="${propiedades}" status="n" var="propiedad">
+		                                <td>${propiedad}</td>
+		                        </g:each>                                        
+			                </tr>
+			            </thead>
+			            <tbody>
+			            	
+			                <g:each in="${fecha.citas}" status="m" var="dato">
+			                    <tr class="${(m % 2) == 0 ? 'even' : 'odd'}">
+			                        <g:each in="${propiedades}" status="n" var="propiedad">
+			                                <td>${dato[propiedad]}</td>
+			                        </g:each>                                          
+			                    </tr>                                
+			                </g:each>
+			            </tbody>
+		        	</table>
+		        	<br>
+		        </g:each>
+	        </g:each>
+        
     </div>
     <script>
-            function fnExcelReport()
+            function fnExcelReport(id)
 {
     var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
     var textRange; var j=0;
-    tab = document.getElementById('listaResultados'); // id of table
+    tab = id;//document.getElementById(id); // id of table
 
     for(j = 0 ; j < tab.rows.length ; j++) 
     {     
