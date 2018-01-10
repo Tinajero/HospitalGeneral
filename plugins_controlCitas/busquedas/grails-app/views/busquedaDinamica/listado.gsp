@@ -11,12 +11,13 @@
 <body>
     <div class="col-sm-5 col-md-6 col-sm-offset-3 col-md-offset-2 main"> 
             
+            <button id="btnExport" onclick="fnExcelReport();"> Exportar a Excel </button>
             <iframe id="txtArea1" style="display:none"></iframe>
             
             <g:each in="${lista}" status="i" var="doctor">
             	
             	<g:each in="${doctor.fechas}" status="j" var="fecha">
-            		<button id="btnExport" onclick="fnExcelReport(listaResultados${doctor.idDoctor}${j});"> Exportar a Excel </button>
+            		
 		            <table class="table table-striped" id="listaResultados${doctor.idDoctor}${j}">
 			            <thead>
 			            	
@@ -51,22 +52,28 @@
         
     </div>
     <script>
-            function fnExcelReport(id)
+function fnExcelReport()
 {
-    var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+    var tab_text = "";
     var textRange; var j=0;
-    tab = id;//document.getElementById(id); // id of table
+   
+    var tablas = document.getElementsByClassName("table")
+    for(i = 0; i < tablas.length ; i++){   
+        
+        tab_text +="<table border='2px'><tr bgcolor='#87AFC6'>";
+        tab = tablas[i];//document.getElementById(id); // id of table
 
-    for(j = 0 ; j < tab.rows.length ; j++) 
-    {     
-        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
-        //tab_text=tab_text+"</tr>";
+        for(j = 0 ; j < tab.rows.length ; j++) 
+        {       
+            tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text+="</table>";
     }
-
-    tab_text=tab_text+"</table>";
-    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
-    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
-    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+    //tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+    //tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+    //tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
 
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE "); 
@@ -88,4 +95,6 @@
 
 </body>
 
-</html>
+ </html>
+
+
