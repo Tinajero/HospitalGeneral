@@ -2,11 +2,18 @@
 	 text-align:center;
 }
 .primeraVez {
-	background-color:#138963;
+	background-color:#6f9673;
+	color: WHITE;
+}
+.primeraVez a {
 	color: WHITE;
 }
 .subsecuente {
 	background-color:#6BCDAE;
+	color: WHITE;
+}
+.subsecuente a {
+	color:WHITE;
 }
 .libre {
 	color: WHITE;

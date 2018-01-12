@@ -2,9 +2,16 @@ var seleccionado = false;
 var cadena;
 var arregloHorarios;
 function categoryChanged(categoryId) {  
-  quitarSeleccionado();
-  jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:'tipoCitaCambiada',success:function(data,textStatus){
-  		jQuery('#subContainer').html(data);		
+  
+	quitarSeleccionado();
+  var urlTipoCitaCambiada = getTipoCitaCambiadaPath;
+  console.log(urlTipoCitaCambiada);
+  jQuery.ajax({type:'POST',data:'tipoCita='+categoryId, url:urlTipoCitaCambiada,success:function(data,textStatus){
+  		jQuery('#subContainer').html(data);
+  		if(doctorSeleccionado != null && doctorSeleccionado != ""){
+  			$("#cbDoctores").val(doctorSeleccionado);
+  			cambioDoctor(doctorSeleccionado);
+  		} 
   	},
 	error:function(XMLHttpRequest,textStatus,errorThrown){}});
 }
@@ -20,7 +27,7 @@ function getHorarios(  ){
     	var anio = $('#cbFechaCita_year').val();
     	var fecha = dia + "-" + mes + "-" + anio;
     	console.log(fecha);
-    	jQuery.ajax({type:'POST',data:'doctorID='+doctorId+'&fecha='+fecha, url:'mostrarHorario',success:function(data,textStatus){
+    	jQuery.ajax({type:'POST',data:'doctorID='+doctorId+'&fecha='+fecha, url:getMostrarHorarioPath,success:function(data,textStatus){
       		//jQuery('#subContainer').html(data);		
       		console.log(data);
       		var arreglo = data;//JSON.parse(data);
@@ -143,12 +150,16 @@ function seleccionarHora(){
 	
 }
 function quitarSeleccionado(){
+	
+	
 	seleccionado = false;
 	$('#cbFechaCita_hour').val("");
 	$('#cbFechaCita_minute').val("");
-
+	
 	$("#vista_hour").val("");
 	$("#vista_minute").val("");
+	
+	
 }
 function getHora(hora){
 	var temp = ""    
@@ -176,8 +187,9 @@ function cambioDoctor(doctorId){
 	// quitar la bandera de que a sido seleccionado algo
 	quitarSeleccionado();
   	if (doctorId != '' ){
+  		
     var events = {
-  		url: '../MetodosCalendar/consulta' ,
+  		url: getCalendarPath,
   		data: {
   			DoctorId : doctorId
   		}
@@ -207,10 +219,11 @@ function cambiarColorDias(){
 	console.log("function cambiarColorDias ");
   if (doctorId != ''){
     console.log("function cambiarColorDias >> ENTRO");
+    var pathDiasOcupados = getBussyDaysPath;
   	$.ajax({
   		type:'POST',   		
   		data: 'startTime=' + startDay + "&endTime=" + endDay + "&doctorId=" + doctorId,
-  		url:'getBussyDays',
+  		url:pathDiasOcupados,
   		success:function(data,textStatus){			
   			$.each( data, function( index, dia){
   				//console.log(dia);
@@ -323,7 +336,38 @@ $(document).ready(function() {
    // Para que se seleccione el anio
    var d = new Date(); 
    console.log(d.getFullYear());
-   $("#cbFechaCita_year").val("" + d.getFullYear());
+  
+   setTimeout(function(){
+	   var fecha = $("#fechaOculta").val();
+	   
+	   if (fecha != null && fecha != ""){	
+		   console.log("FEchaString: " +fecha);
+		   fecha = new Date(fecha)	   
+		   var day = 1;
+		   var month = 1;
+		   var year = 2015;
+		   day = fecha.getDate();
+		   month = fecha.getMonth();
+		   year = fecha.getFullYear();
+		   var hour = fecha.getHours();
+		   var minutes = fecha.getMinutes();
+		   $('#cbFechaCita_day').val(day);
+		   $('#cbFechaCita_month').val(month+1);
+		   $('#cbFechaCita_year').val( year );		   		   		  
+		   var tipoCita = $("#TipoCita").val();
+		   categoryChanged(tipoCita);		   
+		   $("#vista_hour").val(hour);
+		   $("#vista_minute").val(minutes);
+		   
+		   console.log(fecha)
+		   
+	   } else {
+		   $("#cbFechaCita_year").val("" + d.getFullYear());
+	   }	   
+	   
+   }, 500)
+   
+   
 
 /*
    

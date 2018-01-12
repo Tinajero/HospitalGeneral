@@ -26,13 +26,13 @@ class BusquedaDinamicaService {
                 "inner join doctor on doctor.id = cita.doctor_id " +
                 "where FIND_IN_SET(doctor.tipo_cita, \""+ tiposCitas +"\") " +
                 "and cita.fecha >= '" + params.fechaInicio + "'" +
-                " and cita.fecha <= '" + params.fechaFin + "' order by doctor.tipo_cita;"
-        print q;
+                " and cita.fecha <= '" + params.fechaFin + "' order by doctor.tipo_cita and cita.fecha;"
+        print ">> QUERY" + q;
         def data = currentSession.createSQLQuery(q) 
         data.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);//if you are using alias for query e.g bank.credit_amount as creditAmount     
         final result = convertirAObjetos(data.list())
         
-        print result;
+        print ">>> RESULTADO" + result;
         return result;
     }
 

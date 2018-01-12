@@ -59,6 +59,7 @@
 			  A:{pattern: '[A-Z]'},
 			  B:{pattern: '[AEIOU]'},
 			  C:{pattern: '[A-Z]'},
+			  D:{pattern: '[A-Z]'},
 			  E:{pattern: '[0-9]'},
 			  F:{pattern: '[0-9]'},
 			  G:{pattern: '[0-1]'},

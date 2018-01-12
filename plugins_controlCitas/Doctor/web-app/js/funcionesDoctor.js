@@ -89,8 +89,10 @@ function pintarMatriz(){
 }
 /**funcion que agrega una fila a una tabla*/
 function agregarFila() {
-   
+    
+	
 	var dias = obtenerDiasMarcados();
+	$('#cajaWarning').empty();	 
     //console.log("click");
     var tipoHora;
     if ($("#tipoHora").is(":checked"))
@@ -99,7 +101,7 @@ function agregarFila() {
    		tipoHora = "subsecuente"
     var hora = $("#horarioInput").val();		
 	//-------------
-	if(hora){				
+	if(hora && tieneFormato(hora) ){				
 		for (var i = 0; i < dias.length ; i++ ) {
 			if (dias[i]) {
 				var par = {'hora':hora.split(":")[0],'minuto':hora.split(":")[1], 'tipoHora':tipoHora};
@@ -109,24 +111,7 @@ function agregarFila() {
 			}										
 		}
 		pintarMatriz();
-	}
-	
-	//-----------
-    if ( hora && tieneFormato(hora) ){
-        counter++;
-        var newRow = jQuery('<tr><td id="renglon'+ counter +'">'+
-            hora +'</td><td>' +
-            tipoHora +'</td><td>' +
-            '<a href="" class="eliminarFila" class="btn btn-default">Quitar hora</a>' 
-            + '</td></tr>' );	       
-        jQuery('#tablaHoras').append(newRow);
-        $('#cajaWarning').empty();	   
-         $('.eliminarFila').click(function(event) {
-    	event.preventDefault();
-        console.log("click Eliminar");
-        $(this).parent().parent().remove();
-    });
-     } else {
+	} else {
      	$('#cajaWarning').empty();	
      	$('#cajaWarning').append('<p class="bg-warning">Introduzca la hora con el formato HH:mm</p>');
      }

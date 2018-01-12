@@ -26,12 +26,14 @@ class CitaController {
 
     def create() {
         respond new Cita(params)
+		
+		
         println Doctor.listUnique()
     }
 
     @Transactional
     def save(Cita cita) {
-        println cita
+        println params
         if (cita == null) {
             notFound()
             return
@@ -77,22 +79,26 @@ class CitaController {
     }
 
     def edit(Cita cita) {
-        println cita
+        println "Editando"
+		println cita
         respond cita
     }
 
     @Transactional
     def update(Cita cita) {
+		println "CITA " + cita.fecha
+		println "Params " + params
+		println "UPDATE 1"
         if (cita == null) {
             notFound()
             return
         }
-
+		println "UPDATE 2"
         if (cita.hasErrors()) {
             respond cita.errors, view:'edit'
             return
         }
-
+		println "UPDATE 3"
         cita.save flush:true
 
         request.withFormat {
@@ -133,18 +139,11 @@ class CitaController {
         }
     }
 
-    def tipoCitaCambiada(String tipoCita){
-        println "tipoCitaCambiada"
-        println tipoCita
-        //printn params.
-        def query = Doctor.where {
-            tipoCita == tipoCita
-        }
-        def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );
-        println doctores
+    def tipoCitaCambiada(String tipoCita){                       
+        def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );        
         def noSelection = ['':'Seleccione un Medico']
         render g.select(id:'cbDoctores', name:'cita.doctor.id',
-            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onchange:'cambioDoctor(this.value);',
+            from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onchange:'cambioDoctor(this.value);',			
            noSelection:noSelection, required:'true'
         )
     }

@@ -1,4 +1,6 @@
 <%@ page import="doctor.Doctor" %>
+
+
  <g:javascript src="funcionesDoctor.js"/>
 <g:set name= ''var="doctorS" bean="doctorService"/>
 <script type='text/javascript' src='${request.contextPath}/js/horarios.js'></script>
@@ -105,17 +107,25 @@
 				</g:else>
 				<tr>
 					<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">					
-						<td>&nbsp;&nbsp;${diasSemana[diaBoton]}&nbsp;&nbsp;</td> 					
+						<td>
+							<label class="form-check-label" for="checkDia${diaBoton}">
+								&nbsp;&nbsp;${diasSemana[diaBoton]}&nbsp;&nbsp;	
+							</label>
+						</td>
+						 					
 					</g:each>
 				</tr>
 				<tr id="diasMarcados">
 					<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">
 						<td align="center">
 							<g:if test="${diasLab[diaBoton]=='-'}">
-								<g:checkBox name="${diasSemana[diaBoton]}"  value="${false}"/>
+								<%--<g:checkBox name="${diasSemana[diaBoton]}"  value="${false}"/>--%>
+								<input class="form-check-input" type="checkbox" 
+									name="${diasSemana[diaBoton]}" value="${false}" id="checkDia${diaBoton}"/>								
 							</g:if>
-							<g:else>
-								<g:checkBox name="${diasSemana[diaBoton]}" value="${true}"/>
+							<g:else>								
+								<input class="form-check-input" type="checkbox"  
+									name="${diasSemana[diaBoton]}" value="${true}" id="checkDia${diaBoton}"/>
 							</g:else>
 						</td>
 					</g:each>
@@ -136,7 +146,7 @@
 		<div class="col-sm-2 col-sm-offset-1">
 			
 			<input type="checkbox" id="tipoHora" name="checkBox_tipoHora"/>
-			<label for="checkBox_tipoHora" >
+			<label for="tipoHora" >
 				Primera Vez
 			</label>
 		</div>
@@ -147,8 +157,7 @@
 			<a title="" id="agregarFila" class="btn btn-default" onclick="agregarFila()">Agregar hora</a>
 		</div>
 	</div>
-	<div class="col-sm-4 col-sm-offset-1">
-		${horarioLength}
+	<div class="col-sm-4 col-sm-offset-1">		
 		<table class="table table-striped">
 			<thead>
 				<g:each in="${[0,1,2,3,4,5,6]}" var ="diaBoton">					
@@ -163,7 +172,7 @@
 							<td id="f${i}_c${j}" class="${ horario[j][i]?.tipoCita} centrado">			
 								<g:if test="${horario[j][i]}">
 									<span>${horario[j][i]?.hora}</span>
-									<a class='eliminarCelda glyphicon glyphicon-trash' onclick="eliminarCelda('f${j}_c${i}')"/>
+									<a class='eliminarCelda glyphicon glyphicon-trash' !important;" onclick="eliminarCelda('f${j}_c${i}')"/>
 								</g:if>				 																																								
 							</td>
 						</g:each>					

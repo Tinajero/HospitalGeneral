@@ -1,5 +1,12 @@
 <%@ page import="cita.Cita" %>
 
+${request?.session.servletContext.realPath}
+<script> var getTipoCitaCambiadaPath = "${createLink(action:'tipoCitaCambiada')}" </script>
+<script> var getBussyDaysPath = "${createLink(action:'getBussyDays')}" </script>
+<script> var getCalendarPath = "${createLink(controller:'metodosCalendar', action:'consulta')}" </script>
+<script> var getMostrarHorarioPath = "${createLink(action:'mostrarHorario')}" </script>
+<script> var doctorSeleccionado = "${citaInstance?.doctor?.id}" </script>
+
 <div class="form-group required">
 	<label for="tipoCita" class="col-sm-2 control-label">
 		<g:message code="cita.tipoCita" default="Tipo de Cita"/>
@@ -11,6 +18,7 @@
 			id="tipoCita" 
 			class="form-control selectionBox" 
 			required="true"
+			
 			onChange="onChangeTipoCita()">
 			<option value="0">Primera Vez</option>
 			<option value="1">Subsecuente</option>			
@@ -29,8 +37,9 @@
 		<input type="text" 
 			name="cita.paciente.expediente" 
 			id="expediente_textField" 
+			
 			placeholder="Introduce Expediente" 
-			class="form-control"  value=""/>
+			class="form-control"  value="${citaInstance?.paciente?.expediente}"/>
 	</div>
 </div>
 
@@ -40,14 +49,17 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-2">
-			<input type="text" name="cita.paciente.nombre" id="nombre" class="por_nombre form-control" placeholder="Nombre(s)" required="" value=""/>
+			<input type="text" name="cita.paciente.nombre" id="nombre" class="por_nombre form-control" 
+			placeholder="Nombre(s)" required="true" value="${citaInstance?.paciente?.nombre}"/>
 	</div>
 	<div class="col-sm-2">
-		<input type="text" name="cita.paciente.apellidoPaterno" id="apaterno" class="por_nombre form-control" placeholder="Apellido Paterno" required="" value=""/>
+		<input type="text" name="cita.paciente.apellidoPaterno" id="apaterno" class="por_nombre form-control" placeholder="Apellido Paterno" 
+		required="true" value="${citaInstance?.paciente?.apellidoPaterno}"/>
 		<input type="hidden" id="apaterno_only" name="country_id" value="" />
 	</div>
 	<div class="col-sm-2">
-		<input type="text" name="cita.paciente.apellidoMaterno" id="amaterno" class="por_nombre form-control" placeholder="Apellido Materno" required="" value=""/>
+		<input type="text" name="cita.paciente.apellidoMaterno" id="amaterno" class="por_nombre form-control" 
+		placeholder="Apellido Materno" required="true" value="${citaInstance?.paciente?.apellidoMaterno}"/>
 	</div>
 	
 </div>
@@ -57,7 +69,7 @@
 		<g:message code="cita.paciente.curp.label" default="Curp" />		
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="curp" name="cita.paciente.curp" class="form-control"  value="${cita?.paciente?.curp}"/>
+		<g:textField id="curp" name="cita.paciente.curp" class="form-control"  value="${citaInstance?.paciente?.curp}"/>
 	</div>
 </div>
 
@@ -66,7 +78,7 @@
 		<g:message code="cita.paciente.folioSeguroPopular.label" default="Folio Seguro Popular" />
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="folioSeguroPopular" name="cita.paciente.folioSeguroPopular" class="form-control"  value="${cita?.paciente?.folioSeguroPopular}"/>
+		<g:textField id="folioSeguroPopular" name="cita.paciente.folioSeguroPopular" class="form-control"  value="${citaInstance?.paciente?.folioSeguroPopular}"/>
 	</div>
 </div>
 
@@ -76,7 +88,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="poblacion" name="cita.paciente.poblacion" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<g:textField id="poblacion" name="cita.paciente.poblacion" class="form-control" required="" value="${citaInstance?.paciente?.poblacion}"/>
 	</div>
 </div>
 
@@ -86,7 +98,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control" required="" value="${cita?.paciente?.poblacion}"/>
+		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control" required="" value="${citaInstance?.paciente?.numeroTelefono}"/>
 	</div>
 </div>
 
@@ -97,7 +109,7 @@
 	</label>
 	<div class="col-sm-4">
     <g:select id="TipoCita" name="cita.doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" 
-	value="${cita?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged(this.value);"/>
+	value="${citaInstance?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged(this.value);"/>
 	</div>
 </div>
 
@@ -120,17 +132,19 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-1 nopadding" 	style="padding-right:15px;">		
-		<select name="cita.fecha_day" class="form-control selectionBox" id="cbFechaCita_day" onchange="cambiarFechaCalendario();" required="true">
+		<select name="cita.fecha_day" class="form-control selectionBox" id="cbFechaCita_day" onchange="cambiarFechaCalendario();" 
+			required="">
 		<% def count=31 %>
 		<g:each in="${1..count}" var="dia" >
 			<option value="${dia}">${dia}</option>
 		</g:each>
-		<select>
+		</select>
 	</div>
-	
-              <input type="hidden" name="cita.fecha" value="date.struct" />
+		<input type="hidden"  value="${citaInstance?.fecha}" id="fechaOculta"/>
+        <input type="hidden" name="cita.fecha" value="date.struct"/>
 	<div class="col-sm-2 nopadding" >
-		<select name="cita.fecha_month" class="form-control selectionBox" id="cbFechaCita_month" required="" onchange="cambiarFechaCalendario();">
+		<select name="cita.fecha_month" class="form-control selectionBox" id="cbFechaCita_month" required="" onchange="cambiarFechaCalendario();"
+			>
 			<option value="1">enero</option>
 			<option value="2">febrero</option>
 			<option value="3">marzo</option>
@@ -146,7 +160,8 @@
 		</select>
 	</div>
 	<div class="col-sm-1 nopadding">
-		<select name="cita.fecha_year" class="form-control selectionBox" id="cbFechaCita_year" required="" onchange="cambiarFechaCalendario();"><option value="2115">2115</option>		
+		<select name="cita.fecha_year" class="form-control selectionBox" id="cbFechaCita_year" required="" onchange="cambiarFechaCalendario();">
+			<option value="2115">2115</option>		
 			<option value="2031">2031</option>
 			<option value="2030">2030</option>
 			<option value="2029">2029</option>
