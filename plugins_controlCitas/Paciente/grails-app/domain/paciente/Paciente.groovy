@@ -14,7 +14,7 @@ class Paciente {
 	String expediente
 	String curp
 	String folioSeguroPopular
-	Long edad
+	String edad
 	String numeroTelefono
 	String poblacion
 	
@@ -28,28 +28,28 @@ class Paciente {
     	poblacion blank: false
     	curp nullable: true
     	folioSeguroPopular nullable: true
-    	
+    	edad nullable:true
     }
     static mapping = {
     	edad formula: "controlCitaDB.calcular_edad_curp(curp)"
     }
 
     /*Esta es la function que se debe de crear en la base de datos.
-    CREATE DEFINER=`root`@`localhost` FUNCTION `calcular_edad_curp`( curp VARCHAR(20)) RETURNS int(11)
+   CREATE DEFINER=`root`@`localhost` FUNCTION `calcular_edad_curp`( curp VARCHAR(20)) RETURNS int(11)
 BEGIN
 	
-	DECLARE EDAD intEGER;
+	DECLARE EDAD INTEGER;
     
     IF (curp is not null and 
 		substring(CURP, 5, 6) REGEXP '^-?[0-9]+$' = 0) THEN
-        SET edad = -1;
+        SET edad = null;
 	ELSE
 			IF (curp is not null and substring(CURP, 17,1) REGEXP '^-?[0-9]+$' > 0) THEN
 				SET EDAD = TIMESTAMPDIFF(YEAR, concat( '19',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
 			ELSEIF curp is not null then
 				SET EDAD = TIMESTAMPDIFF(YEAR, concat( '20',substring(curp, 5,2),'-' ,substring(curp, 7,2), '-',substring(curp, 9,2) ), CURDATE());
 			ELSE
-				SET edad = -1;
+				SET edad = null;
 		END IF;
     end if;
 	RETURN EDAD;

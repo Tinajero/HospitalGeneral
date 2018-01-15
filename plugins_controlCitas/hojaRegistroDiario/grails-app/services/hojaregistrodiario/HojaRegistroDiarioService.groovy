@@ -44,8 +44,8 @@ class HojaRegistroDiarioService {
     def select ="select d.tipoCita, concat(d.nombre,' ', d.apellidoPat,' ', d.apellidoMat) as doctorNombre,\
       d.curp as curpDoctor, d.cedulaProfesional,\
      date_format(c.fecha,'%d') as diaFecha, date_format(c.fecha,'%m') as mesFecha, date_format(c.fecha,'%y') as anioFecha, \
-     concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno) as nombrePaciente, p.expediente,\
-     p.curp, p.folioSeguroPopular as seguroPaciente, p.edad \
+     concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno) as nombrePaciente, COALESCE(p.expediente, ''),\
+     COALESCE(p.curp, ''), COALESCE(p.folioSeguroPopular,'') as seguroPaciente, COALESCE(p.edad, '') \
      from Cita as c, Doctor as d, Paciente as p ";
     def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
 
@@ -57,7 +57,7 @@ class HojaRegistroDiarioService {
 //and d.tipoCita = ?  , params.tipoCita
     return resultados
   }
-
+  
   def obten_lista(resultado)
   {
 
