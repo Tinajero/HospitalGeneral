@@ -29,4 +29,17 @@ class Doctor {
         	}	
         }.sort() 
   	}
+	  
+	void setNombre(String s){
+		nombre = s?.toUpperCase()
+	}
+	void setApellidoPat(String s){
+		apellidoPat = s?.toUpperCase()
+	}
+	void setApellidoMat(String s){
+		apellidoMat = s?.toUpperCase()
+	}
+	void setCurp(String s){
+		curp = s?.toUpperCase()
+	}
 }

@@ -78,7 +78,7 @@ var Autocomplete = function(){
                if(value.length >= 4){
                   $.ajax({
                       type: "GET",
-                      url: "autocompleteByExpediente",
+                      url: autocompleteByExpediente,
                       data: {
                           'expediente' : value
                       },

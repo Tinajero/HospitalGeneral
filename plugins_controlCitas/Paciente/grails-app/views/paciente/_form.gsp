@@ -1,58 +1,87 @@
 <%@ page import="paciente.Paciente" %>
+<script> var autocompleteByExpediente = "${createLink(controller: 'cita', action:'autocompleteByExpediente')}" </script>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: paciente, field: 'apellidoPaterno', 'error')} required">
-	<label for="apellidoPaterno">
-		<g:message code="paciente.apellidoPaterno.label" default="Apellido Paterno" />
-		<span class="required-indicator">*</span>
+<div class="form-group ${hasErrors(bean: paciente, field: 'expediente', 'has-error')} required">
+	<label for="expediente" class="col-sm-2 control-label">
+		<g:message code="paciente.expediente.label" default="Expediente" />
+		
 	</label>
-	<g:textField name="apellidoPaterno" required="" value="${paciente?.apellidoPaterno}"/>
-
+	<div class="col-sm-5">
+		<g:textField id="expediente_textField" name="paciente.expediente"  
+				required="true" class="form-control" value="${pacienteInstance?.expediente}"/>
+	</div>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: paciente, field: 'apellidoMaterno', 'error')} required">
-	<label for="apellidoMaterno">
-		<g:message code="paciente.apellidoMaterno.label" default="Apellido Materno" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="apellidoMaterno" required="" value="${paciente?.apellidoMaterno}"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: paciente, field: 'nombre', 'error')} required">
-	<label for="nombre">
+<div class="form-group ${hasErrors(bean: paciente, field: 'nombre', 'has-error')} required">
+	<label for="nombre" class="col-sm-2 control-label">
 		<g:message code="paciente.nombre.label" default="Nombre" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="nombre" required="" value="${paciente?.nombre}"/>
+	<div class="col-sm-5">
+		<g:textField name="nombre" required="true" class="form-control" value="${pacienteInstance?.nombre}"/>
+	</div>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: paciente, field: 'expediente', 'error')} required">
-	<label for="expediente">
-		<g:message code="paciente.expediente.label" default="Expediente" />
+<div class="form-group ${hasErrors(bean: paciente, field: 'apellidoPaterno', 'has-error')} required">
+	<label for="apellidoPaterno" class="col-sm-2 control-label">
+		<g:message code="paciente.apellidoPaterno.label" default="Apellido Paterno" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="expediente" pattern="${paciente.constraints.expediente.matches}" required="" value="${paciente?.expediente}"/>
+	<div class="col-sm-5">
+		<g:textField name="apellidoPaterno" required="true" class="form-control" value="${pacienteInstance?.apellidoPaterno}"/>
+	</div>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: paciente, field: 'numeroTelefono', 'error')} ">
-	<label for="numeroTelefono">
-		<g:message code="paciente.numeroTelefono.label" default="Numero Telefono" />
-		
+<div class="form-group ${hasErrors(bean: paciente, field: 'apellidoMaterno', 'has-error')} required">
+	<label for="apellidoMaterno" class="col-sm-2 control-label">
+		<g:message code="paciente.apellidoMaterno.label" default="Apellido Materno" />
+		<span class="required-indicator">*</span>
 	</label>
-	
+	<div class="col-sm-5">
+		<g:textField name="apellidoMaterno" required="true" class="form-control" value="${pacienteInstance?.apellidoMaterno}"/>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: paciente, field: 'numeroTelefono', 'has-error')} ">
+	<label for="numeroTelefono" class="col-sm-2 control-label">
+		<g:message code="paciente.numeroTelefono.label" required="true" class="form-control" default="Numero Telefono" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-5">
+		<input id="telefono" type="tel" name="numeroTelefono" class="form-control" required="true"
+		 value="${pacienteInstance?.numeroTelefono}"/>
+	</div>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: paciente, field: 'poblacion', 'error')} ">
-	<label for="poblacion">
-		<g:message code="paciente.poblacion.label" default="Poblacion" />
-		
+<div class="form-group ${hasErrors(bean: paciente, field: 'poblacion', 'has-error')} ">
+	<label for="poblacion" class="col-sm-2 control-label">
+		<g:message code="paciente.poblacion.label" default="Poblacion" required="true" class="form-control"/>
+		<span class="required-indicator">*</span>
 	</label>
-	
+	<div class="col-sm-5">
+		<g:textField id="poblacion" name="poblacion" class="form-control" required="" value="${pacienteInstance?.poblacion}"/>
+	</div>
 
+</div>
+
+<div class="form-group ${hasErrors(bean: paciente, field: 'curp', 'has-error')} required">
+	<label for="curp" class="col-sm-2 control-label">
+		<g:message code="paciente.curp.label" default="Curp" />		
+	</label>
+	<div class ="col-sm-4">
+		<g:textField id="curp" name="paciente.curp" class="form-control" pattern=".{18}" value="${pacienteInstance?.curp}"/>
+	</div>
+</div>
+
+<div class="form-group ${hasErrors(bean: paciente, field: 'folioSeguroPopular', 'has-error')} required">
+	<label for="folioSeguroPopular" class="col-sm-2 control-label">
+		<g:message code="paciente.folioSeguroPopular.label" default="Folio Seguro Popular" />
+	</label>
+	<div class ="col-sm-4">
+		<g:textField id="folioSeguroPopular" name="paciente.folioSeguroPopular" class="form-control"  value="${pacienteInstance?.folioSeguroPopular}"/>
+	</div>
 </div>
 

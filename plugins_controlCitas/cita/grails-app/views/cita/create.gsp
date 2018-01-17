@@ -24,6 +24,15 @@
 					</g:eachError>
 				</ul>
 				</g:hasErrors>
+				<g:hasErrors bean="${cita?.paciente}">
+				<ul class="errors" role="alert">
+					<g:eachError bean="${cita?.paciente}" var="error">
+						<div class="alert alert-danger" role="alert">
+							<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+						</div>
+					</g:eachError>
+				</ul>
+				</g:hasErrors>
 				<g:form url="[resource:cita, action:'save']" >
 					<fieldset class="form-horizontal cita-form">
 						<g:render template="form"/>

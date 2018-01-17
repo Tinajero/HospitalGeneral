@@ -145,7 +145,7 @@ class MetodosCalendarController {
     	Calendario calendario 
         println "DoctorID " + doctorId
         def doctor = Long.parseLong(doctorId, 10);
-    	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId ORDER BY cit.fecha", [startTime:startTime, endTime:endTime, doctorId:doctor])
+    	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId and cit.fechaBaja is null ORDER BY cit.fecha", [startTime:startTime, endTime:endTime, doctorId:doctor])
         def i = 0;
        
         

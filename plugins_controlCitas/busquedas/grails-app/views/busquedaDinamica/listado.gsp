@@ -86,11 +86,13 @@ function fnExcelReport()
         txtArea1.focus(); 
         sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
     }  
-    else                 //other browser not tested on IE 11
-        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
-
+    else {                 //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));        
+        
+    }
     return (sa);
 }
+
     </script>
 
 </body>

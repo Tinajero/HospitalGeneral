@@ -9,13 +9,7 @@
 	</head>
 	<body>
 		<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
-			<a href="#list-paciente" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-			<div class="nav" role="navigation">
-				<ul>
-					<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				</ul>
-			</div>
+			
 			<div id="list-paciente" class="content scaffold-list" role="main">
 				<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 				<g:if test="${flash.message}">
@@ -39,7 +33,7 @@
 					<g:each in="${pacienteList}" status="i" var="paciente">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-							<td><g:link action="paciente/show/" id="${paciente.id}">${fieldValue(bean: paciente, field: "apellidoPaterno")}</g:link></td>
+							<td><g:link action="show" id="${paciente.id}">${fieldValue(bean: paciente, field: "apellidoPaterno")}</g:link></td>
 
 							<td>${fieldValue(bean: paciente, field: "apellidoMaterno")}</td>
 

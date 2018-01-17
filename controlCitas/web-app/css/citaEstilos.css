@@ -1,3 +1,7 @@
+input {
+	text-transform: uppercase;
+}
+
 .centrado {
 	 text-align:center;
 }

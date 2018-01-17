@@ -4,6 +4,7 @@ package cita
 import grails.converters.JSON
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
 import paciente.Paciente
 import doctor.Doctor
@@ -14,9 +15,10 @@ class CitaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def CitaService
     def DoctorService
+	def SpringSecurityService springSecurityService 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Cita.list(params), model:[citaCount: Cita.count()]
+        respond Cita.findAllByFechaBajaIsNull(params), model:[citaCount: Cita.count()]
     }
 
     def show(Cita cita) {
@@ -38,14 +40,13 @@ class CitaController {
             notFound()
             return
         }
+			
         if (cita.paciente.expediente != null) {
 
             def p = Paciente.findByExpediente(cita.paciente.expediente)
-            if(p){
-                println "Se encontr� el expediente en la BD"
-                println "p = " + p.expediente
-                cita.paciente = p
-                println "cita.paciente : " + cita.paciente
+            
+			if(p){
+                cita.paciente = p           
             }
         }
         //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
@@ -57,16 +58,26 @@ class CitaController {
                 cita.asignadaA = "subsecuente"
             }
         }
-        //end
+        
+		def idUsuarioCreacion = springSecurityService.principal.id
+		cita.usuarioCreacionId = idUsuarioCreacion
+		cita.fechaCreacion = new Date();
+		
         cita.validate()
-        if (cita.hasErrors() ) {
+		cita.paciente.validate()
+        if (cita.hasErrors() || cita.paciente.hasErrors() ) {
             println "Cita tiene errores"
-            println "Errores" + cita.errors + "END Errores"
+            println "Errores " + cita.errors + "END Errores"
+			println "Errores Paciente" + cita.paciente.errors + " END Errores"
             respond cita.errors, view:'create', model:[cita:cita]
             return
         }
 
+	
+		
         cita.paciente.save flush:true
+		
+		
         cita.save flush:true
 
         request.withFormat {
@@ -86,19 +97,21 @@ class CitaController {
 
     @Transactional
     def update(Cita cita) {
-		println "CITA " + cita.fecha
-		println "Params " + params
-		println "UPDATE 1"
+		
         if (cita == null) {
             notFound()
             return
         }
-		println "UPDATE 2"
+		
+		def idUsuarioModificacion = springSecurityService.principal.id
+		cita.usuarioModificacionId = idUsuarioModificacion
+		cita.fechaModificacion = new Date();
+		
         if (cita.hasErrors()) {
             respond cita.errors, view:'edit'
             return
         }
-		println "UPDATE 3"
+		
         cita.save flush:true
 
         request.withFormat {
@@ -118,7 +131,11 @@ class CitaController {
             return
         }
 
-        cita.delete flush:true
+		def idUsuarioElimina = springSecurityService.principal.id
+		cita.usuarioBajaId = idUsuarioElimina
+		cita.fechaBaja = new Date();
+		
+        cita.save flush:true
 
         request.withFormat {
             form multipartForm {

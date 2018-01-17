@@ -23,7 +23,7 @@
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 							<td>${elemento.ap_pat}</td>
 							<td>${elemento.ap_mat}</td>
-							<td>${elemento.nombre}</td>
+							<td> <g:link controller="paciente" action="show" id="${elemento.id}"> ${elemento.nombre}</g:link></td>
 
 							<td> <g:link controller="paciente" action="show" id="${elemento.id}"> ${elemento.expediente} </g:link> </td>
 						</tr>

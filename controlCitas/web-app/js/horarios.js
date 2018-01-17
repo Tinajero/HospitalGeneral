@@ -56,24 +56,24 @@
 
 	$(document).ready(function(){ 
 		 $("#curpDoctor").mask('ABCDEFGHIJKLMNOPQR', {'translation': {
-			  A:{pattern: '[A-Z]'},
-			  B:{pattern: '[AEIOU]'},
-			  C:{pattern: '[A-Z]'},
-			  D:{pattern: '[A-Z]'},
-			  E:{pattern: '[0-9]'},
-			  F:{pattern: '[0-9]'},
-			  G:{pattern: '[0-1]'},
-			  H:{pattern: '[0-9]'},
-			  I:{pattern: '[0-9]'},
-			  J:{pattern: '[0-9]'},
-			  K:{pattern: '[H,M]'},
-			  L:{pattern: '[A-Z]'},
-			  M:{pattern: '[A-Z]'},
-			  N:{pattern: '[B-DF-HJ-NP-TV-Z]'},
-			  O:{pattern: '[B-DF-HJ-NP-TV-Z]'},
-			  P:{pattern: '[B-DF-HJ-NP-TV-Z]'},
-			  Q:{pattern: '[0-9A-Z]'},
-			  R:{pattern: '[0-9]'}           
+			 A:{pattern: '[A-Za-z]'},
+		      B:{pattern: '[AEIOUaeiou]'},
+		      C:{pattern: '[A-Za-z]'},
+		      D:{pattern: '[A-Za-z]'},
+		      E:{pattern: '[0-9]'},
+		      F:{pattern: '[0-9]'},
+		      G:{pattern: '[0-1]'},
+		      H:{pattern: '[0-9]'},
+		      I:{pattern: '[0-9]'},
+		      J:{pattern: '[0-9]'},
+		      K:{pattern: '[H,M,h,m]'},
+		      L:{pattern: '[A-Za-z]'},
+		      M:{pattern: '[A-Za-z]'},
+		      N:{pattern: '[B-DF-HJ-NP-TV-Z-b-df-hj-np-tv-z]'},
+		      O:{pattern: '[B-DF-HJ-NP-TV-Z-b-df-hj-np-tv-z]'},
+		      P:{pattern: '[B-DF-HJ-NP-TV-Z-b-df-hj-np-tv-z]'},
+		      Q:{pattern: '[0-9A-Za-z]'},
+		      R:{pattern: '[0-9]'}           
 			 }
    		});
 	});

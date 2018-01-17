@@ -27,7 +27,7 @@ class CitaService {
         def doctorIdLong = new Long(doctorId)
         def inicioDia = Date.parse("d-M-yyyy HH:mm:ss", fechaQuery +" 00:00:00")
         def finDia = Date.parse("d-M-yyyy HH:mm:ss", fechaQuery +" 23:59:59")
-       	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId", [startTime:inicioDia, endTime:finDia, doctorId:doctorIdLong])
+       	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId and cit.fechaBaja is null", [startTime:inicioDia, endTime:finDia, doctorId:doctorIdLong])
        	return query
     }
     /**

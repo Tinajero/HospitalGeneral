@@ -6,6 +6,7 @@ ${request?.session.servletContext.realPath}
 <script> var getCalendarPath = "${createLink(controller:'metodosCalendar', action:'consulta')}" </script>
 <script> var getMostrarHorarioPath = "${createLink(action:'mostrarHorario')}" </script>
 <script> var doctorSeleccionado = "${citaInstance?.doctor?.id}" </script>
+<script> var autocompleteByExpediente = "${createLink(controller: cita, action:'autocompleteByExpediente')}" </script>
 
 <div class="form-group required">
 	<label for="tipoCita" class="col-sm-2 control-label">
@@ -26,7 +27,7 @@ ${request?.session.servletContext.realPath}
 	</div> 
 </div>
 
-<div class="form-group ${hasErrors(brean: paciente, field: expediente, 'has error')}" id="divExpediente">
+<div class="form-group ${hasErrors(bean: cita?.paciente, field: 'expediente', 'has error')}" id="divExpediente">
 
 	<label for="expediente" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.label" default='Expediente'/>
@@ -43,7 +44,7 @@ ${request?.session.servletContext.realPath}
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(brean: paciente, field: nombre, 'has error')} required" >
+<div class="form-group ${hasErrors(bean: cita?.paciente, field: 'nombre', 'has-error')} required" >
 	<label for="apellidoPaterno" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.nombre.label" default="Paciente" />
 		<span class="required-indicator">*</span>
@@ -64,16 +65,16 @@ ${request?.session.servletContext.realPath}
 	
 </div>
 
-<div class="form-group ${hasErrors(brean: paciente, field: curp, 'has error')} required">
+<div class="form-group ${hasErrors(bean: cita?.paciente, field: 'curp', 'has-error')} required">
 	<label for="curp" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.curp.label" default="Curp" />		
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="curp" name="cita.paciente.curp" class="form-control"  value="${citaInstance?.paciente?.curp}"/>
+		<g:textField id="curp" name="cita.paciente.curp" class="form-control" pattern=".{18}" value="${citaInstance?.paciente?.curp}"/>
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(brean: paciente, field: folioSeguroPopular, 'has error')} required">
+<div class="form-group ${hasErrors(bean: cita?.paciente, field: 'folioSeguroPopular', 'has-error')} required">
 	<label for="folioSeguroPopular" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.folioSeguroPopular.label" default="Folio Seguro Popular" />
 	</label>
@@ -82,27 +83,28 @@ ${request?.session.servletContext.realPath}
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(brean: paciente, field: poblacion, 'has error')} required">
+<div class="form-group ${hasErrors(bean: cita?.paciente, field: 'poblacion', 'has-error')} required">
 	<label for="Poblacion" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.poblacion.label" default="Localidad" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="poblacion" name="cita.paciente.poblacion" class="form-control" required="" value="${citaInstance?.paciente?.poblacion}"/>
+		<g:textField id="poblacion" name="cita.paciente.poblacion" class="form-control" required="true" value="${citaInstance?.paciente?.poblacion}"/>
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(brean: paciente, field: telefono, 'has error')} required">
+<div class="form-group ${hasErrors(bean: cita?.paciente, field: 'numeroTelefono', 'has-error')} required">
 	<label for="Telefono" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.telefono.label" default="Telefono" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control" required="" value="${citaInstance?.paciente?.numeroTelefono}"/>
+		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control" required="true"
+		 value="${citaInstance?.paciente?.numeroTelefono}"/>
 	</div>
 </div>
 
-<div class="form-group ${hasErrors(bean: cita, field: 'doctor', 'has error')} required">
+<div class="form-group ${hasErrors(bean: cita, field: 'doctor', 'has-error')} required">
 	<label for="TipoCita" class="col-sm-2 control-label">
 		<g:message code="cita.doctor.label" default="Tipo de cita" />
 		<span class="required-indicator">*</span>
