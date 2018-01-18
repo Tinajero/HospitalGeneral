@@ -37,11 +37,15 @@
 					<fieldset class="form-horizontal cita-form">
 						<g:render template="form"/>
 					</fieldset>
-					<fieldset class="buttons col-sm-offset-2 cita-buttons">
+					<div class="col-sm-2 control-label"></div>
+					<div class="col-sm-2">
 						<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-					</fieldset>
+					</div>
 				</g:form>
-
+				<br/>
+				<div class="row">
+					<div id='calendar' class="col-sm-offset-1 col-xs-offset-0 calendar"></div>
+				</div>
 			</div>
 		</div>
 		<script>

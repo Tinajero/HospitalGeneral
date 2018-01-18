@@ -30,6 +30,9 @@
 						<g:actionSubmit class=" save btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 					</fieldset>
 				</g:form>
+				<div class="row">
+					<div id='calendar' class="col-sm-offset-1 col-xs-offset-0 calendar"></div>
+				</div>
 			</div>
 		</div>
 	</body>

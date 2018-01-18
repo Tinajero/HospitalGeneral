@@ -106,17 +106,12 @@ class HojaRegistroDiarioService {
       def date2 = sdf.parse(params.fecha+" 23:59:59")
       def tipoCita = params.tipoCita;
       def lista = []
+	  def ahora = new Date();
+	  def nombreArchivo = params.fecha+"_"+ahora.getHours()+"_"+ahora.getMinutes()+".pdf"
 
       resultados = consulta(date1, date2, tipoCita)
-      println("RESULTADOS "+resultados)
-      lista = obten_lista(resultados)
-      println("LISTA " + lista)
       
-       print ("Lista obtenida")
-      for (value in lista)
-      {
-         print value
-    }
+      lista = obten_lista(resultados)                        
       
       def lista_ret = [0,params.fecha, tipoCita]
       
@@ -126,30 +121,27 @@ class HojaRegistroDiarioService {
         lista_ret[0] = 0
         return lista_ret
       }
-    printPDF(lista,params.fecha)
+    printPDF(lista,params.fecha, nombreArchivo)
     lista_ret[0]=1
-return lista_ret
+	lista_ret[3]= nombreArchivo
+	return lista_ret
 
 	}
 
 
-  def printPDF(def lista,def fecha)
+  def printPDF(def lista,def fecha, def nombreArchivo)
   {
     try {
       def gpdf = new GeneratePDF();
 
       String[] arregloGenerico = [ "Tipo de cita", "doctorNombre", "curpDoctor",  "cedulaProfesional", "diaFecha", "mesFecha", "anioFecha"]
       String[] variables = ["nombrePaciente", "expediente", "curp", "seguroPaciente", "edad"]
-      def s = grailsApplication.mainContext.getResource("temp_pdf/consulta.pdf").file
-      println("PAth " + s)
-      def e = grailsApplication.mainContext.getResource("plantillas_consultas").file
-      println("PAth " + e)      
+      def s = grailsApplication.mainContext.getResource("temp_pdf/"+nombreArchivo).file      
+      def e = grailsApplication.mainContext.getResource("plantillas_consultas").file      
       gpdf.setPathOut("" + s)
       gpdf.setPathTemplates("" + e + "/")
       gpdf.setTemplates(sources)
-      gpdf.setPatterns(arregloGenerico, variables)     
-      println("Lista > " + lista)
-      println("fecha > " + fecha ) 
+      gpdf.setPatterns(arregloGenerico, variables)           
       gpdf.generateBook(lista as String[], fecha as String)
     } catch(Exception e) {
       // TODO Auto-generated catch block

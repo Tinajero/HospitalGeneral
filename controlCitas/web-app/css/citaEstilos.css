@@ -55,7 +55,7 @@ input {
 	margin: 0;
 }
 .cita-form .form-group{
-	margin: 0 0 2.5em;
+	margin: 0 0 2 em;
 }
 .cita-form .form-group .btn-horario{
 	margin: 2em 0;
@@ -64,7 +64,7 @@ input {
 	margin: 2em 0;
 }
 .cita-buttons .btn{
-	display: block;
+	
 	margin: 0 auto;
 	width: 90px;
 }

@@ -9,7 +9,10 @@ def HojaRegistroDiarioService
 
     def buscar(){
     	
-    	def lista = HojaRegistroDiarioService.list(params) 
+    	def lista = HojaRegistroDiarioService.list(params)
+		
+		sleep(2000)
+		 
     	render (view:'resultado', model:['lista':lista])
     	
     }

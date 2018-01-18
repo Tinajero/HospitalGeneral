@@ -24,8 +24,9 @@
 			 </br>Tipo de cita: ${lista[2]}
 		 	</br>
 				 <div class="">
-	 				<object data="/controlCitas/temp_pdf/consulta.pdf" type="application/pdf" width="100%" height="600px">
-	 					<p>Parece ser que no puedes visualizar el pdf. Click para descargar <a href="/controlCitas/temp_pdf/consulta.pdf">consulta.pdf</a></p>
+				 <a href="/controlCitas/temp_pdf/${ lista[3] }">${lista[3]}</a></p>
+	 				<object data="/controlCitas/temp_pdf/${ lista[3] }" type="application/pdf" width="100%" height="600px">
+	 					<p>Parece ser que no puedes visualizar el pdf. Click para descargar </p>
 
 	 				</object>
 	 			</div>

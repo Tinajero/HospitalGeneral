@@ -11,8 +11,13 @@
 <body>
     <div class="col-sm-5 col-md-6 col-sm-offset-3 col-md-offset-2 main"> 
             
-            <button id="btnExport" onclick="fnExcelReport();"> Exportar a Excel </button>
-            <iframe id="txtArea1" style="display:none"></iframe>
+             <g:if test="${ lista.size() != 0 }">
+	            <button id="btnExport" onclick="fnExcelReport();"> Exportar a Excel </button>
+	            <iframe id="txtArea1" style="display:none"></iframe>
+            </g:if>
+            <g:if test="${ lista.size() == 0 }">
+            	No se encontraron datos.
+            </g:if>
             
             <g:each in="${lista}" status="i" var="doctor">
             	
