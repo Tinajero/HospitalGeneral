@@ -21,21 +21,17 @@ class CitaController {
         respond Cita.findAllByFechaBajaIsNull(params), model:[citaCount: Cita.count()]
     }
 
-    def show(Cita cita) {
-        println cita
+    def show(Cita cita) {        
         respond cita
     }
 
     def create() {
         respond new Cita(params)
-		
-		
-        println Doctor.listUnique()
+				       
     }
 
     @Transactional
-    def save(Cita cita) {
-        println params
+    def save(Cita cita) {        
         if (cita == null) {
             notFound()
             return
@@ -43,9 +39,10 @@ class CitaController {
 			
         if (cita.paciente.expediente != null) {
 
-            def p = Paciente.findByExpediente(cita.paciente.expediente)
+            def p = Paciente.findByExpedienteAndFechaBajaIsNull(cita.paciente.expediente)
             
 			if(p){
+				
                 cita.paciente = p           
             }
         }
@@ -62,24 +59,21 @@ class CitaController {
 		def idUsuarioCreacion = springSecurityService.principal.id
 		cita.usuarioCreacionId = idUsuarioCreacion
 		cita.fechaCreacion = new Date();
+				
+		cita.paciente.usuarioCreacionId = idUsuarioCreacion
+		cita.paciente.fechaCreacion = new Date();
 		
         cita.validate()
 		cita.paciente.validate()
         if (cita.hasErrors() || cita.paciente.hasErrors() ) {
-            println "Cita tiene errores"
+          /*  println "Cita tiene errores"
             println "Errores " + cita.errors + "END Errores"
-			println "Errores Paciente" + cita.paciente.errors + " END Errores"
+			println "Errores Paciente" + cita.paciente.errors + " END Errores"*/
             respond cita.errors, view:'create', model:[cita:cita]
             return
-        }
-
-	
-		
-        cita.paciente.save flush:true
-		
-		
+        }			
+        cita.paciente.save flush:true		
         cita.save flush:true
-
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'cita.label', default: 'Cita'), cita.id])
@@ -90,8 +84,6 @@ class CitaController {
     }
 
     def edit(Cita cita) {
-        println "Editando"
-		println cita
         respond cita
     }
 
@@ -155,9 +147,9 @@ class CitaController {
             '*'{ render status: NOT_FOUND }
         }
     }
-
-    def tipoCitaCambiada(String tipoCita){                       
-        def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita );        
+	
+    def tipoCitaCambiada(String tipoCita, String turno){                       
+        def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita, Integer.parseInt(turno) );        
         def noSelection = ['':'Seleccione un Medico']
         render g.select(id:'cbDoctores', name:'cita.doctor.id',
             from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , onchange:'cambioDoctor(this.value);',			

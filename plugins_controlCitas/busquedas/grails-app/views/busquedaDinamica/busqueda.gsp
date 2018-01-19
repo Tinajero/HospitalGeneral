@@ -18,7 +18,7 @@
             <fieldset class="form-horizontal">
                 <g:render template="form" />
             </fieldset>
-            <fieldset class="buttons">
+            <fieldset class="buttons col-sm-offset-2">
                 <g:submitButton name="buscar" class="btn btn-primary" value="Realizar Busqueda" />
             </fieldset>
         </g:form>

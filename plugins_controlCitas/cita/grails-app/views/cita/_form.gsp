@@ -104,6 +104,20 @@ ${request?.session.servletContext.realPath}
 	</div>
 </div>
 
+<div class="form-group ${hasErrors(bean: doctorInstance, field: 'tipoCita', 'error')} required">
+	<label for="turno" class="col-sm-2 control-label">
+		<g:message code="doctor.turno.label" default="Turno" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+		
+		<g:select id="turnoDoctor" name="turno" class="form-control" required="" onchange="categoryChanged();" value="${citaInstance?.doctor?.turno}"
+          from="${['1': 'MATUTINO', '2': 'VESPERTINO']}"          
+          optionKey="key" optionValue="value" />
+	</div>
+	
+</div>
+
 <div class="form-group ${hasErrors(bean: cita, field: 'doctor', 'has-error')} required">
 	<label for="TipoCita" class="col-sm-2 control-label">
 		<g:message code="cita.doctor.label" default="Tipo de cita" />
@@ -111,7 +125,7 @@ ${request?.session.servletContext.realPath}
 	</label>
 	<div class="col-sm-4">
     <g:select id="TipoCita" name="cita.doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" 
-	value="${citaInstance?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged(this.value);"/>
+	value="${citaInstance?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged();"/>
 	</div>
 </div>
 

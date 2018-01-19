@@ -1,4 +1,6 @@
 package paciente
+
+import java.util.Date;
 /*
  * Clase que guardara la informacion de los pacientes, en este caso
  * solo necesita de el nombre y el string que se genera con el expediente
@@ -18,17 +20,30 @@ class Paciente {
 	String numeroTelefono
 	String poblacion
 	
+	Date fechaBaja
+	Date fechaModificacion
+	Date fechaCreacion
+	
+	Integer usuarioBajaId
+	Integer usuarioModificacionId
+	Integer usuarioCreacionId
+	
 	
     static constraints = {
     	apellidoPaterno blank: false
     	apellidoMaterno blank: false
     	nombre blank:false
-    	expediente blank: true, matches: '\\d{2}\\-\\d{2}\\-\\d{2}', unique: true, nullable: true
+    	expediente blank: true, matches: '\\d{2}\\-\\d{2}\\-\\d{2}', nullable: true
     	numeroTelefono blank:false, nullable:false
     	poblacion blank: false
     	curp nullable: true
     	folioSeguroPopular nullable: true
     	edad nullable:true
+		
+		fechaBaja nullable:true
+		fechaModificacion nullable:true
+		usuarioBajaId nullable:true
+		usuarioModificacionId nullable:true
     }
     static mapping = {
     	edad formula: "controlCitaDB.calcular_edad_curp(curp)"

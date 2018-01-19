@@ -83,9 +83,9 @@
           <ul class="nav nav-sidebar">
 
             <li><g:link controller ="cita" action="create"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Citas</g:link></li>
-						<li><g:link controller ="hojaRegistroDiario" action=""><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Hojas de registro diario</g:link></li>
+						<li><g:link controller ="hojaRegistroDiario" action=""><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Hojas de registro diario</g:link></li>
 						<li><g:link controller ="busquedasComodin"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</g:link></li>
-						<li><g:link controller ="BusquedaDinamica" action="busqueda"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda Dinamica</g:link></li>
+						<li><g:link controller ="BusquedaDinamica" action="busqueda"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Busqueda Dinamica</g:link></li>
 
           </ul>
         </div>

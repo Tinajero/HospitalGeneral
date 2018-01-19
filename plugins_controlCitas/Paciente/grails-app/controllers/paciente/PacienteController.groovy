@@ -4,11 +4,15 @@ package paciente
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
 @Transactional(readOnly = true)
 @Secured(['ROLE_USER'])
 class PacienteController {
     def CitaService
+	def Cita
+	
+	def SpringSecurityService springSecurityService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -77,14 +81,30 @@ class PacienteController {
     }
 
     @Transactional
-    def delete(Paciente paciente) {
+   def delete(Paciente paciente) {
 
         if (paciente == null) {
             notFound()
             return
         }
+		
+		def listaCitas = CitaService.getCitasWhitPacienteId(paciente.id)
+		def idUsuarioElimina = springSecurityService.principal.id
+		def ahora = new Date();
+		
+		for (int i = 0; i < listaCitas.size(); i++ ){
+			def cita = listaCitas[i];
+			cita.usuarioBajaId =  idUsuarioElimina
+			cita.fechaBaja = ahora
+			cita.save flush:true
+		}		
+		
+		paciente.usuarioBajaId = idUsuarioElimina
+		paciente.fechaBaja = ahora
+		
+	 
 
-        paciente.delete flush:true
+        paciente.save flush:true
 
         request.withFormat {
             form multipartForm {

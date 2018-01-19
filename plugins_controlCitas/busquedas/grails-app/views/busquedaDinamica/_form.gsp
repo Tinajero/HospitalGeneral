@@ -24,11 +24,17 @@
     <label for="Turno" class="col-sm-2 control-label">
 		Turno
 	</label>    
-    <div class="col-sm-1">
-        <input type="checkbox" id="turno" name="TurnoMatutino"> Matutino
+    <div class="col-sm-2">
+        <input type="checkbox" id="turno" name="turnoMatutino"> 
+        <label for="turno" class="control-label">
+        	Matutino
+        </label>
     </div>
-    <div class="col-sm-1">
-        <input type="checkbox" name="TurnoVespertino"> Vespertino
+    <div class="col-sm-2">
+        <input type="checkbox" id="turnoVespertino" name="turnoVespertino"> 
+         <label for="turnoVespertino" class="control-label">
+        	Vespertino
+        </label>
     </div>
 </div>
 
@@ -79,7 +85,7 @@
 
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-3 col-md-offset-2">
-			<label><input type="checkbox" name="telefonoCheck">Telefono</label> 
+			<label><input type="checkbox" name="telefonoCheck">Tel&eacute;fono</label> 
 		</div>
 	</div>
 

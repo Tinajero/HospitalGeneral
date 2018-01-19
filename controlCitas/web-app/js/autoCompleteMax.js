@@ -158,7 +158,7 @@ var Autocomplete = function(){
                         var datos =
                         $.map(response, function(item){
                             return{
-                                value: item.apellidoPaterno + " " + item.apellidoMaterno + " " +item.nombre, //busca por nombre
+                                value: item.nombre + " " + item.apellidoPaterno + " " + item.apellidoMaterno, //busca por nombre
                                 expediente: item.expediente,
                                 nombre: item.nombre,
                                 apaterno: item.apellidoPaterno,
@@ -203,7 +203,7 @@ var Autocomplete = function(){
                         var datos =
                         $.map(response, function(item){
                             return{
-                                value: item.apellidoPaterno + " " + item.apellidoMaterno + " " +item.nombre,//busca por apellidoPaterno
+                                value: item.nombre + " " + item.apellidoPaterno + " " + item.apellidoMaterno,
                                 expediente: item.expediente,
                                 nombre: item.nombre,
                                 apaterno: item.apellidoPaterno,
@@ -248,7 +248,7 @@ var Autocomplete = function(){
                         var datos =
                         $.map(response, function(item){
                             return{
-                                value: item.apellidoPaterno + " " + item.apellidoMaterno + " " +item.nombre, //busca por apellidoMaterno
+                                value: item.nombre + " " + item.apellidoPaterno + " " + item.apellidoMaterno,
                                 expediente: item.expediente,
                                 nombre: item.nombre,
                                 apaterno: item.apellidoPaterno,

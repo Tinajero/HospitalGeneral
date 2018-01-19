@@ -18,6 +18,7 @@ class BusquedaDinamicaService {
         def datosMostrar = obtieneParametrosMostrar(params)
         print datosMostrar
         def tiposCitas =obtieneCitas(params)
+		def turnoMostrar = obtieneTurnosSeleccionados(params)
         print tiposCitas
         def currentSession = sessionFactory.currentSession
 
@@ -25,6 +26,7 @@ class BusquedaDinamicaService {
                 " from cita inner join paciente on cita.paciente_id = paciente.id "+
                 "inner join doctor on doctor.id = cita.doctor_id " +
                 "where FIND_IN_SET(doctor.tipo_cita, \""+ tiposCitas +"\") " +
+				turnoMostrar + " " +
                 "and cita.fecha >= '" + params.fechaInicio + "'" +
                 " and cita.fecha <= '" + params.fechaFin + "' and cita.fecha_baja is null order by doctor.tipo_cita,cita.fecha;"
         print ">> QUERY" + q;
@@ -184,6 +186,30 @@ class BusquedaDinamicaService {
         return sb.toString()
         
     }
+	
+	def obtieneTurnosSeleccionados(params){
+		def parteConsulta = "";
+		StringBuilder sb = new StringBuilder();
+		Boolean tieneDatos = false;		
+		println "#####"
+		if(params.turnoVespertino == "on"){
+			sb.append("doctor.turno = 2")	
+			tieneDatos = true;
+		}
+		if(params.turnoMatutino == "on"){
+			if(tieneDatos)
+				sb.append(" and ")
+			sb.append("doctor.turno = 1")
+			tieneDatos = true;
+		}
+		
+		if (tieneDatos){
+			parteConsulta =" and " + sb.toString();
+		} 
+		print parteConsulta
+		return parteConsulta
+		
+	}
 
     def obtieneCitas(params){
         def citas = "";

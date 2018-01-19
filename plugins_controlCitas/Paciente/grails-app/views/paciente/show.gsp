@@ -14,10 +14,7 @@
 				<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 				<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
-				</g:if>
-				
-				
-				
+				</g:if>												
 				<table class="table table-bordered">
   					<tbody>
   						<tr>
@@ -45,7 +42,7 @@
   					</tbody>	
 				</table>
 				<div align="center">
-					<g:form url="[resource:paciente, action:'delete']" method="DELETE">
+					<g:form url="[resource:pacienteInstance, action:'delete']" method="DELETE">
 					<fieldset class="buttons">
 						<g:link class="btn btn-info" action="edit" id="${pacienteInstance.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 						<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
@@ -67,7 +64,6 @@
             <tr>
               <td><g:formatDate format=" EEEE dd 'de' MMMMMM 'del' yyyy" date="${historial.fecha}"/></td>
               <td><g:formatDate format="HH:mm" date="${historial.fecha}"/></td>
-
               <td>${historial.doctor.nombre} ${historial.doctor.apellidoPat} ${historial.doctor.apellidoMat}</td>
               <td>${historial.doctor.tipoCita}</td>              
             </tr>

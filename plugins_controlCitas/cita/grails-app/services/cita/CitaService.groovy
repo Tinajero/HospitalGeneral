@@ -15,7 +15,8 @@ class CitaService {
     def serviceMethod() {
 
     }
-
+	
+	
      /**
     * Servicio que regresa el horario del doctor dado un dia y un doctor
     * y checa las citas de ese dia para que
@@ -284,7 +285,7 @@ class CitaService {
 	 def getPacientesWithFullExpediente(String expediente){
         println 'getPacientesWithFullExpediente';
         println expediente;
-		  def paciente = Paciente.executeQuery("from Paciente paciente where paciente.expediente = :expediente",[expediente: expediente]);
+		  def paciente = Paciente.executeQuery("from Paciente paciente where paciente.expediente = :expediente and paciente.fechaBaja is null",[expediente: expediente]);
         return paciente
     }
     def getPacientesWithExpediente(String expediente){
@@ -292,8 +293,9 @@ class CitaService {
         println expediente;
         def criteria = Paciente.createCriteria()
         def results = criteria.listDistinct () {
+			like('expediente', expediente+'%')
             and {
-                Paciente.each {  like('expediente', expediente+'%') }
+               isNull('fechaBaja')				
             }
             maxResults(50)
         }
@@ -302,8 +304,9 @@ class CitaService {
     def getPacientesWithNombre(String nombre){
         def criteria = Paciente.createCriteria()
         def results = criteria.listDistinct () {
+			like('nombre', nombre+'%')
             and {
-                Paciente.each {  like('nombre', nombre+'%') }
+               isNull('fechaBaja')				
             }
             maxResults(50)
         }
@@ -312,8 +315,9 @@ class CitaService {
     def getPacientesWithApaterno(String apaterno){
         def criteria = Paciente.createCriteria()
         def results = criteria.listDistinct () {
-            and {
-                Paciente.each {  like('apellidoPaterno', apaterno+'%') }
+			like('apellidoPaterno', apaterno+'%')
+			and {
+                isNull('fechaBaja')			
             }
             maxResults(50)
         }
@@ -322,8 +326,9 @@ class CitaService {
     def getPacientesWithAmaterno(String amaterno){
         def criteria = Paciente.createCriteria()
         def results = criteria.listDistinct () {
-            and {
-                Paciente.each {  like('apellidoMaterno', amaterno+'%') }
+			like('apellidoMaterno', amaterno+'%')
+			and {
+               isNull('fechaBaja')
             }
             maxResults(50)
         }
