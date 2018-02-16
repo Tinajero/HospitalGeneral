@@ -13,7 +13,6 @@ class CitaService {
     def CalendarioService
     def LastIndiceTempService
     def serviceMethod() {
-
     }
 	
 	
@@ -256,7 +255,6 @@ class CitaService {
         String fechaString = "", fechaId = ""
         if  ( startTime != null )
         for (int i = 0; startDate.compareTo(endDate) < 0 ; i++ ){ // mientras tempDate este antes que endDate
-            //print startDate
             fechaString = outputFormatter.format(startDate)
             fechaId = formato.format(startDate)
             // chechando si esta ocupado cierto dia fechaString
@@ -266,13 +264,11 @@ class CitaService {
                         id: fechaId,
                         date: startDate ]
             startDate = startDate + 1
-
         }
         return ans
     }
 
     def getCitasWhitPacienteId(Long pacienteId){
-        //println pacienteId
         def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId",[pacienteId: pacienteId]);
         return citas
     }

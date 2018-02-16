@@ -70,7 +70,7 @@ ${request?.session.servletContext.realPath}
 		<g:message code="cita.paciente.curp.label" default="Curp" />		
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="curp" name="cita.paciente.curp" class="form-control" pattern=".{18}" value="${citaInstance?.paciente?.curp}"/>
+		<g:textField id="curp" name="cita.paciente.curp" class="form-control" pattern="/^.{18,}\$/" value="${citaInstance?.paciente?.curp}"/>
 	</div>
 </div>
 

@@ -8,7 +8,7 @@ import required.GeneratePDF
 
 @Transactional
 class HojaRegistroDiarioService {
-  
+	def sessionFactory
     def  grailsApplication
     def mapaResultado = [
       'CIRUGIA GENERAL':'cirugia',
@@ -40,22 +40,49 @@ class HojaRegistroDiarioService {
 
   def consulta(date1, date2, tipoCita)
   {
-    def resultados=[]
-    def select ="select d.tipoCita, concat(d.nombre,' ', d.apellidoPat,' ', d.apellidoMat) as doctorNombre,\
-      d.curp as curpDoctor, d.cedulaProfesional,\
-     date_format(c.fecha,'%d') as diaFecha, date_format(c.fecha,'%m') as mesFecha, date_format(c.fecha,'%y') as anioFecha, \
-     concat(' ', p.nombre, ' ', p.apellidoPaterno, ' ', p.apellidoMaterno) as nombrePaciente, COALESCE(p.expediente, ''),\
-     COALESCE(p.curp, ''), COALESCE(p.folioSeguroPopular,'') as seguroPaciente, COALESCE(p.edad, '') \
-     from Cita as c, Doctor as d, Paciente as p ";
-    def where = "where c.fecha >=? and c.fecha<=? and d.id = c.doctor and p.id = c.paciente";
-
-    //si no se selecciono cita entonces procede con solo la fecha especificada
-    if (tipoCita == "")
-      resultados = Cita.executeQuery(	select + where + "  ORDER BY c.doctor, c.fecha ASC",[ date1, date2])
-    else
-      resultados = Cita.executeQuery(	select + where +  " and d.tipoCita = ?  ORDER BY c.doctor, c.fecha ASC",[ date1, date2, tipoCita])
-//and d.tipoCita = ?  , params.tipoCita
-    return resultados
+    def resultados=[]	
+	def tipoCitaWhere = ""
+	
+	if(!tipoCita?.isEmpty()){
+		tipoCitaWhere = "doctor.tipo_cita = " + tipoCita ;
+	}
+	
+	SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd")
+	def fechaInicio = formater.format(date1);
+	def fechaFin = formater.format(date2);
+	
+	def consulta = 	"select doctor.tipo_cita as tipoCita, " +
+		"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre, " +
+        "doctor.curp as doctorCurp, " +
+        "doctor.cedula_profesional as cedulaProfesional, " +
+        "date_format(cita.fecha, '%d') as diaFecha, " +
+        "date_format(cita.fecha,'%m') as mesFecha, " +
+        "date_format(cita.fecha,'%y') as anioFecha, " +
+        "concat(' ', paciente.nombre, ' ', paciente.apellido_paterno, ' ', paciente.apellido_materno) as nombrePaciente, " +
+        "COALESCE(paciente.expediente, '') as expediente, " +
+        "COALESCE(paciente.curp, '') as curp, " +
+        "COALESCE(paciente.folio_seguro_popular,'') as seguroPaciente, " +
+		"COALESCE(TIMESTAMPDIFF(YEAR, paciente.fecha_nacimiento, CURDATE()), '') as edad, " +
+        "COALESCE(paciente.sexo, '') as sexo, " +
+        "COALESCE(paciente.entidad_federativa,'') as entidadFederativa, " +
+        "COALESCE(paciente.fecha_nacimiento, '') as fechaNacimiento " +
+		
+		"from cita inner join paciente " +
+			"on cita.paciente_id = paciente.id " +
+			"inner join doctor " +
+			"on cita.doctor_id = doctor.id " +
+    
+		"where cita.fecha >= '"+fechaInicio+" 00:00' "+
+			"and cita.fecha <= '"+fechaFin+" 23:59' " +
+			tipoCitaWhere +
+			" and cita.fecha_baja is null " +
+		"order by cita.doctor_id, " +
+			"cita.fecha " 
+			
+	def currentSession = sessionFactory.currentSession
+	resultados = currentSession.createSQLQuery(consulta)
+	
+    return resultados.list()
   }
   
   def obten_lista(resultado)
@@ -65,6 +92,7 @@ class HojaRegistroDiarioService {
     def key_ant = ""
     def informe = []
     def value="";
+	
     //Object es una instancia del registro n
     for (Object[] r in resultado)
     {

@@ -12,8 +12,7 @@ class MetodosCalendarController {
     def consulta (){
         String operacion = params['method']
         println "me mandaraon "  + params
-        def ret 
-        println "Algo"
+        def ret         
         def startDate = Date.parse("yyyy-MM-dd", params['start'] )
         println startDate
         def endDate = Date.parse("yyyy-MM-dd", params['end'] )
@@ -72,12 +71,12 @@ class MetodosCalendarController {
     	Calendario calendario = new Calendario()
 
     	def isAllDayEvent = ade =="0"? false:true
-    	println isAllDayEvent
+    	
     	calendario.subject = sub
     	calendario.startTime = stt
     	calendario.endTime = ett
     	calendario.isAllDayEvent =  isAllDayEvent
-		println "here"
+		
 
     	calendario.save flush:true
 
@@ -140,29 +139,20 @@ class MetodosCalendarController {
     def listCalendarByRangeAndDoctor(startTime, endTime, doctorId){
     	def ret = []
     	JSON.use('deep')
-    	//ret['events'] = []
         
-    	Calendario calendario 
-        println "DoctorID " + doctorId
+    	Calendario calendario         
         def doctor = Long.parseLong(doctorId, 10);
     	def query = Cita.executeQuery("from Cita cit where cit.fecha >= :startTime and cit.fecha < :endTime and cit.doctor.id = :doctorId and cit.fechaBaja is null ORDER BY cit.fecha", [startTime:startTime, endTime:endTime, doctorId:doctor])
         def i = 0;
-       
-        
-    	query.each{
-    		//println it as  JSON
-    		//println i
-            
-    		ret[i] = [
-    							
-    							title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
-                                start: it.fecha,                                
-                                allDay : false
-                            
-							]
+               
+    	query.each{            
+    		ret[i] = [    							
+						title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
+	                    start: it.fecha,                                
+	                    allDay : false 	                          
+					 ]
     		i++;
     	}
-    	//println ret as JSON
     	return ret
     }
     

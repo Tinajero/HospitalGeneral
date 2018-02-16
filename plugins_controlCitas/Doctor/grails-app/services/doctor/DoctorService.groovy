@@ -117,24 +117,22 @@ class DoctorService {
     * trabaja el Doctor, checando unicamente sus dias laborales que son de los 
     *   dias de la semana. Regresa true si es un dia laboral false de otra forma
     */
-    def esDiaLaboral(int doctorId, String fechaQuery){
-       // printf "DoctorService  esDiaLaboral " + doctorId + " " + fechaQuery
+    def esDiaLaboral(int doctorId, String fechaQuery){    
         def fechaDate = Date.parse("d-M-yyyy", fechaQuery)
-        Calendar c = Calendar.getInstance();
+        
+		Calendar c = Calendar.getInstance();
         c.setTime(fechaDate);
-        int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;
-       // print "dia de la semana " + day_of_week
+		
+        int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;   
         def doctor = Doctor.get(doctorId);
-        if (doctor != null ){
-           // printf "entro es Dia LAboral y doctor != null"
-            def diasLaborales = doctor?.diasLaborales
-
-           // print "diasLaborales " + diasLaborales
+		
+        if (doctor != null ){         
+            def diasLaborales = doctor?.diasLaborales       
+			 
             if (diasLaborales.charAt( day_of_week ) != '-')
                 return true            
         }
         return false;
-
     }
 
     def getDiasLaboralesDoctor(int doctorId) {

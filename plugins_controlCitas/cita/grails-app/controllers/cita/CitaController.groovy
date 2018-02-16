@@ -38,11 +38,8 @@ class CitaController {
         }
 			
         if (cita.paciente.expediente != null) {
-
-            def p = Paciente.findByExpedienteAndFechaBajaIsNull(cita.paciente.expediente)
-            
-			if(p){
-				
+            def p = Paciente.findByExpedienteAndFechaBajaIsNull(cita.paciente.expediente)            
+			if(p){			
                 cita.paciente = p           
             }
         }
@@ -65,10 +62,7 @@ class CitaController {
 		
         cita.validate()
 		cita.paciente.validate()
-        if (cita.hasErrors() || cita.paciente.hasErrors() ) {
-          /*  println "Cita tiene errores"
-            println "Errores " + cita.errors + "END Errores"
-			println "Errores Paciente" + cita.paciente.errors + " END Errores"*/
+        if (cita.hasErrors() || cita.paciente.hasErrors() ) { 
             respond cita.errors, view:'create', model:[cita:cita]
             return
         }			

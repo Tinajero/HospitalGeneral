@@ -4,7 +4,6 @@ dataSource {
     //driverClassName = "org.h2.Driver"
     driverClassName = "com.mysql.jdbc.Driver"
     username = "root"
-
     password = "root"
 
 }
@@ -36,6 +35,8 @@ environments {
         dataSource {
             dbCreate = "update"
             url = "jdbc:mysql://localhost/controlCitaDB"
+			username = "root"
+			password = "root"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
