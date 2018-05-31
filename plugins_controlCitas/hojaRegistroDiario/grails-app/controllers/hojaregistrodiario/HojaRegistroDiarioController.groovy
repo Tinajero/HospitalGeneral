@@ -5,6 +5,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class HojaRegistroDiarioController {
 def HojaRegistroDiarioService
+def DoctorService
     def index() { }
 
     def buscar(){
@@ -29,6 +30,21 @@ def HojaRegistroDiarioService
 		}				 
     	render (view:'resultado', model:['lista':lista])    	
     }
+	
+	
+	def tipoCitaCambiada(String tipoCita){
+		
+		if(tipoCita != null){
+			
+			def doctores = DoctorService.getDoctoresWhitTipoCita( tipoCita, null );
+			def noSelection = ['':'Seleccione un Medico']
+					render g.select(id:'cbDoctores', name:'doctorId',
+							from:doctores, optionKey:'id', optionValue:'nombre', class:'form-control' , 
+							//onchange:'cambioDoctor(this.value);',
+							noSelection:noSelection
+							)
+		}
+	}
 
 
     def listadoHojas(){

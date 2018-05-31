@@ -38,13 +38,19 @@ class HojaRegistroDiarioService {
 
 //metodo que regresa el resultado de la consulta
 
-  def consulta(date1, date2, tipoCita)
+  def consulta(date1, date2, tipoCita, doctorId)
   {
     def resultados=[]	
 	def tipoCitaWhere = ""
+	def doctorIdWhere = ""
 	
 	if(!tipoCita?.isEmpty()){
-		tipoCitaWhere = "doctor.tipo_cita = " + tipoCita ;
+		tipoCitaWhere = "and doctor.tipo_cita like '%" + tipoCita + "%'";
+	}
+
+	if(doctorId != null){
+		//nombreDoctorWhere = "and concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) like '%" + nombreDoctor + "%'";
+		doctorIdWhere = "and doctor.id = " + doctorId
 	}
 	
 	SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd")
@@ -75,6 +81,7 @@ class HojaRegistroDiarioService {
 		"where cita.fecha >= '"+fechaInicio+" 00:00' "+
 			"and cita.fecha <= '"+fechaFin+" 23:59' " +
 			tipoCitaWhere +
+			doctorIdWhere +
 			" and cita.fecha_baja is null " +
 		"order by cita.doctor_id, " +
 			"cita.fecha " 
@@ -133,11 +140,12 @@ class HojaRegistroDiarioService {
       def date1 = sdf.parse(params.fecha+" 00:00:00")
       def date2 = sdf.parse(params.fecha+" 23:59:59")
       def tipoCita = params.tipoCita;
+	  def doctorId = params.doctorId;
       def lista = []
 	  def ahora = new Date();
 	  def nombreArchivo = params.fecha+"_"+ahora.getHours()+"_"+ahora.getMinutes()+".pdf"
 
-      resultados = consulta(date1, date2, tipoCita)
+      resultados = consulta(date1, date2, tipoCita, doctorId)
       
       lista = obten_lista(resultados)                        
       

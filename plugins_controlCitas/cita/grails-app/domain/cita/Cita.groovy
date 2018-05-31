@@ -7,7 +7,7 @@ class Cita {
 	Paciente paciente
 	Doctor doctor
 	Date fecha
-	/*Tipo de cita sera 1 para primera vez 2 para subsecuente*/
+	/*Tipo de cita sera 0 para primera vez 1 para subsecuente*/
 	Integer tipoCita
 	String asignadaA
 	

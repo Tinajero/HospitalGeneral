@@ -20,6 +20,20 @@ function categoryChanged() {
 	error:function(XMLHttpRequest,textStatus,errorThrown){}});
 }
 
+function obtenerDoctoresPorServicio() {  
+  
+			
+  	var urlTipoCitaCambiada = getTipoCitaCambiadaPath;
+  	console.log(urlTipoCitaCambiada);
+  		  
+  	var especialidadSeleccionada = $("#TipoCita").val();
+  
+  	jQuery.ajax({type:'POST',data:'tipoCita='+especialidadSeleccionada , url:urlTipoCitaCambiada,success:function(data,textStatus){
+  		jQuery('#subContainer').html(data);  		
+	},
+	error:function(XMLHttpRequest,textStatus,errorThrown){}});
+}
+
 function getHorarios(  ){
     var doctorId = $("#cbDoctores").val();
 		var tipoCita = $("#tipoCita").val();

@@ -41,7 +41,7 @@ class Paciente {
     	apellidoMaterno blank: false
     	nombre blank:false
     	expediente blank: true, matches: '\\d{2}\\-\\d{2}\\-\\d{2}', nullable: true
-    	numeroTelefono blank:false, nullable:false
+    	numeroTelefono blank:false, nullable:true
     	poblacion blank: false
     	curp nullable: true
     	folioSeguroPopular nullable: true

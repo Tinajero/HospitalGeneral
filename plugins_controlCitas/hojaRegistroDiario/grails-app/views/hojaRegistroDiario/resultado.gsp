@@ -13,7 +13,7 @@
 			<g:if test="${lista[0] == 0}">
 			  	Lo sentimos, no se encontro informaci&oacute;n para los datos:
 				</br>Fecha: ${lista[1]}
-				</br>Tipo de cita: ${lista[2]}
+				</br>Servicio: ${lista[2]}
 				</br>Doctor:
 				</br>Paciente:
 				</br>
@@ -21,7 +21,7 @@
 			<g:else>
 			   Se encontro la siguiente informaci&oacute;n para:
 			 </br>Fecha: ${lista[1]} y
-			 </br>Tipo de cita: ${lista[2]}
+			 </br>Servicio: ${lista[2]}
 		 	</br>
 				 <div class="">
 				 <a href="/controlCitas/temp_pdf/${ lista[3] }">${lista[3]}</a></p>

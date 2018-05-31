@@ -63,7 +63,7 @@
 
 <div class="form-group ${hasErrors(bean: doctorInstance, field: 'tipoCita', 'error')} required">
 	<label for="tipoCita" class="col-sm-2 control-label">
-		<g:message code="doctor.tipoCita.label" default="Tipo de cita" />
+		<g:message code="doctor.tipoCita.label" default="Servicio" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">

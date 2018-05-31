@@ -93,9 +93,16 @@ class DoctorService {
     def getDoctoresWhitTipoCita(tipoCita, turno){
         //print "doctorService, getDoctoresWhitTipoCita " + tipoCita
         //print tipoCita
-        def query = Doctor.where {
-            tipoCita ==~ tipoCita && turno == turno
-        }
+		def query;
+		if(turno != null){
+			query = Doctor.where {
+				tipoCita ==~ tipoCita && turno == turno
+			}			
+		} else {
+			query = Doctor.where {
+				tipoCita ==~ tipoCita
+			}
+		}
         def doctores = query.list();
         if (doctores.size() != 0){
             

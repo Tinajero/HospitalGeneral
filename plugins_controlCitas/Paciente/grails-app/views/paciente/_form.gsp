@@ -46,8 +46,7 @@
 
 <div class="form-group ${hasErrors(bean: paciente, field: 'numeroTelefono', 'has-error')} ">
 	<label for="numeroTelefono" class="col-sm-2 control-label">
-		<g:message code="paciente.numeroTelefono.label" required="true" class="form-control" default="Numero Telefono" />
-		<span class="required-indicator">*</span>
+		<g:message code="paciente.numeroTelefono.label" required="true" class="form-control" default="Numero Telefono" />		
 	</label>
 	<div class="col-sm-5">
 		<input id="telefono" type="tel" name="numeroTelefono" class="form-control" required="true"

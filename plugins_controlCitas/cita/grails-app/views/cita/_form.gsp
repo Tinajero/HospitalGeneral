@@ -95,8 +95,7 @@ ${request?.session.servletContext.realPath}
 
 <div class="form-group ${hasErrors(bean: cita?.paciente, field: 'numeroTelefono', 'has-error')} required">
 	<label for="Telefono" class="col-sm-2 control-label">
-		<g:message code="cita.paciente.telefono.label" default="Telefono" />
-		<span class="required-indicator">*</span>
+		<g:message code="cita.paciente.telefono.label" default="Telefono" />		
 	</label>
 	<div class ="col-sm-4">
 		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control" required="true"
@@ -120,7 +119,7 @@ ${request?.session.servletContext.realPath}
 
 <div class="form-group ${hasErrors(bean: cita, field: 'doctor', 'has-error')} required">
 	<label for="TipoCita" class="col-sm-2 control-label">
-		<g:message code="cita.doctor.label" default="Tipo de cita" />
+		<g:message code="cita.doctor.label" default="Servicio" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
