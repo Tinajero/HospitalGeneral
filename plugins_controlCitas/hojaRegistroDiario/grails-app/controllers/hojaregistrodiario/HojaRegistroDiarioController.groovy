@@ -6,6 +6,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class HojaRegistroDiarioController {
 def HojaRegistroDiarioService
 def DoctorService
+
     def index() { }
 
     def buscar(){

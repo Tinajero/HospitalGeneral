@@ -39,7 +39,7 @@
 						<g:sortableColumn property="fecha" title="${message(code: 'cita.fecha.label', default: 'Fecha')}" />
 						
 
-							<th><g:message code="cita.doctor.label" default="Doctor" /></th>
+							<th><g:message code="cita.doctor.label" default="M&eacute;dico" /></th>
 							
 							<th><g:message code="cita.paciente.label" default="Expediente" /></th>		
 							<th><g:message code="cita.paciente.label" default="Paciente" /></th>
@@ -61,7 +61,10 @@
 		
 							<td> 
 								<g:link action="show" id="${citaInstance.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Mostrar"></span></g:link> &nbsp;
-								<g:link action="delete" id="${citaInstance.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></g:link> &nbsp;
+<%--								<g:link action="delete" id="${citaInstance.id}"><span class="glyphicon glyphicon-trash" --%>
+<%--									aria-hidden="true"></span>--%>
+<%--								</g:link> --%>
+<%--									&nbsp;--%>
 								<g:link action="edit" id="${citaInstance.id}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar"></span></g:link> &nbsp;
 							</td>
 						</tr>

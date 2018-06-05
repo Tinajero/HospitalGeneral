@@ -45,12 +45,12 @@ class HojaRegistroDiarioService {
 	def doctorIdWhere = ""
 	
 	if(!tipoCita?.isEmpty()){
-		tipoCitaWhere = "and doctor.tipo_cita like '%" + tipoCita + "%'";
+		tipoCitaWhere = " and doctor.tipo_cita like '%" + tipoCita + "%'";
 	}
 
-	if(doctorId != null){
+	if(doctorId != null && doctorId != ""){
 		//nombreDoctorWhere = "and concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) like '%" + nombreDoctor + "%'";
-		doctorIdWhere = "and doctor.id = " + doctorId
+		doctorIdWhere = " and doctor.id = " + doctorId
 	}
 	
 	SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd")
@@ -80,12 +80,12 @@ class HojaRegistroDiarioService {
     
 		"where cita.fecha >= '"+fechaInicio+" 00:00' "+
 			"and cita.fecha <= '"+fechaFin+" 23:59' " +
-			tipoCitaWhere +
+			tipoCitaWhere + 
 			doctorIdWhere +
 			" and cita.fecha_baja is null " +
 		"order by cita.doctor_id, " +
 			"cita.fecha " 
-			
+	println consulta
 	def currentSession = sessionFactory.currentSession
 	resultados = currentSession.createSQLQuery(consulta)
 	

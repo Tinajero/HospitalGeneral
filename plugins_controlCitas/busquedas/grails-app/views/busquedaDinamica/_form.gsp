@@ -92,7 +92,7 @@
 	
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-3 col-md-offset-2">
-			<label><input type="checkbox" name="nombreDoctorCheck">Doctor</label> 
+			<label><input type="checkbox" name="nombreDoctorCheck">M&eacute;dico</label> 
 		</div>
 	</div>	
 </div>

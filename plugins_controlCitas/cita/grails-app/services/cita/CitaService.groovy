@@ -281,7 +281,7 @@ class CitaService {
 	 def getPacientesWithFullExpediente(String expediente){
         println 'getPacientesWithFullExpediente';
         println expediente;
-		  def paciente = Paciente.executeQuery("from Paciente paciente where paciente.expediente = :expediente and paciente.fechaBaja is null",[expediente: expediente]);
+		  def paciente = Paciente.executeQuery("from Paciente paciente where paciente.expediente = :expediente and paciente.fecha_baja is null",[expediente: expediente]);
         return paciente
     }
     def getPacientesWithExpediente(String expediente){

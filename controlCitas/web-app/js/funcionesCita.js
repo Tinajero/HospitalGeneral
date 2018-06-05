@@ -200,8 +200,13 @@ function cambioFecha(){
 function cambioDoctor(doctorId){
 	console.log("function cambioDoctor doctorId= " + doctorId);
 	// quitar la bandera de que a sido seleccionado algo
-	quitarSeleccionado();
-  	if (doctorId != '' ){
+	var fecha = $("#fechaOculta").val();
+	   
+	if (fecha == null){	
+		quitarSeleccionado();
+	}
+  	
+	if (doctorId != '' ){
   		
     var events = {
   		url: getCalendarPath,
@@ -216,7 +221,7 @@ function cambioDoctor(doctorId){
       console.log("else function cambioDoctor");
       $('#calendar').fullCalendar('removeEventSource',events);
     }
-	}
+}
   function cambiarFechaCalendario(){
     var dia = $("#cbFechaCita_day").val();
     var mes = $('#cbFechaCita_month').val() - 1;
@@ -264,12 +269,6 @@ function cambiarColorDias(){
  * */
 function onChangeTipoCita(){
 	var valueSelect = $("#tipoCita").val();
-	// comentado por que ya no se debe hacer nada
-	/*if (valueSelect == '2') {
-		$("#divExpediente").removeClass("ocultar-contenido");
-	} else {
-		$("#divExpediente").addClass("ocultar-contenido");
-	}*/
 }
 
 $(document).ready(function() {
@@ -319,7 +318,7 @@ $(document).ready(function() {
 });
 
 //Mask for Expediente
-  $(document).ready(function(){ 
+  $(document).ready(function(){
   	$("#expediente_textField").mask('00-00-00');
   	$("#telefono").mask('(000)000-0000');  	
 
@@ -366,11 +365,19 @@ $(document).ready(function() {
 		   var minutes = fecha.getMinutes();
 		   $('#cbFechaCita_day').val(day);
 		   $('#cbFechaCita_month').val(month+1);
-		   $('#cbFechaCita_year').val( year );		   		   		  
+		   $('#cbFechaCita_year').val( year );	
+		   
 		   var tipoCita = $("#TipoCita").val();
+		   
+		   if(tipoCitaSeleccionada != null){
+			   $("#tipoCita").val(tipoCitaSeleccionada);
+		   }
+		   
 		   categoryChanged(tipoCita);		   
 		   $("#vista_hour").val(hour);
 		   $("#vista_minute").val(minutes);
+		   $('#cbFechaCita_hour').val(hour);
+		   $('#cbFechaCita_minute').val(minutes);
 		   
 		   console.log(fecha)
 		   

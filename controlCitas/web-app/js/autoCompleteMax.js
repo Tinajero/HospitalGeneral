@@ -1,12 +1,12 @@
 var changeTipoCita = function(){
    $('#tipoCita').change(function(){
       readOnlyInputs(false);
-      $('#expediente_textField').val('');
-      $('#apaterno').val('');
-      $('#amaterno').val('');
-      $('#nombre').val('');
-      $('#poblacion').val('');
-      $('#telefono').val('');
+//      $('#expediente_textField').val('');
+//      $('#apaterno').val('');
+//      $('#amaterno').val('');
+//      $('#nombre').val('');
+//      $('#poblacion').val('');
+//      $('#telefono').val('');
    });
 }
 var focus = function(){

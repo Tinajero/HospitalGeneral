@@ -93,6 +93,16 @@ class CitaController {
 		cita.usuarioModificacionId = idUsuarioModificacion
 		cita.fechaModificacion = new Date();
 		
+		//Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
+		if (cita.tipoCita != null) {
+			//decimos qué tipo de cita fue asignada al horario seleccionado
+			if(cita.tipoCita == 0){
+				cita.asignadaA = "primera vez"
+			}else if(cita.tipoCita == 1){
+				cita.asignadaA = "subsecuente"
+			}
+		}
+		
         if (cita.hasErrors()) {
             respond cita.errors, view:'edit'
             return

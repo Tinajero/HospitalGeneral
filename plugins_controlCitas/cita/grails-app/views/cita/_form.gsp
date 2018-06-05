@@ -5,7 +5,9 @@ ${request?.session.servletContext.realPath}
 <script> var getBussyDaysPath = "${createLink(action:'getBussyDays')}" </script>
 <script> var getCalendarPath = "${createLink(controller:'metodosCalendar', action:'consulta')}" </script>
 <script> var getMostrarHorarioPath = "${createLink(action:'mostrarHorario')}" </script>
+<script> var tipoCitaSeleccionada = "${citaInstance?.tipoCita}" </script>
 <script> var doctorSeleccionado = "${citaInstance?.doctor?.id}" </script>
+<script> var fechaCitaSeleccionada = "${citaInstance?.fecha}" </script>
 <script> var autocompleteByExpediente = "${createLink(controller: cita, action:'autocompleteByExpediente')}" </script>
 
 <div class="form-group required">
@@ -98,7 +100,7 @@ ${request?.session.servletContext.realPath}
 		<g:message code="cita.paciente.telefono.label" default="Telefono" />		
 	</label>
 	<div class ="col-sm-4">
-		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control" required="true"
+		<input id="telefono" type="tel" name="cita.paciente.numeroTelefono" class="form-control"
 		 value="${citaInstance?.paciente?.numeroTelefono}"/>
 	</div>
 </div>

@@ -6,6 +6,7 @@ import org.codehaus.groovy.grails.web.json.*;
 
 @Transactional
 class DoctorService {
+	def sessionFactory
     def hora=[]
     def minutos=[]
     def HorarioService
@@ -91,28 +92,35 @@ class DoctorService {
     }
    
     def getDoctoresWhitTipoCita(tipoCita, turno){
-        //print "doctorService, getDoctoresWhitTipoCita " + tipoCita
-        //print tipoCita
+
 		def query;
+		def turnoWhere = ""
+		def resultados = [];
 		if(turno != null){
-			query = Doctor.where {
-				tipoCita ==~ tipoCita && turno == turno
-			}			
-		} else {
-			query = Doctor.where {
-				tipoCita ==~ tipoCita
-			}
+			turnoWhere = " and doctor.turno = " + "turno";			
 		}
-        def doctores = query.list();
-        if (doctores.size() != 0){
-            
-           // print doctores
-            for (int i = 0; i < doctores.size() ; i++){                
-                doctores[ i ].nombre = doctores[i].nombre + " " + doctores[i].apellidoPat + " " + doctores[i].apellidoMat                
+		
+		def consulta = 	"select doctor.tipo_cita as tipoCita, doctor.id, " +
+			"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre " +
+			"from doctor where doctor.tipo_cita = '" + tipoCita + "'"
+			turnoWhere ;
+			
+
+			def currentSession = sessionFactory.currentSession
+			resultados = currentSession.createSQLQuery(consulta);
+		
+        def doctores = resultados.list();
+		def nombreDoctores = []
+        if (doctores.size() != 0){            
+			for (int i = 0; i < doctores.size() ; i++){				             
+				def doctor = [:];
+				doctor['nombre'] = doctores[i][2];
+				doctor['id'] = doctores[i][1];
+				nombreDoctores[i] = doctor;
             }
         }
         
-        return doctores;
+        return nombreDoctores;
     }
     def getHoras(){
         intervalosDeTiempo()
