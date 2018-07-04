@@ -28,8 +28,9 @@
 			            	
 				            	<tr >
 				            		<g:if test="${doctor.containsKey('nombreDoctor')}">
-				            			<td colspan="${propiedades.size()-1}">Doctor: ${doctor.nombreDoctor} ${doctor.paternoDoctor} ${doctor.maternoDoctor}</td>
-				            		</g:if>
+				            			<td colspan="${propiedades.size()-2}">Doctor: ${doctor.nombreDoctor} ${doctor.paternoDoctor} ${doctor.maternoDoctor}</td>
+				            			<td>${doctor.servicio}</td>
+				            		</g:if>				            		
 				            		<td> ${fecha.fecha} </td>
 				            	<tr>
 				            

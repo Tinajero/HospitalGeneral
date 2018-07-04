@@ -94,7 +94,14 @@
 		<div class="col-sm-4 col-sm-offset-3 col-md-offset-2">
 			<label><input type="checkbox" name="nombreDoctorCheck">M&eacute;dico</label> 
 		</div>
-	</div>	
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-3 col-md-offset-2">
+			<label><input type="checkbox" name="numeroExpedientePacienteCheck">Expediente Paciente </label> 
+		</div>
+	</div>
+			
 </div>
 
 <%--

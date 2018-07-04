@@ -58,6 +58,7 @@ class BusquedaDinamicaService {
             doctor.put('nombreDoctor' , primer.nombreDoctor) 
             doctor.put('paternoDoctor', primer.paternoDoctor)
             doctor.put('maternoDoctor', primer.maternoDoctor)
+			doctor.put('servicio', primer.tipoCita)
         }
 
         
@@ -120,6 +121,7 @@ class BusquedaDinamicaService {
                     doctor.put('nombreDoctor' , row.nombreDoctor) 
                     doctor.put('paternoDoctor', row.paternoDoctor)
                     doctor.put('maternoDoctor', row.maternoDoctor)
+					doctor.put('servicio', row.tipoCita)
                 }
 				
 				
@@ -182,6 +184,14 @@ class BusquedaDinamicaService {
             sb.append("doctor.nombre as nombreDoctor, doctor.apellido_mat as maternoDoctor, doctor.apellido_pat as paternoDoctor");
             tieneAntesDatos = true;
         }
+		if (params.numeroExpedientePacienteCheck == "on"){
+			listaPropiedades.add("Expediente");
+			if(tieneAntesDatos)
+				sb.append(", ")
+			sb.append("paciente.expediente as Expediente");
+			tieneAntesDatos = true;
+		}
+		
 
         return sb.toString()
         
