@@ -15,7 +15,12 @@ class UsuarioController {
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
+		
+		def query = Usuario.where {
+			enabled == true
+		}
+//        respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
+		respond query.list(params), model:[usuarioInstanceCount: Usuario.count()]
     }
 
     def show(Usuario usuarioInstance) {
@@ -115,8 +120,9 @@ class UsuarioController {
             notFound()
             return
         }
-
-        usuarioInstance.delete flush:true
+		usuarioInstance.enabled = false;
+		usuarioInstance.save flush:true
+       // usuarioInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {

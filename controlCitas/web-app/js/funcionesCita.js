@@ -272,7 +272,7 @@ function onChangeTipoCita(){
 }
 
 $(document).ready(function() {
-
+var fechaFullCalendarAnterior = "";
 // page is now ready, initialize the calendar...
  $('#calendar').fullCalendar({
     // put your options and callbacks here
@@ -286,19 +286,31 @@ $(document).ready(function() {
    	lang: 'es',
    	//// funcion que es accionada cuando el usuario da click en el calendar
    	dayClick: function(date, jsEvent, view) {
-      var fecha = date.toDate();
-      var day = 1;
-      var month = 1;
-      var year = 2015;
-      	day = date.format('D');
-      	month = date.format('M');
-      	year = fecha.getFullYear();
-      // cambiando la fecha a donde dio Click el usuario
-      $('#cbFechaCita_day').val( day );
-      $('#cbFechaCita_month').val(  month );
-      $('#cbFechaCita_year').val( year );	   	    
-     $('#calendar').fullCalendar('select', date);
-		 quitarSeleccionado();
+		var fecha = date.toDate();
+		var day = 1;
+		var month = 1;
+		var year = 2015;
+		day = date.format('D');
+		month = date.format('M');
+		year = fecha.getFullYear();
+		  // cambiando la fecha a donde dio Click el usuario
+		$('#cbFechaCita_day').val( day );
+		$('#cbFechaCita_month').val(  month );
+		$('#cbFechaCita_year').val( year );	   	    
+		$('#calendar').fullCalendar('select', date);
+		quitarSeleccionado();
+		
+		if(fechaFullCalendarAnterior != "" && fechaFullCalendarAnterior.getTime() === fecha.getTime()){
+			
+			fecha.setDate(fecha.getDate() + 1)
+			$("#calendar").fullCalendar('gotoDate', fecha);
+			$("#calendar").fullCalendar('changeView', 'agendaDay');
+			fechaFullCalendarAnterior = "";
+		} else {
+			fechaFullCalendarAnterior = fecha;
+		}
+		
+		
     },
     // funcion que modifica el color de fondo de un dia
     dayRender:function( date, cell ) { 

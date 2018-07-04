@@ -97,12 +97,12 @@ class DoctorService {
 		def turnoWhere = ""
 		def resultados = [];
 		if(turno != null){
-			turnoWhere = " and doctor.turno = " + "turno";			
+			turnoWhere = " and doctor.turno = " + turno;			
 		}
 		
 		def consulta = 	"select doctor.tipo_cita as tipoCita, doctor.id, " +
 			"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre " +
-			"from doctor where doctor.tipo_cita = '" + tipoCita + "'"
+			"from doctor where doctor.tipo_cita = '" + tipoCita + "'" +
 			turnoWhere ;
 			
 

@@ -2,6 +2,8 @@
 package cita
 import grails.plugin.springsecurity.annotation.Secured
 import grails.converters.JSON
+import java.text.SimpleDateFormat
+import java.util.concurrent.TimeUnit
 
 @Secured(['ROLE_USER'])
 class MetodosCalendarController {
@@ -148,12 +150,28 @@ class MetodosCalendarController {
     	query.each{            
     		ret[i] = [    							
 						title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
-	                    start: it.fecha,                                
+	                    start: it.fecha,      					                          
 	                    allDay : false 	                          
 					 ]
+			
+//			if(i > 0 && mismaFecha(ret[i-1]["start"] , it.fecha)){
+//				ret[i-1]["end"] = it.fecha;
+//			}
+			
     		i++;
     	}
     	return ret
     }
+	
+	def mismaFecha(fechaA, fechaB){
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		
+		cal1.setTime(fechaA);
+		cal2.setTime(fechaB);
+		
+		return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+			cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) 	
+	}
     
 }
