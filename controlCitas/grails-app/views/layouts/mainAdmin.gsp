@@ -52,7 +52,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><g:link controller ="usuario"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</g:link></li>
-            <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Doctores</g:link></li>
+            <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Médicos</g:link></li>
 
           </ul>
         </div>

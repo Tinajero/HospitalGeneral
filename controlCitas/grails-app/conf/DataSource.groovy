@@ -36,7 +36,7 @@ environments {
             dbCreate = "update"
             url = "jdbc:mysql://localhost/controlCitaDB"
 			username = "root"
-			password = "root"
+			password = "MIrror09"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true

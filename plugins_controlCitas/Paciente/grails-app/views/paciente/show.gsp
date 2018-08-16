@@ -56,7 +56,7 @@
             <tr>
               <th>Fecha</th>
               <th>Hora</th>
-              <th>Doctor</th>
+              <th>M&eacutoe;dico</th>
               <th>Tipo de Cita</th>
             </tr>
           </thead>

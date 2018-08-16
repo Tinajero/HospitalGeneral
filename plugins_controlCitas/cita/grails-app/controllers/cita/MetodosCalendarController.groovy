@@ -150,7 +150,7 @@ class MetodosCalendarController {
     	query.each{            
     		ret[i] = [    							
 						title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
-	                    start: it.fecha,      					                          
+	                    start: it.fecha.toString(),      					                          
 	                    allDay : false 	                          
 					 ]
 			
@@ -160,6 +160,9 @@ class MetodosCalendarController {
 			
     		i++;
     	}
+		
+//		println ret
+		
     	return ret
     }
 	

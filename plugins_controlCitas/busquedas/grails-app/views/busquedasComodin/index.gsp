@@ -47,7 +47,7 @@
 						-->
 						<!--boton para llamar al formularipo-->
 						<fieldset class="buttons col-sm-offset-2">
-							<g:submitButton name='buscar' value='Iniciar búsqueda' class="btn btn-primary"/>
+							<g:submitButton name='buscar' value='Generar Hoja Diaria de Consulta Externa' class="btn btn-primary"/>
 						</fieldset>
 
 					</g:form>

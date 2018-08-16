@@ -46,7 +46,7 @@
 				
 				<div class="form-group ${hasErrors(bean: cita, field: 'doctor.nombre', 'has-error')}">
 					<label for="Doctor" class="col-sm-2 control-label">
-						<g:message code="cita.doctor.label" default="Medico" />
+						<g:message code="cita.doctor.label" default="Médico" />
 						
 					</label>
 					<div class="col-sm-4">
@@ -57,7 +57,7 @@
 				</div>
 
 				<fieldset class="buttons col-sm-offset-2">
-					<g:submitButton name='buscar' value='Buscar datos' class="btn btn-primary"/>
+					<g:submitButton name='buscar' value='Generar Hoja Diaria de Consulta Externa' class="btn btn-primary"/>
 				</fieldset>
 			</g:form>
 		</fieldset>

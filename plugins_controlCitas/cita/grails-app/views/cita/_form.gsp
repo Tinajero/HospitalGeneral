@@ -132,7 +132,7 @@ ${request?.session.servletContext.realPath}
 
 <div class="form-group ${hasErrors(bean: cita, field: 'doctor.nombre', 'has-error')} required">
 	<label for="Doctor" class="col-sm-2 control-label">
-		<g:message code="cita.doctor.label" default="Medico" />
+		<g:message code="cita.doctor.label" default="Médico" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">

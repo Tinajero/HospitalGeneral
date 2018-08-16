@@ -12,6 +12,14 @@ $(document).ready(function(){
 		tope[i] = 0;
 	}
 	leerTabla();
+	
+	setTimeout(function(){
+		
+		if(servicioDoctor != null ) {
+			$("#tipoCita").val(servicioDoctor);
+		}
+		
+	}, 500); 
 })
 function leerTabla(){
 
@@ -142,3 +150,5 @@ function obtenerColumna(id){
 	var columna = id.replace(/.*\D/g, "");
 	return columna;
 }
+
+

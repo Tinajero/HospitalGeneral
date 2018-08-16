@@ -4,6 +4,7 @@
  <g:javascript src="funcionesDoctor.js"/>
 <g:set name= ''var="doctorS" bean="doctorService"/>
 <script type='text/javascript' src='${request.contextPath}/js/horarios.js'></script>
+<script> var servicioDoctor = "${doctorInstance?.tipoCita}" </script>
 
 <div class="form-group ${hasErrors(bean: doctorInstance, field: 'nombre', 'error')} required">
 	<label for="nombre" class="col-sm-2 control-label">

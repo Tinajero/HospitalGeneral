@@ -71,7 +71,7 @@ class HojaRegistroDiarioService {
 		"COALESCE(TIMESTAMPDIFF(YEAR, paciente.fecha_nacimiento, CURDATE()), '') as edad, " +
         "COALESCE(paciente.sexo, '') as sexo, " +
         "COALESCE(paciente.entidad_federativa,'') as entidadFederativa, " +
-        "COALESCE(paciente.fecha_nacimiento, '') as fechaNacimiento " +
+        "COALESCE(DATE_FORMAT(paciente.fecha_nacimiento,'%d-%m-%Y'), '') as fechaNacimiento " +
 		
 		"from cita inner join paciente " +
 			"on cita.paciente_id = paciente.id " +
@@ -118,8 +118,10 @@ class HojaRegistroDiarioService {
           key_ant = key
           value=""
         }
-
-        value += r[7]+'|'+r[8]+'|'+r[9]+'|'+r[10]+'|'+r[11]+'~'
+		
+		def sexo = getSexo(r[12]);
+		
+        value += r[7]+'|'+r[8]+'|'+r[9]+'|'+r[10]+'|'+r[11]+'|'+r[14]+'|'+sexo+'~'
          print ("key:"+key)
          print ("value."+value)
     } 
@@ -129,6 +131,11 @@ class HojaRegistroDiarioService {
 
     return informe
 
+  }
+  
+  def getSexo(value){
+	  println "val " + value
+	  return value == "1"?"HOMBRE":"MUJER";	  
   }
 
 	def list(params){
@@ -171,7 +178,7 @@ class HojaRegistroDiarioService {
       def gpdf = new GeneratePDF();
 
       String[] arregloGenerico = [ "Tipo de cita", "doctorNombre", "curpDoctor",  "cedulaProfesional", "diaFecha", "mesFecha", "anioFecha"]
-      String[] variables = ["nombrePaciente", "expediente", "curp", "seguroPaciente", "edad"]
+      String[] variables = ["nombrePaciente", "expediente", "curp", "seguroPaciente", "edad", "fechaNacimiento", "sexo"]
       def s = grailsApplication.mainContext.getResource("temp_pdf/"+nombreArchivo).file      
       def e = grailsApplication.mainContext.getResource("plantillas_consultas").file      
       gpdf.setPathOut("" + s)

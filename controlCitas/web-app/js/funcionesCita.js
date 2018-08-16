@@ -282,7 +282,7 @@ var fechaFullCalendarAnterior = "";
 			right: 'month,agendaWeek,agendaDay'
 		},
 
-   	timezone: 'local',
+   	timezone: false,
    	lang: 'es',
    	//// funcion que es accionada cuando el usuario da click en el calendar
    	dayClick: function(date, jsEvent, view) {
@@ -337,7 +337,7 @@ var fechaFullCalendarAnterior = "";
 	// Mascara customizada para el curp
      $("#curp").mask('ABCDEFGHIJKLMNOPQR', {'translation': {
       A:{pattern: '[A-Za-z]'},
-      B:{pattern: '[AEIOUaeiou]'},
+      B:{pattern: '[AEIOUaeiouX]'},
       C:{pattern: '[A-Za-z]'},
       D:{pattern: '[A-Za-z]'},
       E:{pattern: '[0-9]'},
