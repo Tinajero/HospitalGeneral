@@ -133,9 +133,14 @@ class HojaRegistroDiarioService {
 
   }
   
-  def getSexo(value){
-	  println "val " + value
-	  return value == "1"?"HOMBRE":"MUJER";	  
+  def getSexo(value){	 
+	  def sexo = ""
+	  if(value == "1"){
+	  	sexo = "HOMBRE";
+	  } else if(value == "2"){
+	  	sexo = "MUJER";
+	  }
+  	  return sexo;
   }
 
 	def list(params){
