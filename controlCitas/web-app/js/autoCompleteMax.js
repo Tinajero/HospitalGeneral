@@ -294,9 +294,9 @@ var Autocomplete = function(){
                        },
                        dataType: "json",
                        success: function(response){
-                           var datos =
+                           var datos = response
                            $.map(response, function(item){
-                               return item.poblacion
+                               return item
                            });
                            console.log(datos);
                            $("#poblacion").autocomplete({
