@@ -86,12 +86,13 @@ ${request?.session.servletContext.realPath}
 </div>
 
 <div class="form-group ${hasErrors(bean: cita?.paciente, field: 'poblacion', 'has-error')} required">
-	<label for="Poblacion" class="col-sm-2 control-label">
+	<label for="poblacion" class="col-sm-2 control-label">
 		<g:message code="cita.paciente.poblacion.label" default="Localidad" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class ="col-sm-4">
-		<g:textField id="poblacion" name="cita.paciente.poblacion" class="form-control" required="true" value="${citaInstance?.paciente?.poblacion}"/>
+		<input type="text" id="poblacion"  name="cita.paciente.poblacion"  class="form-control" required="true" 
+		value="${citaInstance?.paciente?.poblacion}"/>
 	</div>
 </div>
 

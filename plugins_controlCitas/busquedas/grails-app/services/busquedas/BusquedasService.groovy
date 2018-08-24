@@ -24,6 +24,16 @@ class BusquedasService {
         resultados = Cita.executeQuery(	select + where , [nombre, a_materno, a_paterno])
         return resultados
     }
+	
+	def consultaExpediente(numeroExpediente){
+		
+		def resultados = [];
+		def select = "SELECT apellidoPaterno, apellidoMaterno, nombre, expediente, id, numeroTelefono, poblacion FROM Paciente "
+		def where = " WHERE expediente LIKE ? ORDER BY expediente";
+		
+		resultados = Cita.executeQuery(select + where, [ numeroExpediente ]);
+		return resultados;		
+	}
 
     def obtenLista(params){
 
@@ -32,7 +42,15 @@ class BusquedasService {
         def ap_mat = "%"+params.p_ap_mat+"%"
         def nombre = "%"+params.p_nombre+"%"
         def lista  = []
-        resultados = consultaNombre(nombre, ap_pat, ap_mat)
+		println params
+		if(params.expediente.compareTo("") != 0){
+			def expediente = "%" + params.expediente + "%";
+			 resultados = consultaExpediente(expediente);
+		} else {
+			resultados = consultaNombre(nombre, ap_pat, ap_mat)
+		}
+		
+        
          if ( resultados.size() < 1 )
          {
             print "Sin resultado"

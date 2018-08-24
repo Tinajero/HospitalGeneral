@@ -208,4 +208,9 @@ class CitaController {
         def bussyDays = CitaService.getBussyDays(startTime, endTime, doctorId)
         render bussyDays as JSON
     }
+	def autoCompleteByPoblacion(String poblacion){
+		def resultado = CitaService.getLocalidades(poblacion)
+		print resultado
+		render resultado as JSON
+	}
 }

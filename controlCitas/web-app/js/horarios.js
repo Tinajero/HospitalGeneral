@@ -57,7 +57,7 @@
 	$(document).ready(function(){ 
 		 $("#curpDoctor").mask('ABCDEFGHIJKLMNOPQR', {'translation': {
 			 A:{pattern: '[A-Za-z]'},
-		      B:{pattern: '[AEIOUaeiouX]'},
+		      B:{pattern: '[AEIOUaeiouXx]'},
 		      C:{pattern: '[A-Za-z]'},
 		      D:{pattern: '[A-Za-z]'},
 		      E:{pattern: '[0-9]'},

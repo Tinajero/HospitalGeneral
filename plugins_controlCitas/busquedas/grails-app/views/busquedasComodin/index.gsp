@@ -34,6 +34,17 @@
 								<g:textField class="form-control" name='p_ap_mat' placeHolder= 'Apellido Materno' value ="${p_ap_mat}"/> <br>
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<label for="expediente" class="col-sm-2 control-label">
+							Expediente:
+							</label>
+							<div class="col-sm-3">
+								<g:textField class="form-control" id="expediente_textField" 
+									name='expediente' placeHolder= 'Número de expediente' value ="${expediente}"/> <br>
+							</div>
+						
+						</div>
 
 						<!-- Por Nombre del doctor--
 						<div class="form-group">
@@ -47,7 +58,7 @@
 						-->
 						<!--boton para llamar al formularipo-->
 						<fieldset class="buttons col-sm-offset-2">
-							<g:submitButton name='buscar' value='Generar Hoja Diaria de Consulta Externa' class="btn btn-primary"/>
+							<g:submitButton name='buscar' value='Iniciar búsqueda' class="btn btn-primary"/>
 						</fieldset>
 
 					</g:form>

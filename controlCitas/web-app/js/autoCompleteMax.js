@@ -259,7 +259,7 @@ var Autocomplete = function(){
                                 folioSeguroPopular: item.folioSeguroPopular
                             }
                         });
-
+                        console.log(datos)
                         $("#amaterno").autocomplete({
                             source: datos,
                             select: function (event, ui){
@@ -279,10 +279,44 @@ var Autocomplete = function(){
                 });
        //     }
         });
+     
+    }
+    
+    function autocompletePoblacion() {
+    	   $('#poblacion').on("keyup", function(){
+               value = $(this).val();
+               if( value != undefined && value.length > 3){ 
+                   $.ajax({
+                       type: "GET",
+                       url: "autoCompleteByPoblacion",
+                       data: {
+                           'poblacion' : value
+                       },
+                       dataType: "json",
+                       success: function(response){
+                           var datos =
+                           $.map(response, function(item){
+                               return item.poblacion
+                           });
+                           console.log(datos);
+                           $("#poblacion").autocomplete({
+                               source: datos,
+                               select: function (event, ui){
+                                   event.preventDefault();
+                                   console.log(ui)
+                                                                   
+                                   $('#poblacion').val(ui.item.value);
+                               }
+                           });
+                       }
+                   });
+               }
+           });
     }
     return{
         autoCompleteByExpediente : autocompleteExpediente,
-        autoCompleteByNombre : autocompleteNombre
+        autoCompleteByNombre : autocompleteNombre,
+        autocompletePoblacion: autocompletePoblacion
     }
 }();
 
@@ -291,4 +325,5 @@ $(function(){
     focus();
     Autocomplete.autoCompleteByExpediente();
     Autocomplete.autoCompleteByNombre();
+    Autocomplete.autocompletePoblacion();
 });

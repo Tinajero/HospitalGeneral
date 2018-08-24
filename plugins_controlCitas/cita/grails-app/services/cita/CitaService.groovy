@@ -330,6 +330,18 @@ class CitaService {
         }
         return results
     }
+	
+	def getLocalidades(String poblacion){
+		def criteria = Paciente.createCriteria();
+		def results = criteria.listDistinct () {
+			like('poblacion', poblacion + '%')
+			and {
+				isNull('fechaBaja')				
+			}			
+		}
+		return results;
+	}
+	
     //service for autocomplete
     //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
     def isAsignadaA(int doctorID, String fecha, String horaString){
