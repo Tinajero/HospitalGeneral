@@ -10,6 +10,8 @@ ${request?.session.servletContext.realPath}
 <script> var fechaCitaSeleccionada = "${citaInstance?.fecha}" </script>
 <script> var autocompleteByExpediente = "${createLink(controller: cita, action:'autocompleteByExpediente')}" </script>
 
+<g:set name= '' var="doctorS" bean="doctorService"/>
+
 <div class="form-group required">
 	<label for="tipoCita" class="col-sm-2 control-label">
 		<g:message code="cita.tipoCita" default="Tipo de Cita"/>
@@ -114,8 +116,8 @@ ${request?.session.servletContext.realPath}
 	<div class="col-sm-4">
 		
 		<g:select id="turnoDoctor" name="turno" class="form-control" required="" onchange="categoryChanged();" value="${citaInstance?.doctor?.turno}"
-          from="${['1': 'MATUTINO', '2': 'VESPERTINO']}"          
-          optionKey="key" optionValue="value" />
+          from="${doctorS.listaTurnos()}"
+          optionKey="value" optionValue="turno"/>
 	</div>
 	
 </div>

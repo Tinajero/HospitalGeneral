@@ -7,7 +7,7 @@
 		
 	</label>
 	<div class="col-sm-5">
-		<g:textField id="expediente_textField" name="paciente.expediente"  
+		<g:textField id="a" name="paciente.expediente"  
 				required="true" class="form-control" value="${pacienteInstance?.expediente}"/>
 	</div>
 </div>
@@ -18,7 +18,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-5">
-		<g:textField name="nombre" required="true" class="form-control" value="${pacienteInstance?.nombre}"/>
+		<g:textField name="paciente.nombre" required="true" class="form-control" value="${pacienteInstance?.nombre}"/>
 	</div>
 
 </div>
@@ -29,7 +29,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-5">
-		<g:textField name="apellidoPaterno" required="true" class="form-control" value="${pacienteInstance?.apellidoPaterno}"/>
+		<g:textField name="paciente.apellidoPaterno" required="true" class="form-control" value="${pacienteInstance?.apellidoPaterno}"/>
 	</div>
 
 </div>
@@ -40,7 +40,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-5">
-		<g:textField name="apellidoMaterno" required="true" class="form-control" value="${pacienteInstance?.apellidoMaterno}"/>
+		<g:textField name="paciente.apellidoMaterno" required="true" class="form-control" value="${pacienteInstance?.apellidoMaterno}"/>
 	</div>
 </div>
 
@@ -49,7 +49,7 @@
 		<g:message code="paciente.numeroTelefono.label" required="true" class="form-control" default="Numero Telefono" />		
 	</label>
 	<div class="col-sm-5">
-		<g:textField id="telefono" type="tel" name="paciente.numeroTelefono" class="form-control" required="true"
+		<g:textField id="paciente.telefono" type="tel" name="paciente.numeroTelefono" class="form-control" required="true"
 		 value="${pacienteInstance?.numeroTelefono}"/>
 	</div>
 
@@ -61,7 +61,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-5">
-		<g:textField id="poblacion" name="poblacion" class="form-control" required="" value="${pacienteInstance?.poblacion}"/>
+		<g:textField id="poblacion" name="paciente.poblacion" class="form-control" required="" value="${pacienteInstance?.poblacion}"/>
 	</div>
 
 </div>

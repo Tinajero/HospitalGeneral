@@ -13,17 +13,16 @@ class DoctorService {
     def serviceMethod() {
 
     }
+	
     def listaTiposCita(){
-
 	    //esto es de Orla//def lista = ["pediatria","otras","odontologia",	"medicina_interna", "ginecologia","consulta_externa", "cirugia"]
-
-        def lista = ['CIRUGIA GENERAL', 'MEDICINA INTERNA', 'PEDIATRIA', 'GINECOLOGIA Y OBSTETRICIA', 'TRAUMATOLOGIA Y ORTOPEDIA','DENTAL', 'PSICOLOGIA','ULTRASONIDOS' ]
-
+        def lista = ['CIRUGIA GENERAL', 'MEDICINA INTERNA', 'PEDIATRIA', 'GINECOLOGIA Y OBSTETRICIA', 'TRAUMATOLOGIA Y ORTOPEDIA', 
+					'DENTAL', 'PSICOLOGIA','ULTRASONIDOS', 'NUTRICION' ]
         return lista
     }
 
     def listaTurnos() {
-        def turnos = [[value:1, turno:'MATUTINO'], [value:2, turno:'VESPERTINO']]
+        def turnos = [[value:1, turno:'MATUTINO'], [value:2, turno:'VESPERTINO'], [value: 3, turno:'ESPECIAL']]
         return turnos
     }
 
@@ -36,11 +35,10 @@ class DoctorService {
         def i
             i = 0
         
-         for ( dia in arregloDias){
-            if (dia){
+         for(dia in arregloDias) {
+            if (dia) {
                 diasLaborales+=diasString[i]
-            }
-            else{
+            } else {
                 diasLaborales+="-"
             }
             i++

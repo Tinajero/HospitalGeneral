@@ -2,7 +2,7 @@
 
 
  <g:javascript src="funcionesDoctor.js"/>
-<g:set name= ''var="doctorS" bean="doctorService"/>
+<g:set name= '' var="doctorS" bean="doctorService"/>
 <script type='text/javascript' src='${request.contextPath}/js/horarios.js'></script>
 <script> var servicioDoctor = "${doctorInstance?.tipoCita}" </script>
 
@@ -68,7 +68,8 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:select name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita} " from="${doctorS.listaTiposCita()}"/>
+		<g:select name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita}" 
+				from="${doctorS.listaTiposCita()}"/>
 	</div>
 	
 </div>
@@ -81,8 +82,8 @@
 	<div class="col-sm-4">
 		
 		<g:select id="turno" name="turno" class="form-control" required="" value="${doctorInstance?.turno}"
-          from="${['1': 'MATUTINO', '2': 'VESPERTINO']}"
-          optionKey="key" optionValue="value" />
+          from="${doctorS.listaTurnos()}"
+          optionKey="value" optionValue="turno" />
 	</div>
 	
 </div>

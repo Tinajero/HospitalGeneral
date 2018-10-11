@@ -18,7 +18,7 @@ class BusquedasService {
          from Cita as c, Doctor as d, Paciente as p ";
         */
         def select = "SELECT apellidoPaterno, apellidoMaterno, nombre, expediente, id, numeroTelefono, poblacion FROM Paciente "
-        def where = " WHERE nombre LIKE ? and apellidoPaterno LIKE ? and apellidoMaterno LIKE ? ORDER BY 1 DESC, 2 DESC, 3 DESC";
+        def where = " WHERE nombre LIKE ? and apellidoPaterno LIKE ? and apellidoMaterno LIKE ? and fechaBaja is null ORDER BY 1 DESC, 2 DESC, 3 DESC";
         /*recibe los parametros principales para un nombre y la bandera doctor[true-es doctor, false-es paciente]*/
 
         resultados = Cita.executeQuery(	select + where , [nombre, a_materno, a_paterno])
