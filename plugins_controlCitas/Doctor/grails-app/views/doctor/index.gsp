@@ -25,7 +25,7 @@
 			  	<div class="panel-heading">
 			  		<div class="row">
 			  			<h1 class="col-md-9"><g:message code="default.list.label" args="[entityName]" /></h1>
-						<g:link class="btn btn-primary col-md-2" action="create" role="button" sytle="margin-top: 20px;" data-toggle="tooltip" title="Crea un nuevo Doctor">
+						<g:link class="btn btn-primary col-md-3" action="create" role="button" sytle="margin-top: 20px;" data-toggle="tooltip" title="Crea un nuevo Doctor">
 						<g:message code="default.new.label" args="[entityName]" /> &nbsp;&nbsp;
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</g:link>
@@ -64,7 +64,7 @@
 						
 						<td>${fieldValue(bean: doctorInstance, field: "apellidoMat")}</td>
 						
-						<td>${fieldValue(bean: doctorInstance, field: "tipoCita")}</td>
+						<td>${fieldValue(bean: doctorInstance, field: "tipoCita.nombre")}</td>
 
 						<td>${fieldValue(bean: doctorInstance, field: "diasLaborales")}</td>
 					

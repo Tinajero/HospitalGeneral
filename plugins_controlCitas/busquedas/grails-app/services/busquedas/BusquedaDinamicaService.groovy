@@ -22,15 +22,15 @@ class BusquedaDinamicaService {
         print tiposCitas
         def currentSession = sessionFactory.currentSession
 
-        def q = "select DATE_FORMAT(cita.fecha,'%Y-%m-%d') as fecha, doctor.tipo_cita as tipoCita, doctor.id as idDoctor " + datosMostrar +
+        def q = "select DATE_FORMAT(cita.fecha,'%Y-%m-%d') as fecha, doctor.tipo_cita_id as tipoCita, doctor.id as idDoctor " + datosMostrar +
                 " from cita inner join paciente on cita.paciente_id = paciente.id "+
                 "inner join doctor on doctor.id = cita.doctor_id " +
-                "where FIND_IN_SET(doctor.tipo_cita, \""+ tiposCitas +"\") " +
+                "where FIND_IN_SET(doctor.tipo_cita_id, \""+ tiposCitas +"\") " +
 				turnoMostrar + " " +
                 "and cita.fecha >= '" + params.fechaInicio + " 00:00:00'" +
                 " and cita.fecha <= '" + params.fechaFin + " 23:59:58' and cita.fecha_baja is null" +
 				" and paciente.fecha_baja is null" 
-				" order by doctor.tipo_cita,cita.fecha;"
+				" order by doctor.tipo_cita_id,cita.fecha;"
         print ">> QUERY" + q;
         def data = currentSession.createSQLQuery(q) 
         data.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);//if you are using alias for query e.g bank.credit_amount as creditAmount     

@@ -98,9 +98,9 @@ class DoctorService {
 			turnoWhere = " and doctor.turno = " + turno;			
 		}
 		
-		def consulta = 	"select doctor.tipo_cita as tipoCita, doctor.id, " +
+		def consulta = 	"select doctor.tipo_cita_id as tipoCita, doctor.id, " +
 			"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre " +
-			"from doctor where doctor.tipo_cita = '" + tipoCita + "'" +
+			"from doctor where doctor.tipo_cita_id = '" + tipoCita + "'" +
 			turnoWhere ;
 			
 

@@ -80,7 +80,7 @@
 								</td>					
 								<td>
 									<span class="property-value" aria-labelledby="tipoCita-label">
-										<g:fieldValue bean="${doctorInstance}" field="tipoCita"/>
+										<g:fieldValue bean="${doctorInstance}" field="tipoCita.nombre"/>
 									</span>
 								</td>
 							</tr>

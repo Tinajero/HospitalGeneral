@@ -40,7 +40,9 @@
 					</label>
 					<div class="col-sm-4">
 				    <g:select id="TipoCita" name="tipoCita" from="${doctor.Doctor.listUnique()}" 
-					value="${tipoCita}" class="form-control" noSelection="['':'']" onchange="obtenerDoctoresPorServicio();"/>
+				    	optionKey="id"
+						optionValue="nombre" 				    
+						value="${tipoCita}" class="form-control" noSelection="['':'']" onchange="obtenerDoctoresPorServicio();"/>
 					</div>
 				</div>
 				

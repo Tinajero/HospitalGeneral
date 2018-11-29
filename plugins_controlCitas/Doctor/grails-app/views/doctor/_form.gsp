@@ -3,6 +3,7 @@
 
  <g:javascript src="funcionesDoctor.js"/>
 <g:set name= '' var="doctorS" bean="doctorService"/>
+<g:set name= '' var="servicioService" bean="servicioService"/>
 <script type='text/javascript' src='${request.contextPath}/js/horarios.js'></script>
 <script> var servicioDoctor = "${doctorInstance?.tipoCita}" </script>
 
@@ -68,8 +69,15 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:select name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita}" 
-				from="${doctorS.listaTiposCita()}"/>
+<%--		<g:select name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita}" --%>
+<%--				from="${servicioService.listaTiposCita()}"/>--%>
+
+		<g:select class="form-control" name="tipoCita" 
+			from="${servicioService.listaTiposCita()}" 
+			value="${doctorInstance?.tipoCita}"
+			optionKey="id"
+			optionValue="nombre" 
+			noSelection="['null': '']"/>
 	</div>
 	
 </div>

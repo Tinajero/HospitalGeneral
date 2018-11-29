@@ -10,7 +10,7 @@ def DoctorService
     def index() { }
 
     def buscar(){
-    	
+    	print params
     	def lista = HojaRegistroDiarioService.list(params)
 		
 		def cont = 3;

@@ -128,8 +128,13 @@ ${request?.session.servletContext.realPath}
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-    <g:select id="TipoCita" name="cita.doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" 
-	value="${citaInstance?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged();"/>
+    <g:select id="TipoCita" name="cita.doctor.tipoCita" 
+    	from="${doctor.Doctor.listUnique()}"   
+    	required="" 
+		value="${citaInstance?.doctor?.tipoCita}"
+		optionKey="id"
+		optionValue="nombre" 
+		class="form-control" noSelection="['':'']" onchange="categoryChanged();"/>
 	</div>
 </div>
 

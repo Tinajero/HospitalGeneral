@@ -1,14 +1,16 @@
 package doctor
 
 class Doctor {
-	String tipoCita
+	
 	String nombre
 	String apellidoPat
 	String apellidoMat
 	String diasLaborales 	
 	String cedulaProfesional
 	String curp
-	Integer turno 
+	Integer turno 	
+	Servicio tipoCita
+	
     static constraints = {
 		tipoCita blank: false
 		nombre blank: false
