@@ -170,6 +170,8 @@ class DoctorService {
         }
         return dias
     }
+	
+	
     
     
 }

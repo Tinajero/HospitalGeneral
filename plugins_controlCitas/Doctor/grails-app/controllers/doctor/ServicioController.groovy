@@ -14,10 +14,11 @@ class ServicioController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
 	def SpringSecurityService springSecurityService
-
+	def ServicioService servicioService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Servicio.list(params), model:[servicioCount: Servicio.count()]
+		print Servicio.list(params)
+        respond Servicio.list(params), model:[servicioCount: Servicio.count(), servicioInstanceList:servicioService.listaTiposCita()]
     }
 
     def show(Servicio servicio) {

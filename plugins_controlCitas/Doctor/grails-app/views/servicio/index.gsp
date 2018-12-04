@@ -25,22 +25,15 @@
 			<thead>
 					<tr>
 						<g:sortableColumn property="nombre" title="${message(code: 'servicio.nombre.label', default: 'Nombre')}" />
-						<g:sortableColumn property="descripcion" title="${message(code: 'servicio.descripcion.label', default: 'Descripcion')}" />
-						<th><g:message code="servicio.subServicios.label" default="Sub Servicio" /></th>
+						<g:sortableColumn property="descripcion" title="${message(code: 'servicio.descripcion.label', default: 'Descripcion')}" />					
 					</tr>
 				</thead>
 				<tbody>
+				
 				<g:each in="${servicioInstanceList}" status="i" var="servicioInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">						
 						<td> <g:link action="show" id="${servicioInstance.id}">${fieldValue(bean: servicioInstance, field: "nombre")} </g:link></td>
 						<td>${fieldValue(bean: servicioInstance, field: "descripcion")}</td>
-						<td>>${fieldValue(bean: servicioInstance, field: "subServicios")}</td>
-					
-						
-					
-						
-					
 					</tr>
 				</g:each>
 				</tbody>

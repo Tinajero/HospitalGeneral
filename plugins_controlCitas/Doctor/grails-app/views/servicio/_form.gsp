@@ -1,6 +1,6 @@
 <%@ page import="doctor.Servicio" %>
 
-
+<g:set name= '' var="subServicioService" bean="subServicioService"/>
 
 <div class="form-group fieldcontain ${hasErrors(bean: servicio, field: 'nombre', 'error')} required">
 	<label for="nombre" class="col-sm-2 control-label">
@@ -29,7 +29,7 @@
 	</label>
 	<div class="col-sm-4">
 		<g:select id="subServicio" class="form-control" name="subServicio.id" 
-			from="${doctor.Servicio.list()}" 
+			from="${subServicioService.obtienesLosSubServicios()}" 
 			optionKey="id" 
 			value="${servicio?.subServicios*.id}"
 			optionValue="nombre" 

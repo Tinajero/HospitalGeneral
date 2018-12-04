@@ -29,13 +29,13 @@ class Servicio {
 
 	@Override
 	public String toString() {
-		return "Servicio [nombre=" + nombre + ", descripcion=" + descripcion
-				+ ", subServicio=" + subServicio + ", fechaBaja=" + fechaBaja
-				+ ", fechaModificacion=" + fechaModificacion
-				+ ", fechaCreacion=" + fechaCreacion + ", usuarioBajaId="
-				+ usuarioBajaId + ", usuarioModificacionId="
-				+ usuarioModificacionId + ", usuarioCreacionId="
-				+ usuarioCreacionId + "]";
+		return "[nombre:" + nombre + ", descripcion:" + descripcion +
+				", subServicio:" + subServicios + ", fechaBaja:" + fechaBaja +
+				 ", fechaModificacion:" + fechaModificacion +
+				 ", fechaCreacion:" + fechaCreacion + ", usuarioBajaId:" +
+				 usuarioBajaId + ", usuarioModificacionId:" +
+				 usuarioModificacionId + ", usuarioCreacionId:" +
+				 usuarioCreacionId + "]";
 	}
 	
 	

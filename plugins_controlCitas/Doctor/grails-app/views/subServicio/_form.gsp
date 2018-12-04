@@ -30,7 +30,7 @@
 	</label>
 	<div class="col-sm-4">
 		
-		<input type="color" id="colorpicker" name="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="#bada55"> 
+		<input type="color" id="colorpicker" name="colorHexadecimal" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="${subServicio?.colorHexadecimal}"> 
  
 		<input type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" value="#bada55" id="hexcolor"></input>
 	</div>
