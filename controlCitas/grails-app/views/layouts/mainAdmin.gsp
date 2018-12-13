@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -52,7 +53,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><g:link controller ="usuario"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</g:link></li>
-            <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Médicos</g:link></li>
+            <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> M&eacute;dicos</g:link></li>
             <li><g:link controller ="servicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Servicios</g:link></li>
             <li><g:link controller ="SubServicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> SubServicios</g:link></li>
 

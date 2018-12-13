@@ -45,7 +45,7 @@ class HojaRegistroDiarioService {
 	def doctorIdWhere = ""
 	
 	if(!tipoCita?.isEmpty()){
-		tipoCitaWhere = " and servicio.nombre like '%" + tipoCita + "%'";
+		tipoCitaWhere = " and servicio.id =" + tipoCita + "";
 	}
 
 	if(doctorId != null && doctorId != ""){
@@ -77,7 +77,7 @@ class HojaRegistroDiarioService {
 			"on cita.paciente_id = paciente.id " +
 			"inner join doctor " +
 			"on cita.doctor_id = doctor.id " +
-			"inner join servicio on servicio.id = doctor.tipo_cita_id"
+			"inner join servicio on servicio.id = doctor.tipo_cita_id " +
     
 		"where cita.fecha >= '"+fechaInicio+" 00:00' "+
 			"and cita.fecha <= '"+fechaFin+" 23:59' " +

@@ -8,7 +8,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:textField name="nombre" class="form-control" required="" value="${servicio?.nombre}"/>
+		<g:textField name="nombre" class="form-control" required="" value="${servicioInstance?.nombre}"/>
 	</div>
 </div>
 
@@ -18,7 +18,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:textField name="descripcion" class="form-control" required="" value="${servicio?.descripcion}"/>
+		<g:textField name="descripcion" class="form-control" required="" value="${servicioInstance?.descripcion}"/>
 	</div>
 
 </div>
@@ -31,7 +31,7 @@
 		<g:select id="subServicio" class="form-control" name="subServicio.id" 
 			from="${subServicioService.obtienesLosSubServicios()}" 
 			optionKey="id" 
-			value="${servicio?.subServicios*.id}"
+			value="${servicioInstance?.subServicios*.id}"
 			optionValue="nombre" 
 			multiple="true"
 			noSelection="['null': '']"/>

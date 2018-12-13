@@ -29,7 +29,7 @@ class BusquedaDinamicaService {
 				turnoMostrar + " " +
                 "and cita.fecha >= '" + params.fechaInicio + " 00:00:00'" +
                 " and cita.fecha <= '" + params.fechaFin + " 23:59:58' and cita.fecha_baja is null" +
-				" and paciente.fecha_baja is null" 
+				" and paciente.fecha_baja is null" +
 				" order by doctor.tipo_cita_id,cita.fecha;"
         print ">> QUERY" + q;
         def data = currentSession.createSQLQuery(q) 
@@ -223,67 +223,10 @@ class BusquedaDinamicaService {
 		
 	}
 
-    def obtieneCitas(params){
-        def citas = "";
-        StringBuilder sb = new StringBuilder();
-        Boolean tieneAntesDatos = false;
-
-        if (params.optradio_CIRUGIAGENERAL == "on"){
-            sb.append("CIRUGIA GENERAL");
-            tieneAntesDatos = true;
-        }
-        if (params.optradio_MEDICINAINTERNA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("MEDICINA INTERNA");
-            tieneAntesDatos = true;
-        }
-        if (params.optradio_PEDIATRIA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("PEDIATRIA");
-            tieneAntesDatos = true;            
-        }
-        if (params.optradio_GINECOLOGIAYOBSTETRICIA == "on"){
-             if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("GINECOLOGIA Y OBSTETRICIA");
-            tieneAntesDatos = true;
-        }
-            
-        if (params.optradio_TRAUMATOLOGIAYORTOPEDIA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("TRAUMATOLOGIA Y ORTOPEDIA");      
-            tieneAntesDatos = true;
-        }
-        if (params.optradio_DENTAL == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("DENTAL"); 
-            tieneAntesDatos = true;   
-        }
-        if (params.optradio_PSICOLOGIA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("PSICOLOGIA");  
-            tieneAntesDatos = true;    
-        }
-        if (params.optradio_ULTRASONIDOS == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("ULTRASONIDOS");
-            tieneAntesDatos = true;    
-        }
-        if (params.optradio_CONSULTAEXTERNA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("CONSULTA EXTERNA");
-            tieneAntesDatos = true; 
-        }        
-
-        return sb.toString();
-    }
+	def obtieneCitas(params){
+		return (""  + params.servicios).replace('[', '').replace(']', '').replace(' ', '');
+	}
+	    
 
     def obtenPropiedades(){
         return listaPropiedades

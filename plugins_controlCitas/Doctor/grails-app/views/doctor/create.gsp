@@ -1,8 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="mainAdmin">
-		<g:set var="entityName" value="${message(code: 'doctor.label', default: 'Médico')}" />
+		<g:set var="entityName" value="${message(code: 'doctor.label', default: 'M&eacute;dico')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>

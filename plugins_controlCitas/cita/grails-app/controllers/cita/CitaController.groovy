@@ -8,6 +8,7 @@ import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
 import paciente.Paciente
 import doctor.Doctor
+import doctor.SubServicio;
 @Transactional(readOnly = true)
 @Secured(['ROLE_USER'])
 class CitaController {
@@ -36,22 +37,14 @@ class CitaController {
             notFound()
             return
         }
-			
+		print "params: " + params
         if (cita.paciente.expediente != null) {
             def p = Paciente.findByExpedienteAndFechaBajaIsNull(cita.paciente.expediente)            
 			if(p){			
                 cita.paciente = p           
             }
         }
-        //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-        if (cita.tipoCita != null) {
-            //decimos qué tipo de cita fue asignada al horario seleccionado
-            if(cita.tipoCita == 0){
-                cita.asignadaA = "primera vez"
-            }else if(cita.tipoCita == 1){
-                cita.asignadaA = "subsecuente"
-            }
-        }
+//		cita.asignadaA = SubServicio.getById(cita.asignadaA);
         
 		def idUsuarioCreacion = springSecurityService.principal.id
 		cita.usuarioCreacionId = idUsuarioCreacion
@@ -93,15 +86,8 @@ class CitaController {
 		cita.usuarioModificacionId = idUsuarioModificacion
 		cita.fechaModificacion = new Date();
 		
-		//Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-		if (cita.tipoCita != null) {
-			//decimos qué tipo de cita fue asignada al horario seleccionado
-			if(cita.tipoCita == 0){
-				cita.asignadaA = "primera vez"
-			}else if(cita.tipoCita == 1){
-				cita.asignadaA = "subsecuente"
-			}
-		}
+		
+		
 		
         if (cita.hasErrors()) {
             respond cita.errors, view:'edit'

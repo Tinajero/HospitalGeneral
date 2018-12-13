@@ -11,6 +11,7 @@ ${request?.session.servletContext.realPath}
 <script> var autocompleteByExpediente = "${createLink(controller: cita, action:'autocompleteByExpediente')}" </script>
 
 <g:set name= '' var="doctorS" bean="doctorService"/>
+<g:set name= '' var="subServicioService" bean="subServicioService"/>
 
 <div class="form-group required">
 	<label for="tipoCita" class="col-sm-2 control-label">
@@ -18,16 +19,23 @@ ${request?.session.servletContext.realPath}
 		
 	</label>
 	<div class="col-sm-5">
-		<select 
-			name="cita.tipoCita" 
-			id="tipoCita" 
-			class="form-control selectionBox" 
-			required="true"
-			
-			onChange="onChangeTipoCita()">
-			<option value="0">Primera Vez</option>
-			<option value="1">Subsecuente</option>			
-		</select>
+	<g:select id="subServicio" class="form-control" name="cita.tipoCita" 
+			from="${subServicioService.obtienesLosSubServicios()}" 
+			optionKey="id" 
+			value="${citaInstance?.asignadaA?.id}"
+			optionValue="nombre" 		
+			required="true"	
+			noSelection="['null': '']"/>
+<%--		<select --%>
+<%--			name="cita.tipoCita" --%>
+<%--			id="tipoCita" --%>
+<%--			class="form-control selectionBox" --%>
+<%--			required="true"--%>
+<%--			--%>
+<%--			onChange="onChangeTipoCita()">--%>
+<%--			<option value="0">Primera Vez</option>--%>
+<%--			<option value="1">Subsecuente</option>			--%>
+<%--		</select>--%>
 	</div> 
 </div>
 
@@ -125,13 +133,13 @@ ${request?.session.servletContext.realPath}
 <div class="form-group ${hasErrors(bean: cita, field: 'doctor', 'has-error')} required">
 	<label for="TipoCita" class="col-sm-2 control-label">
 		<g:message code="cita.doctor.label" default="Servicio" />
-		<span class="required-indicator">*</span>
+		<span class="required-indicator">* ${citaInstance?.doctor?.tipoCita?.id}</span>
 	</label>
 	<div class="col-sm-4">
     <g:select id="TipoCita" name="cita.doctor.tipoCita" 
     	from="${doctor.Doctor.listUnique()}"   
     	required="" 
-		value="${citaInstance?.doctor?.tipoCita}"
+		value="${citaInstance?.doctor?.tipoCita?.id}"
 		optionKey="id"
 		optionValue="nombre" 
 		class="form-control" noSelection="['':'']" onchange="categoryChanged();"/>
@@ -140,7 +148,7 @@ ${request?.session.servletContext.realPath}
 
 <div class="form-group ${hasErrors(bean: cita, field: 'doctor.nombre', 'has-error')} required">
 	<label for="Doctor" class="col-sm-2 control-label">
-		<g:message code="cita.doctor.label" default="Médico" />
+		<g:message code="cita.doctor.label" default="M&eacute;dico" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
@@ -269,4 +277,7 @@ ${request?.session.servletContext.realPath}
 		 </div>
 	</div>
 </div>
+
+	<input type="text" id="asignadoA"  hidden="true" name="cita.asignadaA"/>
+
 

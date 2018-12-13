@@ -56,7 +56,7 @@
             <tr>
               <th>Fecha</th>
               <th>Hora</th>
-              <th>M&eacutoe;dico</th>
+              <th>M&eacute;dico</th>
               <th>Tipo de Cita</th>
             </tr>
           </thead>
@@ -65,7 +65,7 @@
               <td><g:formatDate format=" EEEE dd 'de' MMMMMM 'del' yyyy" date="${historial.fecha}"/></td>
               <td><g:formatDate format="HH:mm" date="${historial.fecha}"/></td>
               <td>${historial.doctor.nombre} ${historial.doctor.apellidoPat} ${historial.doctor.apellidoMat}</td>
-              <td>${historial.doctor.tipoCita}</td>              
+              <td>${historial.doctor.tipoCita.nombre}</td>              
             </tr>
           </g:each>
         </table>

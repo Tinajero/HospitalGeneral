@@ -1,6 +1,8 @@
 var seleccionado = false;
 var cadena;
 var arregloHorarios;
+var listaTiposDeHorariosMostrados;
+var tipoDeHorarioSeleccionado;
 function categoryChanged() {  
   
 	quitarSeleccionado();
@@ -47,6 +49,7 @@ function getHorarios(  ){
     	console.log(fecha);
     	jQuery.ajax({type:'POST',data:'doctorID='+doctorId+'&fecha='+fecha, url:getMostrarHorarioPath,success:function(data,textStatus){      				      	
       		var arreglo = data;//JSON.parse(data);
+      		listaTiposDeHorariosMostrados = arreglo;
       		arregloHorarios = data; //copia de los horarios para usarlo en agregar hora
       		var htmlString = "";
       		var asignadoA = ""; //asignadoA es progra de Max
@@ -56,33 +59,27 @@ function getHorarios(  ){
       		$.each( arreglo, function( index, horario){
       			console.log(index + " " + horario.hora);
       			if ( horario.libre ) {              
-      				if ( horario.tipo == 0){
-      					$("<tr class='libre primeraVez'></tr>").appendTo( '#tablaHorariosCita tbody').append(
+      				
+      					$("<tr class='libre' style='background-color:" + horario.tipo.colorHexadecimal + "' id='"+horario.tipo.id+"'></tr>")
+      					.appendTo( '#tablaHorariosCita tbody').append(
       							"<td class='centrado'>"+(index+1)+"</td>" +
       							"<td class='centrado'>" + horario.hora + "</td>"+
-      							"<td class='centrado'>  Primera Vez </td>"              
-      					);
-
-      				} else if (horario.tipo == 1){ // si el tipo de cita es subsecuente;
-        				$("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
-        					"<td class='centrado'>"+(index+1)+"</td>" +
-        					"<td class='centrado'>" + horario.hora + "</td>"+
-        					"<td class='centrado'> Subsecuente </td>"        					
-        					);
-      				}
+      							"<td class='centrado'>" + horario.tipo.nombre + "</td>"              
+      					);      				
       			} else {
       				//Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-	  				if(horario.asignadaA=='primera vez' && horario.tipo==1){
-	  					asignadoA = "<td class='centrado asignadaA'>Primera vez</td>";
-	  				}else if(horario.asignadaA=='subsecuente' && horario.tipo==0){
-	             	  asignadoA = "<td class='centrado asignadaA'>Subsecuente</td>";
+	  				if(horario.asignadaA != null && 
+	  						horario.asignadaA.id != horario.tipo.id){
+	  					asignadoA = "<td class='centrado asignadaA'>" + horario.asignadaA.nombre + "</td>";	  				  						  					
 	  				}else{
 	  					asignadoA = "";
 	  				}
-	      			$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
-								+ horario.hora 
-								+ "</td><td class='centrado'>"+(horario.tipo==1?"Subsecuente":"Primera Vez") +"</td>"
-								+ asignadoA); //asignadoA es progra de Max
+	  				
+	  				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
+							+ horario.hora 
+							+ "</td><td class='centrado'>"+  horario.tipo.nombre +"</td>"
+							+ asignadoA);
+	      			 //asignadoA es progra de Max
       			}
       		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {
@@ -91,7 +88,11 @@ function getHorarios(  ){
   			    if(!selected){
   		            $(this).addClass("seleccionado");
   		            seleccionado = false;
+  		            tipoDeHorarioSeleccionado = listaTiposDeHorariosMostrados.filter(x => x.tipo.id == this.id)
+  		            $("#asignadoA").val(tipoDeHorarioSeleccionado[0].tipo.id);
   			    }
+  			    
+  			    
   			  });  					
       	},
   		error:function(XMLHttpRequest,textStatus,errorThrown){}});
@@ -244,7 +245,8 @@ function cambiarColorDias(){
 	  		type:'POST',   		
 	  		data: 'startTime=' + startDay + "&endTime=" + endDay + "&doctorId=" + doctorId,
 	  		url:pathDiasOcupados,
-	  		success:function(data,textStatus){			
+	  		success:function(data,textStatus){	
+	  			console.log(data);
 	  			$.each( data, function( index, dia){
 	  				//console.log(dia);
 	  				var cell = $('#dia'+dia.id);

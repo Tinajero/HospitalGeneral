@@ -32,7 +32,7 @@ class HorarioService {
 
     def obtenerHorarioJsonDeDoctorDiaSemana( doctorId, diaDeSemana){
 
-         def resultado = Horario.executeQuery("select horario.hora, horario.minuto, horario.tipoCita from Horario horario where horario.doctor.id = :doctorId and horario.diaDeLaSemana = :diaDeSemana",[doctorId: doctorId, diaDeSemana: diaDeSemana]);
+         def resultado = Horario.executeQuery("select horario.hora, horario.minuto, horario.subServicio from Horario horario where horario.doctor.id = :doctorId and horario.diaDeLaSemana = :diaDeSemana",[doctorId: doctorId, diaDeSemana: diaDeSemana]);
          
          return resultado
     }

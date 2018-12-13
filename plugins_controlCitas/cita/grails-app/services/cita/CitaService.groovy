@@ -52,7 +52,7 @@ class CitaService {
             f = true;
             if (horario != null ){
                 //def ohorario = JSON.parse(horario)
-                for (int j = 0; j < horario.size(); j ++){// checo hora por hora
+                for (int j = 0; j < horario.size(); j ++ ) {// checo hora por hora
                     /*def it = ohorario[j]; // se cambia por el cambio de horarios que tuvo
                     def hora = getHoraDeString(it.hora)
                     def minuto = getMinutoDeString(it.hora)
@@ -354,9 +354,11 @@ class CitaService {
         citas.each{
             citaHora = it.fecha.toString().split(' ')[1].substring(0, 5)
             if( citaHora == horaString ){
-                asignadaA = it.asignadaA
+				println "citaHora compare " + citaHora + " " + horaString + " " + asignadaA
+                asignadaA = it.tipoCita				
             }
         }
+		print "Retorna " + asignadaA
         return asignadaA
     }
     //end

@@ -48,7 +48,7 @@
 				
 				<div class="form-group ${hasErrors(bean: cita, field: 'doctor.nombre', 'has-error')}">
 					<label for="Doctor" class="col-sm-2 control-label">
-						<g:message code="cita.doctor.label" default="Médico" />
+						<g:message code="cita.doctor.label" default="M&eacute;dico" />
 						
 					</label>
 					<div class="col-sm-4">
