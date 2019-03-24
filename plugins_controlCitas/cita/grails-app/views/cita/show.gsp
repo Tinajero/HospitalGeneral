@@ -45,7 +45,7 @@
 										</span>
 									</td>
 									<td>
-										${ citaInstance?.tipoCita == 0?'Primera Vez':'Subsecuente' }
+										${ citaInstance?.tipoCita?.nombre }
 									</td>
 								</tr>
 							</g:if>

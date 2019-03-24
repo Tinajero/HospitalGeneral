@@ -278,6 +278,6 @@ ${request?.session.servletContext.realPath}
 	</div>
 </div>
 
-	<input type="text" id="asignadoA"  hidden="true" name="cita.asignadaA"/>
+	<input type="text" id="asignadoA"  hidden="true" name="cita.asignadaA" value="${citaInstance?.asignadaA?.id }"/>
 
 

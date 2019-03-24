@@ -67,6 +67,11 @@ class SubServicioController {
             notFound()
             return
         }
+		
+		def usuarioModificacionId = springSecurityService.principal.id
+		subServicio.usuarioModificacionId = usuarioModificacionId
+		subServicio.fechaModificacion = new Date();
+		subServicio.validate()
 
         if (subServicio.hasErrors()) {
             respond subServicio.errors, view:'edit'

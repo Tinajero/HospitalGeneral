@@ -80,6 +80,7 @@ function getHorarios(  ){
 							+ "</td><td class='centrado'>"+  horario.tipo.nombre +"</td>"
 							+ asignadoA);
 	      			 //asignadoA es progra de Max
+	  				//modificado por Daniel con los subservicios
       			}
       		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {

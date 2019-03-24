@@ -36,8 +36,12 @@
 									<span id="subServicio-label" class="property-label"><g:message code="servicio.subServicios.label" default="Sub Servicios" /></span>
 								</td>
 								<td>
-									<span class="property-value" aria-labelledby="subServicio-label"><g:link controller="servicio" action="show" 
-									id="${servicioInstance?.subServicios?.id}">${servicioInstance?.subServicios?.encodeAsHTML()}</g:link></span>
+									<span class="property-value" aria-labelledby="subServicio-label">
+<%--									<g:link controller="servicio" action="show" --%>
+<%--									id="${servicioInstance?.subServicios?.id}">--%>
+									${servicioInstance?.subServicios?.nombre}
+<%--									</g:link>--%>
+									</span>
 								</td>
 							</tr>
 						</g:if>

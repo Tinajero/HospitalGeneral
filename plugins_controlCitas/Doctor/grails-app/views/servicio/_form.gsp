@@ -28,7 +28,8 @@
 		<g:message code="servicio.subServicio.label" default="Sub Servicio" />		
 	</label>
 	<div class="col-sm-4">
-		<g:select id="subServicio" class="form-control" name="subServicio.id" 
+		<g:select id="subServicio" class="form-control" 
+			name="subServicio.id" 
 			from="${subServicioService.obtienesLosSubServicios()}" 
 			optionKey="id" 
 			value="${servicioInstance?.subServicios*.id}"

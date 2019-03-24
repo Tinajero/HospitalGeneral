@@ -78,7 +78,14 @@ class ServicioController {
         if (servicio == null) {
             notFound()
             return
-        }
+        }	
+		
+		if(params.subServicio != null){
+			params.subServicio.id.each {
+				Servicio s = Servicio.get(it);
+				servicio.subServicios.add(s);
+			}
+		}
 		
 		def idUsuarioModificacion = springSecurityService.principal.id
 		servicio.usuarioModificacionId = idUsuarioModificacion
