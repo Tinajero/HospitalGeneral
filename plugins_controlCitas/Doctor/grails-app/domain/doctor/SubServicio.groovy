@@ -1,10 +1,11 @@
 package doctor
 
 
-class SubServicio extends Servicio {
+class SubServicio extends ServicioMedico {
 
 	String colorHexadecimal;
-	static hasMany = [subServicios: SubServicio]
+	static hasMany = [tipoSubServicios: TipoSubServicio]
+	static belongsTo = Servicio 
     static constraints = {
 		
     }

@@ -11,14 +11,14 @@ class SubServicioService {
 	
 	def obtieneLosSubServiciosDeUnServicio(servicio){
 		def query = Servicio.get(servicio)
-		print query.subServicios;
+		//print query.subServicios;
 		
 		return query.subServicios		
 	}
 	
 	def obtienesLosSubServicios(){
-		def query = SubServicio.executeQuery("from Servicio servicio where servicio.fechaBaja is null and servicio.class = 'doctor.SubServicio'");
-		print query;
+		def query = Servicio.executeQuery("from ServicioMedico servicioMedico where servicioMedico.fechaBaja is null and servicioMedico.class = 'doctor.SubServicio'");
+		//print query;
 		return query;
 	}
 }

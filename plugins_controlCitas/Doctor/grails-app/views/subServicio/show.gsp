@@ -30,14 +30,14 @@
 							</tr>
 						</g:if>
 					
-						<g:if test="${subServicioInstance?.subServicios}">
+						<g:if test="${subServicioInstance?.tipoSubServicios}">
 							<tr >
 								<td>
-									<span id="subServicio-label" class="property-label"><g:message code="servicio.subServicios.label" default="Sub Servicios" /></span>
+									<span id="subServicio-label" class="property-label"><g:message code="servicio.tipoSubServicios.label" default="Sub Servicios" /></span>
 								</td>
 								<td>
 									<span class="property-value" aria-labelledby="subServicio-label"><g:link controller="servicio" action="show" 
-									id="${servicioInstance?.subServicios?.id}">${servicioInstance?.subServicios?.encodeAsHTML()}</g:link></span>
+									id="${servicioInstance?.tipoSubServicios?.id}">${servicioInstance?.tipoSubServicios?.encodeAsHTML()}</g:link></span>
 								</td>
 							</tr>
 						</g:if>

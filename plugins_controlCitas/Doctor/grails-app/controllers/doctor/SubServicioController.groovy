@@ -28,13 +28,15 @@ class SubServicioController {
     @Transactional
     def save(SubServicio subServicio) {
 		
-		subServicio.nombre = subServicio.nombre.toUpperCase()
-		subServicio.descripcion = subServicio.descripcion.toUpperCase()
-				
+					
         if (subServicio == null) {
             notFound()
             return
         }
+		
+		subServicio.nombre = subServicio.nombre.toUpperCase()
+		subServicio.descripcion = subServicio.descripcion.toUpperCase()
+	
 		
 		def idUsuarioCreacion = springSecurityService.principal.id
 		subServicio.usuarioCreacionId = idUsuarioCreacion

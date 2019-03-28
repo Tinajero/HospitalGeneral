@@ -42,7 +42,8 @@
 			<ul class="nav navbar-nav navbar-right">
 			  <li><a href="#">Configuraci&oacute;n</a></li>
 			  <li><g:link controller='logout'>Salir</g:link></li>
-			</ul>
+			4}</ul>                                                                                                                                                                                                                                       
+			
 
         </div>
       </div>
@@ -56,6 +57,7 @@
             <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> M&eacute;dicos</g:link></li>
             <li><g:link controller ="servicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Servicios</g:link></li>
             <li><g:link controller ="SubServicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> SubServicios</g:link></li>
+            <li><g:link controller ="TipoSubServicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Tipos de SubServicios</g:link></li>
 
           </ul>
         </div>

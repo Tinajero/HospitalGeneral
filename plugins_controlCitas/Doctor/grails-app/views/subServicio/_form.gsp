@@ -1,6 +1,6 @@
 <%@ page import="doctor.SubServicio" %>
 
-
+<g:set name= '' var="tipoSubServicioService" bean="tipoSubServicioService"/>
 
 <div class="form-group fieldcontain ${hasErrors(bean: subServicio, field: 'nombre', 'error')} required">
 	<label for="nombre" class="col-sm-2 control-label">
@@ -36,6 +36,24 @@
 	</div>
 
 </div>
+
+<div class="form-group ${hasErrors(bean: servicio, field: 'subServicio', 'error')} ">
+	<label for="subServicio" class="col-sm-2 control-label">
+		<g:message code="servicio.subServicio.label" default="Sub Servicio" />		
+	</label>
+	<div class="col-sm-4">
+		<g:select id="subServicio" class="form-control" 
+			name="subServicio.id" 
+			from="${tipoSubServicioService.obtienesLosTipoSubServicios()}" 
+			optionKey="id" 
+			value="${servicioInstance?.subServicios*.id}"
+			optionValue="nombre" 
+			multiple="true"
+			noSelection="['null': '']"/>
+	</div>
+	
+<%--  --%>
+</div>	
 
 <<script type="text/javascript">
 $('#colorpicker').on('change', function() {

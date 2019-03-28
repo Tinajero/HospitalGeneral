@@ -1,6 +1,6 @@
 <%@ page import="doctor.Servicio" %>
 
-<g:set name= '' var="subServicioService" bean="subServicioService"/>
+<g:set name= 'subServicioService' var="subServicioService" bean="subServicioService"/>
 
 <div class="form-group fieldcontain ${hasErrors(bean: servicio, field: 'nombre', 'error')} required">
 	<label for="nombre" class="col-sm-2 control-label">
@@ -23,6 +23,7 @@
 
 </div>
 
+
 <div class="form-group ${hasErrors(bean: servicio, field: 'subServicio', 'error')} ">
 	<label for="subServicio" class="col-sm-2 control-label">
 		<g:message code="servicio.subServicio.label" default="Sub Servicio" />		
@@ -37,7 +38,8 @@
 			multiple="true"
 			noSelection="['null': '']"/>
 	</div>
-
+	
+<%--  --%>
 </div>
 
 
