@@ -64,6 +64,12 @@ class TipoSubServicioController {
             notFound()
             return
         }
+		
+		tipoSubServicio.nombre = tipoSubServicio.nombre.toUpperCase()
+		tipoSubServicio.descripcion = tipoSubServicio.descripcion.toUpperCase()
+		def idUsuarioModificacion = springSecurityService.principal.id
+		tipoSubServicio.usuarioModificacionId = idUsuarioModificacion
+		tipoSubServicio.fechaModificacion = new Date();
 
         if (tipoSubServicio.hasErrors()) {
             respond tipoSubServicio.errors, view:'edit'

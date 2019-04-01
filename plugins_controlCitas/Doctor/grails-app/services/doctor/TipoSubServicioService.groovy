@@ -5,15 +5,15 @@ import grails.transaction.Transactional
 @Transactional
 class TipoSubServicioService {
 
-	def obtieneLosSubServiciosDeUnServicio(servicio){
-		def query = Servicio.get(servicio)
-		print query.subServicios;
+	def obtieneLosTipoSubServiciosDeUnSubServicio(servicio){
+		def query = SubServicio.get(servicio)
+		print query.tipoSubServicios;
 		
-		return query.subServicios
+		return query.tipoSubServicios
 	}
 	
 	def obtienesLosTipoSubServicios(){
-		def query = Servicio.executeQuery("from ServicioMedico servicioMedico where servicioMedico.fechaBaja is null and servicioMedico.class = 'doctor.TipoSubServicio'");
+		def query = TipoSubServicio.executeQuery("from TipoSubServicio tipoSubServicio where tipoSubServicio.fechaBaja is null");
 		print query;
 		return query;
 	}

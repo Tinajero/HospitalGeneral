@@ -11,13 +11,31 @@ class SubServicioService {
 	
 	def obtieneLosSubServiciosDeUnServicio(servicio){
 		def query = Servicio.get(servicio)
-		//print query.subServicios;
+		print query.subServicios;
 		
 		return query.subServicios		
 	}
 	
+//	def agregartipoSubServicios(params, SubServicio subServicio){
+//		if(subServicio.tipoSubServicios == null){
+//			
+//			subServicio.tipoSubServicios = []
+//		}
+//		
+//		println "parametros agregartipoSubServicios" + params
+//		if(params.tipoSubServicios != null){
+//			params.tipoSubServicios.id.each {
+//				ServicioMedico s = ServicioMedico.get(it);
+//				subServicio.tipoSubServicios.add(s);
+//			}
+//		}
+//		
+//		println "SubServicio " + subServicio
+//		return subServicio;
+//	}
+	
 	def obtienesLosSubServicios(){
-		def query = Servicio.executeQuery("from ServicioMedico servicioMedico where servicioMedico.fechaBaja is null and servicioMedico.class = 'doctor.SubServicio'");
+		def query = SubServicio.executeQuery("from SubServicio subServicio where subServicio.fechaBaja is null ");
 		//print query;
 		return query;
 	}

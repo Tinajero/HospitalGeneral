@@ -41,13 +41,8 @@ class ServicioController {
 		servicio.descripcion = servicio.descripcion.toUpperCase()
 		
 		print params
-		servicio.subServicios = [];
-		if(params.subServicio != null){
-			params.subServicio.id.each {
-				Servicio s = Servicio.get(it);
-				servicio.subServicios.add(s);			
-			}									
-		} 
+		
+		servicio = servicioService.agregarSubServicios(params, servicio);
 		
 		def idUsuarioCreacion = springSecurityService.principal.id
 		servicio.usuarioCreacionId = idUsuarioCreacion
@@ -81,12 +76,9 @@ class ServicioController {
             return
         }	
 		
-		if(params.subServicio != null){
-			params.subServicio.id.each {
-				Servicio s = Servicio.get(it);
-				servicio.subServicios.add(s);
-			}
-		}
+		servicio.nombre = servicio.nombre.toUpperCase()
+		servicio.descripcion = servicio.descripcion.toUpperCase()
+		servicio = servicioService.agregarSubServicios(params, servicio);		
 		
 		def idUsuarioModificacion = springSecurityService.principal.id
 		servicio.usuarioModificacionId = idUsuarioModificacion

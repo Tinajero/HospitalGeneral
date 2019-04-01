@@ -7,13 +7,25 @@ class ServicioService {
 	
 	
 	def listaTiposCita(){
-		def query = Servicio.executeQuery("from Servicio servicio where servicio.fechaBaja is null and servicio.class = 'doctor.Servicio'");
+		def query = ServicioMedico.executeQuery("from ServicioMedico servicioMedico where servicioMedico.fechaBaja is null" +
+				" and servicioMedico.class = 'doctor.Servicio'");
 		print query;
 		return query;
 	}
 	
 	def listaTiposSubServicio(){
 		
+	}
+	
+	def agregarSubServicios(params, Servicio servicio){
+		servicio.subServicios = []
+		if(params?.subServicio != null){
+			params.subServicio.id.each {
+				SubServicio s = SubServicio.get(it);
+				servicio.subServicios.add(s);
+			}
+		}
+		return servicio;
 	}
 
     def serviceMethod() {

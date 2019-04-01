@@ -12,6 +12,7 @@ class SubServicioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def SpringSecurityService springSecurityService
+	def SubServicioService subServicioService;
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond SubServicio.list(params), model:[subServicioCount: SubServicio.count()]
@@ -27,8 +28,7 @@ class SubServicioController {
 
     @Transactional
     def save(SubServicio subServicio) {
-		
-					
+
         if (subServicio == null) {
             notFound()
             return
@@ -41,14 +41,30 @@ class SubServicioController {
 		def idUsuarioCreacion = springSecurityService.principal.id
 		subServicio.usuarioCreacionId = idUsuarioCreacion
 		subServicio.fechaCreacion = new Date();
+		
+		
+		//subServicio = subServicioService.agregartipoSubServicios(params, subServicio)
+		
+			
+		subServicio.tipoSubServicios = []
+		
+		
+		println "parametros agregartipoSubServicios" + params
+		if(params.tipoSubServicio != null){
+			params.tipoSubServicio.id.each {
+				TipoSubServicio s = TipoSubServicio.get(it);
+				subServicio.tipoSubServicios.add(s);
+			}
+		}
+		
 		subServicio.validate()
-
         if (subServicio.hasErrors()) {
+			println subServicio.errors
             respond subServicio.errors, view:'create'
             return
         }
 
-        subServicio.save flush:true
+		subServicio.save flush:true
 
         request.withFormat {
             form multipartForm {
@@ -69,7 +85,9 @@ class SubServicioController {
             notFound()
             return
         }
-		
+		subServicio.nombre = subServicio.nombre.toUpperCase()
+		subServicio.descripcion = subServicio.descripcion.toUpperCase()
+	
 		def usuarioModificacionId = springSecurityService.principal.id
 		subServicio.usuarioModificacionId = usuarioModificacionId
 		subServicio.fechaModificacion = new Date();

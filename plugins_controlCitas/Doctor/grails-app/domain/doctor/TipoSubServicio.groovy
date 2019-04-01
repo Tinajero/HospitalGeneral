@@ -1,9 +1,10 @@
 package doctor
 
+import java.util.Date;
+
 class TipoSubServicio extends ServicioMedico {
 
-	static belongsTo = doctor.SubServicio
 	
-    static constraints = {
-    }
+	static constraints = {	
+	}
 }

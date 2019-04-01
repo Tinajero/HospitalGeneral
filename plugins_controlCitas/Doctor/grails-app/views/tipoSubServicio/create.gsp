@@ -14,7 +14,7 @@
 				</g:if>
 				<g:hasErrors bean="${tipoSubServicio}">
 				<ul class="errors" role="alert">
-					<g:eachError bean="${tipoSubServicio}" var="error">
+					<g:eachError bean="${tipoSubServicioInstace}" var="error">
 					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 					</g:eachError>
 				</ul>

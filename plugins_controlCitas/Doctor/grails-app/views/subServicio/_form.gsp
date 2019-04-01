@@ -42,11 +42,11 @@
 		<g:message code="servicio.subServicio.label" default="Sub Servicio" />		
 	</label>
 	<div class="col-sm-4">
-		<g:select id="subServicio" class="form-control" 
-			name="subServicio.id" 
+		<g:select id="tipoSubServicios" class="form-control" 
+			name="tipoSubServicio.id" 
 			from="${tipoSubServicioService.obtienesLosTipoSubServicios()}" 
 			optionKey="id" 
-			value="${servicioInstance?.subServicios*.id}"
+			value="${subServicioInstance?.tipoSubServicios*.id}"
 			optionValue="nombre" 
 			multiple="true"
 			noSelection="['null': '']"/>
