@@ -12,6 +12,7 @@ ${request?.session.servletContext.realPath}
 
 <g:set name= '' var="doctorS" bean="doctorService"/>
 <g:set name= '' var="subServicioService" bean="subServicioService"/>
+<g:set name= '' var="tipoSubServicioService" bean="tipoSubServicioService"/>
 
 <div class="form-group required">
 	<label for="tipoCita" class="col-sm-2 control-label">
@@ -38,6 +39,36 @@ ${request?.session.servletContext.realPath}
 <%--		</select>--%>
 	</div> 
 </div>
+
+<div class="form-group ${hasErrors(bean: cita, field: 'doctor.nombre', 'has-error')} required">
+	<label for="Doctor" class="col-sm-2 control-label">
+		<g:message code="cita.doctor.label" default="M&eacute;dico" />
+		<span class="required-indicator">*</span>
+	</label>
+	<div class="col-sm-4">
+    <span id="subContainer"> </span>
+
+
+	</div>
+</div>
+
+
+<%--TipoSubServicio
+<div class="form-group required">
+	<label for="tipoCita" class="col-sm-2 control-label">
+		<g:message code="cita.tipoCita" default="Tipo de Cita"/>
+		
+	</label>
+	<div class="col-sm-5">
+	<g:select id="tipoSubServicio" class="form-control" name="cita.tipoSubServicioAtendido" 
+			from="${tipoSubServicioService.obtieneLosTipoSubServiciosDeUnSubServicio()}" 
+			optionKey="id" 
+			value="${citaInstance?.asignadaA?.id}"
+			optionValue="nombre" 		
+			required="true"	
+			noSelection="['null': '']"/>
+	</div> 
+</div>--%>
 
 <div class="form-group ${hasErrors(bean: cita?.paciente, field: 'expediente', 'has error')}" id="divExpediente">
 
