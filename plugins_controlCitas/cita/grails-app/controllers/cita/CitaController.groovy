@@ -9,6 +9,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import paciente.Paciente
 import doctor.Doctor
 import doctor.SubServicio;
+import doctor.TipoSubServicioService
 @Transactional(readOnly = true)
 @Secured(['ROLE_USER'])
 class CitaController {
@@ -16,6 +17,7 @@ class CitaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def CitaService
     def DoctorService
+	def TipoSubServicioService tipoSubServicioService
 	def SpringSecurityService springSecurityService 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -146,6 +148,17 @@ class CitaController {
            noSelection:noSelection, required:'true'
         )
     }
+	
+	def obtenerTiposDeSubServicios(String subServicio) {
+		
+		def tipoSubServicio = tipoSubServicioService.obtieneLosTipoSubServiciosDeUnSubServicio(subServicio);
+		def noSelection = ['': 'Seleccione un tipo de Servicio']
+		render g.select(id:'cdTipoSubServicios', name:'cita.tipoSubServicioAtendido.id',
+			from:tipoSubServicio, optionKey: 'id', optionValue:'nombre',
+			class:'form-control', noSelection:noSelection);
+	}
+	
+	
 
     def mostrarHorario(int doctorID, String fecha){
         def ret = CitaService.mostrarHorario(doctorID, fecha);

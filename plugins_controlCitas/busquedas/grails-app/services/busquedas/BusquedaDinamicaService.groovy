@@ -162,7 +162,7 @@ class BusquedaDinamicaService {
             listaPropiedades.add("Paciente");
             if(tieneAntesDatos)
                 sb.append(", ")
-            sb.append("concat(paciente.nombre, ' ', paciente.apellido_materno, ' ', paciente.apellido_paterno) as Paciente ");
+            sb.append("concat(paciente.nombre, ' ', paciente.apellido_paterno, ' ', paciente.apellido_materno) as Paciente ");
             tieneAntesDatos = true;
         }
 
@@ -183,7 +183,7 @@ class BusquedaDinamicaService {
         if (params.nombreDoctorCheck == "on"){            
             if(tieneAntesDatos)
                 sb.append(", ")
-            sb.append("doctor.nombre as nombreDoctor, doctor.apellido_mat as maternoDoctor, doctor.apellido_pat as paternoDoctor");
+            sb.append("doctor.nombre as nombreDoctor, doctor.apellido_pat as paternoDoctor, doctor.apellido_mat as maternoDoctor ");
             tieneAntesDatos = true;
         }
 		if (params.numeroExpedientePacienteCheck == "on"){
@@ -210,13 +210,13 @@ class BusquedaDinamicaService {
 		}
 		if(params.turnoMatutino == "on"){
 			if(tieneDatos)
-				sb.append(" and ")
+				sb.append(" or ")
 			sb.append("doctor.turno = 1")
 			tieneDatos = true;
 		}
 		
 		if (tieneDatos){
-			parteConsulta =" and " + sb.toString();
+			parteConsulta =" and (" + sb.toString()+")";
 		} 
 		print parteConsulta
 		return parteConsulta

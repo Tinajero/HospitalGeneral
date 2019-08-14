@@ -2,11 +2,13 @@
 
 ${request?.session.servletContext.realPath}
 <script> var getTipoCitaCambiadaPath = "${createLink(action:'tipoCitaCambiada')}" </script>
+<script> var obtenerTiposDeSubServicios = "${createLink(action:'obtenerTiposDeSubServicios')}" </script>
 <script> var getBussyDaysPath = "${createLink(action:'getBussyDays')}" </script>
 <script> var getCalendarPath = "${createLink(controller:'metodosCalendar', action:'consulta')}" </script>
 <script> var getMostrarHorarioPath = "${createLink(action:'mostrarHorario')}" </script>
 <script> var tipoCitaSeleccionada = "${citaInstance?.tipoCita}" </script>
 <script> var doctorSeleccionado = "${citaInstance?.doctor?.id}" </script>
+<script> var tipoSubServicioSeleccionado = "${citaInstance?.tipoSubServicioAtendido?.id}" </script>
 <script> var fechaCitaSeleccionada = "${citaInstance?.fecha}" </script>
 <script> var autocompleteByExpediente = "${createLink(controller: cita, action:'autocompleteByExpediente')}" </script>
 
@@ -26,6 +28,7 @@ ${request?.session.servletContext.realPath}
 			value="${citaInstance?.asignadaA?.id}"
 			optionValue="nombre" 		
 			required="true"	
+			onchange="funcionObtenerTipoSubServicios();"
 			noSelection="['null': '']"/>
 <%--		<select --%>
 <%--			name="cita.tipoCita" --%>
@@ -40,35 +43,17 @@ ${request?.session.servletContext.realPath}
 	</div> 
 </div>
 
-<div class="form-group ${hasErrors(bean: cita, field: 'doctor.nombre', 'has-error')} required">
-	<label for="Doctor" class="col-sm-2 control-label">
-		<g:message code="cita.doctor.label" default="M&eacute;dico" />
-		<span class="required-indicator">*</span>
-	</label>
-	<div class="col-sm-4">
-    <span id="subContainer"> </span>
 
-
-	</div>
-</div>
-
-
-<%--TipoSubServicio
+<%--TipoSubServicio --%>
 <div class="form-group required">
-	<label for="tipoCita" class="col-sm-2 control-label">
-		<g:message code="cita.tipoCita" default="Tipo de Cita"/>
+	<label for="tipo de Servicio" class="col-sm-2 control-label">
+		<g:message code="cita.tipoCita" default="Tipo de Servicio"/>
 		
 	</label>
 	<div class="col-sm-5">
-	<g:select id="tipoSubServicio" class="form-control" name="cita.tipoSubServicioAtendido" 
-			from="${tipoSubServicioService.obtieneLosTipoSubServiciosDeUnSubServicio()}" 
-			optionKey="id" 
-			value="${citaInstance?.asignadaA?.id}"
-			optionValue="nombre" 		
-			required="true"	
-			noSelection="['null': '']"/>
+	<span id="contenedorTipoSubServicio"> </span>
 	</div> 
-</div>--%>
+</div>
 
 <div class="form-group ${hasErrors(bean: cita?.paciente, field: 'expediente', 'has error')}" id="divExpediente">
 

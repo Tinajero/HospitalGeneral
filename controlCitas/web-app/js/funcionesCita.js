@@ -22,6 +22,26 @@ function categoryChanged() {
 	error:function(XMLHttpRequest,textStatus,errorThrown){}});
 }
 
+function funcionObtenerTipoSubServicios() {
+	
+	var URLObtenerTipoSubServicios =  obtenerTiposDeSubServicios;
+	
+	var subServicioSeleccionado = $("#subServicio").val();
+	console.log("Aqui");
+	jQuery.ajax({type:'POST', data:'subServicio='+subServicioSeleccionado, url:URLObtenerTipoSubServicios, 
+		success:function(data, textStatus){			
+			$('#contenedorTipoSubServicio').html(data);
+			if(tipoSubServicioSeleccionado != null &&
+					tipoSubServicioSeleccionado != ""){
+				$('#cdTipoSubServicios').val(tipoSubServicioSeleccionado);
+			}
+			
+		}, error: function(XMLHttpRequest,textStatus,errorThrown){
+			console.log("error " + errorThrown);
+		}
+	});		
+}
+
 function obtenerDoctoresPorServicio() {  
   
 			
@@ -388,7 +408,8 @@ var fechaFullCalendarAnterior = "";
 			   $("#tipoCita").val(tipoCitaSeleccionada);
 		   }
 		   
-		   categoryChanged(tipoCita);		   
+		   categoryChanged(tipoCita);
+		   funcionObtenerTipoSubServicios();
 		   $("#vista_hour").val(hour);
 		   $("#vista_minute").val(minutes);
 		   $('#cbFechaCita_hour').val(hour);
