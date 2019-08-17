@@ -151,7 +151,8 @@ class MetodosCalendarController {
     		ret[i] = [    							
 						title: it.paciente.nombre + " " + it.paciente.apellidoPaterno + " " + it.paciente.apellidoMaterno,
 	                    start: it.fecha.toString(),      					                          
-	                    allDay : false 	                          
+	                    allDay : false,
+						color: it.tipoCita.colorHexadecimal                        
 					 ]
 			
 //			if(i > 0 && mismaFecha(ret[i-1]["start"] , it.fecha)){
