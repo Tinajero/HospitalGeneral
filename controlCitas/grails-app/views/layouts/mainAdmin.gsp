@@ -18,8 +18,13 @@
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<asset:stylesheet src="dashboard.css"/>
-		 <g:javascript src="utilerias.js" />
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'daterangepicker.css')}" type="text/css">
+		
+		<g:javascript src="utilerias.js" />
 		<g:javascript src="jquery-mask/jquery.mask.js"/>
+		<g:javascript src="fullcalendar-2.3.1/lib/moment.min.js"/>
+		<g:javascript src="daterangepicker.js"/>
+		
 		<g:layoutHead/>
 	</head>
 	<body>

@@ -21,7 +21,7 @@
 				</div>
 			</g:if>
 			<g:hasErrors bean="${diaSinCita}">
-				<ul class="errors" role="alert">
+				<ul class="errors alert alert-warning " role="alert ">
 					<g:eachError bean="${diaSinCita}" var="error">
 						<li
 							<g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message
@@ -30,7 +30,7 @@
 				</ul>
 			</g:hasErrors>
 			<g:form url="[resource:diaSinCita, action:'save']">
-				<fieldset class="form">
+				<fieldset class="form form-horizontal">
 					<g:render template="form" />
 				</fieldset>
 				<fieldset class="buttons col-sm-offset-4">

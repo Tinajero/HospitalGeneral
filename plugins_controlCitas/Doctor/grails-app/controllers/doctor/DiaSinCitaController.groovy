@@ -4,6 +4,7 @@ package doctor
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
 
 @Transactional(readOnly = true)
@@ -12,6 +13,8 @@ class DiaSinCitaController {
 
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	
+	def SpringSecurityService springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -32,9 +35,22 @@ class DiaSinCitaController {
             notFound()
             return
         }
+		
+		def fechaInicio = diaSinCita.fechaInicio
+		if(true){
+			
+		}
+		
+		def idUsuarioCreacion = springSecurityService.principal.id
+		diaSinCita.usuarioCreacionId = idUsuarioCreacion
+		diaSinCita.fechaCreacion = new Date();
+				
+	
+		diaSinCita.validate()
 
         if (diaSinCita.hasErrors()) {
-            respond diaSinCita.errors, view:'create'
+			print diaSinCita.errors
+            respond diaSinCita.errors, view:'create', model:[diaSinCita:diaSinCita]
             return
         }
 
