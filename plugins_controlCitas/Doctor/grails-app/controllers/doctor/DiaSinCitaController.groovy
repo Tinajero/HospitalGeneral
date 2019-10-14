@@ -6,6 +6,8 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Transactional(readOnly = true)
 @Secured(['ROLE_ADMIN'])
@@ -28,6 +30,12 @@ class DiaSinCitaController {
     def create() {
         respond new DiaSinCita(params)
     }
+	
+	def transformarAFecha(String fecha){
+		String format = "yyyy-MM-dd";
+		Date date = new SimpleDateFormat(format).parse(fecha);
+		return date;
+	}
 
     @Transactional
     def save(DiaSinCita diaSinCita) {
@@ -36,10 +44,8 @@ class DiaSinCitaController {
             return
         }
 		
-		def fechaInicio = diaSinCita.fechaInicio
-		if(true){
-			
-		}
+		diaSinCita.fechaInicio = transformarAFecha(params.fechaInicio);
+		diaSinCita.fechaFin = transformarAFecha(params.fechaFin);				
 		
 		def idUsuarioCreacion = springSecurityService.principal.id
 		diaSinCita.usuarioCreacionId = idUsuarioCreacion
