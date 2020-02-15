@@ -43,17 +43,32 @@
 
 						<th><g:message code="diaSinCita.medico.label"
 								default="Medico" /></th>
+						
+							<g:sortableColumn property="fechaInicio" 
+							title="${message(code: 'diaSinCita.fechaInicio.label', default: 'Fecha Inicio')}" />
+							<g:sortableColumn property="fechaFin" 
+							title="${message(code: 'diaSinCita.fechaInicio.label', default: 'Fecha Fin')}" />
+						
 
 					</tr>
 				</thead>
 				<tbody>
-					<g:each in="${diaSinCitaList}" status="i" var="diaSinCita">
+					<g:each in="${diaSinCitaInstanceList}" status="i" var="diaSinCita">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-							<td><g:link action="show" id="${diaSinCita.id}">
-									${fieldValue(bean: diaSinCita, field: "medico")}
-								</g:link></td>
-
+							
+							<td>
+								<g:link action="show" id="${diaSinCita.id}">
+									${fieldValue(bean: diaSinCita, field: "medico.nombre")}
+									${fieldValue(bean: diaSinCita, field: "medico.apellidoPat")}
+									${fieldValue(bean: diaSinCita, field: "medico.apellidoMat")}
+								</g:link>
+							</td>
+							<td>
+								<g:formatDate format="dd/MMMM/yyyy" date="${diaSinCita.fechaInicio}" />								
+							</td>
+							<td>
+								<g:formatDate format="dd/MMMM/yyyy" date="${diaSinCita.fechaFin}" />								
+							</td>
 						</tr>
 					</g:each>
 				</tbody>

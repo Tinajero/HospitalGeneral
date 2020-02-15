@@ -28,7 +28,7 @@
     <span class="required-indicator">*</span>
     <div class="col-sm-4">
         <g:textField id="fechaInicio" class="form-control" name='fechaInicio'
-         precision='day' value="${diaSinCita?.fechaInicio}" /><br>
+         precision='day' value="${diaSinCitaInstance?.fechaInicio}" /><br>
     </div>
 </div>
 
@@ -38,7 +38,7 @@
 	</label>    
     <div class="col-sm-4">
         <g:textField id="fechaFin" class="form-control" name='fechaFin'
-         precision='day' value="${diaSinCita?.fechaFin}" /><br>
+         precision='day' value="${diaSinCitaInstance?.fechaFin}" /><br>
     </div>
 </div>
 

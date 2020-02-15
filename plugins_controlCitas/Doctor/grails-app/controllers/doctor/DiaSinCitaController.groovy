@@ -44,8 +44,11 @@ class DiaSinCitaController {
             return
         }
 		
+		
 		diaSinCita.fechaInicio = transformarAFecha(params.fechaInicio);
-		diaSinCita.fechaFin = transformarAFecha(params.fechaFin);				
+		diaSinCita.fechaFin = transformarAFecha(params.fechaFin);	
+		
+					
 		
 		def idUsuarioCreacion = springSecurityService.principal.id
 		diaSinCita.usuarioCreacionId = idUsuarioCreacion
@@ -77,6 +80,7 @@ class DiaSinCitaController {
 
     @Transactional
     def update(DiaSinCita diaSinCita) {
+		
         if (diaSinCita == null) {
             notFound()
             return

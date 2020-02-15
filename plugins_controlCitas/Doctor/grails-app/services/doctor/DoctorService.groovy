@@ -10,6 +10,7 @@ class DoctorService {
     def hora=[]
     def minutos=[]
     def HorarioService
+	def DiaSinCitaService
     def serviceMethod() {
 
     }
@@ -135,6 +136,13 @@ class DoctorService {
         
 		Calendar c = Calendar.getInstance();
         c.setTime(fechaDate);
+		
+//		def diaVacas = DiaSinCitaService.isDiaSinCita(fechaDate, doctorId);
+//		println ">>>>>>>>>>>>>>>>>>>>"
+//		println doctorId
+//		println fechaDate
+//		println diaVacas
+//		println "<<<<<<<<<<<<<<<<<<<<<"
 		
         int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;   
         def doctor = Doctor.get(doctorId);

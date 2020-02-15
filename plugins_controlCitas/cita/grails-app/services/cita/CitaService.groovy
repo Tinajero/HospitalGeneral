@@ -12,6 +12,7 @@ class CitaService {
     def CitaService
     def CalendarioService
     def LastIndiceTempService
+	def DiaSinCitaService
     def serviceMethod() {
     }
 	
@@ -39,49 +40,50 @@ class CitaService {
      */
     def isBussyDay(Long doctorId,String date ){
        // print date
+		//TODO agregar la funcionalidad de ver si a caso tiene dia libre el dia que se consulta
+		//TODO para eso hay que crear entonces un servicio, el cual te diga si tiene vacaciones
+		// Ese dia checarlo aqui para que regrese un resultado
+		// y checarlo en funcionesCita.js para que si acaso tiene vacaciones lo pinte de un lado
+		// Tambien hay que checar que no permita dar cita el dia de vacaciones.
+		def DIA_LIBRE = 0;
+		def DIA_OCUPADO = 1;
+		def DIA_NO_LABORA = -1;
+		def DIA_NO_ATENDERA_CITAS = 2;
+		
         int doctorID = (int) doctorId;
-        int resultado = 0
+        int resultado = DIA_LIBRE;
         def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, date)
+		def esDiaQueNoAtiendeCita = DiaSinCitaService.isDiaSinCita(date, doctorID);
+		
+		
         boolean f = true;
-        if ( esDiaLaboral ) {
-            //def horario = DoctorService.getHorarioFromDoctorID(doctorID)
-            def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)
-            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )
-            def libre = true;
-            def i = 0;
-            f = true;
-            if (horario != null ){
-                //def ohorario = JSON.parse(horario)
-                for (int j = 0; j < horario.size(); j ++ ) {// checo hora por hora
-                    /*def it = ohorario[j]; // se cambia por el cambio de horarios que tuvo
-                    def hora = getHoraDeString(it.hora)
-                    def minuto = getMinutoDeString(it.hora)
-                    */
-                    def hora = horario[j][0]
+        if ( esDiaLaboral && !esDiaQueNoAtiendeCita ) {	
+			
+			def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)
+			def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )
+			
+			if ( horario != null ){
+				
+				resultado = DIA_OCUPADO;
+                
+				for (int j = 0; j < horario.size(); j ++ ) {// checo hora por hora
+                    
+					def hora = horario[j][0]
                     def minuto = horario[j][1]
-                  //  print hora + " " + minuto + " " + citas
-                    if ( isLibre(hora, minuto, citas)  ){// encuentra una hora libre ese dia
-                  //      print "si entro"
-                        if (f){
-                            resultado = 0
-                            f = false
-                        }
-                        break
 
+                    if ( isLibre(hora, minuto, citas)  ){// encuentra una hora libre ese dia
+
+						resultado = DIA_LIBRE
+                        break
                     }
                 }
-                // recorrio todas sus horas y no encontro una libre, entonces ese dia esta ocupado
-                if (f){
-                    resultado = 1
-                    f = false
-                }
             }
+        } else if( !esDiaQueNoAtiendeCita ){
+            resultado = DIA_NO_LABORA            
+        } else {
+			resultado = DIA_NO_ATENDERA_CITAS
         }
-        // ese dia ni siquiera trabaja
-        if (f){
-            resultado = -1
-            f = false
-        }
+	
 
         resultado
     }
@@ -101,9 +103,10 @@ class CitaService {
         //print "accedio a mostrarHorario de citaController"
         //print params
         def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, fecha)
+		def esDiaDeVacaciones = DiaSinCitaService.isDiaSinCita(fecha, doctorID)
         //print "es un dia Laboral? " + esDiaLaboral
         def ret = [];
-        if ( esDiaLaboral ) {
+        if ( esDiaLaboral && !esDiaDeVacaciones ) {
             def horario = DoctorService.getHorarioFromDoctorID(doctorID, fecha)
             def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
             def libre = true;
@@ -143,7 +146,7 @@ class CitaService {
                 //end
             }
             //print ret as JSON
-        } else { // no trabaja ese dia
+        } else if(!esDiaDeVacaciones) { // no trabaja ese dia
             def dias = DoctorService.getDiasLaboralesDoctor(doctorID)
             def mensajeDias = ""
             for (int i = 0; i < dias.length(); i++){
@@ -165,13 +168,23 @@ class CitaService {
             }
             ret[0] = [
                 hora: "No atiende citas ese dia, unicamente ",
-                libre: false
+                libre: false,
+				mensaje: "No atiende citas ese dia, unicamente "
             ]
             ret[1] = [
                 hora: mensajeDias,
-                libre: false
+                libre: false,
+				mensaje: mensajeDias
             ]
 
+        } else {
+			def mensajeVacaciones = "El m&eacute;dico tiene configurado este d&iacute;a para que no atienda Citas "
+			ret[0] = [
+				hora: null,
+				libre: false,
+				mensaje : mensajeVacaciones
+			]
+			
         }
        // print horario
        // esto deberia ser mostrado en JSON

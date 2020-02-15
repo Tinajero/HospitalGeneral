@@ -86,7 +86,7 @@ function getHorarios(  ){
       							"<td class='centrado'>" + horario.hora + "</td>"+
       							"<td class='centrado'>" + horario.tipo.nombre + "</td>"              
       					);      				
-      			} else {
+      			} else if (!horario.hasOwnProperty("mensaje")) {
       				//Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
 	  				if(horario.asignadaA != null && 
 	  						horario.asignadaA.id != horario.tipo.id){
@@ -101,6 +101,10 @@ function getHorarios(  ){
 							+ asignadoA);
 	      			 //asignadoA es progra de Max
 	  				//modificado por Daniel con los subservicios
+      			} else if(horario.hasOwnProperty("mensaje")){
+      				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
+							+ horario.mensaje 
+							+ "</td><td class='centrado'>");
       			}
       		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {
@@ -259,6 +263,12 @@ function cambiarColorDias(){
 	var  endDay = $('#calendar').fullCalendar('getView').intervalEnd.format();
 	var doctorId = $("#cbDoctores").val();
 	console.log("function cambiarColorDias ");
+	
+	var DIA_LIBRE = 0;
+	var DIA_OCUPADO = 1;
+	var DIA_NO_LABORA = -1;
+	var DIA_NO_ATENDERA_CITAS = 2;
+	
 	if (doctorId != ''){
 	    console.log("function cambiarColorDias >> ENTRO");
 	    var pathDiasOcupados = getBussyDaysPath;
@@ -271,13 +281,15 @@ function cambiarColorDias(){
 	  			$.each( data, function( index, dia){
 	  				//console.log(dia);
 	  				var cell = $('#dia'+dia.id);
-	  				if ( dia.ocupado == 0){
-	  					cell.css('background-color','#7DE96E');
-	  				} else if ( dia.ocupado == 1 ) {					
-	  					cell.css('background-color','#E94E58');
-	  				} else {					
-	  					cell.css('background-color','#868080');
-	  				}	  				
+	  				if ( dia.ocupado == DIA_LIBRE){
+	  					cell.css('background-color','#7fcd91');
+	  				} else if ( dia.ocupado == DIA_OCUPADO ) {					
+	  					cell.css('background-color','#fed39f');
+	  				} else if( dia.ocupado == DIA_NO_LABORA) {				
+	  					cell.css('background-color','#5b5656');
+	  				} else if ( dia.ocupado == DIA_NO_ATENDERA_CITAS ) {
+	  					cell.css('background-color','#020617');
+	  				}
 	  			});
 	  		},
 	  		error:function(XMLHttpRequest,textStatus,errorThrown){}
