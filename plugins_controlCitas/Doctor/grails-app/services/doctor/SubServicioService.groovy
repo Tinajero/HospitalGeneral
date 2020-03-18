@@ -11,7 +11,7 @@ class SubServicioService {
 	
 	def obtieneLosSubServiciosDeUnServicio(servicio){
 		def query = Servicio.get(servicio)
-		print query.subServicios;
+//		print query.subServicios;
 		
 		return query.subServicios		
 	}
@@ -22,7 +22,7 @@ class SubServicioService {
 //			subServicio.tipoSubServicios = []
 //		}
 //		
-//		println "parametros agregartipoSubServicios" + params
+//		//println "parametros agregartipoSubServicios" + params
 //		if(params.tipoSubServicios != null){
 //			params.tipoSubServicios.id.each {
 //				ServicioMedico s = ServicioMedico.get(it);
@@ -30,7 +30,7 @@ class SubServicioService {
 //			}
 //		}
 //		
-//		println "SubServicio " + subServicio
+//		//println "SubServicio " + subServicio
 //		return subServicio;
 //	}
 	

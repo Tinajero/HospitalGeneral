@@ -17,7 +17,7 @@ class ServicioController {
 	def ServicioService servicioService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-		print Servicio.list(params)
+//		print Servicio.list(params)
         respond Servicio.list(params), model:[servicioCount: Servicio.count(), servicioInstanceList:servicioService.listaTiposCita()]
     }
 
@@ -40,7 +40,7 @@ class ServicioController {
 		servicio.nombre = servicio.nombre.toUpperCase()
 		servicio.descripcion = servicio.descripcion.toUpperCase()
 		
-		print params
+//		print params
 		
 		servicio = servicioService.agregarSubServicios(params, servicio);
 		

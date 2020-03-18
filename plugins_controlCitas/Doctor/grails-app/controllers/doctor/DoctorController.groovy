@@ -149,7 +149,7 @@ class DoctorController {
 	
 	def obtieneSubServicioDeServicio(){
 		def servicio = params.servicio
-		println "servicioo" + servicio
+		//println "servicioo" + servicio
 		def subServicios = SubServicioService.obtieneLosSubServiciosDeUnServicio(servicio);
 		def noSelection = ['':'Seleccione tipo de subServicio']
 		render g.select(id:'comboSubServicios', name:'subServicio',

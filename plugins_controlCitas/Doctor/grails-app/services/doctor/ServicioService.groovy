@@ -9,7 +9,7 @@ class ServicioService {
 	def listaTiposCita(){
 		def query = ServicioMedico.executeQuery("from ServicioMedico servicioMedico where servicioMedico.fechaBaja is null" +
 				" and servicioMedico.class = 'doctor.Servicio'");
-		print query;
+//		print query;
 		return query;
 	}
 	

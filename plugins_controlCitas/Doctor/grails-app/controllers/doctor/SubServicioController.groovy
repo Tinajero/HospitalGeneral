@@ -49,7 +49,7 @@ class SubServicioController {
 		subServicio.tipoSubServicios = []
 		
 		
-		println "parametros agregartipoSubServicios" + params
+		//println "parametros agregartipoSubServicios" + params
 		if(params.tipoSubServicio != null){
 			params.tipoSubServicio.id.each {
 				TipoSubServicio s = TipoSubServicio.get(it);
@@ -59,7 +59,7 @@ class SubServicioController {
 		
 		subServicio.validate()
         if (subServicio.hasErrors()) {
-			println subServicio.errors
+			//println subServicio.errors
             respond subServicio.errors, view:'create'
             return
         }
@@ -87,10 +87,21 @@ class SubServicioController {
         }
 		subServicio.nombre = subServicio.nombre.toUpperCase()
 		subServicio.descripcion = subServicio.descripcion.toUpperCase()
-	
+		println params 
+		println "......."
+		println subServicio
 		def usuarioModificacionId = springSecurityService.principal.id
 		subServicio.usuarioModificacionId = usuarioModificacionId
 		subServicio.fechaModificacion = new Date();
+		
+		subServicio.tipoSubServicios = []
+		if(params.tipoSubServicio != null){
+			params.tipoSubServicio.id.each {
+				TipoSubServicio s = TipoSubServicio.get(it);
+				subServicio.tipoSubServicios.add(s);
+			}
+		}
+		
 		subServicio.validate()
 
         if (subServicio.hasErrors()) {

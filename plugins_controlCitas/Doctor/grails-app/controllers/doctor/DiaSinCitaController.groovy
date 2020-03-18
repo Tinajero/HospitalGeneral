@@ -15,6 +15,7 @@ class DiaSinCitaController {
 
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	def CitaService
 	
 	def SpringSecurityService springSecurityService
 
@@ -48,17 +49,30 @@ class DiaSinCitaController {
 		diaSinCita.fechaInicio = transformarAFecha(params.fechaInicio);
 		diaSinCita.fechaFin = transformarAFecha(params.fechaFin);	
 		
-					
 		
+				
 		def idUsuarioCreacion = springSecurityService.principal.id
 		diaSinCita.usuarioCreacionId = idUsuarioCreacion
 		diaSinCita.fechaCreacion = new Date();
 				
 	
 		diaSinCita.validate()
-
+		
+		def citasEnEsasVacaciones = CitaService.listaLasCitasEnUnIntervaloDeTiempo(
+			diaSinCita.medico,
+			diaSinCita.fechaInicio ,
+			diaSinCita.fechaFin);
+//		//println ">>>>>>"
+//		//println citasEnEsasVacaciones
+		def mensajeError = "Existen Citas creadas para ese medico en esas fechas, cambielas, o cambie el intervalo"
+		if( citasEnEsasVacaciones.size() > 0 ){
+			
+			diaSinCita.errors.reject(mensajeError)
+		}
+		
+		diaSinCita.hasErrors()
         if (diaSinCita.hasErrors()) {
-			print diaSinCita.errors
+//			print diaSinCita.errors			
             respond diaSinCita.errors, view:'create', model:[diaSinCita:diaSinCita]
             return
         }

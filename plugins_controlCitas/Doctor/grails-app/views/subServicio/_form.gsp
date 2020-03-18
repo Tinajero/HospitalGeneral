@@ -52,10 +52,9 @@
 			noSelection="['null': '']"/>
 	</div>
 	
-<%--  --%>
 </div>	
 
-<<script type="text/javascript">
+<script type="text/javascript">
 $('#colorpicker').on('change', function() {
 	$('#hexcolor').val(this.value);
 });

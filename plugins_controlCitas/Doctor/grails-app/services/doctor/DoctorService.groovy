@@ -138,11 +138,11 @@ class DoctorService {
         c.setTime(fechaDate);
 		
 //		def diaVacas = DiaSinCitaService.isDiaSinCita(fechaDate, doctorId);
-//		println ">>>>>>>>>>>>>>>>>>>>"
-//		println doctorId
-//		println fechaDate
-//		println diaVacas
-//		println "<<<<<<<<<<<<<<<<<<<<<"
+//		//println ">>>>>>>>>>>>>>>>>>>>"
+//		//println doctorId
+//		//println fechaDate
+//		//println diaVacas
+//		//println "<<<<<<<<<<<<<<<<<<<<<"
 		
         int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;   
         def doctor = Doctor.get(doctorId);
