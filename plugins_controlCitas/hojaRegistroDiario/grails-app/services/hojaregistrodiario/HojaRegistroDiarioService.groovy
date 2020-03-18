@@ -86,7 +86,7 @@ class HojaRegistroDiarioService {
 			" and cita.fecha_baja is null " +
 		"order by cita.doctor_id, " +
 			"cita.fecha " 
-	println consulta
+	//println consulta
 	def currentSession = sessionFactory.currentSession
 	resultados = currentSession.createSQLQuery(consulta)
 	
@@ -123,8 +123,8 @@ class HojaRegistroDiarioService {
 		def sexo = getSexo(r[12]);
 		
         value += r[7]+'|'+r[8]+'|'+r[9]+'|'+r[10]+'|'+r[11]+'|'+r[14]+'|'+sexo+'~'
-         print ("key:"+key)
-         print ("value."+value)
+//         print ("key:"+key)
+//         print ("value."+value)
     } 
 
     if(value!="")

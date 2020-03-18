@@ -9,28 +9,28 @@ import java.util.concurrent.TimeUnit
 class MetodosCalendarController {
     def CitaService;
     def CalendarioService
-    def index() { println "Aqui" }  
+    def index() {  }  
 
     def consulta (){
         String operacion = params['method']
-        println "me mandaraon "  + params
+        //println "me mandaraon "  + params
         def ret         
         def startDate = Date.parse("yyyy-MM-dd", params['start'] )
-        println startDate
+        //println startDate
         def endDate = Date.parse("yyyy-MM-dd", params['end'] )
        // JSON.use('deep')
         ret = listCalendarByRangeAndDoctor( startDate, endDate, params['DoctorId'])
        // ret = "[\"0\",            {                \"allDay\": \"\",                \"title\": \"Test event\",                \"id\": \"821\",                                \"start\": \"2015-06-02T19:24:00Z\"            },            \"1\",            {                \"allDay\": \"\",                \"title\": \"Test event 2\",                \"id\": \"822\",                                \"start\": \"2015-06-03T19:24:00Z\"            }        ]"
-        //println ret
+        ////println ret
         //ret.size().times{
-        //    println ret[it] as JSON 
+        //    //println ret[it] as JSON 
         //    render ret[it] as JSON
         //}
         render ret as JSON
     }
     def metodo () {
     	String operacion = params['method']
-    	println "me mandaraon "  + operacion
+    	//println "me mandaraon "  + operacion
     	def ret 
     	JSON.use('deep')
     	switch( operacion ){
@@ -91,8 +91,8 @@ class MetodosCalendarController {
 
     	Calendario calendario
     	def startTime, endTime
-    	println day
-    	println type
+    	//println day
+    	//println type
     	switch(type) {
 				/* 
     			la conversion fue dificil de encontrar 
@@ -104,7 +104,7 @@ class MetodosCalendarController {
     		case "month":
     			// obtenemos el objeto Fecha, pues nos dan solo una cadena
     			startTime = Date.parse("MM/dd/yyyy", day)
-    			//println startTime
+    			////println startTime
     			endTime = Date.parse("MM/dd/yyyy", day)
     			//creamos un objeto Calendar el cual tiene el metodo add
     			Calendar calendar = Calendar.getInstance()
@@ -114,7 +114,7 @@ class MetodosCalendarController {
     			calendar.add(Calendar.MONTH, 1)
     			// por ultimo regresamos a tipo Date
     			endTime = calendar.getTime()
-    			//println endTime
+    			////println endTime
     			break
 
     		case "week" :
@@ -124,15 +124,15 @@ class MetodosCalendarController {
     			calendar.setTime(startTime)
     			calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
     			startTime = calendar.getTime()
-    			//println startTime
+    			////println startTime
     			endTime = startTime + 7
-    			//println endTime
+    			////println endTime
     			break
     		case "day" :
     			startTime = Date.parse("MM/dd/yyyy", day)
     			endTime = startTime + 1
-    			//println startTime
-    			//println endTime
+    			////println startTime
+    			////println endTime
     			break
     	}
     	return listCalendarByRange(startTime, endTime)
@@ -162,7 +162,7 @@ class MetodosCalendarController {
     		i++;
     	}
 		
-//		println ret
+//		//println ret
 		
     	return ret
     }

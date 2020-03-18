@@ -87,6 +87,19 @@ class CitaService {
 
         resultado
     }
+	
+	def listaLasCitasEnUnIntervaloDeTiempo(medico, fechaInicio, fechaFin) {
+		def query = Cita.where {
+			doctor == medico
+			fechaBaja == null
+			and {
+				ge('fecha', fechaInicio)
+				le('fecha', fechaFin)
+			}
+		}
+		
+		return query.list();
+	}
 
     /**
      * Service que a partir de el ID de un doctor, y la fecha en formato de cadena  dia + "-" + mes + "-" + anio
@@ -287,19 +300,19 @@ class CitaService {
     }
 
     def generateExpediente(){
-        println LastIndiceTempService.getLastIndex();
+        //println LastIndiceTempService.getLastIndex();
     }
 
     //service for autocomplete
 	 def getPacientesWithFullExpediente(String expediente){
-        println 'getPacientesWithFullExpediente';
-        println expediente;
+        //println 'getPacientesWithFullExpediente';
+        //println expediente;
 		  def paciente = Paciente.executeQuery("from Paciente paciente where paciente.expediente = :expediente and paciente.fechaBaja is null",[expediente: expediente]);
         return paciente
     }
     def getPacientesWithExpediente(String expediente){
-        println 'getPacientesWithExpediente';
-        println expediente;
+        //println 'getPacientesWithExpediente';
+        //println expediente;
         def criteria = Paciente.createCriteria()
         def results = criteria.listDistinct () {
 			like('expediente', expediente+'%')
@@ -367,11 +380,11 @@ class CitaService {
         citas.each{
             citaHora = it.fecha.toString().split(' ')[1].substring(0, 5)
             if( citaHora == horaString ){
-				println "citaHora compare " + citaHora + " " + horaString + " " + asignadaA
+				//println "citaHora compare " + citaHora + " " + horaString + " " + asignadaA
                 asignadaA = it.tipoCita				
             }
         }
-		print "Retorna " + asignadaA
+//		print "Retorna " + asignadaA
         return asignadaA
     }
     //end

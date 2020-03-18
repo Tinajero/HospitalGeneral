@@ -49,7 +49,7 @@ class BusquedaDinamicaService {
         def anterior = listaResultados[0].idDoctor;
         def fechaAnterior = listaResultados[0].fecha
         def cita = [:]
-        println anterior
+        //println anterior
         def doctor = [:]
         def primer = listaResultados[0]
         def listaCitas = []
@@ -110,7 +110,7 @@ class BusquedaDinamicaService {
 				
                 doctor.put('fechas', listaFechas)
                 listaAgrupador.add(doctor)
-                println row.idDoctor
+                //println row.idDoctor
 				listaCitas = []
 				listaFechas = []
 				fecha = [:]
@@ -133,18 +133,18 @@ class BusquedaDinamicaService {
 
         for (int i  =0; i<listaAgrupador.size();i++){
             def d = listaAgrupador[i];
-            println "."+d.nombreDoctor
+            //println "."+d.nombreDoctor
             for (int j = 0; j < d.fechas.size();j++){
                 def f = d.fechas[j];
-                println ">"+f.fecha
+                //println ">"+f.fecha
                 for (int m= 0 ; m < f.citas.size();m++){
                     def c = f.citas[m]
-                    println "#"+c
+                    //println "#"+c
                 }
             }
         }
 		
-		println listaAgrupador
+		//println listaAgrupador
 		return listaAgrupador
     }
 
@@ -203,7 +203,7 @@ class BusquedaDinamicaService {
 		def parteConsulta = "";
 		StringBuilder sb = new StringBuilder();
 		Boolean tieneDatos = false;		
-		println "#####"
+		//println "#####"
 		if(params.turnoVespertino == "on"){
 			sb.append("doctor.turno = 2")	
 			tieneDatos = true;

@@ -16,7 +16,7 @@ class BusquedaDinamicaController {
     }    
 
     def realizarBusqueda(params){
-        print "REalizar Busquedas params"  + params
+//        print "REalizar Busquedas params"  + params
 
         def listaResultados = BusquedaDinamicaService.busquedaDinamica(params)
         def listaPropiedades = BusquedaDinamicaService.obtenPropiedades()
