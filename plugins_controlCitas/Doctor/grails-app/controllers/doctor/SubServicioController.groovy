@@ -127,7 +127,8 @@ class SubServicioController {
             notFound()
             return
         }
-
+        // TODO revisar antes de eliminar el subservicio hay que informar si existen citas que tienen ese subservicio.
+        // crear un servicio que obtenga las citas asignadas a un subServicio?
         subServicio.delete flush:true
 
         request.withFormat {

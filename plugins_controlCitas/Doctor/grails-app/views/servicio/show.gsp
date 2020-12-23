@@ -65,7 +65,7 @@
 					
 				
 				</table>
-				<g:form url="[resource:servicio, action:'delete']" method="DELETE">
+				<g:form url="[resource:servicioInstance, action:'delete']" method="DELETE">
 					<fieldset class="buttons">
 						<g:link class="btn btn-info" action="edit" resource="${servicioInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 						<g:actionSubmit class="delete  btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" 

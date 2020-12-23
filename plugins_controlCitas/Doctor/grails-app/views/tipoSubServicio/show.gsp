@@ -52,7 +52,7 @@
 
 
 			</table>
-			<g:form url="[resource:subServicio, action:'delete']" method="DELETE">
+			<g:form url="[resource:tipoSubServicioInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="btn btn-info" action="edit"
 						resource="${tipoSubServicioInstance}">

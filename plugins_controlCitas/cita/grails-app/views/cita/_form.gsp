@@ -104,7 +104,7 @@ ${request?.session.servletContext.realPath}
 
 <div class="form-group ${hasErrors(bean: cita?.paciente, field: 'folioSeguroPopular', 'has-error')} required">
 	<label for="folioSeguroPopular" class="col-sm-2 control-label">
-		<g:message code="cita.paciente.folioSeguroPopular.label" default="Folio Seguro Popular" />
+		<g:message code="cita.paciente.folioSeguroPopular.label" default="Folio Insabi" />
 	</label>
 	<div class ="col-sm-4">
 		<g:textField id="folioSeguroPopular" name="cita.paciente.folioSeguroPopular" class="form-control"  value="${citaInstance?.paciente?.folioSeguroPopular}"/>

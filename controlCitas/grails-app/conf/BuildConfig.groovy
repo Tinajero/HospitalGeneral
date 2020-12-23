@@ -45,10 +45,11 @@ grails.project.dependency.resolution = {
 
         grailsPlugins()
         grailsHome()
-        mavenLocal()
+        //mavenLocal()
         grailsCentral()
-        mavenCentral()
-		mavenRepo 'http://repo.spring.io/milestone'
+        //mavenCentral()
+        
+		mavenRepo 'http://insecure.repo1.maven.org/maven2/'
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"

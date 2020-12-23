@@ -20,8 +20,9 @@ class ServicioService {
 	def agregarSubServicios(params, Servicio servicio){
 		servicio.subServicios = []
 		if(params?.subServicio != null){
-			params.subServicio.id.each {
-				SubServicio s = SubServicio.get(it);
+		
+			params.subServicio.each {
+				SubServicio s = SubServicio.get(it.value);				
 				servicio.subServicios.add(s);
 			}
 		}

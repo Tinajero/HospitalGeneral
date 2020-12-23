@@ -78,6 +78,7 @@ class ServicioController {
 		
 		servicio.nombre = servicio.nombre.toUpperCase()
 		servicio.descripcion = servicio.descripcion.toUpperCase()
+        println params
 		servicio = servicioService.agregarSubServicios(params, servicio);		
 		
 		def idUsuarioModificacion = springSecurityService.principal.id
