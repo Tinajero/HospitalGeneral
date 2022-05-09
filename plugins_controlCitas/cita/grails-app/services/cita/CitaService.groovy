@@ -387,5 +387,9 @@ class CitaService {
 //		print "Retorna " + asignadaA
         return asignadaA
     }
+
+    def getCitasWithSubServicio(subservicioid){
+        
+    }
     //end
 }
