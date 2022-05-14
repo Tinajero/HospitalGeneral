@@ -16,5 +16,15 @@ class SubServicioServiceSpec extends Specification {
     }
 
     void "test something"() {
+        expect:
+            1==1
+    }
+
+    void "test should return false for subServicios with citas"(){
+        when:
+			print "hola Mundo"
+		
+		then:
+			"hi" == "hi"
     }
 }
