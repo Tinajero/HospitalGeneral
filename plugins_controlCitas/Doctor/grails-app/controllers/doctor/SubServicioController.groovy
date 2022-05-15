@@ -15,7 +15,7 @@ class SubServicioController {
 	def SubServicioService subServicioService;
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond SubServicio.list(params), model:[subServicioCount: SubServicio.count()]
+        respond SubServicio.findAllByFechaBajaIsNull(params), model:[subServicioCount: SubServicio.count()]
     }
 
     def show(SubServicio subServicio) {
@@ -41,15 +41,9 @@ class SubServicioController {
 		def idUsuarioCreacion = springSecurityService.principal.id
 		subServicio.usuarioCreacionId = idUsuarioCreacion
 		subServicio.fechaCreacion = new Date();
-		
-		
-		//subServicio = subServicioService.agregartipoSubServicios(params, subServicio)
-		
 			
 		subServicio.tipoSubServicios = []
-		
-		
-		//println "parametros agregartipoSubServicios" + params
+
 		if(params.tipoSubServicio != null){
 			params.tipoSubServicio.id.each {
 				TipoSubServicio s = TipoSubServicio.get(it);
@@ -59,7 +53,6 @@ class SubServicioController {
 		
 		subServicio.validate()
         if (subServicio.hasErrors()) {
-			//println subServicio.errors
             respond subServicio.errors, view:'create'
             return
         }
@@ -87,7 +80,7 @@ class SubServicioController {
         }
 		subServicio.nombre = subServicio.nombre.toUpperCase()
 		subServicio.descripcion = subServicio.descripcion.toUpperCase()
-		println params 
+		println "params " + params 
 		println "......."
 		println subServicio
 		def usuarioModificacionId = springSecurityService.principal.id
@@ -96,8 +89,9 @@ class SubServicioController {
 		
 		subServicio.tipoSubServicios = []
 		if(params.tipoSubServicio != null){
-			params.tipoSubServicio.id.each {
-				TipoSubServicio s = TipoSubServicio.get(it);
+			params.tipoSubServicio.each { key, value ->
+                print "tipoSubServicioID " + value
+				TipoSubServicio s = TipoSubServicio.get(value);
 				subServicio.tipoSubServicios.add(s);
 			}
 		}
@@ -127,9 +121,24 @@ class SubServicioController {
             notFound()
             return
         }
-        // TODO revisar antes de eliminar el subservicio hay que informar si existen citas que tienen ese subservicio.
-        // crear un servicio que obtenga las citas asignadas a un subServicio?
-        subServicio.delete flush:true
+
+        if(subServicioService.can_be_deleted(subServicio) == true) {
+            	def usuarioModificacionId = springSecurityService.principal.id
+                subServicio.usuarioBajaId = usuarioModificacionId
+                subServicio.fechaBaja = new Date();
+			    subServicio.save flush:true
+        } else {
+            def messageOther = 'El SubServicio tiene citas asignadas, por lo que no es posible eliminarlo'
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: messageOther , args: [message(code: 'SubServicio.label', default: 'SubServicio'), subServicio.id])
+                    redirect subServicio
+                }
+                '*'{ respond subServicio, [status: NOT_FOUND] }
+            }
+            return
+        }
 
         request.withFormat {
             form multipartForm {

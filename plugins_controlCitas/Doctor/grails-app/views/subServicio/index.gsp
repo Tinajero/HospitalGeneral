@@ -8,7 +8,9 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-				
+		<g:if test="${flash.message}">
+			<div class="message" role="status">${flash.message}</div>
+		</g:if>
 		<div id="list-SubServicio" class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main panel panel-info" role="main">					
 			<div class="panel-heading">
 			  		<div class="row">

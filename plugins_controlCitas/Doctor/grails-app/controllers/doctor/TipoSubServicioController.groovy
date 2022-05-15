@@ -11,6 +11,7 @@ class TipoSubServicioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	def SpringSecurityService springSecurityService
+    def TipoSubServicioService tipoSubServicioService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond TipoSubServicio.list(params), model:[tipoSubServicioCount: TipoSubServicio.count()]
@@ -95,7 +96,23 @@ class TipoSubServicioController {
             return
         }
 
-        tipoSubServicio.delete flush:true
+        if(tipoSubServicioService.can_be_deleted(tipoSubServicio) == true) {
+            	def usuarioModificacionId = springSecurityService.principal.id
+                tipoSubServicio.usuarioBajaId = usuarioModificacionId
+                tipoSubServicio.fechaBaja = new Date();
+			    tipoSubServicio.save flush:true
+        } else {
+            def messageOther = 'El Tipo de Sub Servicio tiene citas asignadas, por lo que no es posible eliminarlo'
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: messageOther , args: [message(code: 'TipoSubServicio.label', default: 'TipoSubServicio'), tipoSubServicio.id])
+                    redirect tipoSubServicio
+                }
+                '*'{ respond tipoSubServicio, [status: NOT_FOUND] }
+            }
+            return
+        }
 
         request.withFormat {
             form multipartForm {

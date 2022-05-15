@@ -4,7 +4,7 @@ import grails.transaction.Transactional
 
 @Transactional
 class TipoSubServicioService {
-
+	def CitaService
 	def obtieneLosTipoSubServiciosDeUnSubServicio(servicio){
 		def query = SubServicio.get(servicio)
 //		print query.tipoSubServicios;
@@ -18,8 +18,12 @@ class TipoSubServicioService {
 		return query;
 	}
 	
+	def can_be_deleted(tipoSubServicio) {
+		def citas = CitaService.getCitasByTipoSubServicio(tipoSubServicio)
+		return citas == null || citas.count == 0
+	}
 	
 	def serviceMethod() {
 
-    }
+  }
 }

@@ -125,24 +125,7 @@ class CitaService {
             def libre = true;
             def i = 0;
             if (horario != null ){
-                //def ohorario = JSON.parse(horario)
-                //print ohorario
-                /*horario.each{
-                    //def hora = getHoraDeString(it.hora)
-                    //def minuto = getMinutoDeString(it.hora)
-                    def hora = it[0]
-                    def minuto = it[1]
-                    def tipo = it[2]
-                    def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
-                    libre = isLibre(hora, minuto, citas)
-                    ret[i++] = [
-                        hora: horaString,
-                        tipo: tipo,
-                        libre:libre
-                    ]
-                }*/
-                //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-                horario.each{
+                    horario.each{
                     def hora = it[0]
                     def minuto = it[1]
                     def tipo = it[2]
@@ -295,7 +278,7 @@ class CitaService {
     }
 
     def getCitasWhitPacienteId(Long pacienteId){
-        def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId",[pacienteId: pacienteId]);
+        def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId and fechaBaja is null",[pacienteId: pacienteId]);
         return citas
     }
 
@@ -388,8 +371,13 @@ class CitaService {
         return asignadaA
     }
 
-    def getCitasWithSubServicio(subservicioid){
-        
+    def getCitasBySubService(subServicio){
+        def citas = Cita.findByTipoCitaAndFechaBajaIsNull(subServicio)
+        return citas
+    }
+
+    def getCitasByTipoSubServicio(tipoSubservicio){
+        Cita.findByTipoSubServicioAtendidoAndFechaBajaIsNull(tipoSubservicio)
     }
     //end
 }
