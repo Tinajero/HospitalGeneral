@@ -15,7 +15,11 @@ class SubServicioController {
 	def SubServicioService subServicioService;
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond SubServicio.findAllByFechaBajaIsNull(params), model:[subServicioCount: SubServicio.count()]
+		
+		def total = SubServicio.findAllByFechaBajaIsNull().size()
+		def subServicioList = SubServicio.findAllByFechaBajaIsNull(params)
+		
+        respond subServicioList, model:[subServicioCount: total]
     }
 
     def show(SubServicio subServicio) {
@@ -33,14 +37,21 @@ class SubServicioController {
             notFound()
             return
         }
+
+        def idUsuarioCreacion = springSecurityService.principal.id
+        subServicio.usuarioCreacionId = idUsuarioCreacion
+        subServicio.fechaCreacion = new Date();
+
+        subServicio.validate()
+        if (subServicio.hasErrors()) {
+        	respond subServicio.errors, view:'create'
+        		return
+        }
 		
 		subServicio.nombre = subServicio.nombre.toUpperCase()
 		subServicio.descripcion = subServicio.descripcion.toUpperCase()
 	
 		
-		def idUsuarioCreacion = springSecurityService.principal.id
-		subServicio.usuarioCreacionId = idUsuarioCreacion
-		subServicio.fechaCreacion = new Date();
 			
 		subServicio.tipoSubServicios = []
 
@@ -51,11 +62,6 @@ class SubServicioController {
 			}
 		}
 		
-		subServicio.validate()
-        if (subServicio.hasErrors()) {
-            respond subServicio.errors, view:'create'
-            return
-        }
 
 		subServicio.save flush:true
 
@@ -122,7 +128,7 @@ class SubServicioController {
             return
         }
 
-        if(subServicioService.can_be_deleted(subServicio) == true) {
+        if(subServicioService.can_be_deleted(subServicio)) {
             	def usuarioModificacionId = springSecurityService.principal.id
                 subServicio.usuarioBajaId = usuarioModificacionId
                 subServicio.fechaBaja = new Date();

@@ -136,3 +136,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/dbconsole/**':                  ['permitAll'],
 	'/controlar/**':				  ['permitAll']
 ]
+
+grails.plugins.twitterbootstrap.fixtaglib = true
+

@@ -179,6 +179,11 @@ class DoctorService {
         return dias
     }
 	
+	def getByTipoCitaActive(servicio){
+		Doctor.findAllByTipoCitaAndFechaBajaIsNull(servicio)
+	}
+	
+	
 	
     
     

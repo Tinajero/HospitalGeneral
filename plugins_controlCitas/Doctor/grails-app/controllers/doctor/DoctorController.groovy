@@ -1,5 +1,6 @@
 package doctor
 
+import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -17,6 +18,8 @@ class DoctorController {
     def DoctorService
     def HorarioService
 	def SubServicioService
+	def SpringSecurityService springSecurityService
+
     def index(Integer max) {
         //Opcional. modificar la actualizacion de intervalos
         
@@ -46,8 +49,13 @@ class DoctorController {
             return
         }
               
-      doctor.diasLaborales = DoctorService.obtenerDiasLaboralesPorHorario(params.horario)              
-      doctor.validate()
+		  doctor.diasLaborales = DoctorService.obtenerDiasLaboralesPorHorario(params.horario)    
+		  
+		  def idUsuarioCreacion = springSecurityService.principal.id
+		  doctor.usuarioCreacionId = idUsuarioCreacion
+		  doctor.fechaCreacion = new Date();
+		
+		  doctor.validate()
       
       
   

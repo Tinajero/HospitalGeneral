@@ -9,7 +9,7 @@ class Cita {
 	Paciente paciente
 	Doctor doctor
 	Date fecha
-	/*Tipo de cita sera 0 para primera vez 1 para subsecuente*/
+
 	SubServicio tipoCita
 	SubServicio asignadaA
 	TipoSubServicio tipoSubServicioAtendido;

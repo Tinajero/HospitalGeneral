@@ -17,8 +17,11 @@ class ServicioController {
 	def ServicioService servicioService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-//		print Servicio.list(params)
-        respond Servicio.list(params), model:[servicioCount: Servicio.count(), servicioInstanceList:servicioService.listaTiposCita()]
+		
+		def total = Servicio.findAllByFechaBajaIsNull().size()
+		def servicioList = Servicio.findAllByFechaBajaIsNull(params)
+
+        respond servicioList, model:[servicioCount: total, servicioInstanceList: servicioList]
     }
 
     def show(Servicio servicio) {
@@ -55,6 +58,7 @@ class ServicioController {
         }
 
         servicio.save flush:true
+				
 
         request.withFormat {
             form multipartForm {
@@ -78,7 +82,7 @@ class ServicioController {
 		
 		servicio.nombre = servicio.nombre.toUpperCase()
 		servicio.descripcion = servicio.descripcion.toUpperCase()
-        println params
+
 		servicio = servicioService.agregarSubServicios(params, servicio);		
 		
 		def idUsuarioModificacion = springSecurityService.principal.id
@@ -108,8 +112,12 @@ class ServicioController {
             notFound()
             return
         }
-
-        servicio.delete flush:true
+		
+		if (!can_delete(servicio)) {
+			return
+		}
+			 
+        servicioService.safe_delete(servicio, springSecurityService.principal.id)
 
         request.withFormat {
             form multipartForm {
@@ -129,4 +137,31 @@ class ServicioController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	private boolean can_delete(servicio) {
+		def can_delete = true
+		def messageOther = ''
+				
+		if(servicioService.tieneCitas(servicio)){
+			messageOther += 'El Servicio tiene citas asignadas por su Doctor, por lo que no es posible eliminarlo.'
+			can_delete = false
+		}
+		
+		if(servicioService.haveDoctors(servicio)){
+			messageOther += 'El Servicio tiene Doctores asignados, por lo que no es posible eliminarlo.'
+			can_delete = false
+		}
+		
+		if(!can_delete) {
+			request.withFormat {
+				form multipartForm {
+					flash.message = message(code: messageOther , args: [message(code: 'servicio.label', default: 'servicio'), servicio.id])
+					redirect servicio
+				}
+				'*'{ respond servicio, [status: NOT_FOUND] }
+			}
+		}
+
+		can_delete
+	}
 }

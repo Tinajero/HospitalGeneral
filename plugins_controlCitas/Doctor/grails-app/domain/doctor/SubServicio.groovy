@@ -11,7 +11,8 @@ class SubServicio extends ServicioMedico {
 	static hasMany = [tipoSubServicios: TipoSubServicio]
 		
 	static constraints = {
-		
+		nombre blank:false, empty:false
+		descripcion blank:false	
 	}
 	
 	

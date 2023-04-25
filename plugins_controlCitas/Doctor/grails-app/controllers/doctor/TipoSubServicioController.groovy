@@ -14,7 +14,9 @@ class TipoSubServicioController {
     def TipoSubServicioService tipoSubServicioService
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond TipoSubServicio.list(params), model:[tipoSubServicioCount: TipoSubServicio.count()]
+		def total = TipoSubServicio.findAllByFechaBajaIsNull().size()
+		def tipoSubServicioList = TipoSubServicio.findAllByFechaBajaIsNull(params)
+        respond tipoSubServicioList, model:[tipoSubServicioCount: total]
     }
 
     def show(TipoSubServicio tipoSubServicio) {

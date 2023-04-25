@@ -30,16 +30,6 @@ ${request?.session.servletContext.realPath}
 			required="true"	
 			onchange="funcionObtenerTipoSubServicios();"
 			noSelection="['null': '']"/>
-<%--		<select --%>
-<%--			name="cita.tipoCita" --%>
-<%--			id="tipoCita" --%>
-<%--			class="form-control selectionBox" --%>
-<%--			required="true"--%>
-<%--			--%>
-<%--			onChange="onChangeTipoCita()">--%>
-<%--			<option value="0">Primera Vez</option>--%>
-<%--			<option value="1">Subsecuente</option>			--%>
-<%--		</select>--%>
 	</div> 
 </div>
 

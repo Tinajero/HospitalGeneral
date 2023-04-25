@@ -4,15 +4,23 @@ package doctor
 
 import grails.test.mixin.*
 import spock.lang.*
+import grails.plugin.springsecurity.SpringSecurityService
+
 
 @TestFor(SubServicioController)
-@Mock(SubServicio)
+@Mock([SubServicio, SpringSecurityService])
 class SubServicioControllerSpec extends Specification {
+	
+	def setupSpec() {
+		SpringSecurityService.metaClass.principal = { id -> 1 }
+	}
 
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["nombre"] = 'someValidName'
+		params["descripcion"] = 'someValiddescripcion'
+		params["colorHexadecimal"] = 'someValiddescripcion'	
     }
 
     void "Test the index action returns the correct model"() {
@@ -34,11 +42,14 @@ class SubServicioControllerSpec extends Specification {
     }
 
     void "Test the save action correctly persists an instance"() {
-
-        when:"The save action is executed with an invalid instance"
+        
+		when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
+			def springSecurityService = mockFor(SpringSecurityService,true)
+			
             def subServicio = new SubServicio()
+			
             subServicio.validate()
             controller.save(subServicio)
 
@@ -50,7 +61,7 @@ class SubServicioControllerSpec extends Specification {
             response.reset()
             populateValidParams(params)
             subServicio = new SubServicio(params)
-
+			
             controller.save(subServicio)
 
         then:"A redirect is issued to the show action"

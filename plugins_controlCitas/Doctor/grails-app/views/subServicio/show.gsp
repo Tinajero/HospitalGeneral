@@ -16,7 +16,7 @@
 				<g:message code="default.show.label" args="[entityName]" />
 			</h1>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">
+				<div class="alert alert-warning">
 					${flash.message}
 				</div>
 			</g:if>

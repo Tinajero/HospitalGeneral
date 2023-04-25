@@ -379,5 +379,10 @@ class CitaService {
     def getCitasByTipoSubServicio(tipoSubservicio){
         Cita.findByTipoSubServicioAtendidoAndFechaBajaIsNull(tipoSubservicio)
     }
+	
+	def getCitasByServicio(servicio){
+		def doctors = DoctorService.getByTipoCitaActive(servicio)
+		Cita.findAllByDoctorAndFechaBajaIsNull(doctors)
+	}
     //end
 }

@@ -13,6 +13,9 @@
 	<div id="list-SubServicio"
 		class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main panel panel-info"
 		role="main">
+		<g:if test="${flash.message}">
+			<div class="alert alert-warning" role="alert">${flash.message}</div>
+		</g:if>
 		<div class="panel-heading">
 			<div class="row">
 				<h1 class="col-md-9">
@@ -53,7 +56,7 @@
 			</tbody>
 		</table>
 		<div class="pagination">
-			<g:paginate total="${tipoSubServicioCount ?: 0}" />
+			<g:paginate total="${tipoSubServicioCount ?: 0}" fragment='li' />
 		</div>
 	</div>
 </body>
