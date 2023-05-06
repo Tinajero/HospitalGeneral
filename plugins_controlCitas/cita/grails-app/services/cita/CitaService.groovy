@@ -112,26 +112,30 @@ class CitaService {
      *
      */
    def mostrarHorario(int doctorID, String fecha){
-
-        //print "accedio a mostrarHorario de citaController"
-        //print params
         def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, fecha)
 		def esDiaDeVacaciones = DiaSinCitaService.isDiaSinCita(fecha, doctorID)
-        //print "es un dia Laboral? " + esDiaLaboral
+
         def ret = [];
         if ( esDiaLaboral && !esDiaDeVacaciones ) {
             def horario = DoctorService.getHorarioFromDoctorID(doctorID, fecha)
             def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
+			def citasToAdd = citas.clone()
             def libre = true;
             def i = 0;
             if (horario != null ){
-                    horario.each{
+                horario.each {
                     def hora = it[0]
                     def minuto = it[1]
                     def tipo = it[2]
                     def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
-                    libre = isLibre(hora, minuto, citas)
-                    def asignadaA = isAsignadaA(doctorID, fecha, horaString)
+                    def estado = isLibre(hora, minuto, citas)
+					 
+					libre = estado[0]
+					def citaOcupada = estado[1]
+					citasToAdd.remove(citaOcupada)
+					
+                    def asignadaA = isAsignadaA(doctorID, fecha, horaString, citas)
+
                     ret[i++] = [
                         hora: horaString,
                         tipo: tipo,
@@ -139,7 +143,6 @@ class CitaService {
                         asignadaA: asignadaA
                     ]
                 }
-                //end
             }
             //print ret as JSON
         } else if(!esDiaDeVacaciones) { // no trabaja ese dia
@@ -195,7 +198,8 @@ class CitaService {
      * @return true si es Libre esa hora con minuto, false de otro modo
      */
     def isLibre(int hora, int minuto,citas){
-        def esta = true;
+        def estaLibre = true;
+		def citaPorLaQueEsOcupada = null
         Calendar calendar = Calendar.getInstance()
         int hours, minutes
         for(int i = 0; i < citas.size(); i++ ){
@@ -203,15 +207,39 @@ class CitaService {
             calendar.setTime( it.fecha );
             hours = calendar.get(Calendar.HOUR_OF_DAY);
             minutes = calendar.get(Calendar.MINUTE);
-
+			
             if (hora == hours && minutes == minuto){
-                esta = false
+                estaLibre = false
+				citaPorLaQueEsOcupada = it
                 break;
             }
         }
 
-        return esta
+        return [estaLibre, citaPorLaQueEsOcupada] 
     }
+	
+	/**
+	 * 
+	 * @param doctorID
+	 * @param fecha
+	 * @param horaString
+	 * @return
+	 */
+	def isAsignadaA(int doctorID, String fecha, String horaString, citas){
+		def asignadaA = ''
+		def citaHora = ''
+		citas.each{
+			citaHora = it.fecha.toString().split(' ')[1].substring(0, 5)
+			if( citaHora == horaString ){
+				asignadaA = it.tipoCita
+			}
+		}
+		return asignadaA
+	}
+	
+	def agregarCitasRestantes(resultado, citasAgragar) {
+		
+	}
     /**
      * Funcion que a partir de una cadena del tipo "hh:mm" regresa la hora
      * ej: "07:45" regresa el 7
@@ -355,22 +383,6 @@ class CitaService {
 	}
 	
     //service for autocomplete
-    //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-    def isAsignadaA(int doctorID, String fecha, String horaString){
-        def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
-        def asignadaA = ''
-        def citaHora = ''
-        citas.each{
-            citaHora = it.fecha.toString().split(' ')[1].substring(0, 5)
-            if( citaHora == horaString ){
-				//println "citaHora compare " + citaHora + " " + horaString + " " + asignadaA
-                asignadaA = it.tipoCita				
-            }
-        }
-//		print "Retorna " + asignadaA
-        return asignadaA
-    }
-
     def getCitasBySubService(subServicio){
         def citas = Cita.findByTipoCitaAndFechaBajaIsNull(subServicio)
         return citas

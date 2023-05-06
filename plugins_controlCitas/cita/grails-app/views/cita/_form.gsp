@@ -25,7 +25,7 @@ ${request?.session.servletContext.realPath}
 	<g:select id="subServicio" class="form-control" name="cita.tipoCita" 
 			from="${subServicioService.obtienesLosSubServicios()}" 
 			optionKey="id" 
-			value="${citaInstance?.asignadaA?.id}"
+			value="${citaInstance?.tipoCita?.id}"
 			optionValue="nombre" 		
 			required="true"	
 			onchange="funcionObtenerTipoSubServicios();"
@@ -283,7 +283,5 @@ ${request?.session.servletContext.realPath}
 		 </div>
 	</div>
 </div>
-
-	<input type="text" id="asignadoA"  hidden="true" name="cita.asignadaA" value="${citaInstance?.asignadaA?.id }"/>
 
 

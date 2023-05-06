@@ -19,7 +19,8 @@ class HojaRegistroDiarioService {
       'DENTAL':'dental', 
       'PSICOLOGIA':'psicologia',
       'ULTRASONIDOS':'otras',
-      'CONSULTA EXTERNA':'consulta_externa'
+      'CONSULTA EXTERNA':'consulta_externa',
+      'GINECOLOGIA':'ginecologia'
     ]
     String[] sources = ["cirugia",
       "medicina_interna", 
@@ -29,7 +30,8 @@ class HojaRegistroDiarioService {
       "otras", 
       "traumatologia",
       "consulta_externa",
-      "psicologia"
+      "psicologia",
+      "ginecologia"
     ]
 
     def serviceMethod() {

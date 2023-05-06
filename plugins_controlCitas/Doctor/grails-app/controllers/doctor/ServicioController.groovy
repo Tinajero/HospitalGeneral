@@ -45,7 +45,7 @@ class ServicioController {
 		
 //		print params
 		
-		servicio = servicioService.agregarSubServicios(params, servicio);
+		// servicio = servicioService.agregarSubServicios(params, servicio);
 		
 		def idUsuarioCreacion = springSecurityService.principal.id
 		servicio.usuarioCreacionId = idUsuarioCreacion
@@ -83,7 +83,7 @@ class ServicioController {
 		servicio.nombre = servicio.nombre.toUpperCase()
 		servicio.descripcion = servicio.descripcion.toUpperCase()
 
-		servicio = servicioService.agregarSubServicios(params, servicio);		
+		// servicio = servicioService.agregarSubServicios(params, servicio);		
 		
 		def idUsuarioModificacion = springSecurityService.principal.id
 		servicio.usuarioModificacionId = idUsuarioModificacion

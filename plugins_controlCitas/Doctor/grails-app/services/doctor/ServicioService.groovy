@@ -22,7 +22,7 @@ class ServicioService {
 		servicio.subServicios = []
 		if(params?.subServicio != null){
 		
-			params.subServicio.each {
+			params.subServicio.id.each {
 				SubServicio s = SubServicio.get(it.value);				
 				servicio.subServicios.add(s);
 			}

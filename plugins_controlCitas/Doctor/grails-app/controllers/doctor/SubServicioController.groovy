@@ -50,18 +50,6 @@ class SubServicioController {
 		
 		subServicio.nombre = subServicio.nombre.toUpperCase()
 		subServicio.descripcion = subServicio.descripcion.toUpperCase()
-	
-		
-			
-		subServicio.tipoSubServicios = []
-
-		if(params.tipoSubServicio != null){
-			params.tipoSubServicio.id.each {
-				TipoSubServicio s = TipoSubServicio.get(it);
-				subServicio.tipoSubServicios.add(s);
-			}
-		}
-		
 
 		subServicio.save flush:true
 
@@ -86,21 +74,9 @@ class SubServicioController {
         }
 		subServicio.nombre = subServicio.nombre.toUpperCase()
 		subServicio.descripcion = subServicio.descripcion.toUpperCase()
-		println "params " + params 
-		println "......."
-		println subServicio
 		def usuarioModificacionId = springSecurityService.principal.id
 		subServicio.usuarioModificacionId = usuarioModificacionId
 		subServicio.fechaModificacion = new Date();
-		
-		subServicio.tipoSubServicios = []
-		if(params.tipoSubServicio != null){
-			params.tipoSubServicio.each { key, value ->
-                print "tipoSubServicioID " + value
-				TipoSubServicio s = TipoSubServicio.get(value);
-				subServicio.tipoSubServicios.add(s);
-			}
-		}
 		
 		subServicio.validate()
 

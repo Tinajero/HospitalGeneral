@@ -11,7 +11,6 @@ class Cita {
 	Date fecha
 
 	SubServicio tipoCita
-	SubServicio asignadaA
 	TipoSubServicio tipoSubServicioAtendido;
 	
 	Date fechaBaja
