@@ -1,10 +1,15 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="doctor.Doctor" %>
 
 
  <g:javascript src="funcionesDoctor.js"/>
 <g:set name= '' var="doctorS" bean="doctorService"/>
+<g:set name= '' var="servicioService" bean="servicioService"/>
 <script type='text/javascript' src='${request.contextPath}/js/horarios.js'></script>
 <script> var servicioDoctor = "${doctorInstance?.tipoCita}" </script>
+<script> var urlObtieneSubservicio = "${createLink(action:'obtieneSubServicioDeServicio')}" </script>
+<script> var listSubServicios = ${ raw((subServiciosInstance as grails.converters.JSON) as String) } </script>
+<script> var matrizHorarios = ${ raw((horario as grails.converters.JSON) as String) } </script>
 
 <div class="form-group ${hasErrors(bean: doctorInstance, field: 'nombre', 'error')} required">
 	<label for="nombre" class="col-sm-2 control-label">
@@ -68,8 +73,16 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
-		<g:select name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita}" 
-				from="${doctorS.listaTiposCita()}"/>
+<%--		<g:select name="tipoCita" class="form-control" required="" value="${doctorInstance?.tipoCita}" --%>
+<%--				from="${servicioService.listaTiposCita()}"/>--%>
+
+		<g:select class="form-control" name="tipoCita" 
+			from="${servicioService.listaTiposCita()}" 
+			value="${doctorInstance?.tipoCita}"
+			optionKey="id"
+			onchange="cargarSubServicios();"
+			optionValue="nombre" 
+			noSelection="['null': '']"/>
 	</div>
 	
 </div>
@@ -87,6 +100,19 @@
 	</div>
 	
 </div>
+
+<%--<div class="form-group ${hasErrors(bean: doctorInstance, field: 'tipoCita', 'error')} required">--%>
+<%--	<label for="turno" class="col-sm-2 control-label">--%>
+<%--		<g:message code="doctor.turno.label" default="Sub servicio" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<div  class="col-sm-4">--%>
+<%--	  <span id="subServiciosContainer"> </span>--%>
+<%----%>
+<%----%>
+<%--	</div>--%>
+<%--	--%>
+<%--</div>--%>
 
 <%--Almacenar los dias laborales en variable(diasLaborales) y comparar con los dias del checkbox --%>
 <div class="form-group required">
@@ -147,10 +173,11 @@
 	<div class="row">		
 		<div class="col-sm-2 col-sm-offset-1">
 			
-			<input type="checkbox" id="tipoHora" name="checkBox_tipoHora"/>
-			<label for="tipoHora" >
-				Primera Vez
-			</label>
+<%--			<input type="checkbox" id="tipoHora" name="checkBox_tipoHora"/>--%>
+<%--			<label for="tipoHora" >--%>
+<%--				Primera Vez--%>
+<%--			</label>--%>
+ 			<span id="subServiciosContainer"> </span>
 		</div>
 		<div class="col-sm-2">
 				<input type="text" id="horarioInput"  name="horarioInput"/>
@@ -168,19 +195,19 @@
 			</thead>
 			<tbody id="tablaHorarios">
 				
-				<g:each in="${ (0..< horarioLength) }" status="i" var="fila">
-					<tr  >	
-						<g:each in="${ (0..< 7) }" status="j" var="columnaS">						
-							<td id="f${i}_c${j}" class="${ horario[j][i]?.tipoCita} centrado">			
-								<g:if test="${horario[j][i]}">
-									<span>${horario[j][i]?.hora}</span>
-									<a class='eliminarCelda glyphicon glyphicon-trash' !important;" onclick="eliminarCelda('f${j}_c${i}')"/>
-								</g:if>				 																																								
-							</td>
-						</g:each>					
-					</tr>
-
-				</g:each>
+<%--				<g:each in="${ (0..< horarioLength) }" status="i" var="fila">--%>
+<%--					<tr  >	--%>
+<%--						<g:each in="${ (0..< 7) }" status="j" var="columnaS">						--%>
+<%--							<td id="f${i}_c${j}" style="background-color:${ horario[j][i]?.tipoCita.colorHexadecimal}" class="centrado">			--%>
+<%--								<g:if test="${horario[j][i]}">--%>
+<%--									<span>${horario[j][i]?.hora}</span>--%>
+<%--									<a class='eliminarCelda glyphicon glyphicon-trash' !important;" onclick="eliminarCelda('f${j}_c${i}')"/>--%>
+<%--								</g:if>				 																																								--%>
+<%--							</td>--%>
+<%--						</g:each>					--%>
+<%--					</tr>--%>
+<%----%>
+<%--				</g:each>--%>
 			</tbody>
 		</table>
 	</div>

@@ -1,4 +1,5 @@
-<g:set name= ''var="doctorS" bean="doctorService"/>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<g:set name= '' var="servicioService" bean="servicioService"/>
 <div class="form-group">
     <label for="fechaInicio" class="col-sm-2 control-label">
 		Fecha Inicio:
@@ -43,19 +44,30 @@
 		<label class="col-sm-2 control-label">
 			Servicio:
 		</label>	
+		<div class="col-sm-4">
+		<g:select id="servicios" class="form-control" name="servicios" 
+			from="${servicioService.listaTiposCita()}" 
+			optionKey="id" 
+			value="${servicio*.id}"
+			optionValue="nombre" 
+			multiple="true"
+			noSelection="['null': '']"/>
 	</div>
-	<g:each in="${doctorS.listaTiposCita()}" var="servicio" status="i">
-		
-		<g:if test="${(i % 2) != 0}">
-			<div class="row">
-		</g:if>			
-			<div class="col-sm-2 ${( (i % 2) == 0) ? 'col-sm-offset-3 col-md-offset-2': ''}">
-				<label><input type="checkbox" name="optradio_${servicio.replaceAll('\\s','')}">${servicio}</label> 
-			</div>
-		<g:if test="${(i % 2) != 0}">	
-			</div>
-		</g:if>
-	</g:each>
+	</div>
+<%--	<g:each in="${servicioService.listaTiposCita()}" var="servicio" status="i">--%>
+<%--		--%>
+<%--		<g:if test="${(i % 2) != 0}">--%>
+<%--			<div class="row">--%>
+<%--		</g:if>			--%>
+<%--			<div class="col-sm-2 ${( (i % 2) == 0) ? 'col-sm-offset-3 col-md-offset-2': ''}">--%>
+<%--				<label><input type="checkbox" name="optradio_${servicio.id}">${servicio.nombre}</label> --%>
+<%--			</div>--%>
+<%--		<g:if test="${(i % 2) != 0}">	--%>
+<%--			</div>--%>
+<%--		</g:if>--%>
+<%--	</g:each>--%>
+
+	
 </div>
 
 <div class="form-group">

@@ -8,6 +8,8 @@ import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
 import paciente.Paciente
 import doctor.Doctor
+import doctor.SubServicio;
+import doctor.TipoSubServicioService
 @Transactional(readOnly = true)
 @Secured(['ROLE_USER'])
 class CitaController {
@@ -15,6 +17,7 @@ class CitaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def CitaService
     def DoctorService
+	def TipoSubServicioService tipoSubServicioService
 	def SpringSecurityService springSecurityService 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -36,22 +39,14 @@ class CitaController {
             notFound()
             return
         }
-			
+//		print "params: " + params
         if (cita.paciente.expediente != null) {
             def p = Paciente.findByExpedienteAndFechaBajaIsNull(cita.paciente.expediente)            
 			if(p){			
                 cita.paciente = p           
             }
         }
-        //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-        if (cita.tipoCita != null) {
-            //decimos qué tipo de cita fue asignada al horario seleccionado
-            if(cita.tipoCita == 0){
-                cita.asignadaA = "primera vez"
-            }else if(cita.tipoCita == 1){
-                cita.asignadaA = "subsecuente"
-            }
-        }
+//		cita.asignadaA = SubServicio.getById(cita.asignadaA);
         
 		def idUsuarioCreacion = springSecurityService.principal.id
 		cita.usuarioCreacionId = idUsuarioCreacion
@@ -93,15 +88,8 @@ class CitaController {
 		cita.usuarioModificacionId = idUsuarioModificacion
 		cita.fechaModificacion = new Date();
 		
-		//Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-		if (cita.tipoCita != null) {
-			//decimos qué tipo de cita fue asignada al horario seleccionado
-			if(cita.tipoCita == 0){
-				cita.asignadaA = "primera vez"
-			}else if(cita.tipoCita == 1){
-				cita.asignadaA = "subsecuente"
-			}
-		}
+		
+		
 		
         if (cita.hasErrors()) {
             respond cita.errors, view:'edit'
@@ -160,6 +148,17 @@ class CitaController {
            noSelection:noSelection, required:'true'
         )
     }
+	
+	def obtenerTiposDeSubServicios(String subServicio) {
+		
+		def tipoSubServicio = tipoSubServicioService.obtieneLosTipoSubServiciosDeUnSubServicio(subServicio);
+		def noSelection = ['': 'Seleccione un tipo de Servicio']
+		render g.select(id:'cdTipoSubServicios', name:'cita.tipoSubServicioAtendido.id',
+			from:tipoSubServicio, optionKey: 'id', optionValue:'nombre',
+			class:'form-control', noSelection:noSelection);
+	}
+	
+	
 
     def mostrarHorario(int doctorID, String fecha){
         def ret = CitaService.mostrarHorario(doctorID, fecha);
@@ -170,47 +169,47 @@ class CitaController {
     }
     //Funciones para Autocomplete en Citas
     def autocompleteByFullExpediente(String expediente){
-        println "entra a autocompleteByFullExpediente";
-        println expediente;
+        //println "entra a autocompleteByFullExpediente";
+        //println expediente;
         def paciente = CitaService.getPacientesWithFullExpediente( expediente );
         render paciente as JSON
     }
     def autocompleteByExpediente(String expediente){
-        println "entra a autocompleteByExpediente";
-        println expediente;
+        //println "entra a autocompleteByExpediente";
+        //println expediente;
         def pacientes = CitaService.getPacientesWithExpediente( expediente );
         render pacientes as JSON
     }
     def autocompleteByNombre(String nombre){
-        println "entra a autocompleteByNombre";
-        println nombre;
+        //println "entra a autocompleteByNombre";
+        //println nombre;
         def pacientes = CitaService.getPacientesWithNombre( nombre );
         render pacientes as JSON
     }
     def autocompleteByApaterno(String apaterno){
-        println "entra a autocompleteByApaterno";
-        println apaterno;
+        //println "entra a autocompleteByApaterno";
+        //println apaterno;
         def pacientes = CitaService.getPacientesWithApaterno( apaterno );
         render pacientes as JSON
     }
     def autocompleteByAmaterno(String amaterno){
-        println "entra a autocompleteByAmaterno";
-        println amaterno;
+        //println "entra a autocompleteByAmaterno";
+        //println amaterno;
         def pacientes = CitaService.getPacientesWithAmaterno( amaterno );
         render pacientes as JSON
     }
     //End Funciones para Autocomplete en Citas
     def getBussyDays(String startTime,String endTime, Long doctorId){
-        print "getBussyDays citaControler: "
-        print startTime
-        print endTime
-        print doctorId
+//        print "getBussyDays citaControler: "
+//        print startTime
+//        print endTime
+//        print doctorId
         def bussyDays = CitaService.getBussyDays(startTime, endTime, doctorId)
         render bussyDays as JSON
     }
 	def autoCompleteByPoblacion(String poblacion){
 		def resultado = CitaService.getLocalidades(poblacion)
-		print resultado
+//		print resultado
 		render resultado as JSON
 	}
 }

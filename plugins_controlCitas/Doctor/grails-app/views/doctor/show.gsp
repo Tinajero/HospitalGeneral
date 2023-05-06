@@ -1,10 +1,10 @@
-
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="doctor.Doctor" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="mainAdmin">
-		<g:set var="entityName" value="${message(code: 'doctor.label', default: 'Médico')}" />
+		<g:set var="entityName" value="${message(code: 'doctor.label', default: 'M&eacute;dico')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -80,7 +80,7 @@
 								</td>					
 								<td>
 									<span class="property-value" aria-labelledby="tipoCita-label">
-										<g:fieldValue bean="${doctorInstance}" field="tipoCita"/>
+										<g:fieldValue bean="${doctorInstance}" field="tipoCita.nombre"/>
 									</span>
 								</td>
 							</tr>

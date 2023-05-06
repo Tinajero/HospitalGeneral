@@ -19,7 +19,8 @@ class HojaRegistroDiarioService {
       'DENTAL':'dental', 
       'PSICOLOGIA':'psicologia',
       'ULTRASONIDOS':'otras',
-      'CONSULTA EXTERNA':'consulta_externa'
+      'CONSULTA EXTERNA':'consulta_externa',
+      'GINECOLOGIA':'ginecologia'
     ]
     String[] sources = ["cirugia",
       "medicina_interna", 
@@ -29,7 +30,8 @@ class HojaRegistroDiarioService {
       "otras", 
       "traumatologia",
       "consulta_externa",
-      "psicologia"
+      "psicologia",
+      "ginecologia"
     ]
 
     def serviceMethod() {
@@ -45,7 +47,7 @@ class HojaRegistroDiarioService {
 	def doctorIdWhere = ""
 	
 	if(!tipoCita?.isEmpty()){
-		tipoCitaWhere = " and doctor.tipo_cita like '%" + tipoCita + "%'";
+		tipoCitaWhere = " and servicio_medico.id =" + tipoCita + "";
 	}
 
 	if(doctorId != null && doctorId != ""){
@@ -57,7 +59,7 @@ class HojaRegistroDiarioService {
 	def fechaInicio = formater.format(date1);
 	def fechaFin = formater.format(date2);
 	
-	def consulta = 	"select doctor.tipo_cita as tipoCita, " +
+	def consulta = 	"select servicio_medico.nombre as tipoCita, " +
 		"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre, " +
         "doctor.curp as doctorCurp, " +
         "doctor.cedula_profesional as cedulaProfesional, " +
@@ -77,6 +79,7 @@ class HojaRegistroDiarioService {
 			"on cita.paciente_id = paciente.id " +
 			"inner join doctor " +
 			"on cita.doctor_id = doctor.id " +
+			"inner join servicio_medico on servicio_medico.id = doctor.tipo_cita_id " +
     
 		"where cita.fecha >= '"+fechaInicio+" 00:00' "+
 			"and cita.fecha <= '"+fechaFin+" 23:59' " +
@@ -85,7 +88,7 @@ class HojaRegistroDiarioService {
 			" and cita.fecha_baja is null " +
 		"order by cita.doctor_id, " +
 			"cita.fecha " 
-	println consulta
+	//println consulta
 	def currentSession = sessionFactory.currentSession
 	resultados = currentSession.createSQLQuery(consulta)
 	
@@ -122,8 +125,8 @@ class HojaRegistroDiarioService {
 		def sexo = getSexo(r[12]);
 		
         value += r[7]+'|'+r[8]+'|'+r[9]+'|'+r[10]+'|'+r[11]+'|'+r[14]+'|'+sexo+'~'
-         print ("key:"+key)
-         print ("value."+value)
+//         print ("key:"+key)
+//         print ("value."+value)
     } 
 
     if(value!="")

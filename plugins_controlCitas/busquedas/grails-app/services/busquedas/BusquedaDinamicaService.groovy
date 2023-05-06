@@ -22,15 +22,15 @@ class BusquedaDinamicaService {
         print tiposCitas
         def currentSession = sessionFactory.currentSession
 
-        def q = "select DATE_FORMAT(cita.fecha,'%Y-%m-%d') as fecha, doctor.tipo_cita as tipoCita, doctor.id as idDoctor " + datosMostrar +
+        def q = "select DATE_FORMAT(cita.fecha,'%Y-%m-%d') as fecha, doctor.tipo_cita_id as tipoCita, doctor.id as idDoctor " + datosMostrar +
                 " from cita inner join paciente on cita.paciente_id = paciente.id "+
                 "inner join doctor on doctor.id = cita.doctor_id " +
-                "where FIND_IN_SET(doctor.tipo_cita, \""+ tiposCitas +"\") " +
+                "where FIND_IN_SET(doctor.tipo_cita_id, \""+ tiposCitas +"\") " +
 				turnoMostrar + " " +
                 "and cita.fecha >= '" + params.fechaInicio + " 00:00:00'" +
                 " and cita.fecha <= '" + params.fechaFin + " 23:59:58' and cita.fecha_baja is null" +
-				" and paciente.fecha_baja is null" 
-				" order by doctor.tipo_cita,cita.fecha;"
+				" and paciente.fecha_baja is null" +
+				" order by doctor.tipo_cita_id,cita.fecha;"
         print ">> QUERY" + q;
         def data = currentSession.createSQLQuery(q) 
         data.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);//if you are using alias for query e.g bank.credit_amount as creditAmount     
@@ -49,7 +49,7 @@ class BusquedaDinamicaService {
         def anterior = listaResultados[0].idDoctor;
         def fechaAnterior = listaResultados[0].fecha
         def cita = [:]
-        println anterior
+        //println anterior
         def doctor = [:]
         def primer = listaResultados[0]
         def listaCitas = []
@@ -110,7 +110,7 @@ class BusquedaDinamicaService {
 				
                 doctor.put('fechas', listaFechas)
                 listaAgrupador.add(doctor)
-                println row.idDoctor
+                //println row.idDoctor
 				listaCitas = []
 				listaFechas = []
 				fecha = [:]
@@ -133,18 +133,18 @@ class BusquedaDinamicaService {
 
         for (int i  =0; i<listaAgrupador.size();i++){
             def d = listaAgrupador[i];
-            println "."+d.nombreDoctor
+            //println "."+d.nombreDoctor
             for (int j = 0; j < d.fechas.size();j++){
                 def f = d.fechas[j];
-                println ">"+f.fecha
+                //println ">"+f.fecha
                 for (int m= 0 ; m < f.citas.size();m++){
                     def c = f.citas[m]
-                    println "#"+c
+                    //println "#"+c
                 }
             }
         }
 		
-		println listaAgrupador
+		//println listaAgrupador
 		return listaAgrupador
     }
 
@@ -162,7 +162,7 @@ class BusquedaDinamicaService {
             listaPropiedades.add("Paciente");
             if(tieneAntesDatos)
                 sb.append(", ")
-            sb.append("concat(paciente.nombre, ' ', paciente.apellido_materno, ' ', paciente.apellido_paterno) as Paciente ");
+            sb.append("concat(paciente.nombre, ' ', paciente.apellido_paterno, ' ', paciente.apellido_materno) as Paciente ");
             tieneAntesDatos = true;
         }
 
@@ -183,7 +183,7 @@ class BusquedaDinamicaService {
         if (params.nombreDoctorCheck == "on"){            
             if(tieneAntesDatos)
                 sb.append(", ")
-            sb.append("doctor.nombre as nombreDoctor, doctor.apellido_mat as maternoDoctor, doctor.apellido_pat as paternoDoctor");
+            sb.append("doctor.nombre as nombreDoctor, doctor.apellido_pat as paternoDoctor, doctor.apellido_mat as maternoDoctor ");
             tieneAntesDatos = true;
         }
 		if (params.numeroExpedientePacienteCheck == "on"){
@@ -203,87 +203,30 @@ class BusquedaDinamicaService {
 		def parteConsulta = "";
 		StringBuilder sb = new StringBuilder();
 		Boolean tieneDatos = false;		
-		println "#####"
+		//println "#####"
 		if(params.turnoVespertino == "on"){
 			sb.append("doctor.turno = 2")	
 			tieneDatos = true;
 		}
 		if(params.turnoMatutino == "on"){
 			if(tieneDatos)
-				sb.append(" and ")
+				sb.append(" or ")
 			sb.append("doctor.turno = 1")
 			tieneDatos = true;
 		}
 		
 		if (tieneDatos){
-			parteConsulta =" and " + sb.toString();
+			parteConsulta =" and (" + sb.toString()+")";
 		} 
 		print parteConsulta
 		return parteConsulta
 		
 	}
 
-    def obtieneCitas(params){
-        def citas = "";
-        StringBuilder sb = new StringBuilder();
-        Boolean tieneAntesDatos = false;
-
-        if (params.optradio_CIRUGIAGENERAL == "on"){
-            sb.append("CIRUGIA GENERAL");
-            tieneAntesDatos = true;
-        }
-        if (params.optradio_MEDICINAINTERNA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("MEDICINA INTERNA");
-            tieneAntesDatos = true;
-        }
-        if (params.optradio_PEDIATRIA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("PEDIATRIA");
-            tieneAntesDatos = true;            
-        }
-        if (params.optradio_GINECOLOGIAYOBSTETRICIA == "on"){
-             if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("GINECOLOGIA Y OBSTETRICIA");
-            tieneAntesDatos = true;
-        }
-            
-        if (params.optradio_TRAUMATOLOGIAYORTOPEDIA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("TRAUMATOLOGIA Y ORTOPEDIA");      
-            tieneAntesDatos = true;
-        }
-        if (params.optradio_DENTAL == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("DENTAL"); 
-            tieneAntesDatos = true;   
-        }
-        if (params.optradio_PSICOLOGIA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("PSICOLOGIA");  
-            tieneAntesDatos = true;    
-        }
-        if (params.optradio_ULTRASONIDOS == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("ULTRASONIDOS");
-            tieneAntesDatos = true;    
-        }
-        if (params.optradio_CONSULTAEXTERNA == "on"){
-            if(tieneAntesDatos)
-                sb.append(",")
-            sb.append("CONSULTA EXTERNA");
-            tieneAntesDatos = true; 
-        }        
-
-        return sb.toString();
-    }
+	def obtieneCitas(params){
+		return (""  + params.servicios).replace('[', '').replace(']', '').replace(' ', '');
+	}
+	    
 
     def obtenPropiedades(){
         return listaPropiedades

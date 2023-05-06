@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 
@@ -53,7 +54,7 @@
 			                <g:each in="${fecha.citas}" status="m" var="dato">
 			                    <tr class="${(m % 2) == 0 ? 'even' : 'odd'}">
 			                        <g:each in="${propiedades}" status="n" var="propiedad">
-			                                <td>${dato[propiedad]}</td>
+			                                <td>&nbsp;${dato[propiedad]}</td>
 			                        </g:each>                                          
 			                    </tr>                                
 			                </g:each>

@@ -1,19 +1,36 @@
 package doctor
 
+import java.util.Date;
+
 class Doctor {
-	String tipoCita
+	
 	String nombre
 	String apellidoPat
 	String apellidoMat
 	String diasLaborales 	
 	String cedulaProfesional
 	String curp
-	Integer turno 
+	Integer turno 	
+	Servicio tipoCita
+	
+	Date fechaBaja
+	Date fechaModificacion
+	Date fechaCreacion
+	
+	Integer usuarioBajaId
+	Integer usuarioModificacionId
+	Integer usuarioCreacionId
+	
     static constraints = {
 		tipoCita blank: false
 		nombre blank: false
 		apellidoPat blank: false
-		apellidoMat blank:false		   
+		apellidoMat blank:false 
+		
+		fechaBaja nullable:true
+		fechaModificacion nullable:true
+		usuarioBajaId nullable:true
+		usuarioModificacionId nullable:true
     }
 
   	static mapping = {

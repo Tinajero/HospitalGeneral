@@ -77,7 +77,7 @@
 
 <div class="form-group ${hasErrors(bean: paciente, field: 'folioSeguroPopular', 'has-error')} required">
 	<label for="folioSeguroPopular" class="col-sm-2 control-label">
-		<g:message code="paciente.folioSeguroPopular.label" default="Folio Seguro Popular" />
+		<g:message code="paciente.folioSeguroPopular.label" default="Folio Insabi" />
 	</label>
 	<div class ="col-sm-4">
 		<g:textField id="folioSeguroPopular" name="paciente.folioSeguroPopular" class="form-control"  value="${pacienteInstance?.folioSeguroPopular}"/>

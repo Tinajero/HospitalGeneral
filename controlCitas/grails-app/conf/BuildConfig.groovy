@@ -22,12 +22,14 @@ grails.project.fork = [
     // configure settings for the test-app JVM, uses the daemon by default
     test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
     // configure settings for the run-app JVM
-    run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    //run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    run: [maxMemory: 1280, minMemory: 128, debug: false, maxPerm: 256, forkReserve: true, jvmArgs: ['-Dhttps.protocols=TLSv1.1,TLSv1.2']],
     // configure settings for the run-war JVM
-    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve: true, jvmArgs: ['-Dhttps.protocols=TLSv1.1,TLSv1.2']],
     // configure settings for the Console UI JVM
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
+
 
 grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
@@ -43,12 +45,16 @@ grails.project.dependency.resolution = {
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
 
-        grailsPlugins()
-        grailsHome()
-        mavenLocal()
-        grailsCentral()
-        mavenCentral()
-		mavenRepo 'http://repo.spring.io/milestone'
+        mavenRepo 'https://grails.jfrog.io/grails/core/'
+        mavenRepo 'https://grails.jfrog.io/grails/plugins/'
+                
+        // grailsPlugins()
+        // grailsHome()
+        // mavenLocal()
+        // grailsCentral()
+        //mavenCentral()
+        
+		// mavenRepo 'http://insecure.repo1.maven.org/maven2/'
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"

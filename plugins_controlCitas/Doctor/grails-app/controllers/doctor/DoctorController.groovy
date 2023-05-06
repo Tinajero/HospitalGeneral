@@ -1,5 +1,6 @@
 package doctor
 
+import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -16,6 +17,9 @@ class DoctorController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def DoctorService
     def HorarioService
+	def SubServicioService
+	def SpringSecurityService springSecurityService
+
     def index(Integer max) {
         //Opcional. modificar la actualizacion de intervalos
         
@@ -32,7 +36,8 @@ class DoctorController {
     def create() {
         def horario = []
         def maxim = 0
-        respond new Doctor(params),model:[horario: horario, horarioLength: maxim]
+		def subServicios = SubServicioService.obtienesLosSubServicios() // as grails.converters.JSON
+        respond new Doctor(params),model:[horario: horario, horarioLength: maxim, subServiciosInstance:subServicios]
     }
 
     @Transactional
@@ -44,8 +49,13 @@ class DoctorController {
             return
         }
               
-      doctor.diasLaborales = DoctorService.obtenerDiasLaboralesPorHorario(params.horario)              
-      doctor.validate()
+		  doctor.diasLaborales = DoctorService.obtenerDiasLaboralesPorHorario(params.horario)    
+		  
+		  def idUsuarioCreacion = springSecurityService.principal.id
+		  doctor.usuarioCreacionId = idUsuarioCreacion
+		  doctor.fechaCreacion = new Date();
+		
+		  doctor.validate()
       
       
   
@@ -72,12 +82,13 @@ class DoctorController {
         print "edit recibe " + doctorInstance
        // def horario = DoctorService.jsonHorario(doctorInstance.horario);
        def horario = HorarioService.obtenerHorarioDeDoctor(doctorInstance?.id)
+	   def subServicios = SubServicioService.obtienesLosSubServicios()
        def maxim = 0  
        for (int i = 0; i < horario.size() ; i++){
            if (maxim < horario[i].size()) maxim = horario[i].size()
        }
        print horario
-       respond doctorInstance, model:[horario: horario, horarioLength: maxim]
+       respond doctorInstance, model:[horario: horario, horarioLength: maxim, subServiciosInstance:subServicios]
     }
 
     @Transactional
@@ -143,4 +154,17 @@ class DoctorController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def obtieneSubServicioDeServicio(){
+		def servicio = params.servicio
+		//println "servicioo" + servicio
+		def subServicios = SubServicioService.obtieneLosSubServiciosDeUnServicio(servicio);
+		def noSelection = ['':'Seleccione tipo de subServicio']
+		render g.select(id:'comboSubServicios', name:'subServicio',
+			from:subServicios, optionKey:'id', optionValue:'nombre', 
+			class:'form-control' , 
+		    noSelection:noSelection
+		)
+		//onchange:'cambioDoctor(this.value);',
+	}
 }

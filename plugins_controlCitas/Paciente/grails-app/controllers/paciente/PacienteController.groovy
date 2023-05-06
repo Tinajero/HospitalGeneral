@@ -60,8 +60,8 @@ class PacienteController {
     @Transactional
     def update(Paciente paciente) {
 
-        println paciente.nombre
-        println params
+        //println paciente.nombre
+        //println params
 
         if (paciente == null) {
             notFound()

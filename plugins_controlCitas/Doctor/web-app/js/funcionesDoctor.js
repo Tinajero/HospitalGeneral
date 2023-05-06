@@ -12,6 +12,7 @@ $(document).ready(function(){
 		tope[i] = 0;
 	}
 	leerTabla();
+	pintarMatriz();
 	
 	setTimeout(function(){
 		
@@ -23,34 +24,46 @@ $(document).ready(function(){
 })
 function leerTabla(){
 
-	$('#tablaHorarios tr').each(function(index){
-	
-		$(this).children("td").each(function(index2){
-			
-			var tipoHora = ""
-			if ($(this).hasClass("primeraVez"))
-		    	tipoHora = "primeraVez"
-		   	else if ($(this).hasClass("subsecuente"))
-		   		tipoHora = "subsecuente"
-		
-			if (tipoHora != ""){
-				var idCelda = $(this).attr('id');
-				var hora = $(this).find("span:first").html();
-				var par = {'hora':hora.split(":")[0],'minuto':hora.split(":")[1], 'tipoHora':tipoHora};			
-				var fila = obtenerFila(idCelda);
-				var columna = obtenerColumna(idCelda);
-				matrizDias[ columna ][ fila ] = par;	
-				
-				tope[columna]++;
-				if (maxTope < tope[columna]) maxTope = tope[columna];	
-							
+	if(matrizHorarios != null){
+		for (var i = 0; i < matrizHorarios.length; i++){
+			for (var j = 0; j < matrizHorarios[i].length; j++){
+				var horario = matrizHorarios[i][j];
+				if(horario.hasOwnProperty("tipoCita")){
+					var hora = horario.hora;
+					var tipoHora = horario.tipoCita;
+					var par = {'hora':hora.split(":")[0],'minuto':hora.split(":")[1], 'tipoHora':JSON.parse(tipoHora)};
+					matrizDias[ i ][ j ] = par;	
+					
+					tope[i]++;
+					if (maxTope < tope[i]) maxTope = tope[i];	
+				}
+						
 			}
-		});
-
-		
-		
-		   	        	
-	});
+		}
+			
+//			$(this).each(function(index2){
+//				
+//				var tipoHora = ""
+////				if ($(this).hasClass("primeraVez"))
+////			    	tipoHora = "primeraVez"
+////			   	else if ($(this).hasClass("subsecuente"))
+////			   		tipoHora = "subsecuente"
+//			
+//				if (tipoHora != ""){
+//					var idCelda = $(this).attr('id');
+//					var hora = $(this).find("span:first").html();
+//					var par = {'hora':hora.split(":")[0],'minuto':hora.split(":")[1], 'tipoHora':tipoHora};			
+//					var fila = obtenerFila(idCelda);
+//					var columna = obtenerColumna(idCelda);
+//					matrizDias[ columna ][ fila ] = par;	
+//					
+//					tope[columna]++;
+//					if (maxTope < tope[columna]) maxTope = tope[columna];	
+//								
+//				}
+//			});			   	        	
+//		});
+	}
 }
 /**
  * Regresa un arreglo que dice que dias estan marcados.
@@ -83,7 +96,7 @@ function pintarMatriz(){
 		for (var j = 0 ; j < 7 ; j++ ){
 			if (matrizDias[j][i] != undefined){
 				var id = "f" + j + "_c"+ i ;
-				cadena +=  "<td id='f" + j + "_c"+ i +"' class='"+ matrizDias[j][i].tipoHora +" centrado'>" 
+				cadena +=  "<td id='f" + j + "_c"+ i +"' style='background-color:"+ matrizDias[j][i].tipoHora.colorHexadecimal +"' class='centrado'>" 
 					    + matrizDias[j][i].hora + ":" + matrizDias[j][i].minuto 								 					 
 						 + "&nbsp;<a  class='eliminarCelda glyphicon glyphicon-trash' onclick='eliminarCelda(\"" + id + "\")'>"									 
 						 + "</a></td>";
@@ -95,6 +108,14 @@ function pintarMatriz(){
 	$("#tablaHorarios").append(cadena);
 	$('.eliminarCelda').click(eliminarCelda);
 }
+
+
+function getById(lista, id, field){
+	
+	return lista.find(x => x[field] == id)
+		
+}
+
 /**funcion que agrega una fila a una tabla*/
 function agregarFila() {
     
@@ -103,10 +124,10 @@ function agregarFila() {
 	$('#cajaWarning').empty();	 
     //console.log("click");
     var tipoHora;
-    if ($("#tipoHora").is(":checked"))
-    	tipoHora = "primeraVez"
-   	else
-   		tipoHora = "subsecuente"
+
+    var id = $("#comboSubServicios").val();
+    tipoHora = listSubServicios.find(x => x.id == id)
+    
     var hora = $("#horarioInput").val();		
 	//-------------
 	if(hora && tieneFormato(hora) ){				
@@ -149,6 +170,24 @@ function obtenerFila(id){
 function obtenerColumna(id){
 	var columna = id.replace(/.*\D/g, "");
 	return columna;
+}
+
+function cargarSubServicios() {  
+	  
+  var obtieneSubservicio = urlObtieneSubservicio;
+  console.log(urlObtieneSubservicio);    
+  var servicioSeleccionado = $("#tipoCita").val()
+  
+  jQuery.ajax({type:'POST',data:'servicio='+servicioSeleccionado, 
+	  			url:obtieneSubservicio,
+	  			success:function(data,textStatus){
+		  		jQuery('#subServiciosContainer').html(data);
+//		  		if(doctorSeleccionado != null && doctorSeleccionado != ""){
+//		  			$("#cbDoctores").val(doctorSeleccionado);
+//		  			cambioDoctor(doctorSeleccionado);
+//		  		} 
+  	},
+	error:function(XMLHttpRequest,textStatus,errorThrown){}});
 }
 
 

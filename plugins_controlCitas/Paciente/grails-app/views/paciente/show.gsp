@@ -56,8 +56,9 @@
             <tr>
               <th>Fecha</th>
               <th>Hora</th>
-              <th>M&eacutoe;dico</th>
+              <th>M&eacute;dico</th>
               <th>Tipo de Cita</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <g:each in="${historialCitas}" var="historial">
@@ -65,7 +66,14 @@
               <td><g:formatDate format=" EEEE dd 'de' MMMMMM 'del' yyyy" date="${historial.fecha}"/></td>
               <td><g:formatDate format="HH:mm" date="${historial.fecha}"/></td>
               <td>${historial.doctor.nombre} ${historial.doctor.apellidoPat} ${historial.doctor.apellidoMat}</td>
-              <td>${historial.doctor.tipoCita}</td>              
+              <td>${historial.doctor.tipoCita.nombre}</td>
+              <td>
+              	<g:link action="show" controller="cita" id="${historial.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" data-toggle="tooltip" title="Mostrar"></span></g:link> &nbsp;
+              	<g:link action="edit" controller="cita" id="${historial.id}">
+              	<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="tooltip" title="Editar">
+              	</span></g:link> &nbsp;
+              </td>
+              	        
             </tr>
           </g:each>
         </table>

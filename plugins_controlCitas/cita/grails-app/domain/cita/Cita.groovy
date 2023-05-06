@@ -2,14 +2,16 @@ package cita
 
 import paciente.Paciente
 import doctor.Doctor
+import doctor.SubServicio
+import doctor.TipoSubServicio
 class Cita {
 
 	Paciente paciente
 	Doctor doctor
 	Date fecha
-	/*Tipo de cita sera 0 para primera vez 1 para subsecuente*/
-	Integer tipoCita
-	String asignadaA
+
+	SubServicio tipoCita
+	TipoSubServicio tipoSubServicioAtendido;
 	
 	Date fechaBaja
 	Date fechaModificacion
@@ -23,6 +25,7 @@ class Cita {
 		fechaBaja nullable:true
 		fechaModificacion nullable:true
 		usuarioBajaId nullable:true
-		usuarioModificacionId nullable:true
+		usuarioModificacionId nullable:true		
+		tipoSubServicioAtendido nullable:true
     }
 }

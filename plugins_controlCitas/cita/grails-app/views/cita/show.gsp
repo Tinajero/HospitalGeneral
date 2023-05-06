@@ -39,13 +39,13 @@
 								</tr>
 								<tr>
 									<td style="width: 15%;">
-										<li class="fieldcontain"><span id="doctor-label"
+										<span id="doctor-label"
 											class="property-label"> <g:message
 													code="cita.doctor.label" default="Tipo de Cita" />
-										</span></li>
+										</span>
 									</td>
 									<td>
-										${ citaInstance?.tipoCita == 0?'Primera Vez':'Subsecuente' }
+										${ citaInstance?.tipoCita?.nombre }
 									</td>
 								</tr>
 							</g:if>
@@ -53,9 +53,9 @@
 							<g:if test="${citaInstance?.fecha}">
 								<tr>
 									<td>
-										<li class="fieldcontain"><span id="fecha-label"
+										<span id="fecha-label"
 											class="property-label"><g:message
-													code="cita.fecha.label" default="Fecha" /></span></li>
+													code="cita.fecha.label" default="Fecha" /></span>
 									</td>
 									<td><span class="property-value"
 										aria-labelledby="fecha-label"><g:formatDate
@@ -67,9 +67,9 @@
 							<g:if test="${citaInstance?.fecha}">
 								<tr>
 									<td>
-										<li class="fieldcontain"><span id="fecha-label"
+										<span id="fecha-label"
 											class="property-label"><g:message
-													code="cita.fecha.label" default="Hora" /></span></li>
+													code="cita.fecha.label" default="Hora" /></span>
 									</td>
 									<td><span class="property-value"
 										aria-labelledby="fecha-label"><g:formatDate
@@ -80,10 +80,10 @@
 							<g:if test="${citaInstance?.paciente}">
 								<tr>
 									<td>
-										<li class="fieldcontain"><span id="paciente-label"
+										<span id="paciente-label"
 											class="property-label"><g:message
 													code="cita.paciente.label" default="Expediente de Paciente" /></span>
-									</li>
+									
 									</td>
 									<td><span class="property-value"
 										aria-labelledby="paciente-label"><g:link
@@ -96,11 +96,11 @@
 
 								<tr>
 									<td>
-										<li class="fieldcontain"><span id="paciente-label"
+										<span id="paciente-label"
 											class="property-label"> <g:message
 													code="cita.paciente.label"
 													default="Tel&eacute;fono del Paciente" />
-										</span></li>
+										</span>
 									</td>
 									<td><span class="property-value"
 										aria-labelledby="paciente-label"> ${citaInstance?.paciente?.numeroTelefono.encodeAsHTML()}
@@ -108,10 +108,10 @@
 								</tr>
 								<tr>
 									<td>
-										<li class="fieldcontain"><span id="paciente-label"
+										<span id="paciente-label"
 											class="property-label"> <g:message
 													code="cita.paciente.label" default="Localidad del Paciente" />
-										</span></li>
+										</span>
 									</td>
 									<td><span class="property-value"
 										aria-labelledby="paciente-label"> ${citaInstance?.paciente?.poblacion.encodeAsHTML()}
@@ -123,9 +123,9 @@
 							<g:if test="${citaInstance?.paciente}">
 								<tr>
 									<td>
-										<li class="fieldcontain"><span id="paciente-label"
+										<span id="paciente-label"
 											class="property-label"><g:message
-													code="cita.paciente.label" default="Paciente" /></span></li>
+													code="cita.paciente.label" default="Paciente" /></span>
 									</td>
 									<td><span class="property-value"
 										aria-labelledby="paciente-label"><g:link

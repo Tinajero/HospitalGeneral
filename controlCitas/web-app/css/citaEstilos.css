@@ -31,7 +31,7 @@ input {
 	color: WHITE;
 }
 .seleccionado{
-	background-color:#12436E;
+	background-color:#12436E !important;
 	color: WHITE;	
 }
 .selectionBox {

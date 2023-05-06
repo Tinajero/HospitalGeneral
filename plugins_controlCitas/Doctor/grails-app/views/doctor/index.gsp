@@ -1,31 +1,25 @@
-
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="doctor.Doctor" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="mainAdmin">
-		<g:set var="entityName" value="${message(code: 'doctor.label', default: 'Médico')}" />
+		<g:set var="entityName" value="${message(code: 'doctor.label', default: 'M&eacute;dico')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
 		<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
-<%--		<a href="#list-doctor" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--%>
-<%--		<div class="nav" role="navigation">--%>
-<%--			<ul>--%>
-<%--				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
-<%--				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--%>
-<%--			</ul>--%>
-<%--		</div>--%>
+
 		<div id="list-doctor" class="content scaffold-list" role="main">
 			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-warning" role="alert">${flash.message}</div>
 			</g:if>
 			<div class="panel panel-info">
 			  <!-- Default panel contents -->
 			  	<div class="panel-heading">
 			  		<div class="row">
 			  			<h1 class="col-md-9"><g:message code="default.list.label" args="[entityName]" /></h1>
-						<g:link class="btn btn-primary col-md-2" action="create" role="button" sytle="margin-top: 20px;" data-toggle="tooltip" title="Crea un nuevo Doctor">
+						<g:link class="btn btn-primary col-md-3" action="create" role="button" sytle="margin-top: 20px;" data-toggle="tooltip" title="Crea un nuevo Doctor">
 						<g:message code="default.new.label" args="[entityName]" /> &nbsp;&nbsp;
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						</g:link>
@@ -64,7 +58,7 @@
 						
 						<td>${fieldValue(bean: doctorInstance, field: "apellidoMat")}</td>
 						
-						<td>${fieldValue(bean: doctorInstance, field: "tipoCita")}</td>
+						<td>${fieldValue(bean: doctorInstance, field: "tipoCita.nombre")}</td>
 
 						<td>${fieldValue(bean: doctorInstance, field: "diasLaborales")}</td>
 					

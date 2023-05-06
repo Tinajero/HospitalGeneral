@@ -12,6 +12,7 @@ class CitaService {
     def CitaService
     def CalendarioService
     def LastIndiceTempService
+	def DiaSinCitaService
     def serviceMethod() {
     }
 	
@@ -39,52 +40,66 @@ class CitaService {
      */
     def isBussyDay(Long doctorId,String date ){
        // print date
+		//TODO agregar la funcionalidad de ver si a caso tiene dia libre el dia que se consulta
+		//TODO para eso hay que crear entonces un servicio, el cual te diga si tiene vacaciones
+		// Ese dia checarlo aqui para que regrese un resultado
+		// y checarlo en funcionesCita.js para que si acaso tiene vacaciones lo pinte de un lado
+		// Tambien hay que checar que no permita dar cita el dia de vacaciones.
+		def DIA_LIBRE = 0;
+		def DIA_OCUPADO = 1;
+		def DIA_NO_LABORA = -1;
+		def DIA_NO_ATENDERA_CITAS = 2;
+		
         int doctorID = (int) doctorId;
-        int resultado = 0
+        int resultado = DIA_LIBRE;
         def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, date)
+		def esDiaQueNoAtiendeCita = DiaSinCitaService.isDiaSinCita(date, doctorID);
+		
+		
         boolean f = true;
-        if ( esDiaLaboral ) {
-            //def horario = DoctorService.getHorarioFromDoctorID(doctorID)
-            def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)
-            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )
-            def libre = true;
-            def i = 0;
-            f = true;
-            if (horario != null ){
-                //def ohorario = JSON.parse(horario)
-                for (int j = 0; j < horario.size(); j ++){// checo hora por hora
-                    /*def it = ohorario[j]; // se cambia por el cambio de horarios que tuvo
-                    def hora = getHoraDeString(it.hora)
-                    def minuto = getMinutoDeString(it.hora)
-                    */
-                    def hora = horario[j][0]
+        if ( esDiaLaboral && !esDiaQueNoAtiendeCita ) {	
+			
+			def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)
+			def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )
+			
+			if ( horario != null ){
+				
+				resultado = DIA_OCUPADO;
+                
+				for (int j = 0; j < horario.size(); j ++ ) {// checo hora por hora
+                    
+					def hora = horario[j][0]
                     def minuto = horario[j][1]
-                  //  print hora + " " + minuto + " " + citas
-                    if ( isLibre(hora, minuto, citas)  ){// encuentra una hora libre ese dia
-                  //      print "si entro"
-                        if (f){
-                            resultado = 0
-                            f = false
-                        }
-                        break
 
+                    if ( isLibre(hora, minuto, citas)  ){// encuentra una hora libre ese dia
+
+						resultado = DIA_LIBRE
+                        break
                     }
                 }
-                // recorrio todas sus horas y no encontro una libre, entonces ese dia esta ocupado
-                if (f){
-                    resultado = 1
-                    f = false
-                }
             }
+        } else if( !esDiaQueNoAtiendeCita ){
+            resultado = DIA_NO_LABORA            
+        } else {
+			resultado = DIA_NO_ATENDERA_CITAS
         }
-        // ese dia ni siquiera trabaja
-        if (f){
-            resultado = -1
-            f = false
-        }
+	
 
         resultado
     }
+	
+	def listaLasCitasEnUnIntervaloDeTiempo(medico, fechaInicio, fechaFin) {
+		def query = Cita.where {
+			doctor == medico
+			fechaBaja == null
+			and {
+				ge('fecha', fechaInicio)
+				le('fecha', fechaFin)
+			}
+		}
+		
+		return query.list();
+	}
 
     /**
      * Service que a partir de el ID de un doctor, y la fecha en formato de cadena  dia + "-" + mes + "-" + anio
@@ -97,42 +112,30 @@ class CitaService {
      *
      */
    def mostrarHorario(int doctorID, String fecha){
-
-        //print "accedio a mostrarHorario de citaController"
-        //print params
         def esDiaLaboral = DoctorService.esDiaLaboral(doctorID, fecha)
-        //print "es un dia Laboral? " + esDiaLaboral
+		def esDiaDeVacaciones = DiaSinCitaService.isDiaSinCita(fecha, doctorID)
+
         def ret = [];
-        if ( esDiaLaboral ) {
+        if ( esDiaLaboral && !esDiaDeVacaciones ) {
             def horario = DoctorService.getHorarioFromDoctorID(doctorID, fecha)
             def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
+			def citasToAdd = citas.clone()
             def libre = true;
             def i = 0;
             if (horario != null ){
-                //def ohorario = JSON.parse(horario)
-                //print ohorario
-                /*horario.each{
-                    //def hora = getHoraDeString(it.hora)
-                    //def minuto = getMinutoDeString(it.hora)
+                horario.each {
                     def hora = it[0]
                     def minuto = it[1]
                     def tipo = it[2]
                     def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
-                    libre = isLibre(hora, minuto, citas)
-                    ret[i++] = [
-                        hora: horaString,
-                        tipo: tipo,
-                        libre:libre
-                    ]
-                }*/
-                //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-                horario.each{
-                    def hora = it[0]
-                    def minuto = it[1]
-                    def tipo = it[2]
-                    def horaString = sprintf("%02d",hora) +":"+sprintf("%02d",minuto)
-                    libre = isLibre(hora, minuto, citas)
-                    def asignadaA = isAsignadaA(doctorID, fecha, horaString)
+                    def estado = isLibre(hora, minuto, citas)
+					 
+					libre = estado[0]
+					def citaOcupada = estado[1]
+					citasToAdd.remove(citaOcupada)
+					
+                    def asignadaA = isAsignadaA(doctorID, fecha, horaString, citas)
+
                     ret[i++] = [
                         hora: horaString,
                         tipo: tipo,
@@ -140,10 +143,9 @@ class CitaService {
                         asignadaA: asignadaA
                     ]
                 }
-                //end
             }
             //print ret as JSON
-        } else { // no trabaja ese dia
+        } else if(!esDiaDeVacaciones) { // no trabaja ese dia
             def dias = DoctorService.getDiasLaboralesDoctor(doctorID)
             def mensajeDias = ""
             for (int i = 0; i < dias.length(); i++){
@@ -165,13 +167,23 @@ class CitaService {
             }
             ret[0] = [
                 hora: "No atiende citas ese dia, unicamente ",
-                libre: false
+                libre: false,
+				mensaje: "No atiende citas ese dia, unicamente "
             ]
             ret[1] = [
                 hora: mensajeDias,
-                libre: false
+                libre: false,
+				mensaje: mensajeDias
             ]
 
+        } else {
+			def mensajeVacaciones = "El m&eacute;dico tiene configurado este d&iacute;a para que no atienda Citas "
+			ret[0] = [
+				hora: null,
+				libre: false,
+				mensaje : mensajeVacaciones
+			]
+			
         }
        // print horario
        // esto deberia ser mostrado en JSON
@@ -186,7 +198,8 @@ class CitaService {
      * @return true si es Libre esa hora con minuto, false de otro modo
      */
     def isLibre(int hora, int minuto,citas){
-        def esta = true;
+        def estaLibre = true;
+		def citaPorLaQueEsOcupada = null
         Calendar calendar = Calendar.getInstance()
         int hours, minutes
         for(int i = 0; i < citas.size(); i++ ){
@@ -194,15 +207,39 @@ class CitaService {
             calendar.setTime( it.fecha );
             hours = calendar.get(Calendar.HOUR_OF_DAY);
             minutes = calendar.get(Calendar.MINUTE);
-
+			
             if (hora == hours && minutes == minuto){
-                esta = false
+                estaLibre = false
+				citaPorLaQueEsOcupada = it
                 break;
             }
         }
 
-        return esta
+        return [estaLibre, citaPorLaQueEsOcupada] 
     }
+	
+	/**
+	 * 
+	 * @param doctorID
+	 * @param fecha
+	 * @param horaString
+	 * @return
+	 */
+	def isAsignadaA(int doctorID, String fecha, String horaString, citas){
+		def asignadaA = ''
+		def citaHora = ''
+		citas.each{
+			citaHora = it.fecha.toString().split(' ')[1].substring(0, 5)
+			if( citaHora == horaString ){
+				asignadaA = it.tipoCita
+			}
+		}
+		return asignadaA
+	}
+	
+	def agregarCitasRestantes(resultado, citasAgragar) {
+		
+	}
     /**
      * Funcion que a partir de una cadena del tipo "hh:mm" regresa la hora
      * ej: "07:45" regresa el 7
@@ -269,24 +306,24 @@ class CitaService {
     }
 
     def getCitasWhitPacienteId(Long pacienteId){
-        def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId",[pacienteId: pacienteId]);
+        def citas = Cita.executeQuery("from Cita cita where cita.paciente.id = :pacienteId and fechaBaja is null",[pacienteId: pacienteId]);
         return citas
     }
 
     def generateExpediente(){
-        println LastIndiceTempService.getLastIndex();
+        //println LastIndiceTempService.getLastIndex();
     }
 
     //service for autocomplete
 	 def getPacientesWithFullExpediente(String expediente){
-        println 'getPacientesWithFullExpediente';
-        println expediente;
+        //println 'getPacientesWithFullExpediente';
+        //println expediente;
 		  def paciente = Paciente.executeQuery("from Paciente paciente where paciente.expediente = :expediente and paciente.fechaBaja is null",[expediente: expediente]);
         return paciente
     }
     def getPacientesWithExpediente(String expediente){
-        println 'getPacientesWithExpediente';
-        println expediente;
+        //println 'getPacientesWithExpediente';
+        //println expediente;
         def criteria = Paciente.createCriteria()
         def results = criteria.listDistinct () {
 			like('expediente', expediente+'%')
@@ -346,18 +383,18 @@ class CitaService {
 	}
 	
     //service for autocomplete
-    //Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-    def isAsignadaA(int doctorID, String fecha, String horaString){
-        def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
-        def asignadaA = ''
-        def citaHora = ''
-        citas.each{
-            citaHora = it.fecha.toString().split(' ')[1].substring(0, 5)
-            if( citaHora == horaString ){
-                asignadaA = it.asignadaA
-            }
-        }
-        return asignadaA
+    def getCitasBySubService(subServicio){
+        def citas = Cita.findByTipoCitaAndFechaBajaIsNull(subServicio)
+        return citas
     }
+
+    def getCitasByTipoSubServicio(tipoSubservicio){
+        Cita.findByTipoSubServicioAtendidoAndFechaBajaIsNull(tipoSubservicio)
+    }
+	
+	def getCitasByServicio(servicio){
+		def doctors = DoctorService.getByTipoCitaActive(servicio)
+		Cita.findAllByDoctorAndFechaBajaIsNull(doctors)
+	}
     //end
 }

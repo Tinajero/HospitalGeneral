@@ -20,3 +20,7 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+grails.views.default.codec = "html"
+grails.views.gsp.encoding = "UTF-8"
+grails.converters.encoding = "UTF-8"

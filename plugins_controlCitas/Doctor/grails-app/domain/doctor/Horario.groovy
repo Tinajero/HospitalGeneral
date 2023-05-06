@@ -6,7 +6,7 @@ class Horario {
 	Integer diaDeLaSemana;// 0 es domingo , 7 es sabado 
 	Integer hora;
 	Integer minuto;
-	Integer tipoCita;//
+	SubServicio subServicio
 	
     static constraints = {
     }

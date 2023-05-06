@@ -2,15 +2,19 @@
 
 ${request?.session.servletContext.realPath}
 <script> var getTipoCitaCambiadaPath = "${createLink(action:'tipoCitaCambiada')}" </script>
+<script> var obtenerTiposDeSubServicios = "${createLink(action:'obtenerTiposDeSubServicios')}" </script>
 <script> var getBussyDaysPath = "${createLink(action:'getBussyDays')}" </script>
 <script> var getCalendarPath = "${createLink(controller:'metodosCalendar', action:'consulta')}" </script>
 <script> var getMostrarHorarioPath = "${createLink(action:'mostrarHorario')}" </script>
 <script> var tipoCitaSeleccionada = "${citaInstance?.tipoCita}" </script>
 <script> var doctorSeleccionado = "${citaInstance?.doctor?.id}" </script>
+<script> var tipoSubServicioSeleccionado = "${citaInstance?.tipoSubServicioAtendido?.id}" </script>
 <script> var fechaCitaSeleccionada = "${citaInstance?.fecha}" </script>
 <script> var autocompleteByExpediente = "${createLink(controller: cita, action:'autocompleteByExpediente')}" </script>
 
 <g:set name= '' var="doctorS" bean="doctorService"/>
+<g:set name= '' var="subServicioService" bean="subServicioService"/>
+<g:set name= '' var="tipoSubServicioService" bean="tipoSubServicioService"/>
 
 <div class="form-group required">
 	<label for="tipoCita" class="col-sm-2 control-label">
@@ -18,16 +22,26 @@ ${request?.session.servletContext.realPath}
 		
 	</label>
 	<div class="col-sm-5">
-		<select 
-			name="cita.tipoCita" 
-			id="tipoCita" 
-			class="form-control selectionBox" 
-			required="true"
-			
-			onChange="onChangeTipoCita()">
-			<option value="0">Primera Vez</option>
-			<option value="1">Subsecuente</option>			
-		</select>
+	<g:select id="subServicio" class="form-control" name="cita.tipoCita" 
+			from="${subServicioService.obtienesLosSubServicios()}" 
+			optionKey="id" 
+			value="${citaInstance?.tipoCita?.id}"
+			optionValue="nombre" 		
+			required="true"	
+			onchange="funcionObtenerTipoSubServicios();"
+			noSelection="['null': '']"/>
+	</div> 
+</div>
+
+
+<%--TipoSubServicio --%>
+<div class="form-group required">
+	<label for="tipo de Servicio" class="col-sm-2 control-label">
+		<g:message code="cita.tipoCita" default="Tipo de Servicio"/>
+		
+	</label>
+	<div class="col-sm-5">
+	<span id="contenedorTipoSubServicio"> </span>
 	</div> 
 </div>
 
@@ -80,7 +94,7 @@ ${request?.session.servletContext.realPath}
 
 <div class="form-group ${hasErrors(bean: cita?.paciente, field: 'folioSeguroPopular', 'has-error')} required">
 	<label for="folioSeguroPopular" class="col-sm-2 control-label">
-		<g:message code="cita.paciente.folioSeguroPopular.label" default="Folio Seguro Popular" />
+		<g:message code="cita.paciente.folioSeguroPopular.label" default="Folio Insabi" />
 	</label>
 	<div class ="col-sm-4">
 		<g:textField id="folioSeguroPopular" name="cita.paciente.folioSeguroPopular" class="form-control"  value="${citaInstance?.paciente?.folioSeguroPopular}"/>
@@ -125,17 +139,22 @@ ${request?.session.servletContext.realPath}
 <div class="form-group ${hasErrors(bean: cita, field: 'doctor', 'has-error')} required">
 	<label for="TipoCita" class="col-sm-2 control-label">
 		<g:message code="cita.doctor.label" default="Servicio" />
-		<span class="required-indicator">*</span>
+		<span class="required-indicator">* ${citaInstance?.doctor?.tipoCita?.id}</span>
 	</label>
 	<div class="col-sm-4">
-    <g:select id="TipoCita" name="cita.doctor.tipoCita" from="${doctor.Doctor.listUnique()}"   required="" 
-	value="${citaInstance?.doctor?.tipoCita}" class="form-control" noSelection="['':'']" onchange="categoryChanged();"/>
+    <g:select id="TipoCita" name="cita.doctor.tipoCita" 
+    	from="${doctor.Doctor.listUnique()}"   
+    	required="" 
+		value="${citaInstance?.doctor?.tipoCita?.id}"
+		optionKey="id"
+		optionValue="nombre" 
+		class="form-control" noSelection="['':'']" onchange="categoryChanged();"/>
 	</div>
 </div>
 
 <div class="form-group ${hasErrors(bean: cita, field: 'doctor.nombre', 'has-error')} required">
 	<label for="Doctor" class="col-sm-2 control-label">
-		<g:message code="cita.doctor.label" default="Médico" />
+		<g:message code="cita.doctor.label" default="M&eacute;dico" />
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="col-sm-4">
@@ -264,4 +283,5 @@ ${request?.session.servletContext.realPath}
 		 </div>
 	</div>
 </div>
+
 

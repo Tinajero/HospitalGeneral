@@ -42,7 +42,7 @@ class BusquedasService {
         def ap_mat = "%"+params.p_ap_mat+"%"
         def nombre = "%"+params.p_nombre+"%"
         def lista  = []
-		println params
+		//println params
 		if(params.expediente.compareTo("") != 0){
 			def expediente = "%" + params.expediente + "%";
 			 resultados = consultaExpediente(expediente);

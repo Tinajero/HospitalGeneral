@@ -10,7 +10,7 @@ def DoctorService
     def index() { }
 
     def buscar(){
-    	
+//    	print params
     	def lista = HojaRegistroDiarioService.list(params)
 		
 		def cont = 3;
@@ -20,7 +20,7 @@ def DoctorService
 			String filePathString = realPath + "temp_pdf/" + lista[3]; 
 			while(cont-- > 0){
 				File f = new File(filePathString) 
-				print filePathString + " " + cont
+//				print filePathString + " " + cont
 				if(f.exists() && !f.isDirectory()){					
 					sleep(2000)
 					render (view:'resultado', model:['lista':lista])					

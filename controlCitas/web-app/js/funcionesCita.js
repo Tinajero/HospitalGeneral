@@ -1,6 +1,8 @@
 var seleccionado = false;
 var cadena;
 var arregloHorarios;
+var listaTiposDeHorariosMostrados;
+var tipoDeHorarioSeleccionado;
 function categoryChanged() {  
   
 	quitarSeleccionado();
@@ -18,6 +20,26 @@ function categoryChanged() {
   		} 
   	},
 	error:function(XMLHttpRequest,textStatus,errorThrown){}});
+}
+
+function funcionObtenerTipoSubServicios() {
+	
+	var URLObtenerTipoSubServicios =  obtenerTiposDeSubServicios;
+	
+	var subServicioSeleccionado = $("#subServicio").val();
+	console.log("Aqui");
+	jQuery.ajax({type:'POST', data:'subServicio='+subServicioSeleccionado, url:URLObtenerTipoSubServicios, 
+		success:function(data, textStatus){			
+			$('#contenedorTipoSubServicio').html(data);
+			if(tipoSubServicioSeleccionado != null &&
+					tipoSubServicioSeleccionado != ""){
+				$('#cdTipoSubServicios').val(tipoSubServicioSeleccionado);
+			}
+			
+		}, error: function(XMLHttpRequest,textStatus,errorThrown){
+			console.log("error " + errorThrown);
+		}
+	});		
 }
 
 function obtenerDoctoresPorServicio() {  
@@ -47,6 +69,7 @@ function getHorarios(  ){
     	console.log(fecha);
     	jQuery.ajax({type:'POST',data:'doctorID='+doctorId+'&fecha='+fecha, url:getMostrarHorarioPath,success:function(data,textStatus){      				      	
       		var arreglo = data;//JSON.parse(data);
+      		listaTiposDeHorariosMostrados = arreglo;
       		arregloHorarios = data; //copia de los horarios para usarlo en agregar hora
       		var htmlString = "";
       		var asignadoA = ""; //asignadoA es progra de Max
@@ -56,55 +79,62 @@ function getHorarios(  ){
       		$.each( arreglo, function( index, horario){
       			console.log(index + " " + horario.hora);
       			if ( horario.libre ) {              
-      				if ( horario.tipo == 0){
-      					$("<tr class='libre primeraVez'></tr>").appendTo( '#tablaHorariosCita tbody').append(
+      				
+      					$("<tr class='libre' style='background-color:" + horario.tipo.colorHexadecimal + "' id='"+horario.tipo.id+"'></tr>")
+      					.appendTo( '#tablaHorariosCita tbody').append(
       							"<td class='centrado'>"+(index+1)+"</td>" +
       							"<td class='centrado'>" + horario.hora + "</td>"+
-      							"<td class='centrado'>  Primera Vez </td>"              
-      					);
-
-      				} else if (horario.tipo == 1){ // si el tipo de cita es subsecuente;
-        				$("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
-        					"<td class='centrado'>"+(index+1)+"</td>" +
-        					"<td class='centrado'>" + horario.hora + "</td>"+
-        					"<td class='centrado'> Subsecuente </td>"        					
-        					);
-      				}
-      			} else {
+      							"<td class='centrado'>" + horario.tipo.nombre + "</td>"              
+      					);      				
+      			} else if (!horario.hasOwnProperty("mensaje")) {
       				//Colocar Si un paciente subsecuente ocupa un lugar de "Primera Vez" y si un paciente de primera vez ocupa un "subsecuente"
-	  				if(horario.asignadaA=='primera vez' && horario.tipo==1){
-	  					asignadoA = "<td class='centrado asignadaA'>Primera vez</td>";
-	  				}else if(horario.asignadaA=='subsecuente' && horario.tipo==0){
-	             	  asignadoA = "<td class='centrado asignadaA'>Subsecuente</td>";
+	  				if(horario.asignadaA != null && 
+	  						horario.asignadaA.id != horario.tipo.id){
+	  					asignadoA = "<td class='centrado asignadaA'>" + horario.asignadaA.nombre + "</td>";	  				  						  					
 	  				}else{
 	  					asignadoA = "";
 	  				}
-	      			$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
-								+ horario.hora 
-								+ "</td><td class='centrado'>"+(horario.tipo==1?"Subsecuente":"Primera Vez") +"</td>"
-								+ asignadoA); //asignadoA es progra de Max
+	  				
+	  				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
+							+ horario.hora 
+							+ "</td><td class='centrado'>"+  horario.tipo.nombre +"</td>"
+							+ asignadoA);
+	      			 //asignadoA es progra de Max
+	  				//modificado por Daniel con los subservicios
+      			} else if(horario.hasOwnProperty("mensaje")){
+      				$("<tr class='horaOcupada'></tr>").appendTo( '#tablaHorariosCita tbody').append("<td class='centrado '>"+(index+1)+"</td><td class='centrado'>" 
+							+ horario.mensaje 
+							+ "</td><td class='centrado'>");
       			}
       		});                                               
       		$("#tablaHorariosCita tr.libre").click(function() {
-  			    var selected = $(this).hasClass("seleccionado");
-  			    $("#tablaHorariosCita tr").removeClass("seleccionado");
-  			    if(!selected){
-  		            $(this).addClass("seleccionado");
-  		            seleccionado = false;
-  			    }
-  			  });  					
+      			console.log("triggered")
+      			addAsignadoA(this)
+      		});  					
       	},
   		error:function(XMLHttpRequest,textStatus,errorThrown){}});
-  } 
-
+  }
 }
+
+function addAsignadoA(caller) {
+	var selected = $(caller).hasClass("seleccionado");
+    $("#tablaHorariosCita tr").removeClass("seleccionado");
+    if(!selected){
+       $(caller).addClass("seleccionado");
+       seleccionado = false;
+       tipoDeHorarioSeleccionado = listaTiposDeHorariosMostrados.filter(x => x.tipo.id == caller.id)
+       console.log('tipoDehorarioSeleccionado '+ tipoDeHorarioSeleccionado)
+       $("#asignadoA").val(tipoDeHorarioSeleccionado[0].tipo.id);
+    }
+}
+
 function agregarHora(){
   var tamaño = arregloHorarios.length;
   if ( tamaño == 2 && arregloHorarios[0]['hora'] == "No atiende citas ese dia, unicamente "){
     // no se pueden agregar horas, pues ese dia no labora
     return ;
   } else {
-    //event.preventDefault();
+    event.preventDefault();
     $("<tr class='libre subsecuente'></tr>").appendTo( '#tablaHorariosCita tbody').append(
       "<td class='centrado'>"+(tamaño + 1)+"</td>" +
       "<td class='centrado' id='renglonHorario_" +(tamaño+1)+ "'><input type='text' id='idaAgregarHora'  class='form-control'/></td>"+
@@ -116,17 +146,12 @@ function agregarHora(){
     $("#idaAgregarHora").focusout(function(){
       var horaIntroducida = $("#idaAgregarHora").val();
       if((/^(?:[0-5][0-9]):[0-5][0-9]$/).test(horaIntroducida)){
-      //console.log(horaIntroducida);
+
         $("#renglonHorario_" +(tamaño+1)).empty();
         $("#renglonHorario_" +(tamaño+1)).text(horaIntroducida);
         $("#renglonHorario_" +(tamaño+1)).parent().click(function(){
-
-            var selected = $(this).hasClass("seleccionado");
-            $(this).removeClass("seleccionado");
-            if (!selected){
-              $(this).addClass("seleccionado");
-              seleccionado = false;
-            }
+        	console.log("triggered")
+        	addAsignadoA(this)
         });
       }
       
@@ -237,6 +262,12 @@ function cambiarColorDias(){
 	var  endDay = $('#calendar').fullCalendar('getView').intervalEnd.format();
 	var doctorId = $("#cbDoctores").val();
 	console.log("function cambiarColorDias ");
+	
+	var DIA_LIBRE = 0;
+	var DIA_OCUPADO = 1;
+	var DIA_NO_LABORA = -1;
+	var DIA_NO_ATENDERA_CITAS = 2;
+	
 	if (doctorId != ''){
 	    console.log("function cambiarColorDias >> ENTRO");
 	    var pathDiasOcupados = getBussyDaysPath;
@@ -244,17 +275,20 @@ function cambiarColorDias(){
 	  		type:'POST',   		
 	  		data: 'startTime=' + startDay + "&endTime=" + endDay + "&doctorId=" + doctorId,
 	  		url:pathDiasOcupados,
-	  		success:function(data,textStatus){			
+	  		success:function(data,textStatus){	
+	  			console.log(data);
 	  			$.each( data, function( index, dia){
 	  				//console.log(dia);
 	  				var cell = $('#dia'+dia.id);
-	  				if ( dia.ocupado == 0){
-	  					cell.css('background-color','#7DE96E');
-	  				} else if ( dia.ocupado == 1 ) {					
-	  					cell.css('background-color','#E94E58');
-	  				} else {					
-	  					cell.css('background-color','#868080');
-	  				}	  				
+	  				if ( dia.ocupado == DIA_LIBRE){
+	  					cell.css('background-color','#7fcd91');
+	  				} else if ( dia.ocupado == DIA_OCUPADO ) {					
+	  					cell.css('background-color','#fed39f');
+	  				} else if( dia.ocupado == DIA_NO_LABORA) {				
+	  					cell.css('background-color','#5b5656');
+	  				} else if ( dia.ocupado == DIA_NO_ATENDERA_CITAS ) {
+	  					cell.css('background-color','#020617');
+	  				}
 	  			});
 	  		},
 	  		error:function(XMLHttpRequest,textStatus,errorThrown){}
@@ -385,7 +419,8 @@ var fechaFullCalendarAnterior = "";
 			   $("#tipoCita").val(tipoCitaSeleccionada);
 		   }
 		   
-		   categoryChanged(tipoCita);		   
+		   categoryChanged(tipoCita);
+		   funcionObtenerTipoSubServicios();
 		   $("#vista_hour").val(hour);
 		   $("#vista_minute").val(minutes);
 		   $('#cbFechaCita_hour').val(hour);

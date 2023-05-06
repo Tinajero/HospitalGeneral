@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -11,14 +12,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="${resource(dir:"images", file: "iconoSecretaria.ico") }" type="image/x-icon">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'citaEstilos.css')}" type="text/css">
-		<!-- <link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon"> -->
-		<!-- <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}"> -->
-		<!-- <link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}"> -->
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<asset:stylesheet src="dashboard.css"/>
-		 <g:javascript src="utilerias.js" />
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'daterangepicker.css')}" type="text/css">
+		
+		<g:javascript src="utilerias.js" />
 		<g:javascript src="jquery-mask/jquery.mask.js"/>
+		<g:javascript src="fullcalendar-2.3.1/lib/moment.min.js"/>
+		<g:javascript src="daterangepicker.js"/>
+		
 		<g:layoutHead/>
 	</head>
 	<body>
@@ -41,7 +44,8 @@
 			<ul class="nav navbar-nav navbar-right">
 			  <li><a href="#">Configuraci&oacute;n</a></li>
 			  <li><g:link controller='logout'>Salir</g:link></li>
-			</ul>
+			</ul>                                                                                                                                                                                                                                       
+			
 
         </div>
       </div>
@@ -52,7 +56,11 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><g:link controller ="usuario"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</g:link></li>
-            <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Médicos</g:link></li>
+            <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> M&eacute;dicos</g:link></li>
+            <li><g:link controller ="servicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Servicios</g:link></li>
+            <li><g:link controller ="SubServicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> SubServicios</g:link></li>
+            <li><g:link controller ="TipoSubServicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Tipos de SubServicios</g:link></li>
+            <li><g:link controller ="DiaSinCita"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Días de Descanso por Médico</g:link></li>
 
           </ul>
         </div>

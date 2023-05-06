@@ -10,6 +10,7 @@ class DoctorService {
     def hora=[]
     def minutos=[]
     def HorarioService
+	def DiaSinCitaService
     def serviceMethod() {
 
     }
@@ -98,9 +99,9 @@ class DoctorService {
 			turnoWhere = " and doctor.turno = " + turno;			
 		}
 		
-		def consulta = 	"select doctor.tipo_cita as tipoCita, doctor.id, " +
+		def consulta = 	"select doctor.tipo_cita_id as tipoCita, doctor.id, " +
 			"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre " +
-			"from doctor where doctor.tipo_cita = '" + tipoCita + "'" +
+			"from doctor where doctor.tipo_cita_id = '" + tipoCita + "'" +
 			turnoWhere ;
 			
 
@@ -136,6 +137,13 @@ class DoctorService {
 		Calendar c = Calendar.getInstance();
         c.setTime(fechaDate);
 		
+//		def diaVacas = DiaSinCitaService.isDiaSinCita(fechaDate, doctorId);
+//		//println ">>>>>>>>>>>>>>>>>>>>"
+//		//println doctorId
+//		//println fechaDate
+//		//println diaVacas
+//		//println "<<<<<<<<<<<<<<<<<<<<<"
+		
         int day_of_week = c.get(Calendar.DAY_OF_WEEK) - 1;   
         def doctor = Doctor.get(doctorId);
 		
@@ -170,6 +178,13 @@ class DoctorService {
         }
         return dias
     }
+	
+	def getByTipoCitaActive(servicio){
+		Doctor.findAllByTipoCitaAndFechaBajaIsNull(servicio)
+	}
+	
+	
+	
     
     
 }
