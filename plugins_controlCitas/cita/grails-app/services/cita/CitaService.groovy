@@ -9,7 +9,7 @@ import paciente.Paciente
 class CitaService {
 
 	def DoctorService
-    def CitaService
+    
     def CalendarioService
     def LastIndiceTempService
 	def DiaSinCitaService
@@ -395,6 +395,10 @@ class CitaService {
 	def getCitasByServicio(servicio){
 		def doctors = DoctorService.getByTipoCitaActive(servicio)
 		Cita.findAllByDoctorAndFechaBajaIsNull(doctors)
+	}
+	
+	def getCitasByDoctor(doctor){
+		Cita.findByDoctorAndFechaBajaIsNull(doctor)
 	}
     //end
 }

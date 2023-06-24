@@ -22,11 +22,13 @@ class DoctorController {
 
     def index(Integer max) {
         //Opcional. modificar la actualizacion de intervalos
+		params.max = Math.min(max ?: 10, 100)
         
-        
+		def total = Doctor.findAllByFechaBajaIsNull().size()
+		def doctorList = Doctor.findAllByFechaBajaIsNull(params)
 
-        params.max = Math.min(max ?: 10, 100)
-        respond Doctor.list(params), model:[doctorCount: Doctor.count()]
+        
+        respond doctorList, model:[doctorCount: total]
     }
 
     def show(Doctor doctor) {
@@ -133,8 +135,27 @@ class DoctorController {
             notFound()
             return
         }
-        HorarioService.eliminarHorariosDeDoctor(doctor.id)
-        doctor.delete flush:true
+		
+		if(DoctorService.can_be_deleted(doctor)) {
+			HorarioService.eliminarHorariosDeDoctor(doctor.id)
+			
+			def usuarioModificacionId = springSecurityService.principal.id
+			doctor.usuarioBajaId = usuarioModificacionId
+			doctor.fechaBaja = new Date();
+			doctor.save flush:true
+
+		} else {
+			def messageOther = 'El Doctor tiene citas asignadas, por lo que no es posible eliminarlo, elimine las citas asignadas'
+	
+			request.withFormat {
+				form multipartForm {
+					flash.message = message(code: messageOther , args: [message(code: 'Doctor.label', default: 'Doctor'), doctor.id])
+					redirect doctor
+				}
+				'*'{ respond doctor, [status: NOT_FOUND] }
+			}
+			return
+		}
 
         request.withFormat {
             form multipartForm {
