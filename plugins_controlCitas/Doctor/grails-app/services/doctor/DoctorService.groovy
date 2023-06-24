@@ -11,6 +11,7 @@ class DoctorService {
     def minutos=[]
     def HorarioService
 	def DiaSinCitaService
+	def CitaService
     def serviceMethod() {
 
     }
@@ -181,6 +182,11 @@ class DoctorService {
 	
 	def getByTipoCitaActive(servicio){
 		Doctor.findAllByTipoCitaAndFechaBajaIsNull(servicio)
+	}
+	
+	def can_be_deleted(doctor) {
+		def citas = CitaService.getCitasByDoctor(doctor)
+		return citas == null || citas.count == 0
 	}
 	
 	
