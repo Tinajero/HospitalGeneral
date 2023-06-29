@@ -60,7 +60,7 @@ class CitaService {
         if ( esDiaLaboral && !esDiaQueNoAtiendeCita ) {	
 			
 			def horario = DoctorService.getHorarioFromDoctorID(doctorID, date)
-			def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, date )
+			def citas = getHorarioWhitDoctorAndDate( doctorID, date )
 			
 			if ( horario != null ){
 				
@@ -118,7 +118,7 @@ class CitaService {
         def ret = [];
         if ( esDiaLaboral && !esDiaDeVacaciones ) {
             def horario = DoctorService.getHorarioFromDoctorID(doctorID, fecha)
-            def citas = CitaService.getHorarioWhitDoctorAndDate( doctorID, fecha )
+            def citas = getHorarioWhitDoctorAndDate( doctorID, fecha )
 			def citasToAdd = citas.clone()
             def libre = true;
             def i = 0;
@@ -283,7 +283,7 @@ class CitaService {
      */
     def getBussyDays(String startTime, String endTime, Long doctorId){
         def ans = [] // arreglo de mapas que regresaremos
-        //print "getBussyDays CitaService : "
+
         def startDate = Date.parse("yyyy-MM-dd HH:mm:ss", startTime + " 00:00:00")
         def endDate = Date.parse("yyyy-MM-dd HH:mm:ss", endTime + " 00:00:00")
         DateFormat outputFormatter = new SimpleDateFormat("dd-MM-yyyy")
