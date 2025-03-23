@@ -14,6 +14,8 @@ grails.plugin.location."Paciente"="../plugins_controlCitas/Paciente"
 grails.plugin.location."Cita"="../plugins_controlCitas/cita"
 grails.plugin.location."HojaRegistroDiario"="../plugins_controlCitas/hojaRegistroDiario"
 grails.plugin.location."busquedas"="../plugins_controlCitas/busquedas"
+    
+
 
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
@@ -25,7 +27,7 @@ grails.project.fork = [
     //run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
     run: [maxMemory: 1280, minMemory: 128, debug: false, maxPerm: 256, forkReserve: true, jvmArgs: ['-Dhttps.protocols=TLSv1.1,TLSv1.2']],
     // configure settings for the run-war JVM
-    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve: true, jvmArgs: ['-Dhttps.protocols=TLSv1.1,TLSv1.2']],
+    war: [maxMemory: 768, minMemory: 64, debug: true, maxPerm: 256, forkReserve: true, jvmArgs: ['-Dhttps.protocols=TLSv1.1,TLSv1.2']],
     // configure settings for the Console UI JVM
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
@@ -38,7 +40,7 @@ grails.project.dependency.resolution = {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "verbose" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
@@ -63,7 +65,7 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        runtime 'mysql:mysql-connector-java:5.1.34'
+        runtime 'mysql:mysql-connector-java:5.1.49'
 		//runtime 'mysql:mysql-connector-java:8.0.12'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
@@ -79,7 +81,7 @@ grails.project.dependency.resolution = {
         compile ":asset-pipeline:1.8.11"
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
+        runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.16"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 

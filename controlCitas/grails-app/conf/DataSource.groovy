@@ -2,7 +2,7 @@
     pooled = true
     jmxExport = true
     //driverClassName = "org.h2.Driver"
-    driverClassName = "com.mysql.jdbc.Driver"
+    driverClassName = "com.mysql.cj.jdbc.Driver"
     username = "root"
     password = "root"
 
@@ -21,8 +21,8 @@ environments {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             //url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-
-            url = "jdbc:mysql://localhost:3306/controlcitadb" //localhost/nombre_de_la_BaseDeDatos
+            driverClassName = "com.mysql.cj.jdbc.Driver"
+            url = "jdbc:mysql://localhost:3306/hospital?serverTimezone=America/Mexico_City" //localhost/nombre_de_la_BaseDeDatos
         }
     }
     test {
@@ -33,10 +33,11 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:mysql://localhost/controlCitaDB"
+            driverClassName = "com.mysql.cj.jdbc.Driver"
+            dbCreate = "create"
+            url = "jdbc:mysql://localhost/controlCitaDB?useSSL=false&serverTimezone=UTC"
 			username = "root"
-			password = "MIrror09"
+			password = "Anitalavalatina01_"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true

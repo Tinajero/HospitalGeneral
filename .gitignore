@@ -57,3 +57,10 @@ local.properties
 
 #DataSource
 /controlCitas/grails-app/conf/DataSource.groovy
+
+controlCitas/web-app/temp_pdf/**
+.groovy/**
+
+controlCitas/wars/**
+controlCitas/.groovy
+controlCitas/.idea
