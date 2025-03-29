@@ -4,7 +4,8 @@
     //driverClassName = "org.h2.Driver"
     driverClassName = "com.mysql.cj.jdbc.Driver"
     username = "root"
-    password = "root"
+    // password = "root"
+     password = "Anitalavalatina01"
 
 }
 hibernate {
@@ -22,7 +23,9 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             //url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             driverClassName = "com.mysql.cj.jdbc.Driver"
-            url = "jdbc:mysql://localhost:3306/hospital?serverTimezone=America/Mexico_City" //localhost/nombre_de_la_BaseDeDatos
+            url = "jdbc:mysql://localhost:3306/controlCitaDB?useSSL=false&serverTimezone=UTC" //localhost/nombre_de_la_BaseDeDatos
+            username = "root"
+			password = "Anitalavalatina01"
         }
     }
     test {
@@ -34,7 +37,7 @@ environments {
     production {
         dataSource {
             driverClassName = "com.mysql.cj.jdbc.Driver"
-            dbCreate = "create"
+            dbCreate = "update"
             url = "jdbc:mysql://localhost/controlCitaDB?useSSL=false&serverTimezone=UTC"
 			username = "root"
 			password = "Anitalavalatina01_"
