@@ -102,16 +102,15 @@ class DoctorService {
 		
 		def consulta = 	"select doctor.tipo_cita_id as tipoCita, doctor.id, " +
 			"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre " +
-			"from doctor where doctor.tipo_cita_id = '" + tipoCita + "'" +
+			"from doctor where doctor.fecha_baja is null and doctor.tipo_cita_id = '" + tipoCita + "'" +
 			turnoWhere ;
 			
-
-			def currentSession = sessionFactory.currentSession
-			resultados = currentSession.createSQLQuery(consulta);
+		def currentSession = sessionFactory.currentSession
+		resultados = currentSession.createSQLQuery(consulta);
 		
         def doctores = resultados.list();
 		def nombreDoctores = []
-        if (doctores.size() != 0){            
+        if (doctores.size() != 0){
 			for (int i = 0; i < doctores.size() ; i++){				             
 				def doctor = [:];
 				doctor['nombre'] = doctores[i][2];

@@ -64,3 +64,5 @@ controlCitas/web-app/temp_pdf/**
 controlCitas/wars/**
 controlCitas/.groovy
 controlCitas/.idea
+
+*.DS_Store
