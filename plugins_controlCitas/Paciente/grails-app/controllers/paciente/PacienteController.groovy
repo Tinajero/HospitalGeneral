@@ -17,7 +17,8 @@ class PacienteController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Paciente.list(params), model:[pacienteCount: Paciente.count(), pacienteList :Paciente.list(params)]
+
+        respond Paciente.findAllByFechaBajaIsNull(params), model:[pacienteCount: Paciente.countByFechaBajaIsNull()]
     }
 
     def show(Paciente paciente) {

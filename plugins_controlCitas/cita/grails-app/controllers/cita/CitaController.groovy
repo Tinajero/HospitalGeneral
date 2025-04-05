@@ -21,7 +21,8 @@ class CitaController {
 	def SpringSecurityService springSecurityService 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Cita.findAllByFechaBajaIsNull(params), model:[citaCount: Cita.count()]
+
+        respond Cita.findAllByFechaBajaIsNull(params), model:[citaCount: Cita.countByFechaBajaIsNull()]
     }
 
     def show(Cita cita) {        
