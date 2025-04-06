@@ -23,7 +23,8 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             //url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             driverClassName = "com.mysql.cj.jdbc.Driver"
-            url = "jdbc:mysql://localhost:3306/controlCitaDB?useSSL=false&serverTimezone=UTC" //localhost/nombre_de_la_BaseDeDatos
+            dbName="controlCitaDB"
+            url = "jdbc:mysql://localhost:3306/" + dbName + "?useSSL=false&serverTimezone=UTC" //localhost/nombre_de_la_BaseDeDatos
             username = "root"
 			password = "Anitalavalatina01"
         }
@@ -38,7 +39,8 @@ environments {
         dataSource {
             driverClassName = "com.mysql.cj.jdbc.Driver"
             dbCreate = "update"
-            url = "jdbc:mysql://localhost/controlCitaDB?useSSL=false&serverTimezone=UTC"
+            dbName="controlCitaDB"
+            url = "jdbc:mysql://localhost/" + dbName + "?useSSL=false&serverTimezone=UTC"
 			username = "root"
 			password = "Anitalavalatina01_"
             properties {

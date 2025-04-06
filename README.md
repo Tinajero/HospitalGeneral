@@ -22,7 +22,7 @@ sudo keytool -importcert -trustcacerts -file /Users/daniel/Development/framework
 
 (changeit pass del cacert default)
 
-# ejecutarlo con otro puerto
+### ejecutarlo con otro puerto
 grails runApp -Dgrails.server.port.http=8090
 
 
@@ -31,15 +31,20 @@ https://stackoverflow.com/questions/28880781/incompatible-jvm-in-ggts-eclipse-an
 
 
 
-# El mysql 8 tienes que cambiarle al password legaccy
+### El mysql 8 tienes que cambiarle al password legaccy
 > ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Anitalavalatina01';
 > FLUSH PRIVILEGES;
 
-# para saber que metodo usa tu usuario
+#### Para saber que metodo usa tu usuario
 SELECT user, host, plugin FROM mysql.user;
 
+### Generar Backup de Base de datos
 
 sudo mysqldump -u root -p controlCitaDB > backup28Mar25.sql
 
 scp -i /Users/daniel/Development/Development/repository/key/WebServerTest.pem ubuntu@ec2-18-219-43-224.us-east-2.compute.amazonaws.com:/home/ubuntu/backups/backup28Mar25.sql /Users/daniel/Development/Development/repository/backupsDatabaseHosp
 // ssh -i /Users/daniel/Development/Development/repository/key/WebServerTest.pem ubuntu@ec2-18-219-43-224.us-east-2.compute.amazonaws.com
+
+### Feature Backup de database
+PAra poder ejeecutar el respaldo de la base de datos en el servicio es necesario tener acceso globalmente a mysqldump
+Eso lo puedes hacer agregando al path del sistema operativo el folder en donde se encuentra mysqldump

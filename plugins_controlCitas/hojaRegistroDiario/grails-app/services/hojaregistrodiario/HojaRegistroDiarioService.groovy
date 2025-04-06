@@ -40,57 +40,55 @@ class HojaRegistroDiarioService {
 
 //metodo que regresa el resultado de la consulta
 
-  def consulta(date1, date2, tipoCita, doctorId)
-  {
+  def consulta(date1, date2, tipoCita, doctorId) {
     def resultados=[]	
-	def tipoCitaWhere = ""
-	def doctorIdWhere = ""
+    def tipoCitaWhere = ""
+    def doctorIdWhere = ""
 	
-	if(!tipoCita?.isEmpty()){
-		tipoCitaWhere = " and servicio_medico.id =" + tipoCita + "";
-	}
+    if(!tipoCita?.isEmpty()){
+      tipoCitaWhere = " and servicio_medico.id =" + tipoCita + "";
+    }
 
-	if(doctorId != null && doctorId != ""){
-		//nombreDoctorWhere = "and concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) like '%" + nombreDoctor + "%'";
-		doctorIdWhere = " and doctor.id = " + doctorId
-	}
+    if(doctorId != null && doctorId != ""){
+      doctorIdWhere = " and doctor.id = " + doctorId
+    }
 	
-	SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd")
-	def fechaInicio = formater.format(date1);
-	def fechaFin = formater.format(date2);
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd")
+    def fechaInicio = formater.format(date1);
+    def fechaFin = formater.format(date2);
 	
-	def consulta = 	"select servicio_medico.nombre as tipoCita, " +
-		"concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre, " +
-        "doctor.curp as doctorCurp, " +
-        "doctor.cedula_profesional as cedulaProfesional, " +
-        "date_format(cita.fecha, '%d') as diaFecha, " +
-        "date_format(cita.fecha,'%m') as mesFecha, " +
-        "date_format(cita.fecha,'%y') as anioFecha, " +
-        "concat(' ', paciente.nombre, ' ', paciente.apellido_paterno, ' ', paciente.apellido_materno) as nombrePaciente, " +
-        "COALESCE(paciente.expediente, '') as expediente, " +
-        "COALESCE(paciente.curp, '') as curp, " +
-        "COALESCE(paciente.folio_seguro_popular,'') as seguroPaciente, " +
-		"COALESCE(TIMESTAMPDIFF(YEAR, paciente.fecha_nacimiento, CURDATE()), '') as edad, " +
-        "COALESCE(paciente.sexo, '') as sexo, " +
-        "COALESCE(paciente.entidad_federativa,'') as entidadFederativa, " +
-        "COALESCE(DATE_FORMAT(paciente.fecha_nacimiento,'%d-%m-%Y'), '') as fechaNacimiento " +
-		
-		"from cita inner join paciente " +
-			"on cita.paciente_id = paciente.id " +
-			"inner join doctor " +
-			"on cita.doctor_id = doctor.id " +
-			"inner join servicio_medico on servicio_medico.id = doctor.tipo_cita_id " +
-    
-		"where cita.fecha >= '"+fechaInicio+" 00:00' "+
-			"and cita.fecha <= '"+fechaFin+" 23:59' " +
-			tipoCitaWhere + 
-			doctorIdWhere +
-			" and cita.fecha_baja is null " +
-		"order by cita.doctor_id, " +
-			"cita.fecha " 
-	//println consulta
-	def currentSession = sessionFactory.currentSession
-	resultados = currentSession.createSQLQuery(consulta)
+    def consulta = 	"select servicio_medico.nombre as tipoCita, " +
+      "concat(doctor.nombre, ' ', doctor.apellido_pat, ' ', doctor.apellido_mat) as doctorNombre, " +
+          "doctor.curp as doctorCurp, " +
+          "doctor.cedula_profesional as cedulaProfesional, " +
+          "date_format(cita.fecha, '%d') as diaFecha, " +
+          "date_format(cita.fecha,'%m') as mesFecha, " +
+          "date_format(cita.fecha,'%y') as anioFecha, " +
+          "concat(' ', paciente.nombre, ' ', paciente.apellido_paterno, ' ', paciente.apellido_materno) as nombrePaciente, " +
+          "COALESCE(paciente.expediente, '') as expediente, " +
+          "COALESCE(paciente.curp, '') as curp, " +
+          "COALESCE(paciente.folio_seguro_popular,'') as seguroPaciente, " +
+          "COALESCE(TIMESTAMPDIFF(YEAR, paciente.fecha_nacimiento, CURDATE()), '') as edad, " +
+          "COALESCE(paciente.sexo, '') as sexo, " +
+          "COALESCE(paciente.entidad_federativa,'') as entidadFederativa, " +
+          "COALESCE(DATE_FORMAT(paciente.fecha_nacimiento,'%d-%m-%Y'), '') as fechaNacimiento " +
+      
+      "FROM cita inner join paciente " +
+        "on cita.paciente_id = paciente.id " +
+        "inner join doctor " +
+        "on cita.doctor_id = doctor.id " +
+        "inner join servicio_medico on servicio_medico.id = doctor.tipo_cita_id " +
+      
+      "WHERE cita.fecha >= '"+fechaInicio+" 00:00' "+
+        "and cita.fecha <= '"+fechaFin+" 23:59' " +
+        tipoCitaWhere + 
+        doctorIdWhere +
+        " and cita.fecha_baja is null " +
+      "ORDER by cita.doctor_id, " +
+        "cita.fecha " 
+
+    def currentSession = sessionFactory.currentSession
+    resultados = currentSession.createSQLQuery(consulta)
 	
     return resultados.list()
   }
