@@ -57,10 +57,11 @@
           <ul class="nav nav-sidebar">
             <li><g:link controller ="usuario"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios</g:link></li>
             <li><g:link controller ="doctor"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> M&eacute;dicos</g:link></li>
-            <li><g:link controller ="servicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Servicios</g:link></li>
-            <li><g:link controller ="SubServicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> SubServicios</g:link></li>
+            <li><g:link controller ="servicio"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Servicios</g:link></li>
+            <li><g:link controller ="SubServicio"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> SubServicios</g:link></li>
             <li><g:link controller ="TipoSubServicio"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Tipos de SubServicios</g:link></li>
-            <li><g:link controller ="DiaSinCita"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Días de Descanso por Médico</g:link></li>
+            <li><g:link controller ="DiaSinCita"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Días de Descanso por Médico</g:link></li>
+			<li><g:link controller ="DatabaseBackup"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Respaldo </g:link></li>
 
           </ul>
         </div>

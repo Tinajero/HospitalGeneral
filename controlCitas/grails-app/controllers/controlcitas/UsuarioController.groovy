@@ -45,15 +45,9 @@ class UsuarioController {
             respond usuarioInstance.errors, view:'create'
             return
         }
-		//println "params.password2 " + params.password2 
-		//println "params.password " + params.password
+		
 		if (params.password2 != params.password){
 			usuarioInstance.errors.reject('user.password.doesnotmatch ', 'Las contrase&ntilde;as no coinciden')
-			//flash.message = "error en con trase&ntilde;a"
-			//usuarioInstance.message = "error en la contraseña"
-			//usuarionInstance.errors = "error en contraseña"
-			//usuarioInstance.errors.
-            //println usuarioInstance.hasErrors()
 			respond usuarioInstance.errors, view:'create'
 			return
 		}
@@ -91,14 +85,6 @@ class UsuarioController {
         if (params.password2 != params.password){
             usuarioInstance.errors.reject('user.password.doesnotmatch ', 'Las contrase&ntilde;as no coinciden')
             flash.message = "Las contrasenas no coinciden "
-                             
-            //usuarioInstance.message = "error en la contraseña"
-            //usuarionInstance.errors = "error en contraseña"
-            //usuarioInstance.errors.
-            //println "hay error"
-            //println usuarioInstance.hasErrors()
-
-            //respond usuarioInstance.errors, view:'edit'
             render view: 'edit' , model:[usuarioInstance:usuarioInstance]
             return
         }
@@ -115,7 +101,6 @@ class UsuarioController {
 
     @Transactional
     def delete(Usuario usuarioInstance) {
-		//println "deleteando"
         if (usuarioInstance == null) {
             notFound()
             return

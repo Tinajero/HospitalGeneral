@@ -4,8 +4,8 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_USER'])
 
 class HojaRegistroDiarioController {
-def HojaRegistroDiarioService
-def DoctorService
+	def HojaRegistroDiarioService
+	def DoctorService
 
     def index() { }
 
