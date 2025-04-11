@@ -29,7 +29,7 @@ class BusquedasService {
 		
 		def resultados = [];
 		def select = "SELECT apellidoPaterno, apellidoMaterno, nombre, expediente, id, numeroTelefono, poblacion FROM Paciente "
-		def where = " WHERE expediente LIKE ? ORDER BY expediente";
+		def where = " WHERE expediente LIKE ? and fechaBaja is null ORDER BY expediente";
 		
 		resultados = Cita.executeQuery(select + where, [ numeroExpediente ]);
 		return resultados;		

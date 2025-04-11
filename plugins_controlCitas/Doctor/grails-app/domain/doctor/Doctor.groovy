@@ -43,8 +43,19 @@ class Doctor {
   		Doctor.withCriteria {
         	projections {
             	distinct "tipoCita"
+				and {
+					isNull('fechaBaja')				
+				}
         	}	
         }.sort() 
+
+/*
+		def criteria = Doctor.createCriteria()
+		criteria.listDistinct () {
+			
+            isNull('fechaBaja')				
+        }.sort()
+		*/
   	}
 	  
 	void setNombre(String s){
